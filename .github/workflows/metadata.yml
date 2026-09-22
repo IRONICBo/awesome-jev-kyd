@@ -1,14 +1,21 @@
 # Weekly refresh of the repository facts in catalog.json — stars, licences and
 # archive status — from the GitHub API.
 #
-# Opens a pull request rather than pushing to main. The bot only ever touches
-# facts a machine can check; summaries, notes, patterns and question_types are
-# human judgements and a PR keeps a person in the loop on anything surprising,
-# such as a repository that stopped resolving.
+# Pushes a branch and opens an issue with a one-click link to raise the PR,
+# rather than pushing to main. The bot only ever touches facts a machine can
+# check; summaries, notes, patterns and question_types are human judgements, and
+# keeping a person in the loop matters most on the surprising cases — a
+# repository that stopped resolving, or a project that got archived.
+#
+# It opens an issue rather than the PR itself because creating pull requests
+# from Actions is off by default under Settings -> Actions -> General ->
+# Workflow permissions. Turning that on is the repository owner's call, not
+# something a workflow should require. With it on, the compare link in the
+# issue is one click from the same result.
 #
 # Permissions note: this is the one workflow here that is not read-only. It
-# needs `contents: write` to push its branch and `pull-requests: write` to open
-# the PR. It writes nowhere except that branch.
+# needs `contents: write` to push its branch and `issues: write` to file the
+# notice. It writes nowhere except that branch.
 #
 # Injection review: no `github.event.*` value reaches a `run:` block. The PR
 # body is read from a file the script wrote, never interpolated into a shell.
@@ -22,7 +29,7 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
+  issues: write
 
 jobs:
   refresh:
@@ -47,7 +54,7 @@ jobs:
           python3 scripts/build_assets.py
           python3 scripts/lint.py
 
-      - name: Open a pull request when something moved
+      - name: Push a branch and file a notice when something moved
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -64,26 +71,35 @@ jobs:
           git commit -m "chore: refresh repository metadata from the GitHub API"
           git push -u origin "$branch" --force
 
+          repo="${GITHUB_REPOSITORY}"
           {
             echo "Stars, licences and archive status re-read from the GitHub API."
             echo
+            echo "Branch: \`$branch\`"
+            echo
+            echo "**[Open the pull request](https://github.com/$repo/compare/main...$branch?expand=1)**"
+            echo
             echo "The bot touches only machine-checkable facts. Summaries, notes,"
-            echo "patterns and question_types are untouched."
+            echo "patterns and question_types are untouched. Anything below that is"
+            echo "not a number moving — a repository that stopped resolving, or one"
+            echo "that got archived — is worth a look before merging."
             echo
             echo '```'
             cat /tmp/report.txt
             echo '```'
           } > /tmp/body.md
 
-          # A fresh clone or a fork has no labels, and a missing label must not
-          # fail a job whose real work already landed.
+          # A fork has no labels, and a missing label must not fail a job whose
+          # real work already landed.
           gh label create metadata --color 1f6feb \
             --description "Automated refresh of repository facts" 2>/dev/null || true
 
-          existing=$(gh pr list --head "$branch" --json number --jq '.[0].number')
-          if [ -z "$existing" ]; then
-            gh pr create --title "chore: weekly metadata refresh" \
-              --body-file /tmp/body.md --label metadata \
-              || gh pr create --title "chore: weekly metadata refresh" \
+          existing=$(gh issue list --state open --label metadata --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file /tmp/body.md
+          else
+            gh issue create --title "Metadata refresh ready to merge" \
+              --label metadata --body-file /tmp/body.md \
+              || gh issue create --title "Metadata refresh ready to merge" \
                    --body-file /tmp/body.md
           fi
