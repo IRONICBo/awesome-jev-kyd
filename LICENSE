@@ -1,8 +1,13 @@
 This repository is dual-licensed, separating code from data.
 
-  Code    scripts/, site/, examples/        MIT          see LICENSE-MIT
+  Code    scripts/, site/, examples/,       MIT          see LICENSE-MIT
+          src/
   Data    catalog.json, retired.json,       CC0-1.0      see LICENSE-CC0
           schema/, docs/, README*.md
+
+The published `awesome-jev-mcp` package is that MIT code plus a snapshot of the
+CC0 data files, which it carries only as an offline last resort. Both licences
+travel in the wheel, and neither changes by being installed.
 
 Rows in catalog.json carry a per-row `license` field. Every row in the current
 build is CC0-1.0. A row whose descriptive text was inherited from a CC BY 4.0

@@ -15,8 +15,13 @@ Three design choices worth knowing:
 * **Results are trimmed by default.** An agent pays for every token of a tool
   result, so `search_examples` returns compact rows and `get_example` returns
   the whole thing when one row actually matters.
-* **No network.** It reads the repository's own JSON, so it works offline and
-  cannot disagree with the published catalogue.
+* **The data's own provenance is a caveat too.** Installed from PyPI there is no
+  repository around this file, so the catalogue is fetched and cached. Every
+  result therefore carries a `data` line naming which layer answered and how
+  current it is, and anything stale says so in capitals. See `data.py` for the
+  ladder; the short version is that a checkout beats the network, the network
+  beats the cache, and the snapshot in the wheel is the last resort rather than
+  the default.
 
 Unlike the rest of this repository, this file has a dependency. Hand-rolling
 stdio JSON-RPC would keep the zero-dependency streak, but a subtly broken MCP
@@ -24,24 +29,52 @@ server is worse than a dependency, and the catalogue's own CI never imports
 this module — the dependency-free build pipeline is untouched.
 
 Run:
-    pip install -r mcp/requirements.txt
-    python3 mcp/server.py
+    pip install awesome-jev-mcp
+    awesome-jev-mcp
+
+From a checkout, `python3 -m awesome_jev_mcp` does the same thing and serves the
+working tree rather than the published catalogue.
 """
 
 from __future__ import annotations
 
-import json
-import pathlib
+import functools
+
 from typing import Any, Literal
 
 from mcp.server import MCPServer
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-CATALOG = json.loads((ROOT / "catalog.json").read_text())
-COMPAT = json.loads((ROOT / "compat.json").read_text())
-PATTERNS = json.loads((ROOT / "patterns.json").read_text())["patterns"]
+from .data import load
+
+CATALOG, COMPAT, PATTERNS, PROVENANCE = load()
 
 mcp = MCPServer("awesome-jev")
+
+
+def tool(fn):
+    """Register an MCP tool whose result always names where the data came from.
+
+    Stamping at the decorator rather than at each `return` is deliberate: these
+    functions have a dozen exits between them, several of them error paths, and
+    the error paths are exactly where a reader most needs to know whether they
+    are looking at a stale catalogue. One forgotten return would be invisible.
+
+    The stamp goes on every result, not only degraded ones. A field that appears
+    only when something is wrong trains readers to skim past it, and it leaves
+    "nothing is wrong" indistinguishable from "the warning got lost".
+    """
+
+    @functools.wraps(fn)
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        result = fn(*args, **kwargs)
+        return (
+            {**result, "data": PROVENANCE.line()}
+            if isinstance(result, dict)
+            else result
+        )
+
+    return mcp.tool()(wrapper)
+
 
 # Flags that change whether a row is an example at all, as opposed to a caveat
 # about its quality. An agent looking for "how do I do X" should not be handed
@@ -72,7 +105,7 @@ def _compact(entry: dict) -> dict[str, Any]:
     return out
 
 
-@mcp.tool()
+@tool
 def search_examples(
     pattern: str = "",
     kind: str = "",
@@ -176,7 +209,7 @@ def search_examples(
     }
 
 
-@mcp.tool()
+@tool
 def get_example(slug: str) -> dict[str, Any]:
     """Return one catalogue row in full, including its sources and evidence.
 
@@ -197,7 +230,7 @@ def get_example(slug: str) -> dict[str, Any]:
     }
 
 
-@mcp.tool()
+@tool
 def list_patterns() -> dict[str, Any]:
     """The decision-pattern taxonomy, with how many examples exist for each.
 
@@ -226,7 +259,7 @@ def list_patterns() -> dict[str, Any]:
     }
 
 
-@mcp.tool()
+@tool
 def compatibility(surface: str = "") -> dict[str, Any]:
     """How reaching Jev differs per platform: model string, field names, endpoint.
 
@@ -257,7 +290,7 @@ def compatibility(surface: str = "") -> dict[str, Any]:
     }
 
 
-@mcp.tool()
+@tool
 def check_model_string(model: str) -> dict[str, Any]:
     """Check whether a Jev model string is real, and which surface it belongs to.
 
@@ -296,7 +329,9 @@ def check_model_string(model: str) -> dict[str, Any]:
 
     every = sorted({m for p in COMPAT["platforms"] for m in accepted(p)})
     # A near miss is the common case, so name it rather than just saying no.
-    near = [m for m in every if needle and (m.startswith(needle) or needle.startswith(m))]
+    near = [
+        m for m in every if needle and (m.startswith(needle) or needle.startswith(m))
+    ]
     return {
         "model": needle,
         "valid": False,

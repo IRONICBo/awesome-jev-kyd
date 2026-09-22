@@ -1,5 +1,5 @@
 {
-  "note": "Single source of truth for the decision-pattern taxonomy. Read by scripts/build_readme.py, scripts/build_assets.py and mcp/server.py so the three cannot drift. Order is editorial: the patterns an agent author hits first come first. Keys must match the enum in schema/entry.schema.json; scripts/lint.py enforces that.",
+  "note": "Single source of truth for the decision-pattern taxonomy. Read by scripts/build_readme.py, scripts/build_assets.py, scripts/check_doc_counts.py and src/awesome_jev_mcp/server.py so the four cannot drift. Order is editorial: the patterns an agent author hits first come first. Keys must match the enum in schema/entry.schema.json; scripts/lint.py enforces that.",
   "patterns": [
     {
       "key": "tool-selection",

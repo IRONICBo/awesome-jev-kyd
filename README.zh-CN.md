@@ -3741,7 +3741,7 @@ _介绍模型或整个领域，而非单一模式。_
 | [`docs/sources.md`](docs/sources.md) | 每一行的来源，以及许可状况。 |
 | [`examples/`](examples/) | 四个可运行样例。其中一个刻意把阈值策略留给你写。 |
 | [`schema/entry.schema.json`](schema/entry.schema.json) | 一条目录记录允许包含什么。 |
-| [`mcp/`](mcp/) | 一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示一起返回。 |
+| [`src/awesome_jev_mcp/`](src/awesome_jev_mcp/) | 一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示一起返回。 |
 | [`SKILL.md`](SKILL.md) | 一份 agent 技能：生成的 Jev 代码最常搞错的那些事实，以及值得遵循的设计规则。 |
 | [`scripts/verify_claims.py`](scripts/verify_claims.py) | 每周重读每一处被引用的调用点 —— 让原语声明可核实，而不只是被断言。 |
 | [`scripts/refresh_metadata.py`](scripts/refresh_metadata.py) | 从 GitHub API 重新读取 star、许可证与归档状态，并开 PR。 |

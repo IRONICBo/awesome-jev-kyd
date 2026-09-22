@@ -631,7 +631,7 @@ REPO_FILES = [
         "一条目录记录允许包含什么。",
     ),
     (
-        "mcp/",
+        "src/awesome_jev_mcp/",
         "An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result.",
         "一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示一起返回。",
     ),
