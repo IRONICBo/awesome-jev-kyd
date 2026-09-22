@@ -69,5 +69,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/check_description.py
 
+      # The README, figure and compatibility steps regenerate their targets and
+      # diff them. These files cannot be regenerated — they are hand-written
+      # prose that quotes counts — so they are checked instead. Without this,
+      # llms.txt told agents the catalogue held 148 rows through two expansions
+      # to 805, and nothing was red.
+      - name: Hand-written docs state the catalog's real counts
+        run: python3 scripts/check_doc_counts.py
+
       - name: Catalog stats
         run: python3 scripts/counts.py
