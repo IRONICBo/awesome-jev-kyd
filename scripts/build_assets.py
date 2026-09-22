@@ -23,6 +23,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
+PATTERNS_FILE = ROOT / "patterns.json"
 OUT = ROOT / "docs" / "assets"
 
 MONO = "ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace"
@@ -57,28 +58,11 @@ THEMES = {
     },
 }
 
-# Label, blurb; both languages. Kept here rather than imported so the two
-# generators stay independent and a change to one cannot silently break the
-# other's layout.
+# Read from patterns.json rather than embedded, so a new pattern cannot be
+# labelled in the README and left unlabelled in the figure.
 PATTERNS = [
-    ("tool-selection", "Tool selection", "工具选择"),
-    ("intent-routing", "Intent routing", "意图路由"),
-    ("context-compaction", "Context compaction", "上下文压缩"),
-    ("safety-gating", "Safety gating", "安全闸门"),
-    ("output-validation", "Output validation", "输出校验"),
-    ("retry-control", "Retry control", "重试控制"),
-    ("human-escalation", "Human escalation", "人工升级"),
-    ("model-routing", "Model routing", "模型路由"),
-    ("fan-out", "Speculative fan-out", "并行扇出"),
-    ("search-ranking", "Search & ranking", "检索与排序"),
-    ("data-extraction", "Structured extraction", "结构化抽取"),
-    ("classification", "Classification", "分类"),
-    ("feature-extraction", "ML feature extraction", "特征抽取"),
-    ("document-triage", "Document triage", "文档分拣"),
-    ("support-triage", "Support triage", "工单分拣"),
-    ("content-scoring", "Content scoring", "内容评分"),
-    ("recommendation", "Recommendation", "实时推荐"),
-    ("overview", "Overview", "总览"),
+    (p["key"], p["en"], p["zh"])
+    for p in json.loads(PATTERNS_FILE.read_text())["patterns"]
 ]
 
 STRINGS = {

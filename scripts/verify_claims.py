@@ -29,21 +29,17 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import pathlib
 import re
 import sys
-import urllib.error
-import urllib.request
 from concurrent.futures import ThreadPoolExecutor
+
+from _github import api_get, default_branch, raw_get, repo_of
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
-
-API = "https://api.github.com"
-RAW = "https://raw.githubusercontent.com"
-TIMEOUT = 25
-WORKERS = 6
 
 # Signals that a file is a genuine Jev call site rather than a mention. The
 # import and the endpoint are strong; a bare primitive name is not, because
@@ -67,78 +63,11 @@ STRONG = [
 WEAK = ["noul", "Noul", "choice", "Choice", "score", "Score"]
 
 CODE_EXT = (
-    ".py",
-    ".ts",
-    ".tsx",
-    ".js",
-    ".mjs",
-    ".jsx",
-    ".go",
-    ".rs",
-    ".rb",
-    ".java",
-    ".kt",
+    ".py", ".ts", ".tsx", ".js", ".mjs", ".jsx",
+    ".go", ".rs", ".rb", ".java", ".kt", ".sql",
 )
 
-
-def token() -> str | None:
-    return os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
-
-
-def api_get(path: str) -> dict | list | None:
-    req = urllib.request.Request(
-        f"{API}{path}",
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "awesome-jev-verify",
-            **({"Authorization": f"Bearer {token()}"} if token() else {}),
-        },
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
-            return json.loads(response.read())
-    except urllib.error.HTTPError as exc:
-        if exc.code == 403:
-            print(
-                "error: GitHub rate limit. Set GITHUB_TOKEN; unauthenticated is 60/hour.",
-                file=sys.stderr,
-            )
-            raise SystemExit(2) from exc
-        return None
-    except Exception:  # noqa: BLE001 - a sweep must not die on one row
-        return None
-
-
-def raw_get(repo: str, branch: str, path: str) -> str | None:
-    url = f"{RAW}/{repo}/{branch}/{path}"
-    req = urllib.request.Request(url, headers={"User-Agent": "awesome-jev-verify"})
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
-            return response.read().decode("utf-8", "replace")
-    except Exception:  # noqa: BLE001
-        return None
-
-
-def repo_of(entry: dict) -> str | None:
-    """owner/name from the row's repo or url, when it is a GitHub repository."""
-    for candidate in (entry.get("repo"), entry.get("url")):
-        if not candidate:
-            continue
-        match = re.match(r"https://github\.com/([^/]+)/([^/#?]+)", candidate)
-        if match:
-            return f"{match.group(1)}/{match.group(2)}"
-    return None
-
-
-_branches: dict[str, str] = {}
-
-
-def default_branch(repo: str) -> str | None:
-    """Cached, because several rows point at the same repository."""
-    if repo not in _branches:
-        data = api_get(f"/repos/{repo}")
-        _branches[repo] = (data or {}).get("default_branch") or ""
-    return _branches[repo] or None
+WORKERS = 6
 
 
 def check(entry: dict) -> dict:

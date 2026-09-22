@@ -1,0 +1,131 @@
+{
+  "note": "Single source of truth for the decision-pattern taxonomy. Read by scripts/build_readme.py, scripts/build_assets.py and mcp/server.py so the three cannot drift. Order is editorial: the patterns an agent author hits first come first. Keys must match the enum in schema/entry.schema.json; scripts/lint.py enforces that.",
+  "patterns": [
+    {
+      "key": "tool-selection",
+      "en": "Tool selection",
+      "zh": "工具选择",
+      "blurb_en": "Which tool or action the agent should call next.",
+      "blurb_zh": "智能体下一步该调用哪个工具或动作。"
+    },
+    {
+      "key": "intent-routing",
+      "en": "Intent routing",
+      "zh": "意图路由",
+      "blurb_en": "Classify what the user wants and send the request down the right branch.",
+      "blurb_zh": "判断用户意图，把请求分流到正确的分支。"
+    },
+    {
+      "key": "context-compaction",
+      "en": "Context compaction",
+      "zh": "上下文压缩",
+      "blurb_en": "Decide which tool calls and results still matter so stale context can be dropped.",
+      "blurb_zh": "判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。"
+    },
+    {
+      "key": "safety-gating",
+      "en": "Safety gating",
+      "zh": "安全闸门",
+      "blurb_en": "Decide whether an action is safe to run. Defence in depth, never a security boundary.",
+      "blurb_zh": "在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。"
+    },
+    {
+      "key": "output-validation",
+      "en": "Output validation",
+      "zh": "输出校验",
+      "blurb_en": "Check a model's output against a rubric before it reaches a user.",
+      "blurb_zh": "在输出到达用户前，按评分标准检查模型产出。"
+    },
+    {
+      "key": "retry-control",
+      "en": "Retry control",
+      "zh": "重试控制",
+      "blurb_en": "Decide whether a failed step is worth retrying.",
+      "blurb_zh": "判断失败的步骤是否值得重试。"
+    },
+    {
+      "key": "human-escalation",
+      "en": "Human escalation",
+      "zh": "人工升级",
+      "blurb_en": "Use calibrated confidence to decide what a person must see.",
+      "blurb_zh": "用校准置信度决定哪些情况必须由人来看。"
+    },
+    {
+      "key": "model-routing",
+      "en": "Model routing",
+      "zh": "模型路由",
+      "blurb_en": "Pick which downstream model or tier should handle a request.",
+      "blurb_zh": "选择由哪个下游模型或档位处理请求。"
+    },
+    {
+      "key": "fan-out",
+      "en": "Speculative fan-out",
+      "zh": "并行扇出",
+      "blurb_en": "Pack many questions — including speculative ones — into one request and let code pick what mattered.",
+      "blurb_zh": "把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。"
+    },
+    {
+      "key": "search-ranking",
+      "en": "Search & ranking",
+      "zh": "检索与排序",
+      "blurb_en": "Score or re-rank candidates from a cheaper retrieval step.",
+      "blurb_zh": "对来自廉价检索步骤的候选做打分或重排。"
+    },
+    {
+      "key": "data-extraction",
+      "en": "Structured extraction",
+      "zh": "结构化抽取",
+      "blurb_en": "Pull typed fields out of messy text by choosing among candidates rather than generating them.",
+      "blurb_zh": "从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。"
+    },
+    {
+      "key": "classification",
+      "en": "Classification",
+      "zh": "分类",
+      "blurb_en": "Put an item into a taxonomy, including deep hierarchies walked with probabilities.",
+      "blurb_zh": "把条目归入分类体系，包括用概率遍历的深层层级。"
+    },
+    {
+      "key": "feature-extraction",
+      "en": "ML feature extraction",
+      "zh": "机器学习特征抽取",
+      "blurb_en": "Turn free text into numeric features for a classical downstream model.",
+      "blurb_zh": "把自由文本转成数值特征，喂给下游的传统模型。"
+    },
+    {
+      "key": "document-triage",
+      "en": "Document triage",
+      "zh": "文档分拣",
+      "blurb_en": "Classify and route incoming documents, invoices and forms.",
+      "blurb_zh": "对进来的文档、发票、表单做分类和路由。"
+    },
+    {
+      "key": "support-triage",
+      "en": "Support triage",
+      "zh": "工单分拣",
+      "blurb_en": "Route support tickets and conversations by intent and urgency.",
+      "blurb_zh": "按意图和紧急度路由支持工单与会话。"
+    },
+    {
+      "key": "content-scoring",
+      "en": "Content scoring",
+      "zh": "内容评分",
+      "blurb_en": "Score quality, risk or relevance on an ordered scale.",
+      "blurb_zh": "在有序量表上给质量、风险或相关性打分。"
+    },
+    {
+      "key": "recommendation",
+      "en": "Recommendation",
+      "zh": "实时推荐",
+      "blurb_en": "Choose what to surface next, fast enough for a live conversation.",
+      "blurb_zh": "选择下一步呈现什么，快到能用在实时会话里。"
+    },
+    {
+      "key": "overview",
+      "en": "Overview",
+      "zh": "总览",
+      "blurb_en": "Surveys the model or the space rather than one pattern.",
+      "blurb_zh": "介绍模型或整个领域，而非单一模式。"
+    }
+  ]
+}

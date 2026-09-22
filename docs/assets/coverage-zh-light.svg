@@ -51,7 +51,7 @@
 <rect x="168" y="340" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 340h127a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-127z" fill="#bc7503"/>
 <text x="560" y="350" class="n">18</text>
-<text x="12" y="374" class="l">特征抽取</text>
+<text x="12" y="374" class="l">机器学习特征抽取</text>
 <rect x="168" y="365" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 365h20a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-20z" fill="#e5b45f"/>
 <text x="560" y="375" class="n">3</text>

@@ -29,6 +29,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
 RETIRED = ROOT / "retired.json"
 SCHEMA = ROOT / "schema" / "entry.schema.json"
+PATTERNS_FILE = ROOT / "patterns.json"
 
 # Places we accept as TypeSafe AI speaking for itself. `official: true` anywhere
 # else is a mistake: the community site at jevai.org is not the vendor, and a
@@ -254,6 +255,17 @@ def main() -> int:
     schema = json.loads(SCHEMA.read_text())
     catalog = json.loads(CATALOG.read_text())
     retired = json.loads(RETIRED.read_text())
+
+    # patterns.json feeds both README generators and the MCP server. If it
+    # drifts from the schema enum, a pattern is either unlabelled in a figure
+    # or unusable in the catalog, and both fail far from the cause.
+    if PATTERNS_FILE.exists():
+        taxonomy = {p["key"] for p in json.loads(PATTERNS_FILE.read_text())["patterns"]}
+        enum = set(schema["properties"]["patterns"]["items"]["enum"])
+        for key in sorted(enum - taxonomy):
+            err("patterns.json", f"schema allows {key!r} but patterns.json has no label for it")
+        for key in sorted(taxonomy - enum):
+            err("patterns.json", f"patterns.json labels {key!r} but the schema does not allow it")
 
     for name, data in (("catalog.json", catalog), ("retired.json", retired)):
         if not isinstance(data, list):

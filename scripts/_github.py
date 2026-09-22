@@ -1,0 +1,83 @@
+"""Shared GitHub plumbing for the scripts that read upstream repositories.
+
+Extracted because verify_claims.py and refresh_metadata.py both need the same
+four things — a token, an API call, a raw file, and the owner/name out of a row
+— and two copies of that would drift. Dependency-free like the rest of the repo:
+urllib only, so CI stays `setup-python` with no install step.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import re
+import sys
+import urllib.error
+import urllib.request
+
+API = "https://api.github.com"
+RAW = "https://raw.githubusercontent.com"
+TIMEOUT = 25
+
+_branches: dict[str, str] = {}
+
+
+def token() -> str | None:
+    return os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+
+
+def api_get(path: str) -> dict | list | None:
+    """GET an API path. Returns None on anything but success, except a rate
+    limit, which stops the run — continuing would silently produce a report
+    full of false negatives."""
+    req = urllib.request.Request(
+        f"{API}{path}",
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "awesome-jev",
+            **({"Authorization": f"Bearer {token()}"} if token() else {}),
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
+            return json.loads(response.read())
+    except urllib.error.HTTPError as exc:
+        if exc.code == 403:
+            print(
+                "error: GitHub rate limit. Set GITHUB_TOKEN; unauthenticated is 60/hour.",
+                file=sys.stderr,
+            )
+            raise SystemExit(2) from exc
+        return None
+    except Exception:  # noqa: BLE001 - a sweep must not die on one row
+        return None
+
+
+def raw_get(repo: str, branch: str, path: str) -> str | None:
+    req = urllib.request.Request(
+        f"{RAW}/{repo}/{branch}/{path}", headers={"User-Agent": "awesome-jev"}
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
+            return response.read().decode("utf-8", "replace")
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def repo_of(entry: dict) -> str | None:
+    """owner/name from a catalog row's repo or url, when it is a GitHub repo."""
+    for candidate in (entry.get("repo"), entry.get("url")):
+        if not candidate:
+            continue
+        match = re.match(r"https://github\.com/([^/]+)/([^/#?]+)", candidate)
+        if match:
+            return f"{match.group(1)}/{match.group(2)}"
+    return None
+
+
+def default_branch(repo: str) -> str | None:
+    """Cached, because several rows point at the same repository."""
+    if repo not in _branches:
+        data = api_get(f"/repos/{repo}")
+        _branches[repo] = (data or {}).get("default_branch") or ""
+    return _branches[repo] or None

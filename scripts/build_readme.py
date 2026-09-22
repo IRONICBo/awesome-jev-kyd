@@ -33,6 +33,7 @@ from collections import Counter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
+PATTERNS_FILE = ROOT / "patterns.json"
 RETIRED = ROOT / "retired.json"
 
 REPO = "kydlikebtc/awesome-jev"
@@ -40,27 +41,14 @@ REPO_URL = f"https://github.com/{REPO}"
 RAW = f"https://raw.githubusercontent.com/{REPO}/main"
 SITE = "https://kydlikebtc.github.io/awesome-jev/"
 
-# Order is editorial: the patterns an agent author hits first come first.
-PATTERN_ORDER = [
-    "tool-selection",
-    "intent-routing",
-    "context-compaction",
-    "safety-gating",
-    "output-validation",
-    "retry-control",
-    "human-escalation",
-    "model-routing",
-    "fan-out",
-    "search-ranking",
-    "data-extraction",
-    "classification",
-    "feature-extraction",
-    "document-triage",
-    "support-triage",
-    "content-scoring",
-    "recommendation",
-    "overview",
-]
+
+# The taxonomy lives in patterns.json so build_readme, build_assets and the MCP
+# server all read one copy. Three embedded copies was three chances to drift.
+_PATTERNS = json.loads(PATTERNS_FILE.read_text())["patterns"]
+PATTERN_ORDER = [p["key"] for p in _PATTERNS]
+PATTERN_LABELS = {
+    p["key"]: (p["en"], p["zh"], p["blurb_en"], p["blurb_zh"]) for p in _PATTERNS
+}
 
 KIND_ORDER = [
     "official-docs",
@@ -417,119 +405,6 @@ ZH = {
     "stat_retired": "已退休",
 }
 
-# Display labels. Keys must stay in sync with schema enums; the build fails
-# loudly if the catalog uses a value with no label rather than printing a raw
-# slug, because a silent fallback is how a bilingual list starts rotting.
-PATTERN_LABELS = {
-    "tool-selection": (
-        "Tool selection",
-        "工具选择",
-        "Which tool or action the agent should call next.",
-        "智能体下一步该调用哪个工具或动作。",
-    ),
-    "intent-routing": (
-        "Intent routing",
-        "意图路由",
-        "Classify what the user wants and send the request down the right branch.",
-        "判断用户意图，把请求分流到正确的分支。",
-    ),
-    "context-compaction": (
-        "Context compaction",
-        "上下文压缩",
-        "Decide which tool calls and results still matter so stale context can be dropped.",
-        "判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。",
-    ),
-    "safety-gating": (
-        "Safety gating",
-        "安全闸门",
-        "Decide whether an action is safe to run. Defence in depth, never a security boundary.",
-        "在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。",
-    ),
-    "output-validation": (
-        "Output validation",
-        "输出校验",
-        "Check a model's output against a rubric before it reaches a user.",
-        "在输出到达用户前，按评分标准检查模型产出。",
-    ),
-    "retry-control": (
-        "Retry control",
-        "重试控制",
-        "Decide whether a failed step is worth retrying.",
-        "判断失败的步骤是否值得重试。",
-    ),
-    "human-escalation": (
-        "Human escalation",
-        "人工升级",
-        "Use calibrated confidence to decide what a person must see.",
-        "用校准置信度决定哪些情况必须由人来看。",
-    ),
-    "model-routing": (
-        "Model routing",
-        "模型路由",
-        "Pick which downstream model or tier should handle a request.",
-        "选择由哪个下游模型或档位处理请求。",
-    ),
-    "fan-out": (
-        "Speculative fan-out",
-        "并行扇出",
-        "Pack many questions — including speculative ones — into one request and let code pick what mattered.",
-        "把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。",
-    ),
-    "search-ranking": (
-        "Search & ranking",
-        "检索与排序",
-        "Score or re-rank candidates from a cheaper retrieval step.",
-        "对来自廉价检索步骤的候选做打分或重排。",
-    ),
-    "data-extraction": (
-        "Structured extraction",
-        "结构化抽取",
-        "Pull typed fields out of messy text by choosing among candidates rather than generating them.",
-        "从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。",
-    ),
-    "classification": (
-        "Classification",
-        "分类",
-        "Put an item into a taxonomy, including deep hierarchies walked with probabilities.",
-        "把条目归入分类体系，包括用概率遍历的深层层级。",
-    ),
-    "feature-extraction": (
-        "ML feature extraction",
-        "机器学习特征抽取",
-        "Turn free text into numeric features for a classical downstream model.",
-        "把自由文本转成数值特征，喂给下游的传统模型。",
-    ),
-    "document-triage": (
-        "Document triage",
-        "文档分拣",
-        "Classify and route incoming documents, invoices and forms.",
-        "对进来的文档、发票、表单做分类和路由。",
-    ),
-    "support-triage": (
-        "Support triage",
-        "工单分拣",
-        "Route support tickets and conversations by intent and urgency.",
-        "按意图和紧急度路由支持工单与会话。",
-    ),
-    "content-scoring": (
-        "Content scoring",
-        "内容评分",
-        "Score quality, risk or relevance on an ordered scale.",
-        "在有序量表上给质量、风险或相关性打分。",
-    ),
-    "recommendation": (
-        "Recommendation",
-        "实时推荐",
-        "Choose what to surface next, fast enough for a live conversation.",
-        "选择下一步呈现什么，快到能用在实时会话里。",
-    ),
-    "overview": (
-        "Overview",
-        "总览",
-        "Surveys the model or the space rather than one pattern.",
-        "介绍模型或整个领域，而非单一模式。",
-    ),
-}
 
 KIND_LABELS = {
     "official-docs": (
@@ -743,6 +618,26 @@ REPO_FILES = [
         "schema/entry.schema.json",
         "What a catalog entry may contain.",
         "一条目录记录允许包含什么。",
+    ),
+    (
+        "mcp/",
+        "An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result.",
+        "一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示一起返回。",
+    ),
+    (
+        "SKILL.md",
+        "An agent skill: the facts that generated Jev code most often gets wrong, and the design rules worth following.",
+        "一份 agent 技能：生成的 Jev 代码最常搞错的那些事实，以及值得遵循的设计规则。",
+    ),
+    (
+        "scripts/verify_claims.py",
+        "Re-reads every cited call site weekly, so a primitive claim is checkable rather than asserted.",
+        "每周重读每一处被引用的调用点 —— 让原语声明可核实，而不只是被断言。",
+    ),
+    (
+        "scripts/refresh_metadata.py",
+        "Re-reads stars, licences and archive status from the GitHub API and opens a PR.",
+        "从 GitHub API 重新读取 star、许可证与归档状态，并开 PR。",
     ),
 ]
 
@@ -1115,6 +1010,9 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     )
     add(
         f"| [`compat.json`]({RAW}/compat.json) | The platform matrix behind `docs/compatibility.md` |"
+    )
+    add(
+        f"| [`patterns.json`]({RAW}/patterns.json) | The decision taxonomy both generators and the MCP server read |"
     )
     add(
         f"| [`schema/entry.schema.json`]({RAW}/schema/entry.schema.json) | One entry's shape |"

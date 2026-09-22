@@ -1,0 +1,4 @@
+# The only dependency in this repository, and it is scoped to the MCP server.
+# The catalogue's own pipeline (lint, build, verify, refresh) stays stdlib-only,
+# so CI remains `setup-python` with no install step.
+mcp>=1.2

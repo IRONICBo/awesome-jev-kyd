@@ -29,6 +29,15 @@ How the catalog was built: https://github.com/kydlikebtc/awesome-jev/blob/main/d
 Sources and licences: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sources.md
 Runnable examples: https://github.com/kydlikebtc/awesome-jev/blob/main/examples/README.md
 
+## For agents
+
+MCP server: https://github.com/kydlikebtc/awesome-jev/tree/main/mcp — query the catalogue by decision pattern, language and primitive rather than reading it. Tools: search_examples, get_example, list_patterns, compatibility, check_model_string. Every result carries the row's caveat flags; rows that do not call Jev at all are excluded by default.
+
+Agent skill: https://github.com/kydlikebtc/awesome-jev/blob/main/SKILL.md — the facts generated Jev code most often gets wrong, and the design rules worth following.
+
+Decision taxonomy: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json
+Platform matrix: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json
+
 ## What is verified
 
 Verified: the URL returned a success status on the date in `checked`; a person opened it and wrote the summary from what was actually on the page; for code entries, the call site was read to confirm which primitives are actually used; repository stars, licence and creation date came from the GitHub API.
