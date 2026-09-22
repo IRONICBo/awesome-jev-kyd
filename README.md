@@ -8,9 +8,13 @@
 
 > Every public example of Jev — TypeSafe AI's System One decision model — indexed by the decision it makes, not by the blog that mentioned it.
 
-**中文:** [README.zh-CN.md](README.zh-CN.md)
+**中文:** [README.zh-CN.md](README.zh-CN.md) · **Searchable site:** [https://kydlikebtc.github.io/awesome-jev/](https://kydlikebtc.github.io/awesome-jev/)
 
-`148` entries · `124` carry code · `36` official · `16/18` patterns covered · `0` retired · `2026-09-22`
+`148` entries · `124` carry code · `36` official · `144` link-verified · `16/18` patterns covered · `0` retired · `2026-09-22`
+
+<a href="https://kydlikebtc.github.io/awesome-jev/"><img src="docs/screenshots/site-desktop.png" alt="The awesome-jev site: a coverage histogram down the left acting as the pattern filter, dense entry cards on the right" width="100%"></a>
+
+<sub>The searchable site. The histogram down the left is the filter — each bar is a decision pattern, sized by how many examples exist for it.</sub>
 
 ## What Jev is
 
@@ -29,6 +33,9 @@ Most of what an agent asks a frontier model to do is not writing, it is choosing
 
 ## Contents
 
+- [Start here](#start-here)
+- [Coverage at a glance](#coverage-at-a-glance)
+- [Measured, not claimed](#measured-not-claimed)
 - [By decision pattern](#by-decision-pattern)
   - [Tool selection](#tool-selection) `25`
   - [Intent routing](#intent-routing) `20`
@@ -52,6 +59,57 @@ Most of what an agent asks a frontier model to do is not writing, it is choosing
 - [What is verified, and what is not](#what-is-verified-and-what-is-not)
 - [Machine-readable data](#machine-readable-data)
 - [Contributing](#contributing)
+
+## Start here
+
+Six things in reading order. Curated by hand, because "most starred" is not the same as "read this first".
+
+| | Example | Why this one |
+| --- | --- | --- |
+| `1` | [Quickstart](https://docs.typesafe.ai/introduction/quickstart) | The canonical first call: one support ticket, one Choice, one Score and one Noul in a single request, in Python, JS and cURL. |
+| `2` | [Jev 1.13 known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13) | The most useful page in the docs and the least linked. It explains, among other things, that a Choice over options and one Noul per option answer different questions. |
+| `3` | [Example: three primitives in one request](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/01-three-primitives/main.py) | Written from the official API reference and checked field by field against it, but not executed against the live API. |
+| `4` | [fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) | Exactly two nouls per tool call: does knowing this call happened still matter, and is the full output still needed verbatim. Despite the word "scored" in its own description, no score primitive is used. |
+| `5` | [ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook) | The best structured tutorial found. It states plainly that typed output does not guarantee a correct decision, lists the documented weaknesses, and qualifies its own cost illustration rather than selling it. |
+| `6` | [Hermes Agent: Jev compaction evaluation](https://github.com/NousResearch/hermes-agent) | The single most credible row in this catalog. Recall came out below their existing summariser, and at a matched context budget it tied plain recency ordering. Cost was genuinely far lower. Publishing a negative result on a hyped model is rare. |
+
+## Coverage at a glance
+
+How many examples exist per decision pattern. A zero is a research to-do, not a rendering bug — `scripts/counts.py` prints the live version.
+
+| Pattern | | What it shows |
+| --- | --- | --- |
+| [Tool selection](#tool-selection) | ` 25` ████████▌ | Which tool or action the agent should call next. |
+| [Intent routing](#intent-routing) | ` 20` ██████▊ | Classify what the user wants and send the request down the right branch. |
+| [Context compaction](#context-compaction) | `  6` ██ | Decide which tool calls and results still matter so stale context can be dropped. |
+| [Safety gating](#safety-gating) | ` 13` ████▍ | Decide whether an action is safe to run before running it. |
+| [Output validation](#output-validation) | `  7` ██▍ | Check a model's output against a rubric before it reaches a user. |
+| Retry control | `  0` | Decide whether a failed step is worth retrying. |
+| [Human escalation](#human-escalation) | ` 15` █████▏ | Use calibrated confidence to decide what a person must see. |
+| [Model routing](#model-routing) | ` 10` ███▍ | Pick which downstream model or tier should handle a request. |
+| [Speculative fan-out](#speculative-fan-out) | ` 14` ████▊ | Pack many questions — including speculative ones — into one request and let code pick what mattered. |
+| [Search & ranking](#search--ranking) | ` 15` █████▏ | Score or re-rank candidates from a cheaper retrieval step. |
+| [Structured extraction](#structured-extraction) | `  4` █▍ | Pull typed fields out of messy text by choosing among candidates rather than generating them. |
+| [Classification](#classification) | ` 18` ██████▏ | Put an item into a taxonomy, including deep hierarchies walked with probabilities. |
+| [ML feature extraction](#ml-feature-extraction) | `  3` █ | Turn free text into numeric features for a classical downstream model. |
+| [Document triage](#document-triage) | `  1` ▍ | Classify and route incoming documents, invoices and forms. |
+| [Support triage](#support-triage) | `  7` ██▍ | Route support tickets and conversations by intent and urgency. |
+| [Content scoring](#content-scoring) | ` 15` █████▏ | Score quality, risk or relevance on an ordered scale. |
+| Recommendation | `  0` | Choose what to surface next, fast enough for a live conversation. |
+| [Overview](#overview) | ` 53` ██████████████████ | Surveys the model or the space rather than one pattern. |
+
+## Measured, not claimed
+
+Almost every performance number circulating about this model is the vendor's own, produced with reference answers derived from other models' judgements rather than human ground truth. These are the independent measurements in the catalog — and several of them are **negative results**, which is what makes them worth reading first.
+
+| Example | What it shows | Kind | Code | Notes |
+| --- | --- | --- | --- | --- |
+| [Hermes Agent: Jev compaction evaluation](https://github.com/NousResearch/hermes-agent) | Ported the Jev compaction approach, measured it against their shipping summariser, and published the conclusion not to adopt it. | Benchmark | `Py`<br><sub>noul</sub> | The single most credible row in this catalog. Recall came out below their existing summariser, and at a matched context budget it tied plain recency ordering. Cost was genuinely far lower. Publishing a negative result on a hyped model is rare. |
+| [worldmonitor: news threat classification](https://github.com/koala73/worldmonitor) | Two Choice questions over threat level and category, held in shadow mode after a blind evaluation found Jev merely tied the incumbent model. | Benchmark | `TS`<br><sub>choice</sub> | `shadow mode` Wired in but deliberately inert: by their own statement nothing Jev returns reaches a label, a cache row or an alert. Ships a golden fixture. A model to copy for how to trial a new model without betting production on it. |
+| [no-mistakes: review context selection](https://github.com/kunchenguid/no-mistakes) | One Score per candidate file to pick review context, with a measured outcome: materially more billed input for essentially no wall-clock gain. | Benchmark | `Go`<br><sub>score</sub> | Their own recommendation was to keep the feature opt-in, off by default, and ship no savings claim. That is what an honest measurement looks like. |
+| [Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til) | Independent Korean-language notes reporting that reversing the order of options shifted a probability enough to flip a 0.9 threshold. | Benchmark | `Py` | `no licence` `unverified claims` The most actionable engineering caveat found anywhere: if option order alone can move a probability past your threshold, your threshold is not as stable as it looks. Independent and unreplicated, so treat the magnitude as indicative. |
+| [An early-access test of TypeSafe's Jev: calibrated judgments for half a cent](https://lindfors.no/blog/a-first-look-at-typesafes-jev/)<br><sub>Lindfors</sub> | The best independent test found: 24 Norwegian documents on one pinned model version, opening with a case the model got wrong while correctly reporting low confidence. | Benchmark | — | Methodology is stated cleanly and scoped honestly as a single-day snapshot. Leading with a failure case is what makes it a real calibration test rather than a testimonial. |
+| [Testing TypeSafe Jev, Mistral and Gemini for local event validation](https://nearhere.events/blog/typesafe-jev-mistral-gemini-event-validation)<br><sub>Near Here</sub> | The only three-way head-to-head found, with each model's prompt tuned separately and the scope limited to one task rather than a general ranking. | Benchmark | — | Self-limits correctly: a use-case study, not a model leaderboard. That restraint is rarer than the numbers. |
 
 ## By decision pattern
 
@@ -339,6 +397,9 @@ _Score quality, risk or relevance on an ordered scale._
 
 _Surveys the model or the space rather than one pattern._
 
+<details>
+<summary><b>53</b> rows — click to expand</summary>
+
 | Example | What it shows | Kind | Code | Notes |
 | --- | --- | --- | --- | --- |
 | [typesafe-ai/skills](https://github.com/typesafe-ai/skills) ⭐ | The official agent-skills repository behind the Claude Code plugin, holding the SKILL.md that teaches an agent the System One API. | Plugin | `sh` | — |
@@ -394,6 +455,8 @@ _Surveys the model or the space rather than one pattern._
 | [RLCD explained: Reinforcement Learning for Calibrated Decisions](https://systemonemodels.org/guides/rlcd-explained/) | An independent write-up whose most useful finding is a negative one: there is no paper, no reward function, no dataset description and no reproducible evaluation for RLCD. | Article | — | Beware a name collision: an unrelated 2023 paper also abbreviates to RLCD (Reinforcement Learning from Contrastive Distillation). An arXiv link labelled "the RLCD paper" is almost certainly that one, not this method. |
 | [TypeSafe AI debuts model for machines that plays Doom](https://www.theregister.com/ai-and-ml/2026/09/16/typesafe-ai-debuts-model-for-machines-that-plays-doom/5296711)<br><sub>Thomas Claburn</sub> | The most sceptical mainstream piece: it challenges the no-hallucination framing on the grounds that a well-formed answer is not the same as a correct one. | Article | — | Read it next to the launch post. The distinction it draws — schema conformance is not correctness — is the one most coverage skips. |
 | [TypeSafe on OpenRouter](https://openrouter.ai/typesafe) | OpenRouter's listing for Jev, with its own model ids and the unusual pricing shape of paid input and free output. | Integration | — | Model ids here are typesafe/jev-1.13 and ~typesafe/jev-latest — note the tilde. The listing page carries no code sample. |
+
+</details>
 
 ## By resource kind
 

@@ -27,6 +27,7 @@ RETIRED = ROOT / "retired.json"
 REPO = "kydlikebtc/awesome-jev"
 REPO_URL = f"https://github.com/{REPO}"
 RAW = f"https://raw.githubusercontent.com/{REPO}/main"
+SITE = "https://kydlikebtc.github.io/awesome-jev/"
 
 # Order is editorial: the patterns an agent author hits first come first.
 PATTERN_ORDER = [
@@ -120,7 +121,22 @@ EN = {
     ),
     "toc_h": "Contents",
     "start_h": "Start here",
-    "start_intro": "If you have never called Jev, read these in order.",
+    "start_intro": 'Six things in reading order. Curated by hand, because "most starred" is not the same as "read this first".',
+    "th_why_read": "Why this one",
+    "site_label": "Searchable site",
+    "stat_verified": "link-verified",
+    "shot_alt": "The awesome-jev site: a coverage histogram down the left acting as the pattern filter, dense entry cards on the right",
+    "shot_cap": "The searchable site. The histogram down the left is the filter — each bar is a decision pattern, sized by how many examples exist for it.",
+    "coverage_h": "Coverage at a glance",
+    "coverage_intro": "How many examples exist per decision pattern. A zero is a research to-do, not a rendering bug — `scripts/counts.py` prints the live version.",
+    "measured_h": "Measured, not claimed",
+    "measured_intro": (
+        "Almost every performance number circulating about this model is the vendor's own, produced with "
+        "reference answers derived from other models' judgements rather than human ground truth. These are "
+        "the independent measurements in the catalog — and several of them are **negative results**, which "
+        "is what makes them worth reading first."
+    ),
+    "collapse": "rows — click to expand",
     "patterns_h": "By decision pattern",
     "patterns_intro": (
         "The primary index. Each heading is a decision an agent has to make; the rows are "
@@ -202,7 +218,21 @@ ZH = {
     ),
     "toc_h": "目录",
     "start_h": "从这里开始",
-    "start_intro": "如果你从没调用过 Jev，按顺序读这几条。",
+    "start_intro": "六条，按阅读顺序。手工挑选 —— 因为「star 最多」和「该先读哪个」不是一回事。",
+    "th_why_read": "为什么是它",
+    "site_label": "可搜索站点",
+    "stat_verified": "链接已核实",
+    "shot_alt": "awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片",
+    "shot_cap": "可搜索站点。左侧那个直方图就是筛选器 —— 每根条是一个决策模式，长度是该模式下的例子数量。",
+    "coverage_h": "覆盖度一览",
+    "coverage_intro": "每个决策模式下有多少个例子。数字为 0 的是待补的研究缺口，不是渲染 bug —— `scripts/counts.py` 会打印实时版本。",
+    "measured_h": "实测，而非宣称",
+    "measured_intro": (
+        "关于这个模型流传的性能数字几乎全是厂商自测，而且参考答案是由其他模型的判断推导出来的、"
+        "不是人工 ground truth。下面这些是本目录里的独立实测 —— 其中几条是**负面结果**，"
+        "这恰恰是它们值得先读的原因。"
+    ),
+    "collapse": "条 —— 点击展开",
     "patterns_h": "按决策模式",
     "patterns_intro": "主索引。每个标题是智能体必须做的一个决策；下面的行是用 Jev 做这个决策的例子。",
     "kinds_h": "按资源形态",
@@ -402,9 +432,43 @@ LANG_LABELS = {
 }
 
 
+# The handful of rows a newcomer should open, in reading order. Curated by
+# hand because "most starred" is not the same as "read this first" — the
+# limitations page has no stars at all and is the most useful page in the docs.
+START_HERE = [
+    "typesafe-quickstart",
+    "typesafe-jaggedness",
+    "example-three-primitives",
+    "fast-jev-compaction",
+    "ai-cookbook-jev-track",
+    "hermes-agent-jev-evaluation",
+]
+
+# Patterns whose tables are long and mostly context rather than technique.
+# Collapsed so the README stays scannable; still fully indexed and searchable.
+COLLAPSE = {"overview"}
+
+
 def esc(text: str) -> str:
     """Escape what would break a markdown table cell."""
     return text.replace("|", "\\|").replace("\n", " ").strip()
+
+
+def bar(count: int, peak: int, width: int = 18) -> str:
+    """A proportional bar from block characters.
+
+    The coverage index is the site's histogram rendered in markdown, so the
+    two surfaces tell the same story. Eighths give sub-character resolution,
+    which matters when the long tail is 1 or 2 rows against a peak of 53.
+    """
+    if count <= 0:
+        return ""
+    units = count / peak * width
+    full = int(units)
+    remainder = units - full
+    eighths = " ▏▎▍▌▋▊▉"
+    tail = eighths[round(remainder * 8)] if round(remainder * 8) else ""
+    return ("█" * full + tail) or "▏"
 
 
 def anchor(text: str) -> str:
@@ -519,6 +583,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
 
     with_code = sum(1 for entry in catalog if entry.get("has_code"))
     official = sum(1 for entry in catalog if entry.get("official"))
+    verified = sum(1 for entry in catalog if 200 <= (entry.get("link_status") or 0) < 300)
 
     # ---- header ----
     add("<!--")
@@ -539,6 +604,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add("")
     add(
         f"**{strings['other_name']}:** [{strings['other_readme']}]({strings['other_readme']})"
+        f" · **{strings['site_label']}:** [{SITE}]({SITE})"
     )
     add("")
 
@@ -547,10 +613,21 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         f"`{len(catalog)}` {strings['stat_entries']} · "
         f"`{with_code}` {strings['stat_with_code']} · "
         f"`{official}` {strings['stat_official']} · "
+        f"`{verified}` {strings['stat_verified']} · "
         f"`{len(live_patterns)}/{len(PATTERN_ORDER)}` {strings['stat_patterns']} · "
         f"`{len(retired)}` {strings['stat_retired']} · "
         f"`{today}`"
     )
+    add("")
+
+    # ---- hero shot, linked to the live site ----
+    shot = "site-chinese.png" if lang == "zh" else "site-desktop.png"
+    add(
+        f'<a href="{SITE}"><img src="docs/screenshots/{shot}" '
+        f'alt="{strings["shot_alt"]}" width="100%"></a>'
+    )
+    add("")
+    add(f"<sub>{strings['shot_cap']}</sub>")
     add("")
 
     # ---- what is jev ----
@@ -568,20 +645,82 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add(f"- ❌ {strings['scope_not']}")
     add("")
 
+    by_slug = {entry["slug"]: entry for entry in catalog}
+
     # ---- toc ----
     add(f"## {strings['toc_h']}")
     add("")
+    for key in ("start_h", "coverage_h", "measured_h"):
+        add(f"- [{strings[key]}](#{anchor(strings[key])})")
     add(f"- [{strings['patterns_h']}](#{anchor(strings['patterns_h'])})")
     for key in live_patterns:
         name = label(PATTERN_LABELS, key, lang)
         add(f"  - [{name}](#{anchor(name)}) `{len(by_pattern[key])}`")
-    add(f"- [{strings['kinds_h']}](#{anchor(strings['kinds_h'])})")
-    add(f"- [{strings['examples_h']}](#{anchor(strings['examples_h'])})")
-    add(f"- [{strings['status_h']}](#{anchor(strings['status_h'])})")
-    add(f"- [{strings['verified_h']}](#{anchor(strings['verified_h'])})")
-    add(f"- [{strings['data_h']}](#{anchor(strings['data_h'])})")
-    add(f"- [{strings['contrib_h']}](#{anchor(strings['contrib_h'])})")
+    for key in (
+        "kinds_h",
+        "examples_h",
+        "status_h",
+        "verified_h",
+        "data_h",
+        "contrib_h",
+    ):
+        add(f"- [{strings[key]}](#{anchor(strings[key])})")
     add("")
+
+    # ---- start here ----
+    add(f"## {strings['start_h']}")
+    add("")
+    add(strings["start_intro"])
+    add("")
+    add(f"| | {strings['th_example']} | {strings['th_why_read']} |")
+    add("| --- | --- | --- |")
+    for index, slug in enumerate(START_HERE, 1):
+        entry = by_slug.get(slug)
+        if entry is None:
+            raise KeyError(
+                f"START_HERE names {slug!r}, which is not in catalog.json. "
+                "Update the list in build_readme.py when a curated row is renamed or removed."
+            )
+        why = entry.get("notes_zh" if lang == "zh" else "notes") or summary_of(
+            entry, lang
+        )
+        add(f"| `{index}` | [{esc(entry['title'])}]({entry['url']}) | {esc(why)} |")
+    add("")
+
+    # ---- coverage histogram, the same story the site's rail tells ----
+    add(f"## {strings['coverage_h']}")
+    add("")
+    add(strings["coverage_intro"])
+    add("")
+    peak = max((len(by_pattern[key]) for key in PATTERN_ORDER), default=1) or 1
+    add(f"| {strings['th_pattern']} | | {strings['th_shows']} |")
+    add("| --- | --- | --- |")
+    for key in PATTERN_ORDER:
+        name = label(PATTERN_LABELS, key, lang)
+        count = len(by_pattern[key])
+        blurb = label(PATTERN_LABELS, key, lang, field=2)
+        if count:
+            cell = f"`{count:>3}` {bar(count, peak)}"
+            link = f"[{name}](#{anchor(name)})"
+        else:
+            cell = "`  0`"
+            link = name
+        add(f"| {link} | {cell} | {esc(blurb)} |")
+    add("")
+
+    # ---- measured results: the differentiator, surfaced early ----
+    measured = [
+        entry
+        for entry in catalog
+        if entry["kind"] == "benchmark"
+        and "vendor-reported" not in entry.get("flags", [])
+    ]
+    if measured:
+        add(f"## {strings['measured_h']}")
+        add("")
+        add(strings["measured_intro"])
+        add("")
+        out.extend(pattern_table(measured, strings))
 
     # ---- by pattern ----
     add(f"## {strings['patterns_h']}")
@@ -594,11 +733,20 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     for key in live_patterns:
         name = label(PATTERN_LABELS, key, lang)
         blurb = label(PATTERN_LABELS, key, lang, field=2)
+        rows = by_pattern[key]
         add(f"### {name}")
         add("")
         add(f"_{blurb}_")
         add("")
-        out.extend(pattern_table(by_pattern[key], strings))
+        if key in COLLAPSE:
+            add("<details>")
+            add(f"<summary><b>{len(rows)}</b> {strings['collapse']}</summary>")
+            add("")
+            out.extend(pattern_table(rows, strings))
+            add("</details>")
+            add("")
+        else:
+            out.extend(pattern_table(rows, strings))
 
     # ---- by kind ----
     add(f"## {strings['kinds_h']}")

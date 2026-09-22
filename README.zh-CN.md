@@ -8,9 +8,13 @@
 
 > 全网 Jev（TypeSafe AI 的 System One 决策模型）使用例子索引 —— 按它做的**决策**归类，而不是按提到它的博客归类。
 
-**English:** [README.md](README.md)
+**English:** [README.md](README.md) · **可搜索站点:** [https://kydlikebtc.github.io/awesome-jev/](https://kydlikebtc.github.io/awesome-jev/)
 
-`148` 条目 · `124` 含代码 · `36` 官方 · `16/18` 覆盖模式 · `0` 已退休 · `2026-09-22`
+`148` 条目 · `124` 含代码 · `36` 官方 · `144` 链接已核实 · `16/18` 覆盖模式 · `0` 已退休 · `2026-09-22`
+
+<a href="https://kydlikebtc.github.io/awesome-jev/"><img src="docs/screenshots/site-chinese.png" alt="awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片" width="100%"></a>
+
+<sub>可搜索站点。左侧那个直方图就是筛选器 —— 每根条是一个决策模式，长度是该模式下的例子数量。</sub>
 
 ## Jev 是什么
 
@@ -31,6 +35,9 @@ Jev 是 TypeSafe AI 的决策模型。它不生成文本。你给它一段状态
 
 ## 目录
 
+- [从这里开始](#从这里开始)
+- [覆盖度一览](#覆盖度一览)
+- [实测，而非宣称](#实测而非宣称)
 - [按决策模式](#按决策模式)
   - [工具选择](#工具选择) `25`
   - [意图路由](#意图路由) `20`
@@ -54,6 +61,57 @@ Jev 是 TypeSafe AI 的决策模型。它不生成文本。你给它一段状态
 - [哪些经过核实，哪些没有](#哪些经过核实哪些没有)
 - [机器可读数据](#机器可读数据)
 - [参与贡献](#参与贡献)
+
+## 从这里开始
+
+六条，按阅读顺序。手工挑选 —— 因为「star 最多」和「该先读哪个」不是一回事。
+
+| | 例子 | 为什么是它 |
+| --- | --- | --- |
+| `1` | [Quickstart](https://docs.typesafe.ai/introduction/quickstart) | 官方第一课：一条工单，一次请求里同时问一个 Choice、一个 Score 和一个 Noul，给了 Python / JS / cURL 三种写法。 |
+| `2` | [Jev 1.13 known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13) | 官方文档里最有用、却最少被引用的一页。它还解释了一件事：对选项做一个 Choice，和每个选项各问一个 Noul，问的根本不是同一个问题。 |
+| `3` | [Example: three primitives in one request](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/01-three-primitives/main.py) | 按官方 API 参考编写并逐字段对照核实，但未针对线上 API 实际执行过。 |
+| `4` | [fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) | 每次工具调用恰好两个 noul：知道这次调用发生过是否还有意义、以及是否还需要完整原文输出。尽管它自己的描述里用了「打分」，实际并未使用 score 原语。 |
+| `5` | [ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook) | 找到的最好的结构化教程。它明确指出类型化输出不保证决策正确、列出了官方记录的弱项，并且对自己给出的成本示例做了限定而不是拿来营销。 |
+| `6` | [Hermes Agent: Jev compaction evaluation](https://github.com/NousResearch/hermes-agent) | 本目录可信度最高的一条。召回率低于他们现有的摘要器，在相同上下文预算下与「按时间倒序」打平。成本确实低得多。在一个被热炒的模型上公开负面结果，非常少见。 |
+
+## 覆盖度一览
+
+每个决策模式下有多少个例子。数字为 0 的是待补的研究缺口，不是渲染 bug —— `scripts/counts.py` 会打印实时版本。
+
+| 模式 | | 展示了什么 |
+| --- | --- | --- |
+| [工具选择](#工具选择) | ` 25` ████████▌ | 智能体下一步该调用哪个工具或动作。 |
+| [意图路由](#意图路由) | ` 20` ██████▊ | 判断用户意图，把请求分流到正确的分支。 |
+| [上下文压缩](#上下文压缩) | `  6` ██ | 判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。 |
+| [安全闸门](#安全闸门) | ` 13` ████▍ | 在执行前判断一个动作是否安全。 |
+| [输出校验](#输出校验) | `  7` ██▍ | 在输出到达用户前，按评分标准检查模型产出。 |
+| 重试控制 | `  0` | 判断失败的步骤是否值得重试。 |
+| [人工升级](#人工升级) | ` 15` █████▏ | 用校准置信度决定哪些情况必须由人来看。 |
+| [模型路由](#模型路由) | ` 10` ███▍ | 选择由哪个下游模型或档位处理请求。 |
+| [并行扇出](#并行扇出) | ` 14` ████▊ | 把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。 |
+| [检索与排序](#检索与排序) | ` 15` █████▏ | 对来自廉价检索步骤的候选做打分或重排。 |
+| [结构化抽取](#结构化抽取) | `  4` █▍ | 从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。 |
+| [分类](#分类) | ` 18` ██████▏ | 把条目归入分类体系，包括用概率遍历的深层层级。 |
+| [机器学习特征抽取](#机器学习特征抽取) | `  3` █ | 把自由文本转成数值特征，喂给下游的传统模型。 |
+| [文档分拣](#文档分拣) | `  1` ▍ | 对进来的文档、发票、表单做分类和路由。 |
+| [工单分拣](#工单分拣) | `  7` ██▍ | 按意图和紧急度路由支持工单与会话。 |
+| [内容评分](#内容评分) | ` 15` █████▏ | 在有序量表上给质量、风险或相关性打分。 |
+| 实时推荐 | `  0` | 选择下一步呈现什么，快到能用在实时会话里。 |
+| [总览](#总览) | ` 53` ██████████████████ | 介绍模型或整个领域，而非单一模式。 |
+
+## 实测，而非宣称
+
+关于这个模型流传的性能数字几乎全是厂商自测，而且参考答案是由其他模型的判断推导出来的、不是人工 ground truth。下面这些是本目录里的独立实测 —— 其中几条是**负面结果**，这恰恰是它们值得先读的原因。
+
+| 例子 | 展示了什么 | 形态 | 代码 | 备注 |
+| --- | --- | --- | --- | --- |
+| [Hermes Agent: Jev compaction evaluation](https://github.com/NousResearch/hermes-agent) | 把 Jev 压缩方案移植过来，与自家在用的摘要器对比实测，最后公开结论：不采用。 | 基准测试 | `Py`<br><sub>noul</sub> | 本目录可信度最高的一条。召回率低于他们现有的摘要器，在相同上下文预算下与「按时间倒序」打平。成本确实低得多。在一个被热炒的模型上公开负面结果，非常少见。 |
+| [worldmonitor: news threat classification](https://github.com/koala73/worldmonitor) | 用两个 Choice 判断威胁等级与类别；盲测发现 Jev 只是与原有模型打平，于是一直保持影子运行。 | 基准测试 | `TS`<br><sub>choice</sub> | `仅影子运行` 接进去了但故意不生效：按他们自己的说法，Jev 返回的任何东西都不会进入标签、缓存行或告警。带黄金测试集。想在不拿生产环境下注的前提下试新模型，这是值得照抄的做法。 |
+| [no-mistakes: review context selection](https://github.com/kunchenguid/no-mistakes) | 对每个候选文件打一个 Score 来挑选审查上下文；实测结果是：计费输入明显增加，而实际耗时几乎没改善。 | 基准测试 | `Go`<br><sub>score</sub> | 他们自己的建议是：这个功能保持可选、默认关闭、不要宣传省钱。诚实的实测就该长这样。 |
+| [Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til) | 独立的韩语实测笔记，报告仅仅把选项顺序倒过来，就能让概率移动到足以翻转 0.9 阈值的程度。 | 基准测试 | `Py` | `无许可证` `宣称未核实` 在所有资料里找到的最具操作价值的工程警示：如果仅仅选项顺序就能把概率推过你的阈值，那你的阈值没有看上去那么稳。这是独立且未被复现的结果，具体幅度请当作指示性数据。 |
+| [An early-access test of TypeSafe's Jev: calibrated judgments for half a cent](https://lindfors.no/blog/a-first-look-at-typesafes-jev/)<br><sub>Lindfors</sub> | 找到的最好的独立实测：固定单一模型版本、24 份挪威语文档，开篇就展示了一个模型答错、但同时正确报出低置信度的案例。 | 基准测试 | — | 方法论交代干净，并诚实限定为「单日快照」。开篇就摆失败案例，这才让它成为真正的校准检验，而不是一篇软文。 |
+| [Testing TypeSafe Jev, Mistral and Gemini for local event validation](https://nearhere.events/blog/typesafe-jev-mistral-gemini-event-validation)<br><sub>Near Here</sub> | 找到的唯一三方横评，每个模型分别调过提示词，且明确把范围限定在单一任务上、不做通用排名。 | 基准测试 | — | 自我限定很规范：这是用例研究，不是模型排行榜。这种克制比数字本身更少见。 |
 
 ## 按决策模式
 
@@ -341,6 +399,9 @@ _在有序量表上给质量、风险或相关性打分。_
 
 _介绍模型或整个领域，而非单一模式。_
 
+<details>
+<summary><b>53</b> 条 —— 点击展开</summary>
+
 | 例子 | 展示了什么 | 形态 | 代码 | 备注 |
 | --- | --- | --- | --- | --- |
 | [typesafe-ai/skills](https://github.com/typesafe-ai/skills) ⭐ | Claude Code 插件背后的官方技能仓库，里面的 SKILL.md 教会智能体如何使用 System One API。 | 插件 | `sh` | — |
@@ -396,6 +457,8 @@ _介绍模型或整个领域，而非单一模式。_
 | [RLCD explained: Reinforcement Learning for Calibrated Decisions](https://systemonemodels.org/guides/rlcd-explained/) | 一份独立整理，其最有价值的结论是否定性的：RLCD 没有论文、没有奖励函数、没有数据集说明、也没有可复现的评测。 | 文章 | — | 注意缩写撞车：2023 年有一篇无关论文也叫 RLCD（Reinforcement Learning from Contrastive Distillation）。任何标称「RLCD 论文」的 arXiv 链接几乎必然是那一篇，而不是这个方法。 |
 | [TypeSafe AI debuts model for machines that plays Doom](https://www.theregister.com/ai-and-ml/2026/09/16/typesafe-ai-debuts-model-for-machines-that-plays-doom/5296711)<br><sub>Thomas Claburn</sub> | 最具怀疑视角的主流报道：它质疑「不会幻觉」的说法 —— 格式正确的答案不等于正确的答案。 | 文章 | — | 建议与发布博文对照阅读。它点出的那个区别 ——「符合 schema」不等于「正确」—— 是多数报道都跳过的。 |
 | [TypeSafe on OpenRouter](https://openrouter.ai/typesafe) | OpenRouter 上的 Jev 条目，有自己的模型 id，以及「输入收费、输出免费」这种少见的定价结构。 | 平台集成 | — | 这里的模型 id 是 typesafe/jev-1.13 和 ~typesafe/jev-latest —— 注意那个波浪号。该页没有代码示例。 |
+
+</details>
 
 ## 按资源形态
 

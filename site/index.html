@@ -10,402 +10,818 @@
       name="description"
       content="A verified catalogue of public Jev usage examples, indexed by the decision each one makes. Every row attributable, every caveat flagged."
     />
+    <meta name="color-scheme" content="dark" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="awesome-jev" />
+    <meta
+      property="og:description"
+      content="148 verified examples of Jev — TypeSafe AI's System One decision model — indexed by the decision each one makes."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://kydlikebtc.github.io/awesome-jev/"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        --bg: #0d1117;
-        --panel: #161b22;
-        --panel-2: #1c232c;
-        --line: #2d333b;
-        --fg: #e6edf3;
-        --dim: #8b949e;
-        --dimmer: #636c76;
-        --accent: #58a6ff;
-        --official: #d29922;
-        --warn: #f85149;
-        --ok: #3fb950;
-        --mono:
-          ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-      }
-      @media (prefers-color-scheme: light) {
-        :root {
-          --bg: #ffffff;
-          --panel: #f6f8fa;
-          --panel-2: #eef1f4;
-          --line: #d0d7de;
-          --fg: #1f2328;
-          --dim: #59636e;
-          --dimmer: #818b98;
-          --accent: #0969da;
-          --official: #9a6700;
-          --warn: #cf222e;
-          --ok: #1a7f37;
-        }
+        --ink: #0b0d10;
+        --ink-2: #12151a;
+        --ink-3: #171b21;
+        --ink-4: #1e242c;
+        --rule: #242b34;
+        --rule-2: #333c48;
+        --fg: #e8eaed;
+        --fg-2: #9aa4b1;
+        --fg-3: #6b7684;
+
+        /* Amber is the instrument lamp: one dominant accent, sharply used. */
+        --amber: #f5a524;
+        --amber-dim: #8a5d14;
+        --amber-wash: rgba(245, 165, 36, 0.08);
+        --signal: #4ec97a; /* verified / primitives */
+        --alert: #e8564b; /* caveats */
+        --cool: #5fb3d9; /* patterns */
+
+        --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        --sans:
+          "IBM Plex Sans", "Noto Sans SC", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+
+        --gut: clamp(16px, 3vw, 34px);
       }
       * {
         box-sizing: border-box;
       }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         margin: 0;
-        background: var(--bg);
+        background: var(--ink);
         color: var(--fg);
-        font:
-          15px/1.6 -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          system-ui,
-          "Helvetica Neue",
-          Arial,
-          "PingFang SC",
-          "Microsoft YaHei",
-          sans-serif;
+        font: 15px/1.65 var(--sans);
+        -webkit-font-smoothing: antialiased;
+        /* Graph paper. The whole site sits on plotting stock. */
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.022) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.022) 1px,
+            transparent 1px
+          );
+        background-size: 44px 44px;
+      }
+      /* Fine grain, so flat fills never read as plastic. */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.5;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
       }
       a {
-        color: var(--accent);
+        color: var(--amber);
         text-decoration: none;
       }
       a:hover {
         text-decoration: underline;
+        text-underline-offset: 3px;
       }
-      code {
-        font-family: var(--mono);
-        font-size: 0.88em;
+      ::selection {
+        background: var(--amber);
+        color: var(--ink);
       }
 
+      .mono {
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+      }
+      .sr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+
+      /* ─── hero ─────────────────────────────────────────────── */
       header {
-        border-bottom: 1px solid var(--line);
-        padding: 26px 20px 20px;
-        background: var(--panel);
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid var(--rule);
+        padding: clamp(34px, 6vw, 64px) var(--gut) clamp(26px, 4vw, 38px);
       }
-      .wrap {
-        max-width: 1180px;
+      header::after {
+        /* instrument sweep */
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          120% 90% at 8% -10%,
+          var(--amber-wash),
+          transparent 58%
+        );
+      }
+      .hero {
+        max-width: 1340px;
         margin: 0 auto;
+        position: relative;
+        z-index: 2;
       }
-      h1 {
-        margin: 0 0 6px;
-        font-size: 26px;
-        letter-spacing: -0.02em;
-      }
-      h1 code {
-        font-size: inherit;
-        color: var(--accent);
-      }
-      .tag {
-        color: var(--dim);
-        margin: 0 0 14px;
-        max-width: 70ch;
-      }
-      .stats {
-        display: flex;
-        gap: 18px;
-        flex-wrap: wrap;
-        color: var(--dim);
-        font-size: 13px;
-      }
-      .stats b {
-        color: var(--fg);
+      .eyebrow {
         font-family: var(--mono);
-      }
-      .hdr-links {
-        margin-top: 14px;
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        font-size: 13px;
-      }
-
-      .controls {
-        padding: 16px 20px;
-        border-bottom: 1px solid var(--line);
-        position: sticky;
-        top: 0;
-        background: var(--bg);
-        z-index: 10;
-      }
-      .row {
+        font-size: 11.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--fg-3);
         display: flex;
         gap: 10px;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+      .eyebrow .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--signal);
+        box-shadow: 0 0 0 3px rgba(78, 201, 122, 0.16);
+      }
+      h1 {
+        font-family: var(--mono);
+        font-weight: 600;
+        letter-spacing: -0.055em;
+        font-size: clamp(38px, 8.5vw, 92px);
+        line-height: 0.92;
+        margin: 0 0 4px;
+      }
+      h1 .br {
+        color: var(--fg-3);
+      }
+      .lede {
+        max-width: 64ch;
+        color: var(--fg-2);
+        font-size: clamp(14.5px, 1.5vw, 17px);
+        margin: 16px 0 0;
+        line-height: 1.6;
+      }
+      .lede b {
+        color: var(--fg);
+        font-weight: 500;
+      }
+
+      /* readout: the four numbers, as an instrument panel */
+      .readout {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+        gap: 1px;
+        background: var(--rule);
+        border: 1px solid var(--rule);
+        margin: 30px 0 0;
+        max-width: 640px;
+      }
+      .rd {
+        background: var(--ink-2);
+        padding: 12px 14px;
+      }
+      .rd .v {
+        font-family: var(--mono);
+        font-size: 26px;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+      .rd .k {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--fg-3);
+        margin-top: 7px;
+      }
+      .rd.hot .v {
+        color: var(--amber);
+      }
+      .rd.ok .v {
+        color: var(--signal);
+      }
+
+      .navrow {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+        font-family: var(--mono);
+        font-size: 12.5px;
+      }
+      .navrow a {
+        color: var(--fg-2);
+        border-bottom: 1px solid transparent;
+        padding-bottom: 2px;
+      }
+      .navrow a:hover {
+        color: var(--amber);
+        border-color: var(--amber-dim);
+        text-decoration: none;
+      }
+      #lang {
+        color: var(--amber);
+      }
+
+      /* ─── shell ────────────────────────────────────────────── */
+      .shell {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 var(--gut) 60px;
+        display: grid;
+        gap: clamp(20px, 3vw, 40px);
+        grid-template-columns: minmax(0, 1fr);
+        position: relative;
+        z-index: 2;
+      }
+      @media (min-width: 1080px) {
+        .shell {
+          grid-template-columns: 262px minmax(0, 1fr);
+        }
+      }
+
+      /* ─── rail: coverage histogram IS the navigation ───────── */
+      aside {
+        padding-top: 26px;
+      }
+      @media (min-width: 1080px) {
+        aside {
+          position: sticky;
+          top: 0;
+          max-height: 100vh;
+          overflow-y: auto;
+          padding-bottom: 30px;
+          scrollbar-width: thin;
+          scrollbar-color: var(--rule-2) transparent;
+        }
+      }
+      .rail-h {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--fg-3);
+        padding-bottom: 9px;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .rail-h .clr {
+        color: var(--amber);
+        cursor: pointer;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        font-size: 11px;
+        visibility: hidden;
+      }
+      .rail-h .clr.on {
+        visibility: visible;
+      }
+      /* One bar per pattern. Sequential single hue + emphasis: the selected bar
+     takes full amber, the rest recede. Colour never follows rank, so
+     filtering re-measures the bars without repainting their identity. */
+      .pbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: 0;
+        padding: 7px 0 6px;
+        cursor: pointer;
+        text-align: left;
+        color: var(--fg-2);
+        font: inherit;
+        font-size: 13px;
+        border-bottom: 1px solid transparent;
+      }
+      .pbar:hover {
+        color: var(--fg);
+      }
+      .pbar .nm {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .pbar .ct {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--fg-3);
+        font-variant-numeric: tabular-nums;
+      }
+      .pbar .track {
+        grid-column: 1/-1;
+        height: 5px;
+        background: var(--ink-3);
+        position: relative;
+        overflow: hidden;
+      }
+      .pbar .fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        background: var(--rule-2);
+        border-radius: 0 3px 3px 0; /* 4px-ish rounded data end, square at baseline */
+        transform-origin: left;
+        animation: grow 0.62s cubic-bezier(0.2, 0.8, 0.25, 1) backwards;
+      }
+      @keyframes grow {
+        from {
+          transform: scaleX(0);
+        }
+      }
+      .pbar:hover .fill {
+        background: var(--amber-dim);
+      }
+      .pbar[aria-pressed="true"] {
+        color: var(--amber);
+      }
+      .pbar[aria-pressed="true"] .fill {
+        background: var(--amber);
+      }
+      .pbar[aria-pressed="true"] .ct {
+        color: var(--amber);
+      }
+      .pbar.zero {
+        opacity: 0.42;
+        cursor: default;
+      }
+      .pbar.zero .ct::after {
+        content: " gap";
+        color: var(--alert);
+        font-size: 10px;
+      }
+
+      /* ─── controls ─────────────────────────────────────────── */
+      main {
+        padding-top: 26px;
+        min-width: 0;
+      }
+      .bar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(11, 13, 16, 0.93);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--rule);
+        padding: 11px 0 11px;
+        margin-bottom: 6px;
+      }
+      .bar .r1 {
+        display: flex;
+        gap: 8px;
         flex-wrap: wrap;
         align-items: center;
       }
       input[type="search"],
       select {
-        background: var(--panel);
+        background: var(--ink-2);
         color: var(--fg);
-        border: 1px solid var(--line);
-        border-radius: 6px;
+        border: 1px solid var(--rule);
         padding: 8px 11px;
-        font: inherit;
-        font-size: 14px;
+        font: 13px var(--mono);
+        border-radius: 2px;
       }
       input[type="search"] {
-        flex: 1;
-        min-width: 220px;
+        flex: 1 1 190px;
+        min-width: 0;
+      }
+      input[type="search"]::placeholder {
+        color: var(--fg-3);
       }
       input[type="search"]:focus,
       select:focus {
-        outline: 2px solid var(--accent);
-        outline-offset: -1px;
+        outline: none;
+        border-color: var(--amber);
+        background: var(--ink-3);
       }
-      .toggles {
+      select {
+        cursor: pointer;
+        max-width: 190px;
+      }
+      .kbd {
+        font: 10.5px var(--mono);
+        color: var(--fg-3);
+        border: 1px solid var(--rule);
+        padding: 1px 5px;
+        border-radius: 2px;
+      }
+      .hits {
+        margin-left: auto;
+        font: 12px var(--mono);
+        color: var(--fg-3);
+        white-space: nowrap;
+      }
+      .hits b {
+        color: var(--fg);
+      }
+      .r2 {
         display: flex;
         gap: 6px;
         flex-wrap: wrap;
-        margin-top: 10px;
+        margin-top: 9px;
       }
-      .toggle {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        color: var(--dim);
-        border-radius: 999px;
-        padding: 4px 11px;
-        font-size: 12.5px;
+      .tg {
+        background: none;
+        border: 1px solid var(--rule);
+        color: var(--fg-3);
+        padding: 3px 10px;
+        font: 11.5px var(--mono);
         cursor: pointer;
-        font-family: var(--mono);
+        border-radius: 2px;
       }
-      .toggle[aria-pressed="true"] {
-        background: var(--accent);
-        border-color: var(--accent);
+      .tg:hover {
+        border-color: var(--rule-2);
+        color: var(--fg-2);
+      }
+      .tg[aria-pressed="true"] {
+        background: var(--amber);
+        border-color: var(--amber);
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .tg.warn[aria-pressed="true"] {
+        background: var(--alert);
+        border-color: var(--alert);
         color: #fff;
       }
-      .toggle.warn[aria-pressed="true"] {
-        background: var(--warn);
-        border-color: var(--warn);
-      }
-      .count {
-        color: var(--dim);
-        font-size: 13px;
-        margin-left: auto;
-        font-family: var(--mono);
-      }
 
-      main {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      .group-h {
-        margin: 28px 0 4px;
-        font-size: 17px;
+      /* ─── groups ───────────────────────────────────────────── */
+      .gh {
+        margin: 36px 0 0;
         display: flex;
         align-items: baseline;
-        gap: 10px;
-        border-bottom: 1px solid var(--line);
-        padding-bottom: 6px;
+        gap: 11px;
+        flex-wrap: wrap;
       }
-      .group-h .n {
+      .gh h2 {
         font-family: var(--mono);
-        font-size: 13px;
-        color: var(--dim);
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin: 0;
+        color: var(--fg);
       }
-      .group-d {
-        color: var(--dim);
-        font-size: 13.5px;
-        margin: 0 0 12px;
+      .gh .n {
+        font: 11.5px var(--mono);
+        color: var(--amber);
+        border: 1px solid var(--amber-dim);
+        padding: 1px 7px;
+        border-radius: 2px;
+      }
+      .gd {
+        color: var(--fg-3);
+        font-size: 13px;
+        margin: 5px 0 14px;
+        max-width: 72ch;
       }
 
+      /* ─── card ─────────────────────────────────────────────── */
       .card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 13px 15px;
-        margin-bottom: 9px;
+        background: var(--ink-2);
+        border: 1px solid var(--rule);
+        border-left: 2px solid var(--rule-2);
+        padding: 13px 16px 12px;
+        margin-bottom: 8px;
+        position: relative;
+        transition:
+          border-color 0.13s,
+          background 0.13s,
+          transform 0.13s;
       }
-      .card-t {
+      .card:hover {
+        background: var(--ink-3);
+        border-color: var(--rule-2);
+        border-left-color: var(--amber);
+        transform: translateX(2px);
+      }
+      .card.off {
+        border-left-color: var(--amber-dim);
+      }
+      .card.flagged {
+        border-left-color: var(--alert);
+      }
+      .ct-row {
         display: flex;
         gap: 9px;
         align-items: baseline;
         flex-wrap: wrap;
-        margin-bottom: 4px;
+        margin-bottom: 5px;
       }
-      .card-t a {
-        font-weight: 600;
-        font-size: 15px;
-      }
-      .star {
-        color: var(--official);
-        font-size: 12px;
+      .ct-row .t {
         font-family: var(--mono);
+        font-size: 14.5px;
+        font-weight: 500;
+        letter-spacing: -0.015em;
       }
-      .kind {
-        font-family: var(--mono);
-        font-size: 11px;
-        color: var(--dim);
-        background: var(--panel-2);
-        border: 1px solid var(--line);
-        border-radius: 4px;
+      .badge {
+        font: 10px var(--mono);
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
         padding: 1px 6px;
+        border-radius: 2px;
+        border: 1px solid;
       }
-      .sum {
-        color: var(--fg);
-        margin: 0 0 7px;
+      .badge.of {
+        color: var(--amber);
+        border-color: var(--amber-dim);
+        background: var(--amber-wash);
       }
-      .meta {
-        display: flex;
-        gap: 7px;
-        flex-wrap: wrap;
-        align-items: center;
-        font-size: 11.5px;
-        font-family: var(--mono);
+      .badge.st {
+        color: var(--fg-3);
+        border-color: var(--rule);
       }
-      .pill {
-        background: var(--panel-2);
-        border: 1px solid var(--line);
-        border-radius: 4px;
-        padding: 1px 6px;
-        color: var(--dim);
-      }
-      .pill.q {
-        color: var(--ok);
-        border-color: color-mix(in srgb, var(--ok) 35%, var(--line));
-      }
-      .pill.f {
-        color: var(--warn);
-        border-color: color-mix(in srgb, var(--warn) 40%, var(--line));
-      }
-      .pill.a {
-        color: var(--accent);
-        border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
-      }
-      .note {
-        color: var(--dim);
-        font-size: 13px;
-        margin: 7px 0 0;
-        padding-left: 10px;
-        border-left: 2px solid var(--line);
+      .badge.kd {
+        color: var(--fg-2);
+        border-color: var(--rule);
+        background: var(--ink-4);
       }
       .by {
-        color: var(--dimmer);
-        font-size: 12px;
+        font: 11.5px var(--mono);
+        color: var(--fg-3);
+      }
+      .sum {
+        margin: 0 0 9px;
+        color: var(--fg);
+        font-size: 14px;
+        max-width: 86ch;
+      }
+      .strip {
+        display: flex;
+        gap: 2px;
+        margin: 0 0 9px;
+        height: 3px;
+        max-width: 320px;
+      }
+      .strip i {
+        flex: 1;
+        background: var(--cool);
+        opacity: 0.55;
+        border-radius: 1px;
+      }
+      .pills {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .p {
+        font: 11px var(--mono);
+        padding: 1px 6px;
+        border-radius: 2px;
+        border: 1px solid var(--rule);
+        color: var(--fg-3);
+        background: var(--ink);
+      }
+      .p.q {
+        color: var(--signal);
+        border-color: rgba(78, 201, 122, 0.3);
+      }
+      .p.pt {
+        color: var(--cool);
+        border-color: rgba(95, 179, 217, 0.28);
+      }
+      .p.f {
+        color: var(--alert);
+        border-color: rgba(232, 86, 75, 0.34);
+        background: rgba(232, 86, 75, 0.07);
+      }
+      .note {
+        margin: 10px 0 0;
+        padding: 7px 0 0 11px;
+        border-left: 1px solid var(--rule-2);
+        color: var(--fg-2);
+        font-size: 13px;
+        max-width: 88ch;
+      }
+      .card.flagged .note {
+        border-left-color: rgba(232, 86, 75, 0.45);
       }
 
       .empty {
         text-align: center;
-        color: var(--dim);
-        padding: 60px 20px;
-      }
-      footer {
-        border-top: 1px solid var(--line);
-        margin-top: 40px;
-        padding: 20px;
-        color: var(--dim);
+        color: var(--fg-3);
+        padding: 70px 20px;
+        font-family: var(--mono);
         font-size: 13px;
       }
-      footer .wrap {
+      .loading {
+        padding: 70px 20px;
+        text-align: center;
+        color: var(--fg-3);
+        font-family: var(--mono);
+        font-size: 13px;
+      }
+
+      footer {
+        border-top: 1px solid var(--rule);
+        padding: 26px var(--gut) 44px;
+        position: relative;
+        z-index: 2;
+      }
+      footer .in {
+        max-width: 1340px;
+        margin: 0 auto;
         display: flex;
-        gap: 16px;
+        gap: 26px;
         flex-wrap: wrap;
         justify-content: space-between;
+        align-items: flex-start;
       }
-      .disc {
-        max-width: 62ch;
+      footer p {
+        margin: 0;
+        color: var(--fg-3);
+        font-size: 12.5px;
+        max-width: 66ch;
+        line-height: 1.65;
+      }
+      footer .lg {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        font: 11.5px var(--mono);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
       }
     </style>
   </head>
   <body>
+    <h1 class="sr" id="a11y">
+      awesome-jev: a searchable catalogue of public Jev usage examples, grouped
+      by decision pattern
+    </h1>
+
     <header>
-      <div class="wrap">
-        <h1><code>awesome-jev</code></h1>
-        <p class="tag" data-i18n="tagline"></p>
-        <div class="stats" id="stats"></div>
-        <div class="hdr-links">
-          <a href="https://github.com/kydlikebtc/awesome-jev">GitHub</a>
+      <div class="hero">
+        <div class="eyebrow">
+          <span class="dot"></span><span data-i="eyebrow"></span>
+        </div>
+        <h1 aria-hidden="true">awesome<span class="br">-</span>jev</h1>
+        <p class="lede" data-i="lede"></p>
+
+        <div class="readout" id="readout"></div>
+
+        <nav class="navrow">
+          <a href="https://github.com/kydlikebtc/awesome-jev">GitHub ↗</a>
           <a
             href="https://github.com/kydlikebtc/awesome-jev/blob/main/docs/patterns.md"
-            data-i18n="l_patterns"
+            data-i="l_pat"
           ></a>
           <a
             href="https://github.com/kydlikebtc/awesome-jev/blob/main/docs/compatibility.md"
-            data-i18n="l_compat"
+            data-i="l_cmp"
           ></a>
           <a
             href="https://github.com/kydlikebtc/awesome-jev/blob/main/docs/vetting.md"
-            data-i18n="l_vetting"
+            data-i="l_vet"
+          ></a>
+          <a
+            href="https://github.com/kydlikebtc/awesome-jev/blob/main/examples/README.md"
+            data-i="l_ex"
           ></a>
           <a href="catalog.json">catalog.json</a>
           <a href="#" id="lang">中文</a>
-        </div>
+        </nav>
       </div>
     </header>
 
-    <div class="controls">
-      <div class="wrap">
-        <div class="row">
-          <input
-            type="search"
-            id="q"
-            data-i18n-ph="search"
-            autocomplete="off"
-          />
-          <select id="pattern"></select>
-          <select id="kind"></select>
-          <select id="lang_f"></select>
-          <span class="count" id="count"></span>
+    <div class="shell">
+      <aside>
+        <div class="rail-h">
+          <span data-i="coverage"></span>
+          <span
+            class="clr"
+            id="clr"
+            role="button"
+            tabindex="0"
+            data-i="clear"
+          ></span>
         </div>
-        <div class="toggles" id="toggles"></div>
-      </div>
+        <div id="rail"></div>
+      </aside>
+
+      <main>
+        <div class="bar">
+          <div class="r1">
+            <input
+              type="search"
+              id="q"
+              data-ip="search"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Search the catalogue"
+            />
+            <span class="kbd">/</span>
+            <select id="kind" aria-label="Filter by resource kind"></select>
+            <select
+              id="langf"
+              aria-label="Filter by programming language"
+            ></select>
+            <span class="hits" id="hits"></span>
+          </div>
+          <div class="r2" id="tgs"></div>
+        </div>
+        <div id="out"><p class="loading" data-i="loading"></p></div>
+      </main>
     </div>
 
-    <main id="out"></main>
-
     <footer>
-      <div class="wrap">
-        <span class="disc" data-i18n="disclaimer"></span>
-        <span
-          ><a href="https://github.com/kydlikebtc/awesome-jev/blob/main/LICENSE"
+      <div class="in">
+        <p data-i="disc"></p>
+        <div class="lg">
+          <a href="https://github.com/kydlikebtc/awesome-jev/blob/main/LICENSE"
             >MIT + CC0-1.0</a
-          ></span
-        >
+          >
+          <a
+            href="https://github.com/kydlikebtc/awesome-jev/blob/main/CONTRIBUTING.md"
+            data-i="l_con"
+          ></a>
+          <a href="https://docs.typesafe.ai/">docs.typesafe.ai ↗</a>
+        </div>
       </div>
     </footer>
 
     <script>
       const STR = {
         en: {
-          tagline:
-            "Public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each one makes. Every row attributable; every caveat flagged.",
+          eyebrow: "System One decision model · catalogue",
+          lede: "Public examples of <b>Jev</b>, TypeSafe AI's System One decision model, indexed by the <b>decision each one makes</b> — not by the blog that mentioned it. Every row attributable; every caveat flagged.",
           search: "Search titles, summaries, platforms, notes…",
-          allPatterns: "All patterns",
-          allKinds: "All kinds",
-          allLangs: "All languages",
-          entries: "entries",
-          code: "carry code",
-          official: "official",
-          shown: "shown",
-          l_patterns: "Patterns",
-          l_compat: "Compatibility",
-          l_vetting: "Vetting",
+          coverage: "Coverage by pattern",
+          clear: "clear",
+          loading: "Loading catalogue…",
           empty: "Nothing matches those filters.",
-          hasCode: "code only",
-          isOfficial: "official only",
-          noFlags: "no caveats",
-          disclaimer:
-            "An unaffiliated community index. A row means the link resolved and a person read it — not that the code runs, the numbers hold, or the approach suits your system.",
+          entries: "entries",
+          code: "with code",
+          official: "official",
+          verified: "link-verified",
+          l_pat: "Patterns",
+          l_cmp: "Compatibility",
+          l_vet: "Vetting",
+          l_ex: "Examples",
+          l_con: "Contributing",
+          t_code: "has code",
+          t_off: "official",
+          t_flag: "no caveats",
+          t_ind: "measured, not claimed",
+          shown: "shown",
+          disc: "An unaffiliated community index. A row means the link resolved and a person read it — not that the code runs, the numbers hold, or the approach suits your system. Performance figures in this space are almost all vendor-reported; rows carrying independent measurement are marked.",
         },
         zh: {
-          tagline:
-            "Jev（TypeSafe AI 的 System One 决策模型）的公开使用例子，按每个例子所做的决策归类。每一行可溯源，每一处警示都标出。",
+          eyebrow: "System One 决策模型 · 目录",
+          lede: "<b>Jev</b>（TypeSafe AI 的 System One 决策模型）的公开使用例子，按<b>每个例子所做的决策</b>归类 —— 而不是按提到它的博客归类。每一行可溯源，每一处警示都标出。",
           search: "搜索标题、摘要、平台、备注……",
-          allPatterns: "全部模式",
-          allKinds: "全部形态",
-          allLangs: "全部语言",
+          coverage: "按模式的覆盖度",
+          clear: "清除",
+          loading: "正在加载目录……",
+          empty: "没有符合这些筛选条件的条目。",
           entries: "条目",
           code: "含代码",
           official: "官方",
+          verified: "链接已核实",
+          l_pat: "决策模式",
+          l_cmp: "兼容性",
+          l_vet: "核查指南",
+          l_ex: "可运行样例",
+          l_con: "参与贡献",
+          t_code: "仅含代码",
+          t_off: "仅官方",
+          t_flag: "无警示",
+          t_ind: "实测而非宣称",
           shown: "已显示",
-          l_patterns: "决策模式",
-          l_compat: "兼容性",
-          l_vetting: "核查指南",
-          empty: "没有符合这些筛选条件的条目。",
-          hasCode: "仅含代码",
-          isOfficial: "仅官方",
-          noFlags: "无警示",
-          disclaimer:
-            "一个与官方无关的社区索引。收录只意味着链接可访问、并且有人读过 —— 不代表代码能跑、数字成立、或这个做法适合你的系统。",
+          disc: "一个与官方无关的社区索引。收录只意味着链接可访问、并且有人读过 —— 不代表代码能跑、数字成立、或这个做法适合你的系统。这个领域流传的性能数字几乎全是厂商自报；带独立实测的条目已单独标记。",
         },
       };
 
-      const PATTERNS = {
+      const PAT = {
         "tool-selection": [
           "Tool selection",
           "工具选择",
@@ -415,8 +831,8 @@
         "intent-routing": [
           "Intent routing",
           "意图路由",
-          "Classify what the user wants, route accordingly.",
-          "判断用户意图并相应分流。",
+          "Classify what the user wants, then route.",
+          "判断用户意图，再做分流。",
         ],
         "context-compaction": [
           "Context compaction",
@@ -427,8 +843,8 @@
         "safety-gating": [
           "Safety gating",
           "安全闸门",
-          "Whether an action is safe to run.",
-          "一个动作是否可以安全执行。",
+          "Whether an action is safe to run. Defence in depth, not a boundary.",
+          "一个动作是否可以安全执行。属纵深防御，不是安全边界。",
         ],
         "output-validation": [
           "Output validation",
@@ -515,9 +931,9 @@
           "介绍模型或领域，而非单一模式。",
         ],
       };
-      const P_ORDER = Object.keys(PATTERNS);
+      const P_ORDER = Object.keys(PAT);
 
-      const KINDS = {
+      const KIND = {
         "official-docs": ["Official docs", "官方文档"],
         sdk: ["SDK", "SDK"],
         integration: ["Integration", "平台集成"],
@@ -532,7 +948,7 @@
         discussion: ["Discussion", "讨论"],
         alternative: ["Jev-like alternative", "Jev 替代实现"],
       };
-      const FLAGS = {
+      const FLAG = {
         "not-jev": ["not Jev itself", "并非 Jev 本身"],
         "shadow-mode-only": ["shadow mode", "仅影子运行"],
         "early-access-required": ["early access", "需早期访问"],
@@ -547,158 +963,39 @@
         paywalled: ["paywall", "付费墙"],
         archived: ["archived", "已归档"],
       };
+      const F_ORDER = [
+        "not-jev",
+        "shadow-mode-only",
+        "early-access-required",
+        "code-untested",
+        "single-commit",
+        "no-license",
+        "third-party-api-key",
+        "vendor-reported",
+        "unverified-claims",
+        "ai-generated",
+        "marketing",
+        "paywalled",
+        "archived",
+      ];
+      const QGLYPH = { choice: "◆", score: "▮", noul: "◐" };
 
       let DATA = [],
         L = "en";
-      const S = () => STR[L];
-      const lbl = (m, k) => (m[k] || [k, k])[L === "zh" ? 1 : 0];
-      const desc = (k) => (PATTERNS[k] ? PATTERNS[k][L === "zh" ? 3 : 2] : "");
-
-      const state = {
+      const S = () => STR[L],
+        I = () => (L === "zh" ? 1 : 0);
+      const lbl = (m, k) => (m[k] || [k, k])[I()];
+      const pdesc = (k) => (PAT[k] ? PAT[k][2 + I()] : "");
+      const st = {
         q: "",
         pattern: "",
         kind: "",
         lang: "",
-        hasCode: false,
-        official: false,
-        noFlags: false,
+        code: false,
+        off: false,
+        noflag: false,
+        indep: false,
       };
-
-      function applyI18n() {
-        document.documentElement.lang = L === "zh" ? "zh-CN" : "en";
-        document
-          .querySelectorAll("[data-i18n]")
-          .forEach((el) => (el.textContent = S()[el.dataset.i18n]));
-        document
-          .querySelectorAll("[data-i18n-ph]")
-          .forEach((el) => (el.placeholder = S()[el.dataset.i18nPh]));
-        document.getElementById("lang").textContent =
-          L === "zh" ? "English" : "中文";
-      }
-
-      function buildSelects() {
-        const langs = [
-          ...new Set(DATA.flatMap((e) => e.languages || [])),
-        ].sort();
-        const fill = (id, opts, all) => {
-          const sel = document.getElementById(id);
-          const keep = sel.value;
-          sel.innerHTML =
-            `<option value="">${all}</option>` +
-            opts
-              .map(
-                ([v, t, n]) =>
-                  `<option value="${v}">${t}${n != null ? ` (${n})` : ""}</option>`,
-              )
-              .join("");
-          sel.value = keep;
-        };
-        const pc = (k) => DATA.filter((e) => e.patterns.includes(k)).length;
-        fill(
-          "pattern",
-          P_ORDER.filter(pc).map((k) => [k, lbl(PATTERNS, k), pc(k)]),
-          S().allPatterns,
-        );
-        const kc = (k) => DATA.filter((e) => e.kind === k).length;
-        fill(
-          "kind",
-          Object.keys(KINDS)
-            .filter(kc)
-            .map((k) => [k, lbl(KINDS, k), kc(k)]),
-          S().allKinds,
-        );
-        fill(
-          "lang_f",
-          langs.map((v) => [
-            v,
-            v,
-            DATA.filter((e) => (e.languages || []).includes(v)).length,
-          ]),
-          S().allLangs,
-        );
-
-        document.getElementById("toggles").innerHTML = `
-    <button class="toggle" id="t-code" aria-pressed="${state.hasCode}">${S().hasCode}</button>
-    <button class="toggle" id="t-off" aria-pressed="${state.official}">${S().isOfficial}</button>
-    <button class="toggle warn" id="t-flag" aria-pressed="${state.noFlags}">${S().noFlags}</button>`;
-        const bind = (id, key) =>
-          (document.getElementById(id).onclick = (e) => {
-            state[key] = !state[key];
-            e.currentTarget.setAttribute("aria-pressed", state[key]);
-            render();
-          });
-        bind("t-code", "hasCode");
-        bind("t-off", "official");
-        bind("t-flag", "noFlags");
-
-        const wc = DATA.filter((e) => e.has_code).length,
-          oc = DATA.filter((e) => e.official).length;
-        document.getElementById("stats").innerHTML =
-          `<span><b>${DATA.length}</b> ${S().entries}</span><span><b>${wc}</b> ${S().code}</span>` +
-          `<span><b>${oc}</b> ${S().official}</span><span><b>${P_ORDER.filter(pc).length}/${P_ORDER.length}</b> ${L === "zh" ? "覆盖模式" : "patterns"}</span>`;
-      }
-
-      function matches(e) {
-        if (state.pattern && !e.patterns.includes(state.pattern)) return false;
-        if (state.kind && e.kind !== state.kind) return false;
-        if (state.lang && !(e.languages || []).includes(state.lang))
-          return false;
-        if (state.hasCode && !e.has_code) return false;
-        if (state.official && !e.official) return false;
-        if (state.noFlags && (e.flags || []).length) return false;
-        if (!state.q) return true;
-        const hay = [
-          e.title,
-          e.summary,
-          e.summary_zh,
-          e.notes,
-          e.notes_zh,
-          e.slug,
-          (e.platforms || []).join(" "),
-          (e.languages || []).join(" "),
-          e.author && e.author.name,
-          e.url,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
-        return state.q
-          .toLowerCase()
-          .split(/\s+/)
-          .every((t) => hay.includes(t));
-      }
-
-      function card(e) {
-        const sum = L === "zh" ? e.summary_zh || e.summary : e.summary;
-        const note = L === "zh" ? e.notes_zh || e.notes : e.notes;
-        const pills = [
-          ...(e.question_types || []).map(
-            (q) => `<span class="pill q">${q}</span>`,
-          ),
-          ...(e.languages || []).map((x) => `<span class="pill">${x}</span>`),
-          ...(e.platforms || [])
-            .slice(0, 3)
-            .map((x) => `<span class="pill">${x}</span>`),
-          ...e.patterns.map(
-            (p) => `<span class="pill a">${lbl(PATTERNS, p)}</span>`,
-          ),
-          ...(e.flags || []).map(
-            (f) => `<span class="pill f">${lbl(FLAGS, f)}</span>`,
-          ),
-        ].join("");
-        return `<article class="card">
-    <div class="card-t">
-      <a href="${e.url}" rel="noopener">${esc(e.title)}</a>
-      ${e.official ? '<span class="star">official</span>' : ""}
-      ${e.stars != null ? `<span class="star">★${e.stars.toLocaleString()}</span>` : ""}
-      <span class="kind">${lbl(KINDS, e.kind)}</span>
-      ${e.author ? `<span class="by">${esc(e.author.name)}</span>` : ""}
-    </div>
-    <p class="sum">${esc(sum)}</p>
-    <div class="meta">${pills}</div>
-    ${note ? `<p class="note">${esc(note)}</p>` : ""}
-  </article>`;
-      }
 
       function esc(s) {
         return String(s == null ? "" : s).replace(
@@ -714,78 +1011,285 @@
         );
       }
 
-      function sortKey(a, b) {
-        return (
-          (b.official ? 1 : 0) - (a.official ? 1 : 0) ||
-          (b.has_code ? 1 : 0) - (a.has_code ? 1 : 0) ||
-          (b.stars || 0) - (a.stars || 0) ||
-          a.title.localeCompare(b.title)
+      function i18n() {
+        document.documentElement.lang = L === "zh" ? "zh-CN" : "en";
+        document
+          .querySelectorAll("[data-i]")
+          .forEach((e) => (e.innerHTML = S()[e.dataset.i]));
+        document
+          .querySelectorAll("[data-ip]")
+          .forEach((e) => (e.placeholder = S()[e.dataset.ip]));
+        document.getElementById("lang").textContent =
+          L === "zh" ? "English" : "中文";
+      }
+
+      const pcount = (k) => DATA.filter((e) => e.patterns.includes(k)).length;
+      // A row counts as independently measured when it is a benchmark that is NOT
+      // just repeating the vendor's own figures. That distinction is the catalogue's
+      // whole point, so it gets a first-class filter.
+      const isIndep = (e) =>
+        e.kind === "benchmark" && !(e.flags || []).includes("vendor-reported");
+
+      function chrome() {
+        const verified = DATA.filter(
+          (e) => e.link_status >= 200 && e.link_status < 300,
+        ).length;
+        document.getElementById("readout").innerHTML = [
+          [DATA.length, S().entries, "hot"],
+          [DATA.filter((e) => e.has_code).length, S().code, ""],
+          [DATA.filter((e) => e.official).length, S().official, ""],
+          [verified, S().verified, "ok"],
+        ]
+          .map(
+            ([v, k, c]) =>
+              `<div class="rd ${c}"><div class="v">${v}</div><div class="k">${k}</div></div>`,
+          )
+          .join("");
+
+        const max = Math.max(...P_ORDER.map(pcount), 1);
+        document.getElementById("rail").innerHTML = P_ORDER.map((k, i) => {
+          const n = pcount(k),
+            w = n ? Math.max((n / max) * 100, 2.5) : 0;
+          return `<button class="pbar${n ? "" : " zero"}" data-p="${k}" aria-pressed="${st.pattern === k}" ${n ? "" : "disabled"}
+      title="${esc(pdesc(k))}">
+      <span class="nm">${lbl(PAT, k)}</span><span class="ct">${n}</span>
+      <span class="track"><span class="fill" style="width:${w}%;animation-delay:${i * 26}ms"></span></span>
+    </button>`;
+        }).join("");
+        document.querySelectorAll(".pbar[data-p]:not(.zero)").forEach(
+          (b) =>
+            (b.onclick = () => {
+              st.pattern = st.pattern === b.dataset.p ? "" : b.dataset.p;
+              chrome();
+              render();
+            }),
+        );
+        document.getElementById("clr").classList.toggle("on", !!st.pattern);
+
+        const fill = (id, opts, all) => {
+          const s = document.getElementById(id),
+            keep = s.value;
+          s.innerHTML =
+            `<option value="">${all}</option>` +
+            opts
+              .map(([v, t, n]) => `<option value="${v}">${t} · ${n}</option>`)
+              .join("");
+          s.value = keep;
+        };
+        const kc = (k) => DATA.filter((e) => e.kind === k).length;
+        fill(
+          "kind",
+          Object.keys(KIND)
+            .filter(kc)
+            .map((k) => [k, lbl(KIND, k), kc(k)]),
+          `▸ ${S().entries}`,
+        );
+        const langs = [
+          ...new Set(DATA.flatMap((e) => e.languages || [])),
+        ].sort();
+        fill(
+          "langf",
+          langs.map((v) => [
+            v,
+            v,
+            DATA.filter((e) => (e.languages || []).includes(v)).length,
+          ]),
+          "▸ code",
+        );
+
+        document.getElementById("tgs").innerHTML = [
+          ["code", "t_code", ""],
+          ["off", "t_off", ""],
+          ["indep", "t_ind", ""],
+          ["noflag", "t_flag", "warn"],
+        ]
+          .map(
+            ([k, s, c]) =>
+              `<button class="tg ${c}" data-t="${k}" aria-pressed="${st[k]}">${S()[s]}</button>`,
+          )
+          .join("");
+        document.querySelectorAll(".tg[data-t]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              st[b.dataset.t] = !st[b.dataset.t];
+              b.setAttribute("aria-pressed", st[b.dataset.t]);
+              render();
+            }),
         );
       }
 
+      function ok(e) {
+        if (st.pattern && !e.patterns.includes(st.pattern)) return false;
+        if (st.kind && e.kind !== st.kind) return false;
+        if (st.lang && !(e.languages || []).includes(st.lang)) return false;
+        if (st.code && !e.has_code) return false;
+        if (st.off && !e.official) return false;
+        if (st.noflag && (e.flags || []).length) return false;
+        if (st.indep && !isIndep(e)) return false;
+        if (!st.q) return true;
+        const hay = [
+          e.title,
+          e.summary,
+          e.summary_zh,
+          e.notes,
+          e.notes_zh,
+          e.slug,
+          (e.platforms || []).join(" "),
+          (e.languages || []).join(" "),
+          e.author && e.author.name,
+          e.repo_license,
+          e.url,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        return st.q
+          .toLowerCase()
+          .split(/\s+/)
+          .every((t) => hay.includes(t));
+      }
+
+      function card(e) {
+        const sum = L === "zh" ? e.summary_zh || e.summary : e.summary;
+        const note = L === "zh" ? e.notes_zh || e.notes : e.notes;
+        const flags = (e.flags || [])
+          .slice()
+          .sort((a, b) => F_ORDER.indexOf(a) - F_ORDER.indexOf(b));
+        const cls = e.official ? "off" : flags.length ? "flagged" : "";
+        const strip = e.patterns.map(() => "<i></i>").join("");
+        const pills = [
+          ...(e.question_types || []).map(
+            (q) => `<span class="p q">${QGLYPH[q] || ""} ${q}</span>`,
+          ),
+          ...(e.languages || []).map((x) => `<span class="p">${esc(x)}</span>`),
+          ...(e.platforms || [])
+            .slice(0, 3)
+            .map((x) => `<span class="p">${esc(x)}</span>`),
+          ...e.patterns.map((p) => `<span class="p pt">${lbl(PAT, p)}</span>`),
+          ...flags.map((f) => `<span class="p f">${lbl(FLAG, f)}</span>`),
+        ].join("");
+        return `<article class="card ${cls}">
+    <div class="ct-row">
+      <a class="t" href="${esc(e.url)}" rel="noopener">${esc(e.title)}</a>
+      ${e.official ? '<span class="badge of">official</span>' : ""}
+      ${isIndep(e) ? '<span class="badge of">measured</span>' : ""}
+      ${e.stars != null ? `<span class="badge st">★ ${e.stars.toLocaleString()}</span>` : ""}
+      <span class="badge kd">${lbl(KIND, e.kind)}</span>
+      ${e.author ? `<span class="by">${esc(e.author.name)}</span>` : ""}
+    </div>
+    <p class="sum">${esc(sum)}</p>
+    <div class="strip" aria-hidden="true">${strip}</div>
+    <div class="pills">${pills}</div>
+    ${note ? `<p class="note">${esc(note)}</p>` : ""}
+  </article>`;
+      }
+
+      // Official first, then rows with code, then stars. Stable and identity-based,
+      // so a filter never reorders by relevance and disorients the reader.
+      const cmp = (a, b) =>
+        (b.official ? 1 : 0) - (a.official ? 1 : 0) ||
+        (b.has_code ? 1 : 0) - (a.has_code ? 1 : 0) ||
+        (b.stars || 0) - (a.stars || 0) ||
+        a.title.localeCompare(b.title);
+
       function render() {
-        const hits = DATA.filter(matches);
-        document.getElementById("count").textContent =
-          `${hits.length} / ${DATA.length} ${S().shown}`;
-        const out = document.getElementById("out");
+        const hits = DATA.filter(ok),
+          out = document.getElementById("out");
+        document.getElementById("hits").innerHTML =
+          `<b>${hits.length}</b> / ${DATA.length} ${S().shown}`;
         if (!hits.length) {
           out.innerHTML = `<p class="empty">${S().empty}</p>`;
           return;
         }
-
-        // Grouped by pattern unless a single pattern is selected, in which case the
-        // grouping would be one heading over everything.
-        if (state.pattern) {
-          out.innerHTML = hits.sort(sortKey).map(card).join("");
+        if (st.pattern) {
+          out.innerHTML = hits.sort(cmp).map(card).join("");
           return;
         }
         out.innerHTML = P_ORDER.map((p) => {
           const rows = hits.filter((e) => e.patterns.includes(p));
           if (!rows.length) return "";
-          return `<h2 class="group-h">${lbl(PATTERNS, p)}<span class="n">${rows.length}</span></h2>
-      <p class="group-d">${desc(p)}</p>${rows.sort(sortKey).map(card).join("")}`;
+          return `<div class="gh"><h2>${lbl(PAT, p)}</h2><span class="n">${rows.length}</span></div>
+      <p class="gd">${pdesc(p)}</p>${rows.sort(cmp).map(card).join("")}`;
         }).join("");
       }
 
       document.getElementById("q").oninput = (e) => {
-        state.q = e.target.value;
+        st.q = e.target.value;
         render();
       };
-      ["pattern", "kind", "lang_f"].forEach((id) => {
-        document.getElementById(id).onchange = (e) => {
-          state[id === "lang_f" ? "lang" : id] = e.target.value;
-          render();
-        };
-      });
+      document.getElementById("kind").onchange = (e) => {
+        st.kind = e.target.value;
+        render();
+      };
+      document.getElementById("langf").onchange = (e) => {
+        st.lang = e.target.value;
+        render();
+      };
+      const clr = document.getElementById("clr");
+      clr.onclick = () => {
+        st.pattern = "";
+        chrome();
+        render();
+      };
+      clr.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          clr.click();
+        }
+      };
       document.getElementById("lang").onclick = (e) => {
         e.preventDefault();
         L = L === "en" ? "zh" : "en";
-        localStorage.setItem("awesome-jev-lang", L);
-        applyI18n();
-        buildSelects();
+        try {
+          localStorage.setItem("aj-lang", L);
+        } catch (_) {}
+        i18n();
+        chrome();
         render();
       };
+      addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+          e.preventDefault();
+          document.getElementById("q").focus();
+        }
+        if (e.key === "Escape" && document.activeElement.id === "q") {
+          document.getElementById("q").value = "";
+          st.q = "";
+          render();
+        }
+      });
 
-      // Stored preference wins, otherwise fall back to the browser's language.
-      // Parenthesised deliberately: `||` binds tighter than `?:`, so without
-      // these a stored "en" tests truthy and flips the page to Chinese.
-      const stored = localStorage.getItem("awesome-jev-lang");
-      L = stored || ((navigator.language || "").startsWith("zh") ? "zh" : "en");
+      // Stored preference wins, otherwise the browser's language. Parenthesised
+      // deliberately: `||` binds tighter than `?:`, so a stored "en" would otherwise
+      // test truthy and flip the page to Chinese.
+      // Precedence: ?lang= in the URL (so a language is shareable and
+      // screenshottable), then the stored preference, then the browser's.
+      // Parenthesised deliberately: `||` binds tighter than `?:`, so a stored
+      // "en" would otherwise test truthy and flip the page to Chinese.
+      let stored = null;
+      try {
+        stored = localStorage.getItem("aj-lang");
+      } catch (_) {}
+      const fromUrl = new URLSearchParams(location.search).get("lang");
+      L =
+        fromUrl ||
+        stored ||
+        ((navigator.language || "").startsWith("zh") ? "zh" : "en");
       if (!STR[L]) L = "en";
 
       fetch("catalog.json")
         .then((r) => r.json())
         .then((d) => {
           DATA = d;
-          applyI18n();
-          buildSelects();
+          i18n();
+          chrome();
           render();
         })
         .catch(() => {
+          i18n();
           document.getElementById("out").innerHTML =
-            '<p class="empty">Could not load catalog.json. The Pages build copies it in; ' +
-            "serve this directory with <code>python3 -m http.server</code> after copying it locally.</p>";
-          applyI18n();
+            '<p class="empty">Could not load catalog.json. ' +
+            "The Pages build copies it in — locally, copy it into site/ and serve with <code>python3 -m http.server</code>.</p>";
         });
     </script>
   </body>
