@@ -1,12 +1,12 @@
 # awesome-jev
 
-> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. 148 entries, every row attributable to a named source. 144 returned HTTP 200 on 2026-09-22; the remaining 4 are hosts that refuse scripted requests and carry no `link_status`.
+> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. 805 entries, every row attributable to a named source. 801 returned HTTP 200 on 2026-09-22; the remaining 4 are hosts that refuse scripted requests and carry no `link_status`.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 
 ## Machine-readable data
 
-Catalog (148 entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
+Catalog (805 entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
 Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
 JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
 

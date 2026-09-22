@@ -6,13 +6,14 @@ dating it.
 
 ## Shape of the catalog
 
-|                              |          |
-| ---------------------------- | -------- |
-| Entries                      | 148      |
-| Carrying code                | 124      |
-| Official (TypeSafe AI's own) | 36       |
-| Patterns covered             | 16 of 18 |
-| Retired links                | 0        |
+|                                |            |
+| ------------------------------ | ---------- |
+| Entries                        | 805        |
+| Carrying code                  | 781        |
+| Official (TypeSafe AI's own)   | 36         |
+| Patterns covered               | 17 of 18   |
+| Chinese summaries hand-written | 183 of 805 |
+| Retired links                  | 0          |
 
 Run `python3 scripts/counts.py` for the live version, including a marked list of
 which patterns have no entries yet.
@@ -69,14 +70,24 @@ source of confusion.
 
 ## Coverage gaps
 
-Two patterns have no entries, and no in-repo example either:
+One pattern still has no entries, and no in-repo example either:
 
-- **`retry-control`** — deciding whether a failed step is worth retrying. An
-  obvious fit that nobody appears to have published.
 - **`recommendation`** — real-time next-best-thing selection. The vendor lists it
-  as a use case; no public example surfaced.
+  as a use case. Nothing surfaced across 32 sibling lists and 1,887 distinct
+  repositories, which by now is a reasonably strong claim that nobody has
+  published one.
 
-Also thin: `document-triage` (1), `feature-extraction` (3), `data-extraction` (4).
+**`retry-control`** came off that list, but barely: three entries, led by a
+semantic circuit breaker that asks whether an HTTP 200 is a silent failure. Most
+apparent matches remain false positives — an HTTP client advertising "observable
+retries" is not a retry decision.
+
+One `kind` is empty too: **`case-study`**. Projects are running this in
+production; none has published what it cost and what it changed.
+
+Also thin, and worth reading as a ratio rather than a count now that the
+catalogue has passed 800 rows: `support-triage` (7), `feature-extraction` (7),
+`data-extraction` (12), `document-triage` (16), `context-compaction` (20).
 
 And two known holes in the research rather than the ecosystem: **Reddit** produced
 nothing verifiable across four retrieval routes, and **X/Twitter** is barely
