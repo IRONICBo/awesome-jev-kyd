@@ -1012,7 +1012,7 @@
     "license": "CC0-1.0",
     "checked": "2026-09-22",
     "link_status": 200,
-    "stars": 1644
+    "stars": 1645
   },
   {
     "slug": "typesafe-sdk-python",
@@ -1042,7 +1042,7 @@
     },
     "official": true,
     "has_code": true,
-    "stars": 193,
+    "stars": 194,
     "repo_license": "MIT",
     "notes": "Method is system_one in Python but systemOne in JavaScript. Easy to get wrong when porting.",
     "notes_zh": "Python 里方法名是 system_one，JavaScript 里是 systemOne。跨语言移植时很容易写错。",
@@ -1139,7 +1139,7 @@
     ],
     "official": true,
     "has_code": true,
-    "stars": 1644,
+    "stars": 1645,
     "repo_license": "MIT",
     "first_seen": "2026-09-22",
     "sources": [
@@ -1170,7 +1170,7 @@
     ],
     "official": true,
     "has_code": true,
-    "stars": 248,
+    "stars": 249,
     "repo_license": "MIT",
     "notes": "The best answer to \"I want to try these patterns but I am still on the waitlist\". Behaviour will differ from the real model.",
     "notes_zh": "「想试这些模式但还在等候名单上」的最佳解法。注意它的行为与真实模型会有差异。",
@@ -1767,7 +1767,7 @@
       "url": "https://github.com/tamaratran"
     },
     "has_code": true,
-    "stars": 6084,
+    "stars": 6090,
     "repo_license": "MIT",
     "notes": "Exactly two nouls per tool call: does knowing this call happened still matter, and is the full output still needed verbatim. Despite the word \"scored\" in its own description, no score primitive is used.",
     "notes_zh": "每次工具调用恰好两个 noul：知道这次调用发生过是否还有意义、以及是否还需要完整原文输出。尽管它自己的描述里用了「打分」，实际并未使用 score 原语。",
@@ -1812,7 +1812,7 @@
       "url": "https://github.com/vinnylarouge"
     },
     "has_code": true,
-    "stars": 1181,
+    "stars": 1183,
     "repo_license": "MIT",
     "flags": [
       "not-jev"
@@ -2097,7 +2097,7 @@
     ],
     "repo": "https://github.com/trycua/cua",
     "has_code": true,
-    "stars": 25830,
+    "stars": 25834,
     "repo_license": "MIT",
     "notes": "Worth copying its rigour: it validates that every probability is finite and in range, rejects an answer outside the candidate set, sends typed bounds instead of screenshot bytes, and ships a mock adapter so the whole loop runs with no key and no network.",
     "notes_zh": "它的严谨程度值得照搬：校验每个概率有限且在区间内、拒绝候选集之外的答案、发送类型化坐标而非截图字节，还提供 mock 适配器让整个循环无密钥无网络也能跑。",
@@ -3019,7 +3019,7 @@
       "url": "https://github.com/jaredpalmer"
     },
     "has_code": true,
-    "stars": 2748,
+    "stars": 2764,
     "repo_license": "Apache-2.0",
     "flags": [
       "not-jev"
@@ -3228,7 +3228,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 247870,
+    "stars": 247881,
     "repo_license": "MIT",
     "notes": "The single most credible row in this catalog. Recall came out below their existing summariser, and at a matched context budget it tied plain recency ordering. Cost was genuinely far lower. Publishing a negative result on a hyped model is rare.",
     "notes_zh": "本目录可信度最高的一条。召回率低于他们现有的摘要器，在相同上下文预算下与「按时间倒序」打平。成本确实低得多。在一个被热炒的模型上公开负面结果，非常少见。",
@@ -3407,7 +3407,7 @@
       "url": "https://github.com/browser-use"
     },
     "has_code": true,
-    "stars": 16735,
+    "stars": 16758,
     "repo_license": "MIT",
     "published": "2026-09-16",
     "flags": [
@@ -3504,7 +3504,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 42341,
+    "stars": 42345,
     "repo_license": "LGPL-3.0",
     "notes": "The clearest demonstration that fan-out changes what is affordable: a per-category hazard screen becomes one request instead of one per category.",
     "notes_zh": "最清楚地展示了并行扇出如何改变成本结构：逐类别的危害筛查从「每类一次请求」变成「总共一次请求」。",
@@ -3548,7 +3548,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 38382,
+    "stars": 38384,
     "repo_license": "AGPL-3.0",
     "first_seen": "2026-09-22",
     "sources": [
@@ -3734,7 +3734,7 @@
       "url": "https://github.com/vercel-labs"
     },
     "has_code": true,
-    "stars": 17993,
+    "stars": 17994,
     "repo_license": "Apache-2.0",
     "notes": "A genuinely different framing of generative UI: choosing from a component registry instead of generating markup means the output cannot reference a component that does not exist.",
     "notes_zh": "对生成式 UI 的一个真正不同的理解：从组件注册表里做选择、而不是生成标记，意味着输出不可能引用一个不存在的组件。",
@@ -3776,7 +3776,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 1447,
+    "stars": 1449,
     "repo_license": "Apache-2.0",
     "notes": "Using the accessibility tree rather than screenshots fits the model's text-only input exactly, with no vision step to lose information.",
     "notes_zh": "用无障碍树而不是截图，正好契合模型只接受文本输入的限制，中间不需要一个会丢信息的视觉步骤。",
@@ -3822,7 +3822,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 55,
+    "stars": 56,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -3870,7 +3870,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 81,
+    "stars": 83,
     "repo_license": "MIT",
     "notes": "Graph traversal is a natural fit: each hop is a closed choice over the current node's edges, and the whole walk is cheap only if each hop is.",
     "notes_zh": "图遍历天然契合：每一跳都是在当前节点的边集上做封闭选择，而整条路径便宜的前提正是每一跳都便宜。",
@@ -3917,7 +3917,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 19,
+    "stars": 21,
     "repo_license": "MIT",
     "notes": "Dataset curation is a good economic fit: millions of per-row judgements is exactly the volume where a cheap decision call beats an LLM.",
     "notes_zh": "数据集筛选在经济性上很合适：百万量级的逐行判断，正是廉价决策调用胜过 LLM 的那个体量。",
@@ -3963,7 +3963,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 29,
+    "stars": 31,
     "repo_license": "MIT",
     "notes": "A pointed use of the pattern: the thing being validated is the agent's own claim about itself, which is exactly where a separate judge earns its keep.",
     "notes_zh": "这个模式用得很到位：被校验的对象是智能体对自己的声明 —— 而这恰恰是独立评判者最有价值的地方。",
@@ -4011,7 +4011,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 120,
+    "stars": 121,
     "repo_license": "MIT",
     "flags": [
       "unverified-claims"
@@ -4061,7 +4061,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 339,
+    "stars": 340,
     "repo_license": "unknown",
     "flags": [
       "no-license",
@@ -4112,7 +4112,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 19,
+    "stars": 20,
     "repo_license": "unknown",
     "flags": [
       "no-license",
@@ -4162,7 +4162,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 77,
+    "stars": 78,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -4210,7 +4210,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 1909,
+    "stars": 1911,
     "repo_license": "MIT",
     "flags": [
       "unverified-claims"
@@ -4257,7 +4257,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 70,
+    "stars": 71,
     "repo_license": "MIT",
     "notes": "The more defensible architecture of the two finance entries: the model characterises state, existing code decides. Not financial advice.",
     "notes_zh": "两个金融类条目中架构更稳妥的一个：模型只负责刻画状态，下单由原有代码决定。不构成投资建议。",
@@ -4306,7 +4306,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 233,
+    "stars": 234,
     "repo_license": "MIT",
     "notes": "Start here if you want to feel the primitives before writing any code.",
     "notes_zh": "如果你想先上手体验这几个原语、再动手写代码，从这里开始。",
@@ -4357,7 +4357,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 251,
+    "stars": 253,
     "repo_license": "MIT",
     "notes": "Splitting one model into task-named tools is good agent ergonomics: the agent picks a verb rather than composing a question.",
     "notes_zh": "把一个模型拆成按任务命名的多个工具，对智能体很友好：它只需选一个动词，而不必自己组装问题。",
@@ -4405,7 +4405,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 30,
+    "stars": 31,
     "repo_license": "MIT",
     "notes": "A semantic decision usable from a pipe is a genuinely new shell primitive. Small project; read before wiring into anything that matters.",
     "notes_zh": "能从管道里调用的语义判断，确实是一个新的 shell 原语。项目还小，接入要紧的流程前请先读代码。",
@@ -4451,7 +4451,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 187,
+    "stars": 188,
     "repo_license": "MIT",
     "notes": "Scoring difficulty and mapping to tiers in code, rather than choosing a tier directly, is the more maintainable of the two model-routing shapes.",
     "notes_zh": "先给难度打分、再在代码里映射到档位，而不是直接选档位 —— 这是两种模型路由写法里更好维护的那个。",
@@ -4497,7 +4497,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 58,
+    "stars": 59,
     "repo_license": "MIT",
     "notes": "Uses dual keep/drop thresholds with a recall command to pull back full text, which is the right safety valve for a lossy filter.",
     "notes_zh": "采用「保留/丢弃」双阈值，并提供一个召回命令取回全文 —— 这是有损过滤该有的安全阀。",
@@ -4595,7 +4595,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 509,
+    "stars": 510,
     "repo_license": "MIT",
     "notes": "Documents a multi-stage pipeline worth reading, but commits stopped a day after creation, so treat it as a design reference rather than a maintained tool.",
     "notes_zh": "它记录的多阶段流水线值得一读，但提交在创建次日就停了 —— 请当作设计参考，而不是仍在维护的工具。",
@@ -4743,7 +4743,7 @@
     ],
     "repo": "https://github.com/apache/airflow",
     "has_code": true,
-    "stars": 46933,
+    "stars": 46934,
     "repo_license": "Apache-2.0",
     "notes": "Branching a data pipeline on a calibrated decision is a natural fit, and the docs sensibly recommend pinning a version rather than tracking the alias.",
     "notes_zh": "用校准过的决策给数据流水线做分支很契合，而且文档明智地建议锁定版本号、而不是跟着别名走。",
@@ -4782,7 +4782,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 16168,
+    "stars": 16167,
     "repo_license": "MIT",
     "first_seen": "2026-09-22",
     "sources": [
@@ -5009,7 +5009,7 @@
       "opencode-zen"
     ],
     "has_code": true,
-    "stars": 209229,
+    "stars": 209234,
     "repo_license": "MIT",
     "notes": "Worth knowing about because it is one of the few routes with a free model id, useful while early access is gated.",
     "notes_zh": "值得知道，因为它是少数提供免费模型 id 的路径之一 —— 在早期访问仍需排队时很有用。",
@@ -5091,7 +5091,7 @@
       "self-hosted"
     ],
     "has_code": true,
-    "stars": 1885,
+    "stars": 1887,
     "repo_license": "MIT",
     "flags": [
       "not-jev"
@@ -5126,7 +5126,7 @@
       "self-hosted"
     ],
     "has_code": true,
-    "stars": 3417,
+    "stars": 3427,
     "repo_license": "MIT",
     "flags": [
       "not-jev"
@@ -5158,7 +5158,7 @@
       "github"
     ],
     "has_code": false,
-    "stars": 1091,
+    "stars": 1094,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -5249,7 +5249,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 85,
+    "stars": 86,
     "repo_license": "MIT",
     "notes": "The purest demonstration in this catalog: verified to contain no LLM at all. Read it to see exactly how far closed-set decisions alone can carry an agent loop, and where they stop.",
     "notes_zh": "本目录里最纯粹的演示：已核实完全不含 LLM。想知道「只靠封闭集决策」能把智能体循环推进到哪一步、又在哪里必须停下，读它。",
@@ -5486,7 +5486,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 556,
+    "stars": 557,
     "repo_license": "MIT",
     "notes": "Its risk noul enumerates the cases that need a human — delete, send, pay, permissions, credentials — and a local policy gate enforces the threshold. Sends text only, never screenshots. No licence file.",
     "notes_zh": "它的风险 noul 明确列举了需要人介入的情形 —— 删除、发送、付款、权限、凭据 —— 并由本地策略闸门执行阈值。只发文本，从不发截图。无许可证文件。",
@@ -5533,7 +5533,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 178,
+    "stars": 179,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -5586,7 +5586,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 1921,
+    "stars": 1950,
     "repo_license": "MIT",
     "notes": "A clean split of labour on a phone: Jev judges and ranks, other models read the screen and write the words. Reads on-screen message content, so consider the privacy implications before running it.",
     "notes_zh": "手机端的一个清晰分工：Jev 负责判断与排序，其他模型负责读屏和写字。它会读取屏幕上的消息内容，运行前请先考虑隐私影响。",
@@ -5634,7 +5634,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 394,
+    "stars": 395,
     "repo_license": "MIT",
     "notes": "Its skill files are unusually disciplined for this space: consent before spending, an explicit marker when no call was made, and the line that selection is not permission.",
     "notes_zh": "它的技能文件在这个领域里格外自律：花钱前先征得同意、未实际调用时打出明确标记，以及那句「被选中不等于被授权」。",
