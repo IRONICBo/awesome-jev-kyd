@@ -130,7 +130,12 @@
           "php",
           "csharp",
           "elixir",
-          "lua"
+          "lua",
+          "swift",
+          "kotlin",
+          "haskell",
+          "c",
+          "cpp"
         ]
       }
     },

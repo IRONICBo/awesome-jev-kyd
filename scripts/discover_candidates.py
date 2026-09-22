@@ -103,6 +103,75 @@ CODE_EXT = (
 )
 
 
+# ---------------------------------------------------------------------------
+# Suggested classification
+#
+# Keyword rules over the project's own description. They are a starting point
+# and nothing more: on the first bulk run of 223 rows they needed eight manual
+# corrections, most of them an SDK picking up a behavioural pattern from words
+# describing its own API ("typed noul, choice and score" is not content
+# scoring, and "observable retries" is the HTTP client, not a retry decision).
+# Read the suggestion, then decide.
+# ---------------------------------------------------------------------------
+
+def classify(desc, name, lang):
+    d = (desc or "").lower(); n = name.lower(); t = f"{d} {n}"
+    def has(p): return bool(re.search(p, t))
+
+    if has(r'\b(alternative|jev-?like|jev-?style|reimplement|open-?jev|clone of|drop-?in replacement|'
+           r'turn any .{0,24}llm into|local (take on|jev)|own decision model|fine-?tuned from|'
+           r'without generating a single to|self-?hosted drop-?in)'):
+        kind = "alternative"
+    elif has(r'\b(benchmark|bench\b|audit|leaderboard|capability (atlas|study)|head-?to-?head|'
+             r'reproducible .{0,20}evaluation|measures how well|evaluation of jev)'):
+        kind = "benchmark"
+    elif has(r'\b(sdk|client library|client for|idiomatic .{0,14}(client|sdk)|port of the|'
+             r'bindings?\b|dependency-?free cli|small cli)'):
+        kind = "sdk"
+    elif has(r'\b(mcp|skill\b|hook\b|plugin|extension|\.nvim|claude code|codex|neovim|vscode|cursor|'
+             r'pytest|pre-?commit|starter\b)'):
+        kind = "plugin"
+    elif has(r'\b(provider|integration|adapter|middleware|for (hono|django|rails|spring|langchain|duckdb))'):
+        kind = "integration"
+    else:
+        kind = "project"
+
+    P = []
+    def add(p):
+        if p not in P: P.append(p)
+
+    # Tightened: a circuit breaker genuinely decides whether to retry; a
+    # benchmark about failure *attribution* does not, and matched before.
+    if has(r'\bcircuit breaker|retry|retries|back-?off|resilien'): add("retry-control")
+    if has(r'\brerank|re-?rank|relevance|retriev|\brag\b|semantic (search|find|sql|grep)|'
+           r'\bgrep|ranking|rank(s|ing)? |select(or|ion) .{0,20}(context|evidence)|shortlist'): add("search-ranking")
+    if has(r'\b(which|cheapest|pick a) (model|llm)|model (routing|selection)|tier\b|'
+           r'route .{0,16}model|route accordingly|when to use'): add("model-routing")
+    if has(r'\bclassif|categor|\btag\b|label(s|ling)?\b|taxonom|detect(s|ing|ion)?\b|identif|'
+           r'sort(s|ing)?\b|triage'): add("classification")
+    if has(r'\bbrowser|computer use|\bclick|\bgui\b|screen|next action|tool call|agent step|'
+           r'control|robot|drive[sn]?\b|navigat|autonomous|tool routing|chains? .{0,14}primitive|'
+           r'reflex|harness|which tool|picks? each action'): add("tool-selection")
+    if has(r'\bguard|block(s|ing)?\b|gate|safety|risk|secret|injection|moderat|spam|harmful|'
+           r'malicio|permission|censor|sponsor|adblock|\bads?\b'): add("safety-gating")
+    if has(r'\bverif|validat|assert|lint(er|ing)?\b|review|quality|hallucinat|stop hook|'
+           r'diagnostic|check(s|ing)?\b|claim|correctness'): add("output-validation")
+    if has(r'\bscore|rate[sd]?\b|grade|meter|judg'): add("content-scoring")
+    if has(r'\bcompact|prune|trim|context (window|garbage|select)|token budget|history'): add("context-compaction")
+    if has(r'\bcalibrat|threshold|confidence|uncertain|human review|escalat'): add("human-escalation")
+    if has(r'\bextract|parse|structured data|field'): add("data-extraction")
+    if has(r'\bintent|support ticket|inbox|\bmail|email|customer'): add("intent-routing")
+    if has(r'\bparallel|batch|fan-?out|many questions|more than 255|beyond 255'): add("fan-out")
+    # Tightened: "suggest" alone matched a skill router, which is tool-selection.
+    if has(r'\brecommend(s|ation|er)?\b|what to (watch|read|buy)|next-?best'): add("recommendation")
+    if has(r'\bfeature (extraction|engineering)|training data|curation|dataset'): add("feature-extraction")
+    if has(r'\bdocument|\binvoice|\breceipt|\bpdf\b|\bform\b'): add("document-triage")
+
+    if not P:
+        P = ["overview"]
+    return kind, P[:3]
+
+
 def slug_of(owner: str, name: str) -> str:
     return f"{owner.lower()}/{re.sub(r'\\.git$', '', name).lower()}"
 
@@ -175,9 +244,12 @@ def inspect(slug: str) -> dict:
         if best is None or score > best[0]:
             best = (score, path, found[:3])
     if best:
+        kind, patterns = classify(out["description"], slug.split("/")[1], out["language"])
         return {
             **out,
             "verdict": "calls-jev",
+            "suggested_kind": kind,
+            "suggested_patterns": patterns,
             "evidence_path": best[1],
             "matched": best[2],
             "evidence_is_test": bool(testy.search(best[1])),
@@ -243,6 +315,19 @@ def main() -> int:
     for result, (slug, n) in zip(results, candidates[: args.top]):
         result["cited_by"] = n
 
+    # GitHub redirects a renamed repository, so two cited names can resolve to
+    # one canonical html_url. Without this the same project is proposed twice
+    # under different slugs, and only the catalog linter catches it.
+    seen_urls: set[str] = set()
+    deduped = []
+    for r in results:
+        key = (r.get("url") or r["slug"]).rstrip("/").lower()
+        if key in seen_urls:
+            continue
+        seen_urls.add(key)
+        deduped.append(r)
+    results = deduped
+
     if args.json:
         print(json.dumps(results, indent=2, ensure_ascii=False))
         return 0
@@ -264,6 +349,10 @@ def main() -> int:
             print(head)
             if verdict == "calls-jev":
                 print(f"          {r['evidence_path']}  -> {r['matched']}")
+                print(
+                    f"          suggested: {r['suggested_kind']} / "
+                    f"{', '.join(r['suggested_patterns'])}  (check it)"
+                )
             if r.get("description"):
                 print(f"          {r['description'][:96]}")
 

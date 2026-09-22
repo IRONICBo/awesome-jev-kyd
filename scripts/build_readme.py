@@ -576,6 +576,11 @@ LANG_LABELS = {
     "csharp": "C#",
     "elixir": "Ex",
     "lua": "Lua",
+    "swift": "Swift",
+    "kotlin": "Kt",
+    "haskell": "Hs",
+    "c": "C",
+    "cpp": "C++",
 }
 
 # The non-catalog parts of the repo, so navigation is a table rather than a
@@ -660,8 +665,15 @@ def bar(count: int, peak: int, width: int = 16) -> str:
         return ""
     units = count / peak * width
     full = int(units)
-    eighths = " ▏▎▍▌▋▊▉"
+    eighths = " ▏▎▍▌▋▊▉"  # index 0..7
     step = round((units - full) * 8)
+    # A remainder just under 1 rounds to 8, which is past the end of the ramp.
+    # That is a whole block, so carry it rather than indexing off the string —
+    # this only fires at particular count/peak ratios, so it sat latent until
+    # the catalog grew past 400 rows.
+    if step >= 8:
+        full += 1
+        step = 0
     return ("█" * full + (eighths[step] if step else "")) or "▏"
 
 

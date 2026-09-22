@@ -101,6 +101,34 @@ Sibling lists that ship no licence can be used as pointers but not as prose: a
 URL is a fact, a description is someone's writing. Rows discovered that way were
 re-read at the call site and summarised independently.
 
+### The bulk pass, and what it cost
+
+A second aggregation run verified the 320 most-cited repositories missing here
+and added 223. At that volume two standards had to bend, and both are recorded
+in the data rather than hidden:
+
+* **Summaries are the project's own description**, normalised, rather than a
+  sentence written after reading the code. What *was* read is the call site,
+  and `evidence` on every row proves it.
+* **Chinese is bulk-translated**, so those rows carry `zh_machine: true`. The
+  counts script reports the split — 183 of 404 hand-written at the time of
+  writing — because a catalogue that claimed all of them were would be lying
+  about the one thing it sells.
+
+Patterns were suggested by keyword rules over the description and then
+reviewed. The review caught eight errors in 223, almost all of the same shape:
+an SDK picking up a behavioural pattern from words describing its own API.
+"Typed noul, choice and score" is an API surface, not content scoring;
+"observable retries" is an HTTP client, not a retry decision. One was a plain
+regex bug — `form\b` with no leading boundary matched "platform" and filed a
+.NET SDK under document triage.
+
+`retry-control` went from zero to one genuine example, a semantic circuit
+breaker that asks whether an HTTP 200 is a silent failure. The other apparent
+matches were false positives and were removed. `recommendation` is still empty
+across 32 lists and 1,887 repositories, which is now a reasonably strong claim
+that nobody has published one.
+
 ## Why a status code is not a verdict
 
 Every row's `link_status` says the URL answered. That is all it says. It does not
