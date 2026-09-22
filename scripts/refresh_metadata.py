@@ -34,15 +34,15 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-from _github import api_get, repo_of  # noqa: E402
+from _github import SELF, api_get, repo_of  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
 WORKERS = 6
 
-# Rows pointing at this repository are its own runnable examples. Stamping them
-# with this repo's own star count would be both meaningless and circular.
-SELF = "kydlikebtc/awesome-jev"
+# SELF is imported from _github: rows pointing at this repository are its own
+# runnable examples, and stamping them with this repo's own star count would be
+# both meaningless and circular.
 
 
 def fetch(entry: dict) -> dict | None:

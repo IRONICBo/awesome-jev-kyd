@@ -818,8 +818,8 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[pi-fast-jev-compaction](https://github.com/KamilPostrozny/pi-fast-jev-compaction)** — 给 pi 的快速 JEV 压缩扩展。 <sub>(机翻)</sub>
   <sub>`插件` · ★2 · kamilpostrozny · `TS`</sub>
 
-- **[jev-by-example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的智能体决策示例：记忆冲突、工具结果检查、恢复等。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★1 · reallyartificial · `JS`</sub>
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
+  <sub>`开源项目` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `仅一次提交` `疑似 AI 生成`</sub>
 
 - **[jev-compaction](https://github.com/picaye/jev-compaction)** — 从不做摘要的 Hermes 会话上下文压缩：每次工具调用都被打分。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · picaye · `JS`</sub>
@@ -832,7 +832,7 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
 <details>
-<summary><b>104</b> 条 —— 点击展开</summary>
+<summary><b>105</b> 条 —— 点击展开</summary>
 
 - **[Cookbook: Classifying RAG passages](https://docs.typesafe.ai/cookbooks/classifying_rag_passages)** ⭐ — 给每条召回的段落打分，再由代码决定哪些能进入回答模型 —— 矛盾的标记保留，夹带提示注入的直接丢弃。
   <sub>`官方文档` · `Py`</sub>
@@ -1028,6 +1028,9 @@ _在执行前判断一个动作是否安全。属纵深防御，绝不是安全�
 
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · emreozyoruk · `JS`</sub>
+
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
+  <sub>`开源项目` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `仅一次提交` `疑似 AI 生成`</sub>
 
 - **[jev-carryforward](https://github.com/Dharundp6/jev-carryforward)** — 把上一轮会话知道的东西，对照这一轮正在做的事打分。 <sub>(机翻)</sub>
   <sub>`插件` · ★1 · dharundp6 · `TS`</sub>
@@ -1359,8 +1362,8 @@ _在输出到达用户前，按评分标准检查模型产出。_
 - **[jackalope](https://github.com/Jackalope-Dev/jackalope)** — 面向编程智能体、并行 Git worktree 与代码审查的桌面工作区。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · jackalope-dev · `Rs`</sub>
 
-- **[jev-by-example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的智能体决策示例：记忆冲突、工具结果检查、恢复等。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★1 · reallyartificial · `JS`</sub>
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
+  <sub>`开源项目` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `仅一次提交` `疑似 AI 生成`</sub>
 
 - **[jev-labs](https://github.com/copyleftdev/jev-labs)** — 绝不自信地犯错：围绕 Jev 的 TLA+ 验证共识内核。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · copyleftdev · `Py`</sub>
@@ -1451,6 +1454,9 @@ _判断失败的步骤是否值得重试。_
 
 - **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — 给 Spring WebFlux 的非阻塞 Starter，实现一个语义熔断器来检测静默故障。 <sub>(机翻)</sub>
   <sub>`插件` · ★2 · vicente-md · `Java` · ⚠ `无许可证`</sub>
+
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
+  <sub>`开源项目` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `仅一次提交` `疑似 AI 生成`</sub>
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 评判智能体的每一步：通过／重试／升级／停止。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · ndolinschi · `TS` · ⚠ `无许可证`</sub>
@@ -1991,7 +1997,7 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
 <details>
-<summary><b>81</b> 条 —— 点击展开</summary>
+<summary><b>82</b> 条 —— 点击展开</summary>
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐ — 把年报分入 75 个行业组，再根据答案自身的置信度决定：报这个细分组，还是退回上一层的大类。
   <sub>`官方文档` · `Py` · `choice`</sub>
@@ -2163,6 +2169,9 @@ _把条目归入分类体系，包括用概率遍历的深层层级。_
 
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · emreozyoruk · `JS`</sub>
+
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
+  <sub>`开源项目` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `仅一次提交` `疑似 AI 生成`</sub>
 
 - **[jev-eval](https://github.com/4esv/jev-eval)** — 在你自己的标注分类数据上，把 Jev 与任意 OpenRouter 模型做基准对比：准确率与校准度。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · 4esv · `Py` · ⚠ `无许可证`</sub>
@@ -3756,6 +3765,7 @@ _介绍模型或整个领域，而非单一模式。_
 | `需第三方密钥` | 需要 TypeSafe 之外某个服务的密钥。 |
 | `厂商自报` | 照搬厂商自测数据，不是独立实测。 |
 | `宣称未核实` | 做出了无法核实的量化宣称。 |
+| `疑似 AI 生成` | 读起来像机器生成的内容。 |
 | `营销内容` | 发布目的既是讲解也是推销。 |
 | `付费墙` | 有付费墙或阅读次数限制。 |
 | `已归档` | 开发明显已经停止。 |

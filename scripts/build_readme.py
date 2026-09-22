@@ -36,7 +36,8 @@ CATALOG = ROOT / "catalog.json"
 PATTERNS_FILE = ROOT / "patterns.json"
 RETIRED = ROOT / "retired.json"
 
-REPO = "kydlikebtc/awesome-jev"
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from _github import SELF as REPO  # noqa: E402
 REPO_URL = f"https://github.com/{REPO}"
 RAW = f"https://raw.githubusercontent.com/{REPO}/main"
 SITE = "https://kydlikebtc.github.io/awesome-jev/"

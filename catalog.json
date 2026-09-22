@@ -20841,22 +20841,25 @@
   },
   {
     "slug": "jev-by-example",
-    "title": "jev-by-example",
-    "summary": "Ten runnable Jev examples for agent decisions: memory conflicts, tool-result checks, recovery, context selection, and handoffs. JavaScript, zero dependencies.",
-    "summary_zh": "十个可运行的智能体决策示例：记忆冲突、工具结果检查、恢复等。",
-    "zh_machine": true,
+    "title": "Jev by Example",
+    "summary": "Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.",
+    "summary_zh": "十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。",
     "url": "https://github.com/ReallyArtificial/jev-by-example",
     "kind": "project",
     "patterns": [
+      "safety-gating",
       "output-validation",
-      "context-compaction"
+      "classification",
+      "context-compaction",
+      "retry-control"
     ],
     "platforms": [
       "typesafe-api"
     ],
     "author": {
-      "name": "reallyartificial",
-      "url": "https://github.com/reallyartificial"
+      "name": "Really Artificial",
+      "handle": "josharsh",
+      "url": "https://github.com/josharsh"
     },
     "has_code": true,
     "stars": 1,
@@ -20864,9 +20867,8 @@
     "evidence": {
       "path": "src/client.mjs",
       "matched": [
-        "api.typesafe.ai",
-        "jev-1.13",
-        "/v1/systemone"
+        "https://api.typesafe.ai/v1/systemone",
+        "jev-1.13.0"
       ],
       "read_on": "2026-09-22"
     },
@@ -20875,6 +20877,10 @@
       {
         "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
         "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "community submission (issue #2)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/issues/2"
       }
     ],
     "license": "CC0-1.0",
@@ -20882,7 +20888,20 @@
       "javascript"
     ],
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "official": false,
+    "published": "2026-09-21",
+    "flags": [
+      "ai-generated",
+      "single-commit"
+    ],
+    "notes": "Submitted by its own author, who disclosed the affiliation and the AI assistance unprompted; the flags record that disclosure, not a defect. The fixtures encode the primitive contract correctly: every example carrying a `confidence` field uses `choice` or `score`, and the six `noul` examples carry none — the distinction most code here gets wrong. `yes()` reads `answer.noul`, not `.confidence`. Tests run on hand-authored fixtures; no authenticated live call has been made.",
+    "notes_zh": "由作者本人投稿，主动披露了利益关系与 AI 协助 —— 这两个标记记录的是这份披露，不是代码里发现的缺陷。夹具把原语契约写对了：带 `confidence` 字段的样例清一色是 `choice` 或 `score`，六个 `noul` 样例一个都没有 —— 而这正是本目录里多数代码搞错的地方。`yes()` 读的是 `answer.noul` 而非 `.confidence`。测试跑在手写夹具上，从未做过带鉴权的真实调用，也因此没有提出任何准确率或延迟数字。"
   },
   {
     "slug": "typesafe-sdk-ex",

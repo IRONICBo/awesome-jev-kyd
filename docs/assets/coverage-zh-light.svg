@@ -17,16 +17,16 @@
 <text x="560" y="125" class="n">20</text>
 <text x="12" y="149" class="l">安全闸门</text>
 <rect x="168" y="140" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 140h129a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-129z" fill="#bc7503"/>
-<text x="560" y="150" class="n">104</text>
+<path d="M168 140h131a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-131z" fill="#bc7503"/>
+<text x="560" y="150" class="n">105</text>
 <text x="12" y="174" class="l">输出校验</text>
 <rect x="168" y="165" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 165h118a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-118z" fill="#bc7503"/>
 <text x="560" y="175" class="n">95</text>
 <text x="12" y="199" class="l">重试控制</text>
 <rect x="168" y="190" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 190h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-2z" fill="#e5b45f"/>
-<text x="560" y="200" class="n">3</text>
+<path d="M168 190h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3z" fill="#e5b45f"/>
+<text x="560" y="200" class="n">4</text>
 <text x="12" y="224" class="l">人工升级</text>
 <rect x="168" y="215" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 215h74a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-74z" fill="#e5b45f"/>
@@ -49,8 +49,8 @@
 <text x="560" y="325" class="n">12</text>
 <text x="12" y="349" class="l">分类</text>
 <rect x="168" y="340" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 340h100a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-100z" fill="#bc7503"/>
-<text x="560" y="350" class="n">81</text>
+<path d="M168 340h102a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-102z" fill="#bc7503"/>
+<text x="560" y="350" class="n">82</text>
 <text x="12" y="374" class="l">机器学习特征抽取</text>
 <rect x="168" y="365" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 365h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7z" fill="#e5b45f"/>

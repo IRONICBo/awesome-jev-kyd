@@ -818,8 +818,8 @@ _Decide which tool calls and results still matter so stale context can be droppe
 - **[pi-fast-jev-compaction](https://github.com/KamilPostrozny/pi-fast-jev-compaction)** — Fast JEV compaction extension for pi
   <sub>`Plugin` · ★2 · kamilpostrozny · `TS`</sub>
 
-- **[jev-by-example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable Jev examples for agent decisions: memory conflicts, tool-result checks, recovery, context selection, and handoffs. JavaScript, zero dependencies.
-  <sub>`Project` · ★1 · reallyartificial · `JS`</sub>
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
+  <sub>`Project` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `one commit` `AI-written`</sub>
 
 - **[jev-compaction](https://github.com/picaye/jev-compaction)** — Context compaction for Hermes sessions that never summarises: every tool call is scored by TypeSafe's Jev model, stale calls are dropped, everything kept stays verbatim.
   <sub>`Project` · ★1 · picaye · `JS`</sub>
@@ -832,7 +832,7 @@ _Decide which tool calls and results still matter so stale context can be droppe
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
 <details>
-<summary><b>104</b> rows — click to expand</summary>
+<summary><b>105</b> rows — click to expand</summary>
 
 - **[Cookbook: Classifying RAG passages](https://docs.typesafe.ai/cookbooks/classifying_rag_passages)** ⭐ — Scores each retrieved passage, then decides in code which reach the answering model — keeping contradictory ones flagged and dropping ones carrying prompt injection.
   <sub>`Official docs` · `Py`</sub>
@@ -1028,6 +1028,9 @@ _Decide whether an action is safe to run. Defence in depth, never a security bou
 
 - **[hush](https://github.com/emreozyoruk/hush)** — Issue triage that stays quiet when it isn't sure. Calibrated labels, spam and duplicate detection — with abstention.
   <sub>`Project` · ★1 · emreozyoruk · `JS`</sub>
+
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
+  <sub>`Project` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `one commit` `AI-written`</sub>
 
 - **[jev-carryforward](https://github.com/Dharundp6/jev-carryforward)** — What your last session knew, scored against what this one is doing. MCP server: a per-project ledger written as things happen, recalled per task with TypeSafe's Jev evaluation model via Vercel AI Gateway.
   <sub>`Plugin` · ★1 · dharundp6 · `TS`</sub>
@@ -1359,8 +1362,8 @@ _Check a model's output against a rubric before it reaches a user._
 - **[jackalope](https://github.com/Jackalope-Dev/jackalope)** — A desktop workspace for coding agents, parallel Git worktrees, and code review.
   <sub>`Project` · ★1 · jackalope-dev · `Rs`</sub>
 
-- **[jev-by-example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable Jev examples for agent decisions: memory conflicts, tool-result checks, recovery, context selection, and handoffs. JavaScript, zero dependencies.
-  <sub>`Project` · ★1 · reallyartificial · `JS`</sub>
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
+  <sub>`Project` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `one commit` `AI-written`</sub>
 
 - **[jev-labs](https://github.com/copyleftdev/jev-labs)** — Never confidently wrong: a TLA+-verified consensus kernel around TypeSafe's Jev, run through 1,680 chaos-tested pharmacy decisions with zero wrong verdicts. Film, code, and every captured call.
   <sub>`Project` · ★1 · copyleftdev · `Py`</sub>
@@ -1451,6 +1454,9 @@ _Decide whether a failed step is worth retrying._
 
 - **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — Non-blocking Spring Boot Starter for Spring WebFlux that implements a Semantic Circuit Breaker to detect silent HTTP 200 failures using TypeSafe Jev.
   <sub>`Plugin` · ★2 · vicente-md · `Java` · ⚠ `no licence`</sub>
+
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
+  <sub>`Project` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `one commit` `AI-written`</sub>
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Judge agent steps — ok / retry / escalate / stop via TypeSafe Jev
   <sub>`Project` · ★0 · ndolinschi · `TS` · ⚠ `no licence`</sub>
@@ -1991,7 +1997,7 @@ _Pull typed fields out of messy text by choosing among candidates rather than ge
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
 <details>
-<summary><b>81</b> rows — click to expand</summary>
+<summary><b>82</b> rows — click to expand</summary>
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐ — Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -2163,6 +2169,9 @@ _Put an item into a taxonomy, including deep hierarchies walked with probabiliti
 
 - **[hush](https://github.com/emreozyoruk/hush)** — Issue triage that stays quiet when it isn't sure. Calibrated labels, spam and duplicate detection — with abstention.
   <sub>`Project` · ★1 · emreozyoruk · `JS`</sub>
+
+- **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
+  <sub>`Project` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `one commit` `AI-written`</sub>
 
 - **[jev-eval](https://github.com/4esv/jev-eval)** — Benchmark TypeSafe Jev against any OpenRouter model on your own labelled classification data: accuracy, calibration, latency, cost
   <sub>`Benchmark` · ★1 · 4esv · `Py` · ⚠ `no licence`</sub>
@@ -3756,6 +3765,7 @@ The parts that are not the catalog.
 | `3rd-party key` | Needs a key for a service other than TypeSafe. |
 | `vendor numbers` | Repeats the vendor's own benchmarks rather than an independent measurement. |
 | `unverified` | Makes measurement claims that could not be checked. |
+| `AI-written` | Reads as machine-generated content. |
 | `marketing` | Published to sell something as much as to explain. |
 | `paywall` | Behind a paywall or a metered reader. |
 | `archived` | Development has visibly stopped. |

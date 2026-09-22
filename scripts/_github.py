@@ -20,6 +20,12 @@ API = "https://api.github.com"
 RAW = "https://raw.githubusercontent.com"
 TIMEOUT = 25
 
+# This repository's own owner/name. Lives here because three scripts need it for
+# three different reasons — building links, excluding self-referencing rows from
+# the star refresh, and reading the published description — and three string
+# literals would be three chances to drift after a rename.
+SELF = "kydlikebtc/awesome-jev"
+
 _branches: dict[str, str] = {}
 
 
