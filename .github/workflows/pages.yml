@@ -13,6 +13,7 @@ on:
     paths:
       - "site/**"
       - "catalog.json"
+      - "compat.json"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -39,6 +40,7 @@ jobs:
       - name: Assemble the site
         run: |
           cp catalog.json site/catalog.json
+          cp compat.json site/compat.json
           # Pages serves the artifact as-is; .nojekyll stops Jekyll touching it.
           touch site/.nojekyll
           ls -la site/

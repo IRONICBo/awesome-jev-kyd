@@ -27,7 +27,7 @@ jobs:
         run: |
           python3 -c "
           import json
-          for path in ('catalog.json', 'retired.json', 'schema/entry.schema.json'):
+          for path in ('catalog.json', 'retired.json', 'compat.json', 'schema/entry.schema.json'):
               json.load(open(path))
               print(f'  ok {path}')
           "
@@ -45,6 +45,9 @@ jobs:
             exit 1
           fi
           echo "READMEs in sync"
+
+      - name: compatibility.md is in sync with compat.json
+        run: python3 scripts/build_compat.py --check
 
       - name: Catalog stats
         run: python3 scripts/counts.py

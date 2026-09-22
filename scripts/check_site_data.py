@@ -17,6 +17,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "catalog.json"
 COPY = ROOT / "site" / "catalog.json"
+COMPAT_SOURCE = ROOT / "compat.json"
+COMPAT_COPY = ROOT / "site" / "compat.json"
 
 
 def main() -> int:
@@ -50,7 +52,18 @@ def main() -> int:
             )
             return 1
 
+    # The site's Compatibility view reads compat.json, so a stale copy there
+    # would publish a matrix that disagrees with docs/compatibility.md — the
+    # exact failure the generated-from-one-source design exists to prevent.
+    if not COMPAT_COPY.exists():
+        print("error: site/compat.json is missing; the Pages job should copy it in", file=sys.stderr)
+        return 1
+    if json.loads(COMPAT_SOURCE.read_text()) != json.loads(COMPAT_COPY.read_text()):
+        print("error: site/compat.json differs from compat.json", file=sys.stderr)
+        return 1
+
     print(f"site/catalog.json matches catalog.json ({len(copy)} entries)")
+    print("site/compat.json matches compat.json")
     return 0
 
 

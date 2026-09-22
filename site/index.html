@@ -11,6 +11,7 @@
       content="A verified catalogue of public Jev usage examples, indexed by the decision each one makes. Every row attributable, every caveat flagged."
     />
     <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b0d10" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content="awesome-jev" />
     <meta
@@ -560,6 +561,25 @@
         font: 11.5px var(--mono);
         color: var(--fg-3);
       }
+      .anchor {
+        font: 12px var(--mono);
+        color: var(--fg-3);
+        opacity: 0;
+        transition: opacity 0.12s;
+      }
+      .card:hover .anchor {
+        opacity: 1;
+      }
+      .anchor:hover {
+        color: var(--amber);
+        text-decoration: none;
+      }
+      .card:target {
+        border-color: var(--amber);
+        border-left-color: var(--amber);
+        background: var(--ink-3);
+        scroll-margin-top: 90px;
+      }
       .sum {
         margin: 0 0 9px;
         color: var(--fg);
@@ -662,6 +682,193 @@
         font: 11.5px var(--mono);
       }
 
+      /* view switcher: a segmented control, instrument-panel style */
+      .views {
+        display: flex;
+        gap: 1px;
+        background: var(--rule);
+        border: 1px solid var(--rule);
+        margin: 26px 0 0;
+        width: fit-content;
+      }
+      .vt {
+        background: var(--ink-2);
+        border: 0;
+        color: var(--fg-3);
+        font: 12.5px var(--mono);
+        padding: 7px 15px;
+        cursor: pointer;
+        letter-spacing: 0.04em;
+      }
+      .vt:hover {
+        color: var(--fg);
+        background: var(--ink-3);
+      }
+      .vt[aria-selected="true"] {
+        background: var(--amber);
+        color: var(--ink);
+        font-weight: 500;
+      }
+      [hidden] {
+        display: none !important;
+      }
+
+      /* prose views share one measured column */
+      .page {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 30px var(--gut) 60px;
+        position: relative;
+        z-index: 2;
+      }
+      .page h2 {
+        font-family: var(--mono);
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin: 40px 0 8px;
+        padding-bottom: 7px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .page h2:first-of-type {
+        margin-top: 8px;
+      }
+      .page p {
+        color: var(--fg-2);
+        max-width: 78ch;
+        margin: 0 0 14px;
+      }
+      .page p b,
+      .page p strong {
+        color: var(--fg);
+        font-weight: 500;
+      }
+      .page code {
+        font-family: var(--mono);
+        font-size: 0.88em;
+        background: var(--ink-3);
+        border: 1px solid var(--rule);
+        padding: 1px 5px;
+        border-radius: 2px;
+        color: var(--fg);
+      }
+      .callout {
+        border-left: 2px solid var(--amber);
+        background: var(--amber-wash);
+        padding: 12px 16px;
+        margin: 0 0 18px;
+      }
+      .callout p {
+        margin: 0;
+        color: var(--fg);
+      }
+      .callout.warn {
+        border-left-color: var(--alert);
+        background: rgba(232, 86, 75, 0.06);
+      }
+
+      /* primitive cards */
+      .pgrid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin: 0 0 22px;
+      }
+      .pcard {
+        background: var(--ink-2);
+        border: 1px solid var(--rule);
+        border-top: 2px solid var(--signal);
+        padding: 15px 17px 16px;
+      }
+      .pcard .gl {
+        font-family: var(--mono);
+        font-size: 19px;
+        color: var(--signal);
+        letter-spacing: 0.1em;
+      }
+      .pcard h3 {
+        font-family: var(--mono);
+        font-size: 17px;
+        margin: 8px 0 10px;
+        color: var(--fg);
+      }
+      .pcard dl {
+        margin: 0;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 5px 12px;
+        font-size: 13px;
+      }
+      .pcard dt {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--fg-3);
+        padding-top: 2px;
+      }
+      .pcard dd {
+        margin: 0;
+        color: var(--fg-2);
+      }
+      .pcard dd b {
+        color: var(--fg);
+        font-weight: 500;
+      }
+
+      /* data tables */
+      .tbl {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        margin: 0 0 20px;
+        display: block;
+        overflow-x: auto;
+      }
+      .tbl th,
+      .tbl td {
+        text-align: left;
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+        white-space: nowrap;
+      }
+      .tbl td.wrap {
+        white-space: normal;
+        min-width: 22ch;
+        color: var(--fg-2);
+      }
+      .tbl th {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--fg-3);
+        border-bottom-color: var(--rule-2);
+        position: sticky;
+        top: 0;
+        background: var(--ink);
+      }
+      .tbl tbody tr:hover {
+        background: var(--ink-2);
+      }
+      .tbl td.k {
+        font-family: var(--mono);
+        color: var(--fg);
+      }
+      .tbl .dash {
+        color: var(--fg-3);
+      }
+      .tbl .diff {
+        color: var(--alert);
+      }
+      .tbl .same {
+        color: var(--signal);
+      }
+      .tbl .of {
+        color: var(--amber);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         * {
           animation: none !important;
@@ -710,10 +917,12 @@
           <a href="catalog.json">catalog.json</a>
           <a href="#" id="lang">中文</a>
         </nav>
+
+        <div class="views" role="tablist" id="views"></div>
       </div>
     </header>
 
-    <div class="shell">
+    <div class="shell" id="view-catalog">
       <aside>
         <div class="rail-h">
           <span data-i="coverage"></span>
@@ -752,6 +961,9 @@
         <div id="out"><p class="loading" data-i="loading"></p></div>
       </main>
     </div>
+
+    <section class="page" id="view-prims" hidden></section>
+    <section class="page" id="view-compat" hidden></section>
 
     <footer>
       <div class="in">
@@ -794,6 +1006,35 @@
           t_ind: "measured, not claimed",
           shown: "shown",
           disc: "An unaffiliated community index. A row means the link resolved and a person read it — not that the code runs, the numbers hold, or the approach suits your system. Performance figures in this space are almost all vendor-reported; rows carrying independent measurement are marked.",
+          v_catalog: "Catalogue",
+          v_prims: "Primitives",
+          v_compat: "Compatibility",
+          p_h: "What Jev returns",
+          p_lede:
+            "Three primitives, and one asymmetry that causes most of the bugs. Every fact here is from the official API reference.",
+          p_returns: "Returns",
+          p_limit: "Limits",
+          p_for: "Used for",
+          p_watch: "Watch out",
+          p_shape_h: "The shape of a call",
+          p_shape_p:
+            "One <b>state</b>, many <b>questions</b>. The state is read once and every question is evaluated against it in parallel, which is why asking five things costs roughly what asking one costs plus the question tokens — and why speculative fan-out is a real technique rather than a waste.",
+          p_limits_h: "Limits that apply everywhere",
+          c_h: "Cross-platform compatibility",
+          c_lede:
+            "One model, many front doors — and the front doors do not agree. Porting between gateways is <b>not</b> a URL swap. Generated from the same <code>compat.json</code> the docs use, so the two can never disagree.",
+          c_model: "Model string",
+          c_yesno: "Yes/no type",
+          c_read: "Read from",
+          c_conf: "Confidence",
+          c_env: "Request shape",
+          c_ep: "Endpoint",
+          c_var: "Env var",
+          c_surface: "Surface",
+          c_note: "Worth knowing",
+          c_asof: "Verified on",
+          c_open: "Open the linked doc before you ship.",
+          c_full: "Full page with the corrections table",
         },
         zh: {
           eyebrow: "System One 决策模型 · 目录",
@@ -818,6 +1059,35 @@
           t_ind: "实测而非宣称",
           shown: "已显示",
           disc: "一个与官方无关的社区索引。收录只意味着链接可访问、并且有人读过 —— 不代表代码能跑、数字成立、或这个做法适合你的系统。这个领域流传的性能数字几乎全是厂商自报；带独立实测的条目已单独标记。",
+          v_catalog: "目录",
+          v_prims: "三个原语",
+          v_compat: "兼容性",
+          p_h: "Jev 返回什么",
+          p_lede:
+            "三个原语，以及一个造成大多数 bug 的不对称。此处每条事实均来自官方 API 参考。",
+          p_returns: "返回",
+          p_limit: "限制",
+          p_for: "用来",
+          p_watch: "注意",
+          p_shape_h: "一次调用的形状",
+          p_shape_p:
+            "一个 <b>state</b>，多个 <b>questions</b>。state 只被读一次，所有问题并行地对它求值 —— 这就是为什么问五件事的成本约等于问一件事加上问题本身的 token，也是为什么「推测性并行扇出」是一个真实可用的技巧而不是浪费。",
+          p_limits_h: "所有平台通用的限制",
+          c_h: "跨平台兼容性",
+          c_lede:
+            "一个模型，很多入口 —— 而这些入口互相不一致。在网关之间移植<b>不是</b>换个 URL 就行。本页与文档读取同一份 <code>compat.json</code>，因此两边永远不会不一致。",
+          c_model: "模型串",
+          c_yesno: "是非类型",
+          c_read: "取值处",
+          c_conf: "置信度位置",
+          c_env: "请求结构",
+          c_ep: "端点",
+          c_var: "环境变量",
+          c_surface: "接入面",
+          c_note: "值得知道",
+          c_asof: "核实于",
+          c_open: "上线前请先打开对应文档核对。",
+          c_full: "含纠错对照表的完整页面",
         },
       };
 
@@ -980,6 +1250,65 @@
       ];
       const QGLYPH = { choice: "◆", score: "▮", noul: "◐" };
 
+      // The three primitives. Facts from the official API reference; the
+      // "watch out" line is the thing that actually bites people.
+      const PRIMS = [
+        {
+          g: "◆ ◆ ◆",
+          n: "choice",
+          r: [
+            "one option, plus <code>probabilities</code> and <code>confidence</code>",
+            "一个选项，附带 <code>probabilities</code> 和 <code>confidence</code>",
+          ],
+          l: [
+            "up to <b>255</b> options; <code>criteria</code> is a required map",
+            "最多 <b>255</b> 个选项；<code>criteria</code> 必填，是一个映射",
+          ],
+          f: ["pick a tool, a route, a label", "选工具、选分支、选标签"],
+          w: [
+            "A choice is a <b>relative</b> question — which of these is best. It cannot say <i>none</i> unless you put a none option in the set.",
+            "choice 问的是<b>相对</b>问题 —— 这些里哪个最好。除非你在选项里放一个 none，它无法回答「都不是」。",
+          ],
+        },
+        {
+          g: "▮▮▯▯",
+          n: "score",
+          r: [
+            "a number, plus <code>legend</code>, <code>probabilities</code> and <code>confidence</code>",
+            "一个数值，附带 <code>legend</code>、<code>probabilities</code> 和 <code>confidence</code>",
+          ],
+          l: [
+            "<b>2–10</b> ordered levels, 0-indexed, low to high",
+            "<b>2–10</b> 个有序级别，从 0 开始，由低到高",
+          ],
+          f: ["rank quality, risk, urgency", "给质量、风险、紧急度排序"],
+          w: [
+            "It is probability-weighted, so it lands <b>between</b> levels — the docs' own example returns 1.05. Do not assume an integer.",
+            "它是概率加权的，会落在两级<b>之间</b> —— 官方示例返回的是 1.05。不要假设它是整数。",
+          ],
+        },
+        {
+          g: "◐",
+          n: "noul",
+          r: [
+            "a 0–1 probability in <code>.noul</code>",
+            "<code>.noul</code> 里一个 0–1 概率",
+          ],
+          l: [
+            '<code>criteria</code> is optional; not called "binary" or "boolean"',
+            "<code>criteria</code> 可选；它不叫 binary，也不叫 boolean",
+          ],
+          f: [
+            "gate an action, keep or drop an item",
+            "拦一个动作、留或弃一个条目",
+          ],
+          w: [
+            "It carries <b>no confidence field</b> — the probability is the answer. A helper reading <code>.confidence</code> uniformly returns nothing here.",
+            "它<b>不带 confidence 字段</b> —— 概率本身就是答案。统一读 <code>.confidence</code> 的辅助函数在这里会拿到空值。",
+          ],
+        },
+      ];
+
       let DATA = [],
         L = "en";
       const S = () => STR[L],
@@ -1062,6 +1391,7 @@
               st.pattern = st.pattern === b.dataset.p ? "" : b.dataset.p;
               chrome();
               render();
+              syncUrl();
             }),
         );
         document.getElementById("clr").classList.toggle("on", !!st.pattern);
@@ -1114,6 +1444,7 @@
               st[b.dataset.t] = !st[b.dataset.t];
               b.setAttribute("aria-pressed", st[b.dataset.t]);
               render();
+              syncUrl();
             }),
         );
       }
@@ -1149,6 +1480,8 @@
           .every((t) => hay.includes(t));
       }
 
+      const seenIds = new Set();
+
       function card(e) {
         const sum = L === "zh" ? e.summary_zh || e.summary : e.summary;
         const note = L === "zh" ? e.notes_zh || e.notes : e.notes;
@@ -1168,9 +1501,15 @@
           ...e.patterns.map((p) => `<span class="p pt">${lbl(PAT, p)}</span>`),
           ...flags.map((f) => `<span class="p f">${lbl(FLAG, f)}</span>`),
         ].join("");
-        return `<article class="card ${cls}">
+        // id is the catalog slug, so any single row is directly linkable. An
+        // entry can appear under several patterns, so only its first card
+        // carries the id — duplicate ids are invalid and break the anchor.
+        const first = !seenIds.has(e.slug);
+        seenIds.add(e.slug);
+        return `<article class="card ${cls}"${first ? ` id="${esc(e.slug)}"` : ""}>
     <div class="ct-row">
       <a class="t" href="${esc(e.url)}" rel="noopener">${esc(e.title)}</a>
+      <a class="anchor" href="#${esc(e.slug)}" aria-label="Permalink to this entry" title="${esc(e.slug)}">#</a>
       ${e.official ? '<span class="badge of">official</span>' : ""}
       ${isIndep(e) ? '<span class="badge of">measured</span>' : ""}
       ${e.stars != null ? `<span class="badge st">★ ${e.stars.toLocaleString()}</span>` : ""}
@@ -1193,6 +1532,7 @@
         a.title.localeCompare(b.title);
 
       function render() {
+        seenIds.clear();
         const hits = DATA.filter(ok),
           out = document.getElementById("out");
         document.getElementById("hits").innerHTML =
@@ -1216,20 +1556,24 @@
       document.getElementById("q").oninput = (e) => {
         st.q = e.target.value;
         render();
+        syncUrl();
       };
       document.getElementById("kind").onchange = (e) => {
         st.kind = e.target.value;
         render();
+        syncUrl();
       };
       document.getElementById("langf").onchange = (e) => {
         st.lang = e.target.value;
         render();
+        syncUrl();
       };
       const clr = document.getElementById("clr");
       clr.onclick = () => {
         st.pattern = "";
         chrome();
         render();
+        syncUrl();
       };
       clr.onkeydown = (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -1277,13 +1621,185 @@
         ((navigator.language || "").startsWith("zh") ? "zh" : "en");
       if (!STR[L]) L = "en";
 
+      // ─── views ────────────────────────────────────────────────
+      let VIEW = "catalog";
+      let COMPAT = null;
+
+      function viewTabs() {
+        const tabs = [
+          ["catalog", "v_catalog"],
+          ["prims", "v_prims"],
+          ["compat", "v_compat"],
+        ];
+        document.getElementById("views").innerHTML = tabs
+          .map(
+            ([k, str]) =>
+              `<button class="vt" role="tab" data-v="${k}" aria-selected="${VIEW === k}">${S()[str]}</button>`,
+          )
+          .join("");
+        document
+          .querySelectorAll(".vt[data-v]")
+          .forEach((b) => (b.onclick = () => setView(b.dataset.v)));
+      }
+
+      function setView(name, { push = true } = {}) {
+        VIEW = name;
+        for (const k of ["catalog", "prims", "compat"]) {
+          document.getElementById("view-" + k).hidden = k !== name;
+        }
+        viewTabs();
+        if (name === "prims") renderPrims();
+        if (name === "compat") renderCompat();
+        if (push) syncUrl();
+        scrollTo({ top: 0, behavior: "instant" });
+      }
+
+      function renderPrims() {
+        const i = I();
+        const el = document.getElementById("view-prims");
+        el.innerHTML = `
+          <h2>${S().p_h}</h2>
+          <p>${S().p_lede}</p>
+          <div class="pgrid">${PRIMS.map(
+            (p) => `<div class="pcard">
+            <div class="gl">${p.g}</div>
+            <h3>${p.n}</h3>
+            <dl>
+              <dt>${S().p_returns}</dt><dd>${p.r[i]}</dd>
+              <dt>${S().p_limit}</dt><dd>${p.l[i]}</dd>
+              <dt>${S().p_for}</dt><dd>${p.f[i]}</dd>
+            </dl>
+          </div>`,
+          ).join("")}</div>
+          ${PRIMS.map(
+            (p) =>
+              `<div class="callout warn"><p><code>${p.n}</code> — ${S().p_watch}: ${p.w[i]}</p></div>`,
+          ).join("")}
+          <h2>${S().p_shape_h}</h2>
+          <p>${S().p_shape_p}</p>
+          <h2>${S().p_limits_h}</h2>
+          <table class="tbl"><tbody>${(COMPAT ? COMPAT.limits : [])
+            .map(
+              (l) =>
+                `<tr><td class="k">${esc(l.k)}</td><td class="k of">${esc(l.v)}</td><td class="wrap">${esc(i ? l.why_zh : l.why)}</td></tr>`,
+            )
+            .join("")}</tbody></table>
+          <p><a href="${REPO}/blob/main/docs/patterns.md">docs/patterns.md ↗</a></p>`;
+        if (!COMPAT) loadCompat().then(() => VIEW === "prims" && renderPrims());
+      }
+
+      function renderCompat() {
+        const i = I();
+        const el = document.getElementById("view-compat");
+        if (!COMPAT) {
+          el.innerHTML = `<h2>${S().c_h}</h2><p>${S().loading}</p>`;
+          loadCompat().then(() => VIEW === "compat" && renderCompat());
+          return;
+        }
+        // Mark a cell red when it differs from the native surface: the whole
+        // point of the table is spotting where a port will break.
+        const base = COMPAT.platforms[0];
+        const cell = (p, key) => {
+          const v = p[key];
+          if (v === "—") return '<span class="dash">—</span>';
+          const cls = p === base ? "of" : v === base[key] ? "same" : "diff";
+          return `<span class="${cls}">${esc(v)}</span>`;
+        };
+        const cols = [
+          ["model", S().c_model],
+          ["yesno", S().c_yesno],
+          ["answer_field", S().c_read],
+          ["confidence", S().c_conf],
+          ["envelope", S().c_env],
+          ["endpoint", S().c_ep],
+          ["env", S().c_var],
+        ];
+        el.innerHTML = `
+          <h2>${S().c_h}</h2>
+          <p>${S().c_lede}</p>
+          <div class="callout"><p>${S().c_asof} <b>${COMPAT.as_of}</b>. ${S().c_open}</p></div>
+          <table class="tbl">
+            <thead><tr><th>${S().c_surface}</th>${cols.map(([, t]) => `<th>${t}</th>`).join("")}</tr></thead>
+            <tbody>${COMPAT.platforms
+              .map(
+                (p) => `<tr>
+                <td class="k">${p.url ? `<a href="${p.url}">${esc(p.name)}</a>` : esc(p.name)}${p.official ? ' <span class="of">⭐</span>' : ""}</td>
+                ${cols.map(([k]) => `<td class="k">${cell(p, k)}</td>`).join("")}
+              </tr>`,
+              )
+              .join("")}</tbody>
+          </table>
+          <h2>${S().c_note}</h2>
+          <table class="tbl"><tbody>${COMPAT.platforms
+            .map(
+              (p) =>
+                `<tr><td class="k">${esc(p.name)}</td><td class="wrap">${esc(i ? p.notes_zh || p.notes : p.notes)}</td></tr>`,
+            )
+            .join("")}</tbody></table>
+          <p><a href="${REPO}/blob/main/docs/compatibility.md">${S().c_full} ↗</a></p>`;
+      }
+
+      function loadCompat() {
+        return fetch("compat.json")
+          .then((r) => r.json())
+          .then((d) => {
+            COMPAT = d;
+          })
+          .catch(() => {
+            COMPAT = { as_of: "?", platforms: [], limits: [] };
+          });
+      }
+
+      // ─── URL state, so any view and filter is shareable ───────
+      function syncUrl() {
+        const q = new URLSearchParams();
+        if (VIEW !== "catalog") q.set("view", VIEW);
+        if (st.pattern) q.set("p", st.pattern);
+        if (st.kind) q.set("k", st.kind);
+        if (st.lang) q.set("lang_f", st.lang);
+        if (st.q) q.set("q", st.q);
+        for (const t of ["code", "off", "indep", "noflag"])
+          if (st[t]) q.set(t, "1");
+        if (localStorage.getItem("aj-lang")) q.set("lang", L);
+        // Keep the hash: it is an entry permalink, and dropping it silently
+        // breaks every link someone copied out of the page.
+        const url =
+          (q.toString() ? "?" + q.toString() : location.pathname) + location.hash;
+        history.replaceState(null, "", url);
+      }
+
+      function readUrl() {
+        const q = new URLSearchParams(location.search);
+        st.pattern = q.get("p") || "";
+        st.kind = q.get("k") || "";
+        st.lang = q.get("lang_f") || "";
+        st.q = q.get("q") || "";
+        for (const t of ["code", "off", "indep", "noflag"])
+          st[t] = q.get(t) === "1";
+        const v = q.get("view") || (location.hash || "").replace("#", "");
+        VIEW = ["prims", "compat"].includes(v) ? v : "catalog";
+        // A bare #slug is an entry permalink. Drop any filter that could hide
+        // the target, otherwise the link silently lands on nothing.
+        if (v && VIEW === "catalog" && !q.toString()) {
+          st.pattern = st.kind = st.lang = st.q = "";
+          st.code = st.off = st.indep = st.noflag = false;
+        }
+        const input = document.getElementById("q");
+        if (st.q) input.value = st.q;
+      }
+
+      const REPO = "https://github.com/kydlikebtc/awesome-jev";
+
       fetch("catalog.json")
         .then((r) => r.json())
         .then((d) => {
           DATA = d;
+          readUrl();
           i18n();
           chrome();
           render();
+          setView(VIEW, { push: false });
+          syncUrl();
         })
         .catch(() => {
           i18n();

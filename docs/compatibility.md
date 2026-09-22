@@ -3,119 +3,209 @@
 One model, many front doors — and the front doors do not agree. The same request
 needs a different model string, a different field name for the yes/no type, a
 different request envelope and a different environment variable depending on how
-you reach it. Porting code between gateways is not a URL swap.
+you reach it. **Porting code between gateways is not a URL swap.**
 
-This page exists because that is the single most expensive thing to discover by
+This page exists because that is the most expensive thing to discover by
 debugging.
 
-> **Provenance.** The native API row was read directly from the official raw
+> **How this page is maintained.** The tables below are generated from
+> [`../compat.json`](../compat.json) by
+> [`../scripts/build_compat.py`](../scripts/build_compat.py), which is the same
+> source the [Compatibility view on the site](https://kydlikebtc.github.io/awesome-jev/?view=compat)
+> reads. CI fails if they drift. The prose between the tables is hand-written.
+>
+> **Provenance.** The native row was read directly from the official raw
 > Markdown docs. Every other row was read from that platform's own
-> documentation, cited in the catalog rows for that platform. Both this page and
-> the platform docs move fast — **open the linked doc before you ship**. Where a
-> detail could not be confirmed from a primary source, it is left out rather than
-> guessed.
+> documentation, cited in that platform's catalog row. Where a detail could not
+> be confirmed from a primary source it is a dash rather than a guess.
+> Everything here was true on 2026-09-22; **open the linked doc before you
+> ship.**
+
+[![The compatibility matrix on the site, with cells that differ from the native surface in red and matching cells in green](screenshots/site-compat.png)](https://kydlikebtc.github.io/awesome-jev/?view=compat)
+
+<sub>The same data [on the site](https://kydlikebtc.github.io/awesome-jev/?view=compat), where a cell is red when it
+differs from the native surface and green when it matches — which is the fastest way to see where a port will break.</sub>
 
 ---
 
-## Model string
+## 1. Model string
 
 There is no portable model string. This is the most common porting bug.
 
-| How you reach it               | String to send                                                |
-| ------------------------------ | ------------------------------------------------------------- |
-| TypeSafe API directly          | `jev-latest` · `jev-preview` · `jev-1.13.0`                   |
-| Vercel AI Gateway              | `typesafe-ai/jev`                                             |
-| Cloudflare Workers AI          | `typesafe/jev`                                                |
-| OpenRouter                     | `typesafe/jev-1.13` · `~typesafe/jev-latest` (note the tilde) |
-| AI/ML API                      | `typesafe/jev`                                                |
-| Pydantic AI                    | `typesafe:jev-latest`                                         |
-| `@ai-sdk/typesafe-ai` (direct) | `jev-latest`                                                  |
+<!-- models:start -->
+| Surface | Model string to send |
+| --- | --- |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | `jev-latest` · `jev-preview` · `jev-1.13.0` |
+| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | `typesafe-ai/jev` |
+| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | `typesafe-ai/jev` |
+| [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | `jev-latest` |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | `typesafe/jev` |
+| [OpenRouter](https://openrouter.ai/typesafe) | `typesafe/jev-1.13` · `~typesafe/jev-latest` |
+| [LiteLLM pass-through](https://docs.litellm.ai/docs/pass_through/typesafe) | `jev-latest` · `jev-1.13.0` · `jev-preview` |
+| [Bifrost](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe) | `jev-latest` |
+| [AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev) | `typesafe/jev` |
+| [Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/) | `jev-latest (default)` |
+| [Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/) | `typesafe:jev-latest` |
+| [LangChain](https://docs.langchain.com/oss/python/integrations/providers/typesafe) | — |
+| [rig (Rust)](https://github.com/0xPlaygrounds/rig) | — |
+<!-- models:end -->
 
 **Pin a version rather than an alias** once you have tuned any threshold. An
 alias moves when a release ships, and the answers behind it can change with no
 change on your side. The response reports the versioned ID that actually
 answered, so log it.
 
+`typesafe/jev-1` does not exist on any surface. It appears in no documentation
+and is the single most repeated fabrication about this model.
+
 ---
 
-## The yes/no primitive is named twice
+## 2. The yes/no primitive is named twice
 
 This one silently changes your code, not just your config.
 
-| Surface                                  | Type name | Read the answer from |
-| ---------------------------------------- | --------- | -------------------- |
-| Native API, Cloudflare, LiteLLM, Bifrost | `noul`    | `.noul`              |
-| Vercel AI SDK evaluation API             | `boolean` | `.probability`       |
+<!-- yesno:start -->
+| Surface | Type name | Read the answer from |
+| --- | --- | --- |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | `noul` | `.noul` |
+| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | `boolean` | `.probability` |
+| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | `noul` | `.noul` |
+| [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | `boolean` | `.probability` |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | `noul` | `.noul` |
+| [OpenRouter](https://openrouter.ai/typesafe) | — | — |
+| [LiteLLM pass-through](https://docs.litellm.ai/docs/pass_through/typesafe) | `noul` | `.noul` |
+| [Bifrost](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe) | `noul` | `.noul` |
+| [AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev) | `noul` | `.noul` |
+| [Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/) | `noul` | `.noul` |
+| [Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/) | `via output_type` | `typed output` |
+| [LangChain](https://docs.langchain.com/oss/python/integrations/providers/typesafe) | `Noul()` | `.nouls[k].noul` |
+| [rig (Rust)](https://github.com/0xPlaygrounds/rig) | `noul` | `.noul` |
+<!-- yesno:end -->
 
-Both are the same primitive. If you move from the AI SDK evaluation path to the
-native path, every `type: 'boolean'` becomes `type: 'noul'` and every
+Both spellings are the same primitive. Moving from an evaluation-API path to a
+native path means every `type: 'boolean'` becomes `type: 'noul'` and every
 `.probability` becomes `.noul`.
 
-Note also that **Vercel's TypeSafe-compatible route keeps the native `noul`
-naming**, while its evaluation API does not. Two routes on the same gateway,
-two spellings. Pick one route and stay on it.
+Note that one gateway exposes **both** routes with **different** spellings. Pick
+one route and stay on it.
 
 ---
 
-## Where confidence lives
+## 3. Where confidence lives
 
-| Surface                      | Confidence for `choice` / `score`        |
-| ---------------------------- | ---------------------------------------- |
-| Native API                   | on the answer object                     |
-| Cloudflare Workers AI        | on the answer object                     |
-| Vercel AI SDK evaluation API | on `providerMetadata`, not on the answer |
+<!-- confidence:start -->
+| Surface | Where `choice` / `score` confidence lives |
+| --- | --- |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | on the answer |
+| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | providerMetadata |
+| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | on the answer |
+| [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | providerMetadata |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | on the answer |
+| [OpenRouter](https://openrouter.ai/typesafe) | — |
+| [LiteLLM pass-through](https://docs.litellm.ai/docs/pass_through/typesafe) | on the answer |
+| [Bifrost](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe) | on the answer |
+| [AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev) | on the answer |
+| [Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/) | on the answer |
+| [Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/) | — |
+| [LangChain](https://docs.langchain.com/oss/python/integrations/providers/typesafe) | on the answer |
+| [rig (Rust)](https://github.com/0xPlaygrounds/rig) | on the answer |
+<!-- confidence:end -->
 
 And on every surface: **`noul` answers carry no confidence at all.** The
-probability is the answer. Do not write a helper that reads `.confidence`
-uniformly across all three types — it will return `undefined` for a third of
-your questions.
+probability is the answer. A helper that reads `.confidence` uniformly across
+all three types will return nothing for a third of your questions.
 
 ---
 
-## Request envelope
+## 4. Request shape and endpoint
 
-| Surface                      | Shape                                      |
-| ---------------------------- | ------------------------------------------ |
-| Native API                   | `state` and `questions` at the top level   |
-| Cloudflare Workers AI        | `state` and `questions` wrapped in `input` |
-| Vercel (TypeSafe-compatible) | top level, like native                     |
+<!-- envelope:start -->
+| Surface | Request shape | Endpoint |
+| --- | --- | --- |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | top level | `POST /v1/systemone` |
+| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | evaluate() | — |
+| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | top level | `POST /typesafe/v1/systemone` |
+| [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | evaluate() | — |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | wrapped in input | `env.AI.run()` |
+| [OpenRouter](https://openrouter.ai/typesafe) | — | `a decisions endpoint, separate from chat` |
+| [LiteLLM pass-through](https://docs.litellm.ai/docs/pass_through/typesafe) | top level | `POST /typesafe/v1/systemone` |
+| [Bifrost](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe) | top level | `POST /typesafe/v1/systemone` |
+| [AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev) | top level | `POST /v1/decisions` |
+| [Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/) | top level | `official SDK, zero config` |
+| [Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/) | Agent(...) | — |
+| [LangChain](https://docs.langchain.com/oss/python/integrations/providers/typesafe) | classifier.invoke({...}) | — |
+| [rig (Rust)](https://github.com/0xPlaygrounds/rig) | typed builder | — |
+<!-- envelope:end -->
 
-A client written against the native shape will not work on Cloudflare by
-changing the base URL alone.
-
----
-
-## Endpoint path
-
-| Surface                              | Path                                                    |
-| ------------------------------------ | ------------------------------------------------------- |
-| Native API                           | `POST /v1/systemone`                                    |
-| Vercel AI Gateway (compatible route) | `POST /typesafe/v1/systemone`                           |
-| LiteLLM pass-through                 | `POST /typesafe/v1/systemone`                           |
-| Bifrost                              | `POST /typesafe/v1/systemone`                           |
-| AI/ML API                            | `POST /v1/decisions`                                    |
-| OpenRouter                           | a decisions endpoint distinct from its chat API         |
-| Cloudflare                           | through the Workers AI binding or its own REST run path |
-
-The gateways that expose `/typesafe/v1/systemone` are the ones where the official
+The surfaces exposing `/typesafe/v1/systemone` are the ones where the official
 SDK works by changing only the base URL. That is the cheapest migration path if
-you expect to move.
+you expect to move. One surface wraps `state` and `questions` inside an `input`
+object, so a native client cannot be ported to it by swapping the URL alone.
 
 ---
 
-## Environment variable
+## 5. Environment variable
 
-| Surface                                  | Variable                                        |
-| ---------------------------------------- | ----------------------------------------------- |
-| Most integrations, and the official SDKs | `TYPESAFE_API_KEY`                              |
-| `@ai-sdk/typesafe-ai`                    | `TYPESAFE_AI_API_KEY`                           |
-| `rig` (Rust)                             | `JEV_TOKEN`                                     |
-| Vercel AI Gateway                        | the gateway's own key                           |
-| Netlify AI Gateway                       | none — zero-config, billed through the platform |
-| Self-hosted compatible servers           | `TYPESAFE_API_KEY` plus a base-URL override     |
+<!-- env:start -->
+| Surface | Environment variable |
+| --- | --- |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | `TYPESAFE_API_KEY` |
+| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | `AI_GATEWAY_API_KEY` |
+| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | `AI_GATEWAY_API_KEY` |
+| [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | `TYPESAFE_AI_API_KEY` |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | `Workers AI binding` |
+| [OpenRouter](https://openrouter.ai/typesafe) | `OPENROUTER_API_KEY` |
+| [LiteLLM pass-through](https://docs.litellm.ai/docs/pass_through/typesafe) | `TYPESAFE_API_KEY` |
+| [Bifrost](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe) | `TYPESAFE_BASE_URL` |
+| [AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev) | `AIMLAPI key` |
+| [Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/) | `none` |
+| [Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/) | `TYPESAFE_API_KEY` |
+| [LangChain](https://docs.langchain.com/oss/python/integrations/providers/typesafe) | `TYPESAFE_API_KEY` |
+| [rig (Rust)](https://github.com/0xPlaygrounds/rig) | `JEV_TOKEN` |
+<!-- env:end -->
 
 Three different names for the same secret is a real source of "it works locally
 but not in CI".
+
+---
+
+## 6. Per-surface notes
+
+<!-- notes:start -->
+| Surface | Worth knowing |
+| --- | --- |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | The reference surface. Everything else is measured against this. |
+| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | The one surface that renames the primitive. Needs AI SDK 7.0.105 or newer. |
+| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | Same gateway as the row above, different route, different spelling. Pick one and stay on it. |
+| [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | Note the env var: TYPESAFE_AI_API_KEY, not TYPESAFE_API_KEY. |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | The envelope differs: state and questions sit inside an `input` object. A native client cannot be ported by swapping the URL. |
+| [OpenRouter](https://openrouter.ai/typesafe) | Note the tilde on the alias. The listing page carries no code sample, so the request shape was left unrecorded rather than guessed. |
+| [LiteLLM pass-through](https://docs.litellm.ai/docs/pass_through/typesafe) | Exposes the native path, so the official SDK works by changing only the base URL. |
+| [Bifrost](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe) | One-to-one pass-through of the native API. |
+| [AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev) | A third endpoint path. Top-level envelope like native, but not at the native path. |
+| [Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/) | The lowest-friction route if you already deploy there: no key, no base URL, billed through the platform. Node.js 20+. |
+| [Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/) | Maps Python types onto primitives: bool becomes a noul, Literal becomes a choice, an ordered IntEnum becomes a score. |
+| [LangChain](https://docs.langchain.com/oss/python/integrations/providers/typesafe) | Accessor differs from the quickstart's: .nouls[key] rather than .answers[key]. Follow whichever your SDK version documents. |
+| [rig (Rust)](https://github.com/0xPlaygrounds/rig) | A third env var name, and the 255-option cap is enforced at compile time. |
+<!-- notes:end -->
+
+---
+
+## Hard limits
+
+Properties of the model, so they hold on every surface.
+
+<!-- limits:start -->
+|  | Limit | Why it matters |
+| --- | --- | --- |
+| **choice options** | max 255 | Walk a hierarchy with a beam search over probabilities to get past it. |
+| **score levels** | 2 to 10, 0-indexed, ordered low to high | A score is probability-weighted, so it lands between levels. Do not assume an integer. |
+| **context** | 64k tokens per request; 32k for state plus the longest question | No tokenizer is published, which is why at least one production integration budgets in UTF-8 bytes with headroom. |
+| **input** | text only: string, JSON object, or array of text | No image, audio or video. Pre-process to text or to typed fields. |
+| **output tokens** | free; the model generates no text | Only input is charged, which is what makes per-item judgement at scale affordable. |
+| **streaming** | not supported anywhere | The upstream API does not stream, so no gateway can add it. |
+| **self-hosting** | impossible; no published weights | Anything that runs locally is a different model with a compatible wire format. Calibration does not transfer, so neither do thresholds. |
+<!-- limits:end -->
 
 ---
 
@@ -129,54 +219,36 @@ but not in CI".
 
 Two answer-access patterns also appear across published examples:
 `response.answers["key"]` and `response.nouls["key"]` / `.choices` / `.scores`.
-Follow whichever your own SDK version's docs show and do not mix them.
+Follow whichever your own SDK version's docs show, and do not mix them.
 
 ---
 
-## Hard limits, from the official docs
+## What is not portable at all
 
-These are properties of the model, so they hold on every surface.
-
-|                  | Limit                                                                            |
-| ---------------- | -------------------------------------------------------------------------------- |
-| `choice` options | max **255**                                                                      |
-| `score` levels   | **2 to 10**, 0-indexed, ordered low to high                                      |
-| Context          | **64k** tokens per request; **32k** for `state` plus the single longest question |
-| Input            | **text only** — string, JSON object, or array of text                            |
-| Output tokens    | free; the model does not generate text                                           |
-
-There is no published tokenizer, which is why at least one production integration
-budgets in UTF-8 bytes with headroom rather than counting tokens.
-
----
-
-## Things that are not portable at all
-
-- **Streaming.** The upstream API does not stream, so no gateway can offer it.
-- **Self-hosting.** There are no published weights. Anything that runs locally is
-  a different model with a compatible wire format — see the `alternative` rows in
-  the catalog, and note that a compatible API does not imply compatible
-  calibration, so **thresholds do not transfer**.
-- **Thresholds across question types.** A cutoff tuned on a `noul` probability is
-  not a `choice` confidence. The vendor's own limitations doc makes this point.
+- **Thresholds across question types.** A cutoff tuned on a `noul` probability
+  is not a `choice` confidence. The vendor's own limitations doc makes this
+  point explicitly.
 - **Thresholds across model versions.** Pin the version if you have tuned any.
-- **Option ordering.** One independent report found that reversing option order
-  moved a probability enough to cross a 0.9 threshold. If that reproduces for
-  your workload, treat option order as part of your prompt and freeze it.
+- **Thresholds onto a compatible reimplementation.** A matching wire format
+  implies nothing about calibration. See the `alternative` rows in the catalog.
+- **Option ordering.** One independent test found that reversing option order
+  moved a probability enough to cross a 0.9 threshold. It is unreplicated, so
+  treat the magnitude as indicative — but if it reproduces for your workload,
+  freeze option order and treat it as part of your prompt.
 
 ---
 
 ## Corrections this page exists to prevent
 
-Claims that circulate but are wrong, each verified against a primary source:
+Claims that circulate but are wrong, each checked against a primary source:
 
-- **`typesafe/jev-1` is not a model string.** It appears in no documentation. The
-  versioned ID is `jev-1.13.0`.
-- **The yes/no type is not called "Binary".** It is `noul`. Several mainstream
-  outlets wrote "Boolean", which matches one SDK's spelling but not the model's.
-- **`jevai.org` is not official.** It is an unaffiliated community site running
-  its own separate API with a different endpoint, request shape and keys. Its
-  `/jev-api` page in particular documents a request shape matching no primary
-  source — do not copy code from it.
-- **You cannot run Jev locally.** No weights are published. Content titled "run
-  Jev locally" describes a substitute.
+| Claim                                            | Reality                                                                                                                                                                                                     |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The model ID is `jev-1`                          | It is `jev-1.13.0`, with aliases `jev-latest` and `jev-preview`.                                                                                                                                            |
+| `typesafe/jev-1` is a gateway model string       | It exists nowhere. Each gateway has its own string — see §1.                                                                                                                                                |
+| The yes/no type is called "Binary"               | It is `noul`. One SDK spells it `boolean`; much of the press coverage got it wrong.                                                                                                                         |
+| All three primitives carry confidence            | `noul` does not. Its probability _is_ the answer.                                                                                                                                                           |
+| `jevai.org` is the official site                 | It is an unaffiliated community site running a separate API with a different endpoint, request shape and keys. Its `/jev-api` page documents a shape matching no primary source — do not copy code from it. |
+| You can run Jev locally                          | No weights are published. Content titled "run Jev locally" describes a substitute.                                                                                                                          |
+| The 193.6x / 444.6x / 67.8% figures are measured | They are vendor-run, with reference answers derived from other models' judgements rather than human ground truth. The vendor's own launch post calls the headline numbers an upper bound.                   |
+| There is a paper on the training method          | There is not. An unrelated 2023 paper abbreviates to the same four letters.                                                                                                                                 |

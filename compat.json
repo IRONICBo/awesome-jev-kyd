@@ -1,0 +1,233 @@
+{
+  "as_of": "2026-09-22",
+  "note": "The platform surface matrix. Single source of truth for both docs/compatibility.md (generated between markers by scripts/build_compat.py) and the Compatibility view on the site, so the two can never disagree. A dash means the surface does not expose that concept.",
+  "platforms": [
+    {
+      "id": "typesafe-native",
+      "name": "TypeSafe API (direct)",
+      "official": true,
+      "url": "https://docs.typesafe.ai/api",
+      "model": "jev-latest · jev-preview · jev-1.13.0",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "top level",
+      "endpoint": "POST /v1/systemone",
+      "env": "TYPESAFE_API_KEY",
+      "notes": "The reference surface. Everything else is measured against this.",
+      "notes_zh": "基准面。其他所有平台都以它为参照。"
+    },
+    {
+      "id": "vercel-eval",
+      "name": "Vercel AI SDK evaluation API",
+      "url": "https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk",
+      "model": "typesafe-ai/jev",
+      "yesno": "boolean",
+      "answer_field": ".probability",
+      "confidence": "providerMetadata",
+      "envelope": "evaluate()",
+      "endpoint": "—",
+      "env": "AI_GATEWAY_API_KEY",
+      "notes": "The one surface that renames the primitive. Needs AI SDK 7.0.105 or newer.",
+      "notes_zh": "唯一给原语改了名字的平台。需要 AI SDK 7.0.105 及以上。"
+    },
+    {
+      "id": "vercel-compat",
+      "name": "Vercel AI Gateway (TypeSafe-compatible)",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe",
+      "model": "typesafe-ai/jev",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "top level",
+      "endpoint": "POST /typesafe/v1/systemone",
+      "env": "AI_GATEWAY_API_KEY",
+      "notes": "Same gateway as the row above, different route, different spelling. Pick one and stay on it.",
+      "notes_zh": "和上一行是同一个网关，但路径不同、拼法也不同。选一条走，别混用。"
+    },
+    {
+      "id": "ai-sdk-direct",
+      "name": "@ai-sdk/typesafe-ai",
+      "url": "https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai",
+      "model": "jev-latest",
+      "yesno": "boolean",
+      "answer_field": ".probability",
+      "confidence": "providerMetadata",
+      "envelope": "evaluate()",
+      "endpoint": "—",
+      "env": "TYPESAFE_AI_API_KEY",
+      "notes": "Note the env var: TYPESAFE_AI_API_KEY, not TYPESAFE_API_KEY.",
+      "notes_zh": "注意环境变量是 TYPESAFE_AI_API_KEY，不是 TYPESAFE_API_KEY。"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare Workers AI",
+      "url": "https://developers.cloudflare.com/ai/models/typesafe/jev/",
+      "model": "typesafe/jev",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "wrapped in input",
+      "endpoint": "env.AI.run()",
+      "env": "Workers AI binding",
+      "notes": "The envelope differs: state and questions sit inside an `input` object. A native client cannot be ported by swapping the URL.",
+      "notes_zh": "请求结构不同：state 和 questions 被包在 `input` 对象里。原生客户端不能只换 URL 就移植。"
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "url": "https://openrouter.ai/typesafe",
+      "model": "typesafe/jev-1.13 · ~typesafe/jev-latest",
+      "yesno": "—",
+      "answer_field": "—",
+      "confidence": "—",
+      "envelope": "—",
+      "endpoint": "a decisions endpoint, separate from chat",
+      "env": "OPENROUTER_API_KEY",
+      "notes": "Note the tilde on the alias. The listing page carries no code sample, so the request shape was left unrecorded rather than guessed.",
+      "notes_zh": "注意别名前面那个波浪号。该页没有代码示例，所以请求结构此处留空而非猜测。"
+    },
+    {
+      "id": "litellm",
+      "name": "LiteLLM pass-through",
+      "url": "https://docs.litellm.ai/docs/pass_through/typesafe",
+      "model": "jev-latest · jev-1.13.0 · jev-preview",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "top level",
+      "endpoint": "POST /typesafe/v1/systemone",
+      "env": "TYPESAFE_API_KEY",
+      "notes": "Exposes the native path, so the official SDK works by changing only the base URL.",
+      "notes_zh": "暴露的是原生路径，官方 SDK 只需改 base URL 即可使用。"
+    },
+    {
+      "id": "bifrost",
+      "name": "Bifrost",
+      "url": "https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe",
+      "model": "jev-latest",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "top level",
+      "endpoint": "POST /typesafe/v1/systemone",
+      "env": "TYPESAFE_BASE_URL",
+      "notes": "One-to-one pass-through of the native API.",
+      "notes_zh": "对原生 API 做一比一透传。"
+    },
+    {
+      "id": "aimlapi",
+      "name": "AI/ML API",
+      "url": "https://docs.aimlapi.com/api-references/decision-models/typesafe/jev",
+      "model": "typesafe/jev",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "top level",
+      "endpoint": "POST /v1/decisions",
+      "env": "AIMLAPI key",
+      "notes": "A third endpoint path. Top-level envelope like native, but not at the native path.",
+      "notes_zh": "第三种端点路径。请求结构与原生一致，但路径不同。"
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify AI Gateway",
+      "url": "https://www.netlify.com/changelog/typesafe-jev-ai-gateway/",
+      "model": "jev-latest (default)",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "top level",
+      "endpoint": "official SDK, zero config",
+      "env": "none",
+      "notes": "The lowest-friction route if you already deploy there: no key, no base URL, billed through the platform. Node.js 20+.",
+      "notes_zh": "如果你本来就部署在 Netlify，这是门槛最低的路径：不需要密钥、不需要 baseURL，按平台计费。需 Node.js 20+。"
+    },
+    {
+      "id": "pydantic-ai",
+      "name": "Pydantic AI",
+      "url": "https://pydantic.dev/docs/ai/models/typesafe/",
+      "model": "typesafe:jev-latest",
+      "yesno": "via output_type",
+      "answer_field": "typed output",
+      "confidence": "—",
+      "envelope": "Agent(...)",
+      "endpoint": "—",
+      "env": "TYPESAFE_API_KEY",
+      "notes": "Maps Python types onto primitives: bool becomes a noul, Literal becomes a choice, an ordered IntEnum becomes a score.",
+      "notes_zh": "把 Python 类型映射到原语：bool 变成 noul，Literal 变成 choice，有序 IntEnum 变成 score。"
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "url": "https://docs.langchain.com/oss/python/integrations/providers/typesafe",
+      "model": "—",
+      "yesno": "Noul()",
+      "answer_field": ".nouls[k].noul",
+      "confidence": "on the answer",
+      "envelope": "classifier.invoke({...})",
+      "endpoint": "—",
+      "env": "TYPESAFE_API_KEY",
+      "notes": "Accessor differs from the quickstart's: .nouls[key] rather than .answers[key]. Follow whichever your SDK version documents.",
+      "notes_zh": "取值方式与官方 quickstart 不同：用 .nouls[key] 而非 .answers[key]。按你自己 SDK 版本的文档来。"
+    },
+    {
+      "id": "rig",
+      "name": "rig (Rust)",
+      "url": "https://github.com/0xPlaygrounds/rig",
+      "model": "—",
+      "yesno": "noul",
+      "answer_field": ".noul",
+      "confidence": "on the answer",
+      "envelope": "typed builder",
+      "endpoint": "—",
+      "env": "JEV_TOKEN",
+      "notes": "A third env var name, and the 255-option cap is enforced at compile time.",
+      "notes_zh": "第三种环境变量名；而且 255 选项上限是在编译期强制的。"
+    }
+  ],
+  "limits": [
+    {
+      "k": "choice options",
+      "v": "max 255",
+      "why": "Walk a hierarchy with a beam search over probabilities to get past it.",
+      "why_zh": "要突破它，就用对概率做 beam search 的方式遍历层级。"
+    },
+    {
+      "k": "score levels",
+      "v": "2 to 10, 0-indexed, ordered low to high",
+      "why": "A score is probability-weighted, so it lands between levels. Do not assume an integer.",
+      "why_zh": "score 是概率加权的，会落在两级之间。不要假设它是整数。"
+    },
+    {
+      "k": "context",
+      "v": "64k tokens per request; 32k for state plus the longest question",
+      "why": "No tokenizer is published, which is why at least one production integration budgets in UTF-8 bytes with headroom.",
+      "why_zh": "官方没有公开 tokenizer —— 所以至少有一个生产级集成改用「UTF-8 字节数 + 留余量」来做预算。"
+    },
+    {
+      "k": "input",
+      "v": "text only: string, JSON object, or array of text",
+      "why": "No image, audio or video. Pre-process to text or to typed fields.",
+      "why_zh": "不支持图像、音频、视频。请先预处理成文本或类型化字段。"
+    },
+    {
+      "k": "output tokens",
+      "v": "free; the model generates no text",
+      "why": "Only input is charged, which is what makes per-item judgement at scale affordable.",
+      "why_zh": "只对输入计费 —— 这正是大规模逐条判断得以负担的原因。"
+    },
+    {
+      "k": "streaming",
+      "v": "not supported anywhere",
+      "why": "The upstream API does not stream, so no gateway can add it.",
+      "why_zh": "上游 API 本身不支持流式，因此任何网关都加不上。"
+    },
+    {
+      "k": "self-hosting",
+      "v": "impossible; no published weights",
+      "why": "Anything that runs locally is a different model with a compatible wire format. Calibration does not transfer, so neither do thresholds.",
+      "why_zh": "任何能本地运行的都是另一个模型，只是协议兼容。校准不会迁移，所以阈值也不会。"
+    }
+  ]
+}
