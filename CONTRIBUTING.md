@@ -106,6 +106,20 @@ saying why — a flag a reader cannot interpret is worse than no flag.
   Self-submissions are welcome; marketing copy is not. Say what decision it makes
   and which primitive it uses.
 
+## Finding things to add
+
+```bash
+python3 scripts/discover_candidates.py --top 40
+```
+
+This harvests every list in `docs/sibling-lists.txt`, ranks repositories by how
+many cite each, and reads the candidate's code before reporting. A `calls-jev`
+verdict means a call site was found — it is a shortlist, not a row. Read it,
+write the summary yourself, and keep the evidence path the scan produced.
+
+Know a directory we are not harvesting? Add it to `docs/sibling-lists.txt`.
+That is a useful contribution on its own.
+
 ## Reporting a dead link
 
 Open an issue with the slug. Do not delete the row — retiring an entry means

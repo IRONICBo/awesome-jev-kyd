@@ -1,0 +1,42 @@
+# Sibling Jev directories, harvested by scripts/discover_candidates.py.
+#
+# There are dozens of these. Each is a different person's sweep of the same
+# ecosystem, so their union is a better discovery surface than any single one,
+# including this one. The script ranks repositories by how many of these cite
+# them, then reads the candidate's code before anything reaches the catalog —
+# crowd agreement finds things, it does not verify them.
+#
+# One line per list. Seeded 2026-09-22 from the "Other lists" section of
+# heyjunpenn/awesome-jev, which had done this collection already.
+https://github.com/AbdelStark/awesome-typesafe
+https://github.com/AbdelStark/awesome-typesafe-jev
+https://github.com/Anil-matcha/awesome-jev-by-typesafe
+https://github.com/AnotiaWang/awesome-jev
+https://github.com/AppitStudio/awesome-jev
+https://github.com/BeatAPI/awesome-jev
+https://github.com/Hiwoniu/Jev-Case
+https://github.com/MrJev/awesome-jev
+https://github.com/OmniJev/awesome-jev
+https://github.com/OmniJev/awesome-jev-gallery
+https://github.com/Promethe-us/awesome-jev
+https://github.com/aliaihub/awesome-jev-usecases
+https://github.com/anandi1989/awesome-jev-usecases
+https://github.com/cobanov/awesome-jev
+https://github.com/everyinfra/jev-radar
+https://github.com/fatwang2/awesome-jev
+https://github.com/hellogumbo/awesome-jev
+https://github.com/heyjunpenn/awesome-jev
+https://github.com/jtnkminimal/awesome-jev
+https://github.com/kraayenjon/awesome-jev
+https://github.com/logicrw/awesome-jev-projects
+https://github.com/mizzlelover/jev-hub
+https://github.com/nexibeo/jev-cookbook
+https://github.com/rhc98/awesome-jev
+https://github.com/sontakey/awesome-jev
+https://github.com/theSekyi/jevusecases
+https://github.com/valentynkit/awesome-jev-typesafe
+https://github.com/walidboulanouar/awesome-jev-use-cases
+https://github.com/wh000wh000/awesome-jev-live
+https://github.com/wuyoscar/jev-skill
+https://github.com/yibie/awesome-jev
+https://github.com/yzfly/awesome-jev-zh

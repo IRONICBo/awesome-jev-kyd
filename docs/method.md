@@ -71,6 +71,36 @@ Rows whose source is not a readable repository file — a docs page, a video, a
 paywalled article — carry `evidence_none` saying which, rather than a fabricated
 citation.
 
+## Discovery is crowdsourced, verification is not
+
+There are dozens of Jev directories. Each is a different person's sweep of the
+same ecosystem, so their union is a far better discovery surface than any single
+one — including this one. `docs/sibling-lists.txt` names them, and
+`scripts/discover_candidates.py` harvests them, ranks repositories by how many
+cite each, and then reads the candidate's own code looking for a call site.
+
+The two halves matter separately. Crowd agreement finds things: a repository
+cited by twenty lists is worth looking at. Crowd agreement does not verify
+anything: these lists copy from each other, so one miscataloguing propagates
+everywhere. The most-starred "Jev visual inference tool" in this ecosystem
+contains zero references to the API and is listed as a Jev project almost
+universally.
+
+So the script emits a shortlist with a verdict per candidate — `calls-jev` with
+the file and strings that prove it, `mentions-only` when the README claims what
+the code does not, or `no-signal`. A `calls-jev` verdict is not a catalog row.
+Someone still reads it and writes the summary.
+
+The first aggregation run harvested 32 lists, found 1,885 distinct repositories
+cited, verified the 45 most-cited that were missing here, and added 34. Six were
+`mentions-only` — including one cited by twenty lists — and four were dropped
+because their only Jev reference was in a fixture named `fake_jev`, which proves
+the request shape and nothing else.
+
+Sibling lists that ship no licence can be used as pointers but not as prose: a
+URL is a fact, a description is someone's writing. Rows discovered that way were
+re-read at the call site and summarised independently.
+
 ## Why a status code is not a verdict
 
 Every row's `link_status` says the URL answered. That is all it says. It does not

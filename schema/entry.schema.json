@@ -128,7 +128,9 @@
           "java",
           "ruby",
           "php",
-          "csharp"
+          "csharp",
+          "elixir",
+          "lua"
         ]
       }
     },

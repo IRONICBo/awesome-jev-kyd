@@ -574,6 +574,8 @@ LANG_LABELS = {
     "ruby": "Rb",
     "php": "PHP",
     "csharp": "C#",
+    "elixir": "Ex",
+    "lua": "Lua",
 }
 
 # The non-catalog parts of the repo, so navigation is a table rather than a

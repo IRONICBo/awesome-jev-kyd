@@ -5883,5 +5883,1532 @@
       ],
       "read_on": "2026-09-22"
     }
+  },
+  {
+    "slug": "typesafe-computer-use",
+    "title": "typesafe-computer-use",
+    "summary": "Computer use on macOS: OCR the screen, classify the next action, click. Costs a fraction of a cent per step.",
+    "summary_zh": "macOS 上的 computer use：OCR 屏幕、分类下一步动作、点击。每步成本不到一分钱的零头。",
+    "url": "https://github.com/awlevin/typesafe-computer-use",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "awlevin",
+      "url": "https://github.com/awlevin"
+    },
+    "has_code": true,
+    "stars": 775,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "typesafe_computer_use/decide.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "foreman",
+    "title": "foreman",
+    "summary": "A software-factory foreman that uses Jev to decide what an agent pipeline should do next.",
+    "summary_zh": "一个「软件工厂工头」，用 Jev 决定智能体流水线下一步该做什么。",
+    "url": "https://github.com/thruwire/foreman",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "intent-routing"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "thruwire",
+      "url": "https://github.com/thruwire"
+    },
+    "has_code": true,
+    "stars": 482,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/foreman/foreman/jev.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-latest",
+        "system_one"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "mobile-jev",
+    "title": "mobile-jev",
+    "summary": "Mobile computer use: Jev picks the next on-screen action on a phone.",
+    "summary_zh": "移动端 computer use：由 Jev 决定手机屏幕上的下一个动作。",
+    "url": "https://github.com/droidrun/mobile-jev",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "droidrun",
+      "url": "https://github.com/droidrun"
+    },
+    "has_code": true,
+    "stars": 336,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "apps/jev-studio/app/components/use-studio.ts",
+      "matched": [
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-browser",
+    "title": "jev-browser",
+    "summary": "Browser automation where Jev chooses the next action.",
+    "summary_zh": "浏览器自动化，下一步动作由 Jev 选择。",
+    "url": "https://github.com/jkudish/jev-browser",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "jkudish",
+      "url": "https://github.com/jkudish"
+    },
+    "has_code": true,
+    "stars": 235,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/provider.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "typesafe-ai/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-browser-use",
+    "title": "jev-browser-use",
+    "summary": "Splits the loop: Jev clicks, a reasoning model thinks and verifies.",
+    "summary_zh": "把循环拆开：Jev 负责点击，推理模型负责思考与验证。",
+    "url": "https://github.com/wy-coliney/jev-browser-use",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "wy-coliney",
+      "url": "https://github.com/wy-coliney"
+    },
+    "has_code": true,
+    "stars": 341,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "skills/jev-browser-use/bridge.mjs",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "pi-jev",
+    "title": "pi-jev",
+    "summary": "A decision layer for a coding agent: a measured tool-call gate plus a typed ask for calibrated answers.",
+    "summary_zh": "给编程智能体做的决策层：一个可度量的工具调用闸门，外加一个返回校准答案的类型化提问。",
+    "url": "https://github.com/y0usaf/pi-jev",
+    "kind": "plugin",
+    "patterns": [
+      "safety-gating",
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "y0usaf",
+      "url": "https://github.com/y0usaf"
+    },
+    "has_code": true,
+    "stars": 135,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/client.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-use",
+    "title": "jev-use",
+    "summary": "An agent plugin that hands steps needing no text output to Jev instead of the main model.",
+    "summary_zh": "一个智能体插件：把不需要文本输出的步骤交给 Jev，而不是主模型。",
+    "url": "https://github.com/shitianfang/jev-use",
+    "kind": "plugin",
+    "patterns": [
+      "tool-selection",
+      "model-routing"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "shitianfang",
+      "url": "https://github.com/shitianfang"
+    },
+    "has_code": true,
+    "stars": 15,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/backends/typesafe.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevrouter",
+    "title": "jevrouter",
+    "summary": "A router for models, tools and subagents.",
+    "summary_zh": "面向模型、工具和子智能体的路由器。",
+    "url": "https://github.com/BillionsBobby/JevRouter",
+    "kind": "project",
+    "patterns": [
+      "model-routing",
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "billionsbobby",
+      "url": "https://github.com/billionsbobby"
+    },
+    "has_code": true,
+    "stars": 151,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "functions/api/jev.js",
+      "matched": [
+        "typesafe/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-review",
+    "title": "jev-review",
+    "summary": "A local-first MCP plugin for continuous code-quality review by coding agents.",
+    "summary_zh": "一个本地优先的 MCP 插件，供编程智能体做持续的代码质量审查。",
+    "url": "https://github.com/NiazMorshed2007/jev-review",
+    "kind": "plugin",
+    "patterns": [
+      "output-validation",
+      "content-scoring"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "niazmorshed2007",
+      "url": "https://github.com/niazmorshed2007"
+    },
+    "has_code": true,
+    "stars": 198,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/jev/client.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "supercov",
+    "title": "supercov",
+    "summary": "Code quality and coverage judgements for coding agents, in Rust.",
+    "summary_zh": "给编程智能体用的代码质量与覆盖率判断，Rust 实现。",
+    "url": "https://github.com/supercorp-ai/supercov",
+    "kind": "project",
+    "patterns": [
+      "content-scoring",
+      "output-validation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "supercorp-ai",
+      "url": "https://github.com/supercorp-ai"
+    },
+    "has_code": true,
+    "stars": 95,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "crates/supercov-cli/src/quality.rs",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-1.13",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "rust"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "skillranker",
+    "title": "skillranker",
+    "summary": "Ranks an agent's skills for the next step using live session context, with Claude Code hooks.",
+    "summary_zh": "用当前会话上下文给智能体的技能排序以决定下一步，带 Claude Code hook。",
+    "url": "https://github.com/Dicklesworthstone/skillranker",
+    "kind": "plugin",
+    "patterns": [
+      "search-ranking",
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "dicklesworthstone",
+      "url": "https://github.com/dicklesworthstone"
+    },
+    "has_code": true,
+    "stars": 110,
+    "repo_license": "unknown",
+    "evidence": {
+      "path": "src/jev/endpoint.rs",
+      "matched": [
+        "api.typesafe.ai",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "rust"
+    ],
+    "flags": [
+      "no-license"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-shell-history",
+    "title": "jev-shell-history",
+    "summary": "Fish-style zsh history autosuggestions, ranked by Jev rather than by recency.",
+    "summary_zh": "Fish 风格的 zsh 历史自动建议，由 Jev 排序而不是按时间。",
+    "url": "https://github.com/mrnugget/jev-shell-history",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "mrnugget",
+      "url": "https://github.com/mrnugget"
+    },
+    "has_code": true,
+    "stars": 96,
+    "repo_license": "unknown",
+    "evidence": {
+      "path": "src/cli.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "jev-latest",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "hono-jev-router",
+    "title": "hono-jev-router",
+    "summary": "Routes HTTP requests by meaning — a semantic router for a web framework.",
+    "summary_zh": "按语义路由 HTTP 请求 —— 给 Web 框架做的语义路由器。",
+    "url": "https://github.com/yusukebe/hono-jev-router",
+    "kind": "project",
+    "patterns": [
+      "intent-routing"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "yusukebe",
+      "url": "https://github.com/yusukebe"
+    },
+    "has_code": true,
+    "stars": 45,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/index.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-elixir-otp",
+    "title": "jev (Elixir/OTP)",
+    "summary": "Jev as an OTP process: reply from a GenServer and pattern match on the answer.",
+    "summary_zh": "把 Jev 做成 OTP 进程：从 GenServer 回复，并对答案做模式匹配。",
+    "url": "https://github.com/dannote/jev",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "dannote",
+      "url": "https://github.com/dannote"
+    },
+    "has_code": true,
+    "stars": 28,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "lib/jev/http.ex",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "elixir"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-sdk-elixir",
+    "title": "typesafe_sdk (Elixir)",
+    "summary": "An Elixir port of the official SDK.",
+    "summary_zh": "官方 SDK 的 Elixir 移植。",
+    "url": "https://github.com/nshkrdotcom/typesafe_sdk",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "nshkrdotcom",
+      "url": "https://github.com/nshkrdotcom"
+    },
+    "has_code": true,
+    "stars": 5,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "codegen/typesafe_sdk/codegen/source/openapi.ex",
+      "matched": [
+        "api.typesafe.ai",
+        "/v1/systemone",
+        "system_one"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "elixir"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "ruby-llm-typesafe-provider",
+    "title": "ruby_llm-typesafe",
+    "summary": "A structured-output provider for a Ruby LLM library.",
+    "summary_zh": "给某个 Ruby LLM 库做的结构化输出 provider。",
+    "url": "https://github.com/kieranklaassen/ruby_llm-typesafe",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "kieranklaassen",
+      "url": "https://github.com/kieranklaassen"
+    },
+    "has_code": true,
+    "stars": 18,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "lib/ruby_llm/providers/typesafe.rb",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "system_one"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "ruby"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-adblock",
+    "title": "typesafe-adblock",
+    "summary": "A Chrome extension that asks whether a DOM element is an advert.",
+    "summary_zh": "一个 Chrome 扩展，逐个询问 DOM 元素是不是广告。",
+    "url": "https://github.com/realZachi/typesafe-adblock",
+    "kind": "project",
+    "patterns": [
+      "classification"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "realzachi",
+      "url": "https://github.com/realzachi"
+    },
+    "has_code": true,
+    "stars": 68,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/typesafe.js",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "unclutter",
+    "title": "unclutter",
+    "summary": "A browser extension that removes page clutter, with reusable template rules.",
+    "summary_zh": "一个浏览器扩展，用可复用的模板规则清除页面杂物。",
+    "url": "https://github.com/kitze/unclutter",
+    "kind": "project",
+    "patterns": [
+      "classification"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "kitze",
+      "url": "https://github.com/kitze"
+    },
+    "has_code": true,
+    "stars": 181,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe-ai/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-commit",
+    "title": "jev-commit",
+    "summary": "A pre-commit hook: one call judges whether the commit message matches the diff.",
+    "summary_zh": "一个 pre-commit 钩子：一次调用判断提交信息与 diff 是否相符。",
+    "url": "https://github.com/valentynkit/jev-commit",
+    "kind": "project",
+    "patterns": [
+      "output-validation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "valentynkit",
+      "url": "https://github.com/valentynkit"
+    },
+    "has_code": true,
+    "stars": 9,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "jev_commit/jev.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-1.13",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-skip",
+    "title": "jev-skip",
+    "summary": "Skips video sponsor segments by reading the captions and deciding at watch time.",
+    "summary_zh": "读字幕、在观看时判断，从而跳过视频里的赞助段落。",
+    "url": "https://github.com/valentynkit/jev-skip",
+    "kind": "project",
+    "patterns": [
+      "classification"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "valentynkit",
+      "url": "https://github.com/valentynkit"
+    },
+    "has_code": true,
+    "stars": 3,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "ha-jev",
+    "title": "ha-jev",
+    "summary": "A Home Assistant integration: typed answers as sensors, with actions for automations.",
+    "summary_zh": "一个 Home Assistant 集成：把类型化答案变成传感器，并提供可用于自动化的动作。",
+    "url": "https://github.com/AboveColin/HA-Jev",
+    "kind": "integration",
+    "patterns": [
+      "intent-routing",
+      "classification"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "abovecolin",
+      "url": "https://github.com/abovecolin"
+    },
+    "has_code": true,
+    "stars": 45,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "custom_components/jev/config_flow.py",
+      "matched": [
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevcal",
+    "title": "jevcal",
+    "summary": "Calibrate, threshold and drift-check a decision model against an LLM teacher instead of guessing a cutoff.",
+    "summary_zh": "对着一个 LLM 教师模型做校准、定阈值和漂移检查 —— 而不是靠猜。",
+    "url": "https://github.com/abhixhek/jevcal",
+    "kind": "project",
+    "patterns": [
+      "human-escalation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "abhixhek",
+      "url": "https://github.com/abhixhek"
+    },
+    "has_code": true,
+    "stars": 10,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/jevcal/providers/typesafe.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "notes": "Directly addresses the question this catalog keeps flagging: where should the threshold sit. Worth reading alongside the confidence-gated routing pattern.",
+    "notes_zh": "正面回答了本目录反复标出的那个问题：阈值该定在哪。建议与 confidence-gated routing 模式对照阅读。",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-align",
+    "title": "jev-align",
+    "summary": "Builds calibrated decision functions from human feedback.",
+    "summary_zh": "从人类反馈出发，构建经过校准的决策函数。",
+    "url": "https://github.com/sutro-sh/jev-align",
+    "kind": "project",
+    "patterns": [
+      "human-escalation",
+      "feature-extraction"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "sutro-sh",
+      "url": "https://github.com/sutro-sh"
+    },
+    "has_code": true,
+    "stars": 271,
+    "repo_license": "Apache-2.0",
+    "evidence": {
+      "path": "src/jev_align/jev.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-1.13",
+        "system_one"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-rerank-bench",
+    "title": "jev-rerank-bench",
+    "summary": "An independent head-to-head against dedicated rerankers across fourteen datasets.",
+    "summary_zh": "与专用重排模型在 14 个数据集上的独立横评。",
+    "url": "https://github.com/anessbelbati/jev-rerank-bench",
+    "kind": "benchmark",
+    "patterns": [
+      "search-ranking"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "anessbelbati",
+      "url": "https://github.com/anessbelbati"
+    },
+    "has_code": true,
+    "stars": 5,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "rerankers/jev.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "notes": "An independent measurement rather than a vendor figure, and a direct comparison against purpose-built rerankers — the comparison that matters for the search-ranking pattern.",
+    "notes_zh": "这是独立实测而非厂商数字，而且直接对比了专门做重排的模型 —— 这正是 search-ranking 模式该看的对比。",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-ai-benchmark",
+    "title": "typesafe-ai-benchmark",
+    "summary": "A gateway that mimics the structured-output shape, used to benchmark against it.",
+    "summary_zh": "一个模仿其结构化输出形状的网关，用于与之对比测试。",
+    "url": "https://github.com/iammrduncan/typesafe-ai-benchmark",
+    "kind": "benchmark",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "iammrduncan",
+      "url": "https://github.com/iammrduncan"
+    },
+    "has_code": true,
+    "stars": 37,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "packages/demos/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevmeter",
+    "title": "jevmeter",
+    "summary": "Scores every sentence of a video and renders the result as a live meter.",
+    "summary_zh": "给视频里的每一句话打分，并把结果渲染成一个实时仪表。",
+    "url": "https://github.com/ChetasLua/jevmeter",
+    "kind": "project",
+    "patterns": [
+      "content-scoring"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "chetaslua",
+      "url": "https://github.com/chetaslua"
+    },
+    "has_code": true,
+    "stars": 81,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "jevmeter/score.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "advocaat",
+    "title": "advocaat",
+    "summary": "A small typed client for asking questions about your own data.",
+    "summary_zh": "一个小巧的类型化客户端，用来对你自己的数据提问。",
+    "url": "https://github.com/pithings/advocaat",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "pithings",
+      "url": "https://github.com/pithings"
+    },
+    "has_code": true,
+    "stars": 89,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/api.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe-ai/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-mcp",
+    "title": "jev-mcp",
+    "summary": "An MCP server exposing classify, score, check, match and screen to any agent.",
+    "summary_zh": "一个 MCP server，把分类、打分、检查、匹配、筛选暴露给任意智能体。",
+    "url": "https://github.com/blakestone-x/jev-mcp",
+    "kind": "plugin",
+    "patterns": [
+      "classification",
+      "content-scoring"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "blakestone-x",
+      "url": "https://github.com/blakestone-x"
+    },
+    "has_code": true,
+    "stars": 18,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "jev_mcp/client.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-latest",
+        "system_one"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-social",
+    "title": "jev-social",
+    "summary": "Social-platform research with typed routing and browser evidence.",
+    "summary_zh": "社交平台调研，带类型化路由和浏览器取证。",
+    "url": "https://github.com/socai-io/jev-social",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "search-ranking"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "socai-io",
+      "url": "https://github.com/socai-io"
+    },
+    "has_code": true,
+    "stars": 46,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "bin/jev-social.js",
+      "matched": [
+        "typesafe/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "tsai-sc",
+    "title": "tsai-sc",
+    "summary": "Drives a 1990s real-time strategy game through keyboard and mouse, recording the action probabilities.",
+    "summary_zh": "通过键鼠操作一款 90 年代即时战略游戏，并记录每次动作的概率。",
+    "url": "https://github.com/phyous/tsai-sc",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "phyous",
+      "url": "https://github.com/phyous"
+    },
+    "has_code": true,
+    "stars": 22,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "tsai_sc/typesafe.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-eval-agent",
+    "title": "jev-eval-agent",
+    "summary": "An agent that routes evaluation work through typed decisions.",
+    "summary_zh": "一个把评测工作通过类型化决策来路由的智能体。",
+    "url": "https://github.com/vinilana/jev-eval-agent",
+    "kind": "project",
+    "patterns": [
+      "model-routing",
+      "output-validation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "vinilana",
+      "url": "https://github.com/vinilana"
+    },
+    "has_code": true,
+    "stars": 103,
+    "repo_license": "unknown",
+    "evidence": {
+      "path": "agent/lib/jev-router.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "systemOne",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "decider",
+    "title": "decider",
+    "summary": "A family of System One-style models fine-tuned from an open base for one-pass typed decisions.",
+    "summary_zh": "一族 System One 风格的模型，从开源基座微调而来，做单次类型化决策。",
+    "url": "https://github.com/Mapika/decider",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "mapika",
+      "url": "https://github.com/mapika"
+    },
+    "has_code": true,
+    "stars": 287,
+    "repo_license": "Apache-2.0",
+    "evidence": {
+      "path": "decider/bench/loadtest.py",
+      "matched": [
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev. Calls the API only as an evaluation baseline; the product is its own models.",
+    "notes_zh": "不是 Jev。它只把该 API 当作评测基线来调用，产品本身是它自己的模型。",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "openjev-sglang",
+    "title": "openjev-sglang",
+    "summary": "A Jev-compatible endpoint served from open models, prefill only.",
+    "summary_zh": "用开源模型提供的 Jev 兼容端点，仅做 prefill。",
+    "url": "https://github.com/ekzhang/openjev-sglang",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ekzhang",
+      "url": "https://github.com/ekzhang"
+    },
+    "has_code": true,
+    "stars": 259,
+    "repo_license": "unknown",
+    "evidence": {
+      "path": "src/openjev/api.py",
+      "matched": [
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "no-license"
+    ],
+    "notes": "Not Jev. A compatible wire format implies nothing about compatible calibration, so thresholds do not transfer.",
+    "notes_zh": "不是 Jev。协议兼容不代表校准兼容，阈值不能迁移。",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "openjev",
+    "title": "openjev",
+    "summary": "A Jev-compatible decision server on an open diffusion model.",
+    "summary_zh": "基于开源扩散模型的 Jev 兼容决策服务。",
+    "url": "https://github.com/razorback16/openjev",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "razorback16",
+      "url": "https://github.com/razorback16"
+    },
+    "has_code": true,
+    "stars": 288,
+    "repo_license": "Apache-2.0",
+    "evidence": {
+      "path": "openjev/api.py",
+      "matched": [
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev. Implements the wire format so the official SDKs can be repointed at it.",
+    "notes_zh": "不是 Jev。它实现了通信协议，因此官方 SDK 可以改指向它。",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "awesome-jev-heyjunpenn",
+    "title": "awesome-jev (heyjunpenn)",
+    "summary": "The broadest sibling directory: hundreds of projects in six languages, with a README that is itself the parsed data source.",
+    "summary_zh": "覆盖最广的同类目录：数百个项目、六种语言，且它的 README 本身就是被解析的数据源。",
+    "url": "https://github.com/heyjunpenn/awesome-jev",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "github"
+    ],
+    "author": {
+      "name": "heyjunpenn",
+      "url": "https://github.com/heyjunpenn"
+    },
+    "has_code": true,
+    "stars": 256,
+    "repo_license": "MIT",
+    "flags": [
+      "no-license"
+    ],
+    "notes": "Goes wide where this catalog goes deep, and its 'Other lists' section is where docs/sibling-lists.txt was seeded from. It ships no LICENSE file, so its descriptive text cannot be reused — the rows it surfaced here were re-verified at the call site and summarised independently.",
+    "notes_zh": "它走广度，本目录走深度；docs/sibling-lists.txt 的种子就来自它的 Other lists 一节。它没有 LICENSE 文件，因此其描述文字不可复用 —— 由它引出的条目都是在调用点重新核实、并独立撰写摘要的。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0"
   }
 ]

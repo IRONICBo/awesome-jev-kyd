@@ -1,0 +1,280 @@
+#!/usr/bin/env python3
+"""Find catalog candidates by aggregating sibling lists, then verifying them.
+
+There are dozens of Jev directories. Each is a different person's sweep of the
+same ecosystem, so the union of them is a far better discovery surface than any
+one — including this one. A repository cited by twenty lists is worth looking
+at.
+
+But citation frequency is not verification. These lists copy from each other,
+so a repository miscatalogued once propagates everywhere: the most-starred
+"Jev visual inference tool" in this ecosystem turned out to contain zero
+references to the API, and it is listed as a Jev project almost universally.
+Crowd agreement is a discovery signal and nothing more.
+
+So this does both halves. It harvests every sibling list, ranks by how many
+cite each repository, then reads the candidate's actual code looking for a call
+site. What it emits is a shortlist for a person, never a catalog row — the whole
+point of this catalog is that someone read the source.
+
+Usage:
+  python3 scripts/discover_candidates.py                 # top 40 candidates
+  python3 scripts/discover_candidates.py --top 100
+  python3 scripts/discover_candidates.py --json > out.json
+"""
+
+from __future__ import annotations
+
+import argparse
+import collections
+import json
+import pathlib
+import re
+import sys
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+
+from _github import api_get, default_branch, raw_get, repo_of  # noqa: E402
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+CATALOG = ROOT / "catalog.json"
+SIBLINGS = ROOT / "docs" / "sibling-lists.txt"
+WORKERS = 8
+
+GH = re.compile(r"https://github\.com/([A-Za-z0-9][\w.-]*)/([\w.-]+)")
+
+# GitHub's own paths, not repositories.
+SKIP_OWNERS = {
+    "sponsors",
+    "topics",
+    "features",
+    "about",
+    "pricing",
+    "login",
+    "apps",
+    "marketplace",
+    "orgs",
+    "settings",
+    "notifications",
+    "explore",
+    "collections",
+    "readme",
+    "search",
+    "users",
+    "site",
+    "github",
+}
+
+# Same signals verify_claims.py uses: an import or an endpoint is proof, a bare
+# primitive name is not, because "choice" and "score" are ordinary words.
+STRONG = [
+    "api.typesafe.ai",
+    "typesafe_sdk",
+    "@typesafe-ai/sdk",
+    "typesafe-ai/jev",
+    "typesafe/jev",
+    "jev-latest",
+    "jev-1.13",
+    "/v1/systemone",
+    "systemOne",
+    "system_one",
+    "langchain_typesafe",
+    "TypeSafeClient",
+    "AsyncTypeSafeClient",
+]
+CODE_EXT = (
+    ".py",
+    ".ts",
+    ".tsx",
+    ".js",
+    ".mjs",
+    ".jsx",
+    ".go",
+    ".rs",
+    ".rb",
+    ".java",
+    ".kt",
+    ".sql",
+    ".ex",
+    ".swift",
+    ".cs",
+)
+
+
+def slug_of(owner: str, name: str) -> str:
+    return f"{owner.lower()}/{re.sub(r'\\.git$', '', name).lower()}"
+
+
+def fetch_readme(repo_url: str) -> tuple[str, str]:
+    match = GH.match(repo_url)
+    if not match:
+        return repo_url, ""
+    slug = f"{match.group(1)}/{match.group(2)}"
+    for branch in ("main", "master"):
+        for name in ("README.md", "readme.md"):
+            try:
+                req = urllib.request.Request(
+                    f"https://raw.githubusercontent.com/{slug}/{branch}/{name}",
+                    headers={"User-Agent": "awesome-jev"},
+                )
+                with urllib.request.urlopen(req, timeout=20) as response:
+                    return repo_url, response.read().decode("utf-8", "replace")
+            except Exception:  # noqa: BLE001
+                continue
+    return repo_url, ""
+
+
+def inspect(slug: str) -> dict:
+    """Read a candidate's code and decide whether it genuinely calls Jev."""
+    meta = api_get(f"/repos/{slug}")
+    if not isinstance(meta, dict) or "stargazers_count" not in meta:
+        return {"slug": slug, "verdict": "repo-gone"}
+
+    out = {
+        "slug": slug,
+        "url": meta["html_url"],
+        "stars": meta["stargazers_count"],
+        "license": ((meta.get("license") or {}).get("spdx_id") or "unknown"),
+        "language": meta.get("language") or "-",
+        "archived": bool(meta.get("archived")),
+        "created": (meta.get("created_at") or "")[:10],
+        "pushed": (meta.get("pushed_at") or "")[:10],
+        "description": meta.get("description") or "",
+    }
+
+    branch = default_branch(slug)
+    tree = api_get(f"/repos/{slug}/git/trees/{branch}?recursive=1") if branch else None
+    if not isinstance(tree, dict) or "tree" not in tree:
+        return {**out, "verdict": "tree-unavailable"}
+
+    paths = [
+        n["path"]
+        for n in tree["tree"]
+        if n.get("type") == "blob" and n["path"].endswith(CODE_EXT)
+    ]
+    hinted = [p for p in paths if re.search(r"jev|typesafe", p, re.I)]
+    # Same preference verify_claims.py applies. A fixture called fake_jev.py
+    # proves the request shape, not that anything ever calls the API — and a
+    # fake is exactly the evidence that would embarrass this catalog later.
+    testy = re.compile(
+        r"(^|/)(tests?|spec|__tests__|fixtures?)/|\.(test|spec)\.[a-z]+$"
+        r"|_test\.[a-z]+$|test_[^/]*$|fake[_-]|mock[_-]",
+        re.I,
+    )
+    best: tuple[int, str, list[str]] | None = None
+    for path in (hinted or paths)[:30]:
+        body = raw_get(slug, branch, path)
+        if not body:
+            continue
+        found = [s for s in STRONG if s in body]
+        if not found:
+            continue
+        score = len(found) - (5 if testy.search(path) else 0)
+        if best is None or score > best[0]:
+            best = (score, path, found[:3])
+    if best:
+        return {
+            **out,
+            "verdict": "calls-jev",
+            "evidence_path": best[1],
+            "matched": best[2],
+            "evidence_is_test": bool(testy.search(best[1])),
+        }
+
+    # A README may claim Jev while the code never calls it. That gap is exactly
+    # what propagates through these lists, so name it rather than guessing.
+    _, readme = fetch_readme(out["url"])
+    mentions = any(s in readme for s in STRONG) or bool(
+        re.search(r"\bjev\b", readme, re.I)
+    )
+    return {**out, "verdict": "mentions-only" if mentions else "no-signal"}
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--top", type=int, default=40, help="candidates to verify")
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args()
+
+    if not SIBLINGS.exists():
+        print(f"error: {SIBLINGS.relative_to(ROOT)} is missing", file=sys.stderr)
+        return 1
+    lists = [
+        line.strip()
+        for line in SIBLINGS.read_text().splitlines()
+        if line.strip() and not line.startswith("#")
+    ]
+
+    print(f"harvesting {len(lists)} sibling list(s)", file=sys.stderr)
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        fetched = list(pool.map(fetch_readme, lists))
+
+    cites: collections.Counter[str] = collections.Counter()
+    reached = 0
+    for _, body in fetched:
+        if not body:
+            continue
+        reached += 1
+        for owner, name in set(GH.findall(body)):
+            if owner.lower() in SKIP_OWNERS:
+                continue
+            cites[slug_of(owner, name)] += 1
+
+    catalog = json.loads(CATALOG.read_text())
+    have = {repo_of(e) for e in catalog}
+    have |= {(repo_of(e) or "").lower() for e in catalog}
+    have = {h.lower() for h in have if h}
+    # Sibling lists themselves are already catalogued or deliberately excluded.
+    have |= {slug_of(*GH.match(u).groups()) for u in lists if GH.match(u)}
+
+    candidates = [(slug, n) for slug, n in cites.most_common() if slug not in have]
+    print(
+        f"reached {reached}/{len(lists)} lists, {len(cites)} repos cited, "
+        f"{len(candidates)} not in the catalog",
+        file=sys.stderr,
+    )
+
+    shortlist = [slug for slug, _ in candidates[: args.top]]
+    print(f"verifying the top {len(shortlist)} by citation count\n", file=sys.stderr)
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        results = list(pool.map(inspect, shortlist))
+    for result, (slug, n) in zip(results, candidates[: args.top]):
+        result["cited_by"] = n
+
+    if args.json:
+        print(json.dumps(results, indent=2, ensure_ascii=False))
+        return 0
+
+    by_verdict = collections.Counter(r["verdict"] for r in results)
+    for verdict in (
+        "calls-jev",
+        "mentions-only",
+        "no-signal",
+        "repo-gone",
+        "tree-unavailable",
+    ):
+        rows = [r for r in results if r["verdict"] == verdict]
+        if not rows:
+            continue
+        print(f"\n=== {verdict} ({len(rows)}) ===")
+        for r in rows:
+            head = f"  {r['cited_by']:>2} lists  ★{r.get('stars', 0):<7} {r['slug']}"
+            print(head)
+            if verdict == "calls-jev":
+                print(f"          {r['evidence_path']}  -> {r['matched']}")
+            if r.get("description"):
+                print(f"          {r['description'][:96]}")
+
+    print(f"\n{dict(by_verdict)}")
+    print(
+        "\nA `calls-jev` verdict means a call site was found, not that the row is "
+        "ready.\nSomeone still has to read it and write the summary — that is the "
+        "whole point."
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
