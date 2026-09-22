@@ -1,0 +1,29 @@
+# Weekly link sweep. Reports only — it never edits the catalog or moves a row
+# to retired.json, because retiring an entry needs a human-written reason.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block.
+# Permissions are read-only; a failure surfaces as a red run, not a commit.
+name: links
+
+on:
+  schedule:
+    # Mondays 06:00 UTC. Cron on GitHub is best-effort, not punctual.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sweep:
+    name: Check every catalog URL still resolves
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sweep links
+        run: python3 scripts/check_links.py

@@ -1,0 +1,50 @@
+# Injection review: no `github.event.*` value (issue/PR title, body, branch
+# name) is interpolated into any `run:` block in this workflow, so there is no
+# attacker-controlled string reaching a shell. Permissions are read-only.
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  catalog:
+    name: Validate catalog and generated READMEs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: JSON is parseable
+        run: |
+          python3 -c "
+          import json
+          for path in ('catalog.json', 'retired.json', 'schema/entry.schema.json'):
+              json.load(open(path))
+              print(f'  ok {path}')
+          "
+
+      - name: Validate entries against the schema
+        run: python3 scripts/lint.py
+
+      - name: READMEs are in sync with catalog.json
+        run: |
+          python3 scripts/build_readme.py
+          if ! git diff --quiet -- README.md README.zh-CN.md; then
+            echo "::error::README.md / README.zh-CN.md are out of sync with catalog.json."
+            echo "Run 'python3 scripts/build_readme.py' and commit the result."
+            git --no-pager diff --stat -- README.md README.zh-CN.md
+            exit 1
+          fi
+          echo "READMEs in sync"
+
+      - name: Catalog stats
+        run: python3 scripts/counts.py

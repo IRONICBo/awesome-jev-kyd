@@ -1,0 +1,286 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/kydlikebtc/awesome-jev/schema/entry.schema.json",
+  "title": "awesome-jev catalog entry",
+  "description": "One public example of Jev (TypeSafe AI's System One decision model) being used. Every entry must be attributable via sources[] and must point at a link that was reachable on the date in checked.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "title",
+    "summary",
+    "summary_zh",
+    "url",
+    "kind",
+    "patterns",
+    "sources",
+    "license"
+  ],
+  "properties": {
+    "slug": {
+      "description": "Stable kebab-case id, unique within the catalog. Never reuse a slug for a different entry.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "title": {
+      "description": "Title as published at the source, not a rewritten one.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "summary": {
+      "description": "One-line English description of what this example actually demonstrates, written for a scannable list.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "summary_zh": {
+      "description": "One-line Chinese description. Hand-written unless zh_machine is true.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "zh_machine": {
+      "description": "True when summary_zh was machine-translated rather than written by hand. The READMEs report the split rather than claiming every row is hand-written.",
+      "type": "boolean"
+    },
+    "url": {
+      "description": "Canonical link for this example. The one link a reader is told to open.",
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "kind": {
+      "description": "The form this example takes. What a reader will find when they open the link.",
+      "type": "string",
+      "enum": [
+        "official-docs",
+        "integration",
+        "project",
+        "plugin",
+        "sdk",
+        "snippet",
+        "tutorial",
+        "article",
+        "video",
+        "case-study",
+        "benchmark",
+        "discussion",
+        "alternative"
+      ]
+    },
+    "patterns": {
+      "description": "Which Jev decision patterns this example demonstrates. This is the primary axis of the catalog: the resource form changes, the decision pattern is what stays useful.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "tool-selection",
+          "intent-routing",
+          "context-compaction",
+          "safety-gating",
+          "output-validation",
+          "retry-control",
+          "human-escalation",
+          "model-routing",
+          "fan-out",
+          "search-ranking",
+          "data-extraction",
+          "classification",
+          "feature-extraction",
+          "document-triage",
+          "support-triage",
+          "content-scoring",
+          "recommendation",
+          "overview"
+        ]
+      }
+    },
+    "question_types": {
+      "description": "Which Jev question primitives the example actually calls. The yes/no primitive is named `noul`, not `binary`. Omit when the entry contains no code.",
+      "type": "array",
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["choice", "score", "noul"]
+      }
+    },
+    "languages": {
+      "description": "Programming languages the example's code is written in. Omit when there is no code.",
+      "type": "array",
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "python",
+          "typescript",
+          "javascript",
+          "go",
+          "rust",
+          "shell",
+          "java",
+          "ruby",
+          "php",
+          "csharp"
+        ]
+      }
+    },
+    "platforms": {
+      "description": "How the example reaches Jev: directly, or through a gateway or framework.",
+      "type": "array",
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "description": "Display name as shown at the source.",
+          "type": "string",
+          "minLength": 1
+        },
+        "handle": {
+          "description": "Platform handle, when it differs from the display name.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Author profile URL.",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "repo": {
+      "description": "Source repository, when the entry has one and it differs from url.",
+      "type": "string",
+      "format": "uri"
+    },
+    "stars": {
+      "description": "Repository stars on the date in checked. A popularity signal, not a quality verdict.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "repo_license": {
+      "description": "SPDX identifier of the linked project's own licence, or \"unknown\" when the project ships none. This is the code's licence, not this row's.",
+      "type": "string",
+      "minLength": 1
+    },
+    "package": {
+      "description": "Published package, when the example is installable.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["registry", "name"],
+      "properties": {
+        "registry": {
+          "type": "string",
+          "enum": ["npm", "pypi", "crates", "go", "maven", "nuget"]
+        },
+        "name": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "official": {
+      "description": "True only when published by TypeSafe AI itself. Community content from the jevai.org site is NOT official.",
+      "type": "boolean"
+    },
+    "has_code": {
+      "description": "True when the link contains code a reader could adapt. False for pure prose, news and talking-head video.",
+      "type": "boolean"
+    },
+    "published": {
+      "description": "Publication date at the source, when the source states one.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "first_seen": {
+      "description": "Date this row entered the catalog.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "checked": {
+      "description": "Date url last returned a success status.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "link_status": {
+      "description": "HTTP status from the last sweep. Only 2xx belongs in catalog.json; anything else moves to retired.json.",
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 599
+    },
+    "flags": {
+      "description": "Honesty markers a reader deserves before clicking. Kept deliberately blunt.",
+      "type": "array",
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "ai-generated",
+          "paywalled",
+          "marketing",
+          "unverified-claims",
+          "vendor-reported",
+          "early-access-required",
+          "archived",
+          "code-untested",
+          "third-party-api-key",
+          "not-jev",
+          "shadow-mode-only",
+          "no-license",
+          "single-commit"
+        ]
+      }
+    },
+    "notes": {
+      "description": "Short English caveat shown next to the row when a reader needs more than the summary.",
+      "type": "string",
+      "maxLength": 500
+    },
+    "notes_zh": {
+      "description": "Chinese counterpart of notes.",
+      "type": "string",
+      "maxLength": 500
+    },
+    "sources": {
+      "description": "Where this row came from. At least one is required so every row is attributable.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["catalog", "url"],
+        "properties": {
+          "catalog": {
+            "description": "Human name of the upstream index, site or search that surfaced this entry.",
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "license": {
+      "description": "Licence of this row's metadata, not of the linked work. CC-BY-4.0 when descriptive text was inherited from a CC BY 4.0 source (attribution is the sources[] array itself), otherwise CC0-1.0.",
+      "type": "string",
+      "enum": ["CC0-1.0", "CC-BY-4.0"],
+      "default": "CC0-1.0"
+    }
+  }
+}

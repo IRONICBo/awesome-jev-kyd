@@ -1,0 +1,56 @@
+# awesome-jev
+
+> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. 148 entries, every row attributable to a named source. 144 returned HTTP 200 on 2026-09-22; the remaining 4 are hosts that refuse scripted requests and carry no `link_status`.
+
+Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
+
+## Machine-readable data
+
+Catalog (148 entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
+Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
+JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
+
+Each entry carries: slug, title, summary (English), summary_zh (Chinese), url, kind, patterns[], question_types[], languages[], platforms[], author{name,handle,url}, repo, stars, repo_license, package{registry,name,url}, official, has_code, published, first_seen, checked, link_status, flags[], notes, notes_zh, sources[] (per-row attribution), license.
+
+## Two axes
+
+`kind` is the form of the resource: official-docs, sdk, integration, snippet, project, plugin, tutorial, case-study, benchmark, article, video, discussion, alternative.
+
+`patterns` is what decision the example makes, and is the primary index: tool-selection, intent-routing, context-compaction, safety-gating, output-validation, retry-control, human-escalation, model-routing, fan-out, search-ranking, data-extraction, classification, feature-extraction, document-triage, support-triage, content-scoring, recommendation, overview.
+
+## Human pages
+
+English index: https://github.com/kydlikebtc/awesome-jev/blob/main/README.md
+Chinese index: https://github.com/kydlikebtc/awesome-jev/blob/main/README.zh-CN.md
+Decision patterns, with when NOT to use each: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/patterns.md
+Cross-platform compatibility table: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/compatibility.md
+What to check before trusting an entry: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/vetting.md
+How the catalog was built: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/method.md
+Sources and licences: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sources.md
+Runnable examples: https://github.com/kydlikebtc/awesome-jev/blob/main/examples/README.md
+
+## What is verified
+
+Verified: the URL returned a success status on the date in `checked`; a person opened it and wrote the summary from what was actually on the page; for code entries, the call site was read to confirm which primitives are actually used; repository stars, licence and creation date came from the GitHub API.
+
+A row with no `checked` or `link_status` is one whose host refuses scripted requests — a 403 from Forbes or Medium is not evidence a page is gone, so those rows were left unstamped rather than retired or falsely marked as verified.
+
+NOT verified: whether any code runs, whether any performance claim holds, whether a project is maintained, or whether any of this is a good design for a given system. Nothing here has been executed, load-tested or security-reviewed.
+
+## Caveats for anyone summarising this data
+
+1. **Performance numbers in this space are almost all vendor-reported.** Rows flagged `vendor-reported` repeat the vendor's own benchmarks, whose reference answers were derived from other models' judgements rather than human ground truth. Only a handful of rows are independent measurements; those are `kind: benchmark` without that flag. Do not present vendor figures as measured results.
+
+2. **`kind: alternative` rows are NOT Jev.** They are independent reimplementations with a compatible wire format. Several are among the most-starred repositories mentioning Jev, and are frequently miscatalogued elsewhere as Jev usage examples. A compatible API does not imply compatible calibration, so thresholds do not transfer.
+
+3. **Jev cannot be run locally.** No weights are published. Any content titled "run Jev locally" is describing a substitute; one such article is catalogued with the `not-jev` flag specifically as a correction.
+
+4. **jevai.org is not official.** It is an unaffiliated community site running a separate API with a different endpoint and request shape. Its `/jev-api` page documents a shape matching no primary source.
+
+5. **The yes-no primitive is named `noul`, not "binary" or "boolean".** Vercel's AI SDK evaluation API spells it `boolean` and returns `.probability`; every other surface uses `noul` and `.noul`. `noul` answers carry no confidence field at all, unlike `choice` and `score`.
+
+6. **There is no portable model string.** `jev-latest` on the native API, `typesafe-ai/jev` on Vercel, `typesafe/jev` on Cloudflare, `typesafe/jev-1.13` on OpenRouter. `typesafe/jev-1` does not exist anywhere and is a common fabrication.
+
+7. **Star counts are a popularity signal, not a quality verdict.** Many entries were created within days of the model's launch; some carry `single-commit`, `no-license`, `archived` or `shadow-mode-only` flags precisely because popularity and substance diverge sharply here.
+
+8. **English is the model's primary training language.** The official docs state CJK scripts are handled but not equally well. Test on your own content before relying on it for non-English workloads.

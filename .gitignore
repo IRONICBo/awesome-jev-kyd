@@ -1,0 +1,12 @@
+# Copied in at build time by the pages workflow; never committed.
+site/catalog.json
+site/.nojekyll
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.DS_Store
+.idea/
+.vscode/

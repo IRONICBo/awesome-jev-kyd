@@ -1,0 +1,45 @@
+name: Report a problem with an entry
+description: A dead link, a wrong description, a miscategorised row, or a removal request
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections take priority over additions here. A wrong row costs more
+        than a missing one.
+
+  - type: input
+    id: slug
+    attributes:
+      label: Entry slug
+      description: The `slug` field from catalog.json, or the title if you cannot find it.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What is wrong?
+      options:
+        - "Dead link"
+        - "Link redirects somewhere else"
+        - "Summary is inaccurate"
+        - "Wrong pattern or kind"
+        - "Wrong question types — the code calls something different"
+        - "It does not actually call Jev"
+        - "Missing a caveat readers should know"
+        - "Stars, licence or metadata are out of date"
+        - "This is my project and I want it removed"
+        - "Something else"
+    validations:
+      required: true
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: Detail
+      description: >
+        For an accuracy problem, please cite what you read — a file and line, or
+        the paragraph on the page. That ends the discussion immediately.
+    validations:
+      required: true

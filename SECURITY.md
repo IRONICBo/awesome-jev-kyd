@@ -1,0 +1,51 @@
+# Security
+
+## What this repository is
+
+An index of links and metadata, plus small example scripts. It ships no service,
+collects no data, and has no runtime. The realistic risks are therefore about
+what the catalog points readers *toward*.
+
+## Reporting a problem with this repository
+
+Open a [security advisory](https://github.com/kydlikebtc/awesome-jev/security/advisories/new)
+for anything that should not be public. Otherwise open an issue.
+
+Things worth reporting:
+
+- **A catalogued project that is malicious**, exfiltrates credentials, or does
+  something materially different from what its description claims. This is the
+  most valuable report we can receive — an index that points at something
+  harmful is worse than no index.
+- **A row that fabricates an API, endpoint or package name.** Fabricated
+  documentation gets copied into people's code. One such case was found and
+  excluded during the first build; more will exist.
+- **A typosquatted package** appearing in a row's `package` field.
+
+## Before you run anything from this catalog
+
+Read [docs/vetting.md](docs/vetting.md). Briefly:
+
+- Rows flagged `code-untested` were read, not executed — including this
+  repository's own examples.
+- Fourteen linked projects declare no licence.
+- Some linked projects read screen contents, mailboxes or source trees by design.
+- A few were created with a single commit and never touched again.
+
+## The security point that matters most
+
+**Do not use a probabilistic decision as a security boundary.** It is useful
+defence in depth in front of a shell command, a write, a spend or a send. It is
+not a permission system. An attacker chooses the input, and the vendor's own
+documentation names adversarial content as a known weak spot of the model.
+
+Anything destructive or irreversible needs a deterministic rule, a real
+permission check, or a human. Several projects in this catalog get this right and
+are worth copying; at least one gate deliberately fails closed.
+
+## Workflows
+
+The GitHub Actions workflows in this repository interpolate no
+`github.event.*` value into any shell, hold read-only `contents` permission
+except where Pages requires otherwise, and never write to the catalog. If you
+find a path that breaks any of those, please report it.

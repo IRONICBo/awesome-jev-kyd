@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      awesome-jev — public examples of TypeSafe AI's Jev, indexed by decision
+    </title>
+    <meta
+      name="description"
+      content="A verified catalogue of public Jev usage examples, indexed by the decision each one makes. Every row attributable, every caveat flagged."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <style>
+      :root {
+        --bg: #0d1117;
+        --panel: #161b22;
+        --panel-2: #1c232c;
+        --line: #2d333b;
+        --fg: #e6edf3;
+        --dim: #8b949e;
+        --dimmer: #636c76;
+        --accent: #58a6ff;
+        --official: #d29922;
+        --warn: #f85149;
+        --ok: #3fb950;
+        --mono:
+          ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #ffffff;
+          --panel: #f6f8fa;
+          --panel-2: #eef1f4;
+          --line: #d0d7de;
+          --fg: #1f2328;
+          --dim: #59636e;
+          --dimmer: #818b98;
+          --accent: #0969da;
+          --official: #9a6700;
+          --warn: #cf222e;
+          --ok: #1a7f37;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.6 -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          system-ui,
+          "Helvetica Neue",
+          Arial,
+          "PingFang SC",
+          "Microsoft YaHei",
+          sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code {
+        font-family: var(--mono);
+        font-size: 0.88em;
+      }
+
+      header {
+        border-bottom: 1px solid var(--line);
+        padding: 26px 20px 20px;
+        background: var(--panel);
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 6px;
+        font-size: 26px;
+        letter-spacing: -0.02em;
+      }
+      h1 code {
+        font-size: inherit;
+        color: var(--accent);
+      }
+      .tag {
+        color: var(--dim);
+        margin: 0 0 14px;
+        max-width: 70ch;
+      }
+      .stats {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        color: var(--dim);
+        font-size: 13px;
+      }
+      .stats b {
+        color: var(--fg);
+        font-family: var(--mono);
+      }
+      .hdr-links {
+        margin-top: 14px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 13px;
+      }
+
+      .controls {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        z-index: 10;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      input[type="search"],
+      select {
+        background: var(--panel);
+        color: var(--fg);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 8px 11px;
+        font: inherit;
+        font-size: 14px;
+      }
+      input[type="search"] {
+        flex: 1;
+        min-width: 220px;
+      }
+      input[type="search"]:focus,
+      select:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: -1px;
+      }
+      .toggles {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .toggle {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        color: var(--dim);
+        border-radius: 999px;
+        padding: 4px 11px;
+        font-size: 12.5px;
+        cursor: pointer;
+        font-family: var(--mono);
+      }
+      .toggle[aria-pressed="true"] {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .toggle.warn[aria-pressed="true"] {
+        background: var(--warn);
+        border-color: var(--warn);
+      }
+      .count {
+        color: var(--dim);
+        font-size: 13px;
+        margin-left: auto;
+        font-family: var(--mono);
+      }
+
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .group-h {
+        margin: 28px 0 4px;
+        font-size: 17px;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 6px;
+      }
+      .group-h .n {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--dim);
+      }
+      .group-d {
+        color: var(--dim);
+        font-size: 13.5px;
+        margin: 0 0 12px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 13px 15px;
+        margin-bottom: 9px;
+      }
+      .card-t {
+        display: flex;
+        gap: 9px;
+        align-items: baseline;
+        flex-wrap: wrap;
+        margin-bottom: 4px;
+      }
+      .card-t a {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .star {
+        color: var(--official);
+        font-size: 12px;
+        font-family: var(--mono);
+      }
+      .kind {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--dim);
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 1px 6px;
+      }
+      .sum {
+        color: var(--fg);
+        margin: 0 0 7px;
+      }
+      .meta {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 11.5px;
+        font-family: var(--mono);
+      }
+      .pill {
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 1px 6px;
+        color: var(--dim);
+      }
+      .pill.q {
+        color: var(--ok);
+        border-color: color-mix(in srgb, var(--ok) 35%, var(--line));
+      }
+      .pill.f {
+        color: var(--warn);
+        border-color: color-mix(in srgb, var(--warn) 40%, var(--line));
+      }
+      .pill.a {
+        color: var(--accent);
+        border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+      }
+      .note {
+        color: var(--dim);
+        font-size: 13px;
+        margin: 7px 0 0;
+        padding-left: 10px;
+        border-left: 2px solid var(--line);
+      }
+      .by {
+        color: var(--dimmer);
+        font-size: 12px;
+      }
+
+      .empty {
+        text-align: center;
+        color: var(--dim);
+        padding: 60px 20px;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 40px;
+        padding: 20px;
+        color: var(--dim);
+        font-size: 13px;
+      }
+      footer .wrap {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .disc {
+        max-width: 62ch;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1><code>awesome-jev</code></h1>
+        <p class="tag" data-i18n="tagline"></p>
+        <div class="stats" id="stats"></div>
+        <div class="hdr-links">
+          <a href="https://github.com/kydlikebtc/awesome-jev">GitHub</a>
+          <a
+            href="https://github.com/kydlikebtc/awesome-jev/blob/main/docs/patterns.md"
+            data-i18n="l_patterns"
+          ></a>
+          <a
+            href="https://github.com/kydlikebtc/awesome-jev/blob/main/docs/compatibility.md"
+            data-i18n="l_compat"
+          ></a>
+          <a
+            href="https://github.com/kydlikebtc/awesome-jev/blob/main/docs/vetting.md"
+            data-i18n="l_vetting"
+          ></a>
+          <a href="catalog.json">catalog.json</a>
+          <a href="#" id="lang">中文</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="controls">
+      <div class="wrap">
+        <div class="row">
+          <input
+            type="search"
+            id="q"
+            data-i18n-ph="search"
+            autocomplete="off"
+          />
+          <select id="pattern"></select>
+          <select id="kind"></select>
+          <select id="lang_f"></select>
+          <span class="count" id="count"></span>
+        </div>
+        <div class="toggles" id="toggles"></div>
+      </div>
+    </div>
+
+    <main id="out"></main>
+
+    <footer>
+      <div class="wrap">
+        <span class="disc" data-i18n="disclaimer"></span>
+        <span
+          ><a href="https://github.com/kydlikebtc/awesome-jev/blob/main/LICENSE"
+            >MIT + CC0-1.0</a
+          ></span
+        >
+      </div>
+    </footer>
+
+    <script>
+      const STR = {
+        en: {
+          tagline:
+            "Public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each one makes. Every row attributable; every caveat flagged.",
+          search: "Search titles, summaries, platforms, notes…",
+          allPatterns: "All patterns",
+          allKinds: "All kinds",
+          allLangs: "All languages",
+          entries: "entries",
+          code: "carry code",
+          official: "official",
+          shown: "shown",
+          l_patterns: "Patterns",
+          l_compat: "Compatibility",
+          l_vetting: "Vetting",
+          empty: "Nothing matches those filters.",
+          hasCode: "code only",
+          isOfficial: "official only",
+          noFlags: "no caveats",
+          disclaimer:
+            "An unaffiliated community index. A row means the link resolved and a person read it — not that the code runs, the numbers hold, or the approach suits your system.",
+        },
+        zh: {
+          tagline:
+            "Jev（TypeSafe AI 的 System One 决策模型）的公开使用例子，按每个例子所做的决策归类。每一行可溯源，每一处警示都标出。",
+          search: "搜索标题、摘要、平台、备注……",
+          allPatterns: "全部模式",
+          allKinds: "全部形态",
+          allLangs: "全部语言",
+          entries: "条目",
+          code: "含代码",
+          official: "官方",
+          shown: "已显示",
+          l_patterns: "决策模式",
+          l_compat: "兼容性",
+          l_vetting: "核查指南",
+          empty: "没有符合这些筛选条件的条目。",
+          hasCode: "仅含代码",
+          isOfficial: "仅官方",
+          noFlags: "无警示",
+          disclaimer:
+            "一个与官方无关的社区索引。收录只意味着链接可访问、并且有人读过 —— 不代表代码能跑、数字成立、或这个做法适合你的系统。",
+        },
+      };
+
+      const PATTERNS = {
+        "tool-selection": [
+          "Tool selection",
+          "工具选择",
+          "Which tool or action to call next.",
+          "下一步该调用哪个工具或动作。",
+        ],
+        "intent-routing": [
+          "Intent routing",
+          "意图路由",
+          "Classify what the user wants, route accordingly.",
+          "判断用户意图并相应分流。",
+        ],
+        "context-compaction": [
+          "Context compaction",
+          "上下文压缩",
+          "Which tool calls and results still matter.",
+          "哪些工具调用和结果仍然相关。",
+        ],
+        "safety-gating": [
+          "Safety gating",
+          "安全闸门",
+          "Whether an action is safe to run.",
+          "一个动作是否可以安全执行。",
+        ],
+        "output-validation": [
+          "Output validation",
+          "输出校验",
+          "Check output against a rubric before it ships.",
+          "在输出发出前按评分标准检查。",
+        ],
+        "retry-control": [
+          "Retry control",
+          "重试控制",
+          "Whether a failed step is worth retrying.",
+          "失败的步骤是否值得重试。",
+        ],
+        "human-escalation": [
+          "Human escalation",
+          "人工升级",
+          "Use calibrated confidence to decide what a person sees.",
+          "用校准置信度决定哪些交给人看。",
+        ],
+        "model-routing": [
+          "Model routing",
+          "模型路由",
+          "Which downstream model or tier handles a request.",
+          "由哪个下游模型或档位处理请求。",
+        ],
+        "fan-out": [
+          "Speculative fan-out",
+          "并行扇出",
+          "Many questions in one request; code picks what mattered.",
+          "一次请求问很多问题，由代码挑出有用的。",
+        ],
+        "search-ranking": [
+          "Search & ranking",
+          "检索与排序",
+          "Score or re-rank candidates from cheaper retrieval.",
+          "对廉价检索的候选做打分或重排。",
+        ],
+        "data-extraction": [
+          "Structured extraction",
+          "结构化抽取",
+          "Select typed values rather than generating them.",
+          "靠选择而非生成来取出类型化字段。",
+        ],
+        classification: [
+          "Classification",
+          "分类",
+          "Place an item in a taxonomy, hierarchies included.",
+          "把条目归入分类体系，含深层层级。",
+        ],
+        "feature-extraction": [
+          "ML feature extraction",
+          "机器学习特征抽取",
+          "Text into numeric features for a classical model.",
+          "把文本转成数值特征喂给传统模型。",
+        ],
+        "document-triage": [
+          "Document triage",
+          "文档分拣",
+          "Classify and route incoming documents.",
+          "对进来的文档做分类和路由。",
+        ],
+        "support-triage": [
+          "Support triage",
+          "工单分拣",
+          "Route tickets by intent and urgency.",
+          "按意图和紧急度路由工单。",
+        ],
+        "content-scoring": [
+          "Content scoring",
+          "内容评分",
+          "Quality, risk or relevance on an ordered scale.",
+          "在有序量表上评质量、风险或相关性。",
+        ],
+        recommendation: [
+          "Recommendation",
+          "实时推荐",
+          "What to surface next, fast enough to be live.",
+          "下一步呈现什么，快到能实时用。",
+        ],
+        overview: [
+          "Overview",
+          "总览",
+          "Surveys the model or the space, not one pattern.",
+          "介绍模型或领域，而非单一模式。",
+        ],
+      };
+      const P_ORDER = Object.keys(PATTERNS);
+
+      const KINDS = {
+        "official-docs": ["Official docs", "官方文档"],
+        sdk: ["SDK", "SDK"],
+        integration: ["Integration", "平台集成"],
+        snippet: ["Snippet", "代码片段"],
+        project: ["Project", "开源项目"],
+        plugin: ["Plugin", "插件"],
+        tutorial: ["Tutorial", "教程"],
+        "case-study": ["Case study", "落地案例"],
+        benchmark: ["Benchmark", "基准测试"],
+        article: ["Article", "文章"],
+        video: ["Video", "视频"],
+        discussion: ["Discussion", "讨论"],
+        alternative: ["Jev-like alternative", "Jev 替代实现"],
+      };
+      const FLAGS = {
+        "not-jev": ["not Jev itself", "并非 Jev 本身"],
+        "shadow-mode-only": ["shadow mode", "仅影子运行"],
+        "early-access-required": ["early access", "需早期访问"],
+        "code-untested": ["code untested", "代码未实测"],
+        "single-commit": ["one commit", "仅一次提交"],
+        "no-license": ["no licence", "无许可证"],
+        "third-party-api-key": ["3rd-party key", "需第三方密钥"],
+        "vendor-reported": ["vendor numbers", "厂商自报数据"],
+        "unverified-claims": ["unverified claims", "宣称未核实"],
+        "ai-generated": ["AI-written", "疑似 AI 生成"],
+        marketing: ["marketing", "营销内容"],
+        paywalled: ["paywall", "付费墙"],
+        archived: ["archived", "已归档"],
+      };
+
+      let DATA = [],
+        L = "en";
+      const S = () => STR[L];
+      const lbl = (m, k) => (m[k] || [k, k])[L === "zh" ? 1 : 0];
+      const desc = (k) => (PATTERNS[k] ? PATTERNS[k][L === "zh" ? 3 : 2] : "");
+
+      const state = {
+        q: "",
+        pattern: "",
+        kind: "",
+        lang: "",
+        hasCode: false,
+        official: false,
+        noFlags: false,
+      };
+
+      function applyI18n() {
+        document.documentElement.lang = L === "zh" ? "zh-CN" : "en";
+        document
+          .querySelectorAll("[data-i18n]")
+          .forEach((el) => (el.textContent = S()[el.dataset.i18n]));
+        document
+          .querySelectorAll("[data-i18n-ph]")
+          .forEach((el) => (el.placeholder = S()[el.dataset.i18nPh]));
+        document.getElementById("lang").textContent =
+          L === "zh" ? "English" : "中文";
+      }
+
+      function buildSelects() {
+        const langs = [
+          ...new Set(DATA.flatMap((e) => e.languages || [])),
+        ].sort();
+        const fill = (id, opts, all) => {
+          const sel = document.getElementById(id);
+          const keep = sel.value;
+          sel.innerHTML =
+            `<option value="">${all}</option>` +
+            opts
+              .map(
+                ([v, t, n]) =>
+                  `<option value="${v}">${t}${n != null ? ` (${n})` : ""}</option>`,
+              )
+              .join("");
+          sel.value = keep;
+        };
+        const pc = (k) => DATA.filter((e) => e.patterns.includes(k)).length;
+        fill(
+          "pattern",
+          P_ORDER.filter(pc).map((k) => [k, lbl(PATTERNS, k), pc(k)]),
+          S().allPatterns,
+        );
+        const kc = (k) => DATA.filter((e) => e.kind === k).length;
+        fill(
+          "kind",
+          Object.keys(KINDS)
+            .filter(kc)
+            .map((k) => [k, lbl(KINDS, k), kc(k)]),
+          S().allKinds,
+        );
+        fill(
+          "lang_f",
+          langs.map((v) => [
+            v,
+            v,
+            DATA.filter((e) => (e.languages || []).includes(v)).length,
+          ]),
+          S().allLangs,
+        );
+
+        document.getElementById("toggles").innerHTML = `
+    <button class="toggle" id="t-code" aria-pressed="${state.hasCode}">${S().hasCode}</button>
+    <button class="toggle" id="t-off" aria-pressed="${state.official}">${S().isOfficial}</button>
+    <button class="toggle warn" id="t-flag" aria-pressed="${state.noFlags}">${S().noFlags}</button>`;
+        const bind = (id, key) =>
+          (document.getElementById(id).onclick = (e) => {
+            state[key] = !state[key];
+            e.currentTarget.setAttribute("aria-pressed", state[key]);
+            render();
+          });
+        bind("t-code", "hasCode");
+        bind("t-off", "official");
+        bind("t-flag", "noFlags");
+
+        const wc = DATA.filter((e) => e.has_code).length,
+          oc = DATA.filter((e) => e.official).length;
+        document.getElementById("stats").innerHTML =
+          `<span><b>${DATA.length}</b> ${S().entries}</span><span><b>${wc}</b> ${S().code}</span>` +
+          `<span><b>${oc}</b> ${S().official}</span><span><b>${P_ORDER.filter(pc).length}/${P_ORDER.length}</b> ${L === "zh" ? "覆盖模式" : "patterns"}</span>`;
+      }
+
+      function matches(e) {
+        if (state.pattern && !e.patterns.includes(state.pattern)) return false;
+        if (state.kind && e.kind !== state.kind) return false;
+        if (state.lang && !(e.languages || []).includes(state.lang))
+          return false;
+        if (state.hasCode && !e.has_code) return false;
+        if (state.official && !e.official) return false;
+        if (state.noFlags && (e.flags || []).length) return false;
+        if (!state.q) return true;
+        const hay = [
+          e.title,
+          e.summary,
+          e.summary_zh,
+          e.notes,
+          e.notes_zh,
+          e.slug,
+          (e.platforms || []).join(" "),
+          (e.languages || []).join(" "),
+          e.author && e.author.name,
+          e.url,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        return state.q
+          .toLowerCase()
+          .split(/\s+/)
+          .every((t) => hay.includes(t));
+      }
+
+      function card(e) {
+        const sum = L === "zh" ? e.summary_zh || e.summary : e.summary;
+        const note = L === "zh" ? e.notes_zh || e.notes : e.notes;
+        const pills = [
+          ...(e.question_types || []).map(
+            (q) => `<span class="pill q">${q}</span>`,
+          ),
+          ...(e.languages || []).map((x) => `<span class="pill">${x}</span>`),
+          ...(e.platforms || [])
+            .slice(0, 3)
+            .map((x) => `<span class="pill">${x}</span>`),
+          ...e.patterns.map(
+            (p) => `<span class="pill a">${lbl(PATTERNS, p)}</span>`,
+          ),
+          ...(e.flags || []).map(
+            (f) => `<span class="pill f">${lbl(FLAGS, f)}</span>`,
+          ),
+        ].join("");
+        return `<article class="card">
+    <div class="card-t">
+      <a href="${e.url}" rel="noopener">${esc(e.title)}</a>
+      ${e.official ? '<span class="star">official</span>' : ""}
+      ${e.stars != null ? `<span class="star">★${e.stars.toLocaleString()}</span>` : ""}
+      <span class="kind">${lbl(KINDS, e.kind)}</span>
+      ${e.author ? `<span class="by">${esc(e.author.name)}</span>` : ""}
+    </div>
+    <p class="sum">${esc(sum)}</p>
+    <div class="meta">${pills}</div>
+    ${note ? `<p class="note">${esc(note)}</p>` : ""}
+  </article>`;
+      }
+
+      function esc(s) {
+        return String(s == null ? "" : s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+
+      function sortKey(a, b) {
+        return (
+          (b.official ? 1 : 0) - (a.official ? 1 : 0) ||
+          (b.has_code ? 1 : 0) - (a.has_code ? 1 : 0) ||
+          (b.stars || 0) - (a.stars || 0) ||
+          a.title.localeCompare(b.title)
+        );
+      }
+
+      function render() {
+        const hits = DATA.filter(matches);
+        document.getElementById("count").textContent =
+          `${hits.length} / ${DATA.length} ${S().shown}`;
+        const out = document.getElementById("out");
+        if (!hits.length) {
+          out.innerHTML = `<p class="empty">${S().empty}</p>`;
+          return;
+        }
+
+        // Grouped by pattern unless a single pattern is selected, in which case the
+        // grouping would be one heading over everything.
+        if (state.pattern) {
+          out.innerHTML = hits.sort(sortKey).map(card).join("");
+          return;
+        }
+        out.innerHTML = P_ORDER.map((p) => {
+          const rows = hits.filter((e) => e.patterns.includes(p));
+          if (!rows.length) return "";
+          return `<h2 class="group-h">${lbl(PATTERNS, p)}<span class="n">${rows.length}</span></h2>
+      <p class="group-d">${desc(p)}</p>${rows.sort(sortKey).map(card).join("")}`;
+        }).join("");
+      }
+
+      document.getElementById("q").oninput = (e) => {
+        state.q = e.target.value;
+        render();
+      };
+      ["pattern", "kind", "lang_f"].forEach((id) => {
+        document.getElementById(id).onchange = (e) => {
+          state[id === "lang_f" ? "lang" : id] = e.target.value;
+          render();
+        };
+      });
+      document.getElementById("lang").onclick = (e) => {
+        e.preventDefault();
+        L = L === "en" ? "zh" : "en";
+        localStorage.setItem("awesome-jev-lang", L);
+        applyI18n();
+        buildSelects();
+        render();
+      };
+
+      // Stored preference wins, otherwise fall back to the browser's language.
+      // Parenthesised deliberately: `||` binds tighter than `?:`, so without
+      // these a stored "en" tests truthy and flips the page to Chinese.
+      const stored = localStorage.getItem("awesome-jev-lang");
+      L = stored || ((navigator.language || "").startsWith("zh") ? "zh" : "en");
+      if (!STR[L]) L = "en";
+
+      fetch("catalog.json")
+        .then((r) => r.json())
+        .then((d) => {
+          DATA = d;
+          applyI18n();
+          buildSelects();
+          render();
+        })
+        .catch(() => {
+          document.getElementById("out").innerHTML =
+            '<p class="empty">Could not load catalog.json. The Pages build copies it in; ' +
+            "serve this directory with <code>python3 -m http.server</code> after copying it locally.</p>";
+          applyI18n();
+        });
+    </script>
+  </body>
+</html>

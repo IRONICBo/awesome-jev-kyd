@@ -1,0 +1,5245 @@
+[
+  {
+    "slug": "typesafe-quickstart",
+    "title": "Quickstart",
+    "summary": "The canonical first call: one support ticket, one Choice, one Score and one Noul in a single request, in Python, JS and cURL.",
+    "summary_zh": "官方第一课：一条工单，一次请求里同时问一个 Choice、一个 Score 和一个 Noul，给了 Python / JS / cURL 三种写法。",
+    "url": "https://docs.typesafe.ai/introduction/quickstart",
+    "kind": "official-docs",
+    "patterns": [
+      "support-triage",
+      "fan-out"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python",
+      "typescript",
+      "shell"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-api-reference",
+    "title": "API reference",
+    "summary": "The one endpoint, POST /v1/systemone, with the exact request and answer shapes for all three question types.",
+    "summary_zh": "唯一的端点 POST /v1/systemone，给出三种问题类型的完整请求与应答结构。",
+    "url": "https://docs.typesafe.ai/api",
+    "kind": "official-docs",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "shell",
+      "python",
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "notes": "Read this before any integration: the noul answer carries no confidence field, while choice and score do.",
+    "notes_zh": "接任何集成前先读这页：noul 应答不带 confidence 字段，choice 和 score 才带。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-primitives",
+    "title": "Primitives: Choice, Score, Noul",
+    "summary": "What each primitive is for and how to write criteria, including the 255-option cap on Choice and the 2-10 level range on Score.",
+    "summary_zh": "三个原语各自的用途与 criteria 写法，含 Choice 最多 255 个选项、Score 只能 2–10 级这些硬限制。",
+    "url": "https://docs.typesafe.ai/primitives",
+    "kind": "official-docs",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python",
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-confidence",
+    "title": "Confidence",
+    "summary": "How confidence is derived from the probability distribution, and why a threshold tuned on one question type does not transfer to another.",
+    "summary_zh": "confidence 如何从概率分布推导出来，以及为什么在一种问题类型上调好的阈值不能挪到另一种上用。",
+    "url": "https://docs.typesafe.ai/confidence",
+    "kind": "official-docs",
+    "patterns": [
+      "human-escalation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": false,
+    "notes": "The concept the whole act-or-escalate design rests on. Worth reading before you pick any threshold.",
+    "notes_zh": "「自动执行还是转人工」这套设计的理论基础。定任何阈值前都该先读。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-models",
+    "title": "Models, pricing and limits",
+    "summary": "The authoritative sheet: jev-1.13.0, $0.042 per Mtok input with output free, 64k context, 32k for state plus the longest question, text input only.",
+    "summary_zh": "权威参数表：jev-1.13.0、输入 $0.042/Mtok 且输出免费、64k 上下文、state 加最长问题 32k、仅支持文本输入。",
+    "url": "https://docs.typesafe.ai/models",
+    "kind": "official-docs",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "shell",
+      "python",
+      "typescript"
+    ],
+    "notes": "Also states English is the primary training language and CJK is handled but not equally well. Rate limits carry an explicit warning that they can change without notice.",
+    "notes_zh": "该页还说明英语是主要训练语言、中日韩文「能处理但不同等」。速率限制附有官方警告：可能随时变动。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-jaggedness",
+    "title": "Jev 1.13 known limitations",
+    "summary": "The vendor's own list of where the model fails: literal reading, arithmetic and counting, date comparison, indirection, large noisy states, adversarial content.",
+    "summary_zh": "厂商自己列出的失效场景：字面化理解、算术与计数、日期比较、间接指代、夹杂大量无关细节的长 state、对抗性内容。",
+    "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
+    "kind": "official-docs",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": false,
+    "notes": "The most useful page in the docs and the least linked. It explains, among other things, that a Choice over options and one Noul per option answer different questions.",
+    "notes_zh": "官方文档里最有用、却最少被引用的一页。它还解释了一件事：对选项做一个 Choice，和每个选项各问一个 Noul，问的根本不是同一个问题。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-pattern-fan-out",
+    "title": "Pattern: Speculative fan-out",
+    "summary": "Pack many questions, including ones you may not need, into a single request and let your code decide afterwards what was relevant.",
+    "summary_zh": "把大量问题（包括可能用不上的）打包进一次请求，之后再由代码决定哪些答案真的用得上。",
+    "url": "https://docs.typesafe.ai/patterns/fan-out",
+    "kind": "official-docs",
+    "patterns": [
+      "fan-out"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-pattern-confidence-routing",
+    "title": "Pattern: Confidence-gated routing",
+    "summary": "Treat confidence as a second axis: the answer tells you what, the confidence tells you whether to act on it.",
+    "summary_zh": "把 confidence 当作第二个维度：答案告诉你「是什么」，置信度告诉你「该不该照它执行」。",
+    "url": "https://docs.typesafe.ai/patterns/confidence-routing",
+    "kind": "official-docs",
+    "patterns": [
+      "human-escalation",
+      "intent-routing"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-pattern-composite-scoring",
+    "title": "Pattern: Composite scoring",
+    "summary": "Break one broad judgement into atomic scores and combine them with weights that live in your code, not in the prompt.",
+    "summary_zh": "把一个笼统的判断拆成若干原子评分，再用你自己代码里的权重（而不是提示词里的）组合起来。",
+    "url": "https://docs.typesafe.ai/patterns/composite-scoring",
+    "kind": "official-docs",
+    "patterns": [
+      "content-scoring"
+    ],
+    "question_types": [
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-pattern-intent-routing",
+    "title": "Pattern: Intent routing",
+    "summary": "Classify an incoming request and route it to the cheapest adequate handler: deterministic code, a specialist LLM, or a person.",
+    "summary_zh": "对进来的请求做分类，路由到足够用的最便宜那个处理方：确定性代码、专用 LLM、或人。",
+    "url": "https://docs.typesafe.ai/patterns/intent-routing",
+    "kind": "official-docs",
+    "patterns": [
+      "intent-routing",
+      "model-routing"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-parallel-questions",
+    "title": "Cookbook: Parallel questions",
+    "summary": "A 13-question regulatory briefing over one long article, showing that batching every question into one call is far cheaper and faster with no change in answers.",
+    "summary_zh": "对一篇长文提 13 个合规问题，证明全部打包进一次调用便宜得多、也快得多，而答案不变。",
+    "url": "https://docs.typesafe.ai/cookbooks/parallel_questions",
+    "kind": "official-docs",
+    "patterns": [
+      "fan-out"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "The clearest demonstration of why the state is ingested once and questions are evaluated in parallel.",
+    "notes_zh": "最清楚地说明了为什么 state 只被读一次、而所有问题是并行评估的。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-rerank",
+    "title": "Cookbook: Re-ranking",
+    "summary": "Re-ranks 30-passage BM25 shortlists for 40 legal queries with one question per query-candidate pair, reporting large top-1 and top-10 gains.",
+    "summary_zh": "对 40 个法律检索问题各取 30 条 BM25 候选，按「问题-候选」逐对提问重排，top-1 与 top-10 准确率均大幅提升。",
+    "url": "https://docs.typesafe.ai/cookbooks/rerank_typesafe",
+    "kind": "official-docs",
+    "patterns": [
+      "search-ranking"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-semantic-find",
+    "title": "Cookbook: Line-by-line search",
+    "summary": "Semantic search over a terms-of-service document: one request scores 218 line ids with a Choice, and a Noul checks whether the document answers at all.",
+    "summary_zh": "对一份服务条款做语义检索：一次请求用 Choice 给 218 个行号打分，同时用 Noul 判断文档里到底有没有答案。",
+    "url": "https://docs.typesafe.ai/cookbooks/semantic_find",
+    "kind": "official-docs",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "A neat trick: the Noul guards against confidently returning the best of a set of irrelevant lines.",
+    "notes_zh": "一个巧妙设计：那个 Noul 防止了「在一堆无关的行里自信地挑出最好的一行」。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-llm-guardrails",
+    "title": "Cookbook: Guardrails for LLMs",
+    "summary": "Screens every message in and out of an LLM app in one request, naming hazards and scoring how much harm complying would do.",
+    "summary_zh": "用一次请求筛查 LLM 应用的每一条进出消息，既点明风险类型、又给「照做会造成多大危害」打分。",
+    "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
+    "kind": "official-docs",
+    "patterns": [
+      "safety-gating",
+      "output-validation"
+    ],
+    "question_types": [
+      "noul",
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "Useful, but see docs/patterns.md on safety-gating: a probabilistic screen is defence in depth, not a security boundary.",
+    "notes_zh": "有用，但请对照 docs/patterns.md 的 safety-gating 一节：概率性筛查属于纵深防御，不是安全边界。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-classifying-rag-passages",
+    "title": "Cookbook: Classifying RAG passages",
+    "summary": "Scores each retrieved passage, then decides in code which reach the answering model — keeping contradictory ones flagged and dropping ones carrying prompt injection.",
+    "summary_zh": "给每条召回的段落打分，再由代码决定哪些能进入回答模型 —— 矛盾的标记保留，夹带提示注入的直接丢弃。",
+    "url": "https://docs.typesafe.ai/cookbooks/classifying_rag_passages",
+    "kind": "official-docs",
+    "patterns": [
+      "search-ranking",
+      "safety-gating"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-function-calling",
+    "title": "Cookbook: Function calling",
+    "summary": "Maps natural-language trading requests onto ordinary typed functions by turning function names and closed-set arguments into confidence-aware questions.",
+    "summary_zh": "把自然语言的交易请求映射到普通的类型化函数：函数名和有限取值的参数各自变成一个带置信度的问题。",
+    "url": "https://docs.typesafe.ai/cookbooks/function_calling",
+    "kind": "official-docs",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "The reference answer to \"can this replace tool calling?\" — it can, for closed-set arguments.",
+    "notes_zh": "「这东西能不能替代 tool calling」的参考答案 —— 对取值有限的参数，可以。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-skill-suggestion",
+    "title": "Cookbook: Skill suggestion",
+    "summary": "Picks at most one skill out of 182 for an agent turn: one request ranks every skill and asks whether the turn needs one at all, a second reads the top three.",
+    "summary_zh": "为智能体的一轮对话从 182 个技能里最多挑一个：第一次请求给所有技能排序并顺便问「这轮到底需不需要技能」，第二次细读前三名。",
+    "url": "https://docs.typesafe.ai/cookbooks/skill_suggestion",
+    "kind": "official-docs",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "Directly applicable if you maintain an agent with a large skill or tool catalogue.",
+    "notes_zh": "如果你在维护一个技能/工具目录很大的智能体，这篇可以直接照搬。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-citation-check",
+    "title": "Cookbook: Double-checking citations",
+    "summary": "Catches wrong or invented citations against the source document with one Choice, using its confidence to flag borderline cases for review.",
+    "summary_zh": "用一个 Choice 对着原文核查引用是否错误或凭空编造，并用它的置信度把边缘情况标出来送审。",
+    "url": "https://docs.typesafe.ai/cookbooks/citation_check",
+    "kind": "official-docs",
+    "patterns": [
+      "output-validation",
+      "human-escalation"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-consistency-noul",
+    "title": "Cookbook: Self-consistency with nouls",
+    "summary": "Routes uncertain probabilities to human review while keeping the underlying noul values visible rather than collapsing them to a label.",
+    "summary_zh": "把不确定的概率转人工复核，同时保留底层的 noul 数值本身，而不是压成一个标签了事。",
+    "url": "https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook",
+    "kind": "official-docs",
+    "patterns": [
+      "human-escalation"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-consistency-choice",
+    "title": "Cookbook: Self-consistency with choices",
+    "summary": "Adds an explicit \"uncertain\" outcome to moderation decisions and measures label agreement against the share of actions taken automatically.",
+    "summary_zh": "在内容审核决策里显式加入「不确定」这个选项，并衡量标签一致率与自动处置比例之间的取舍。",
+    "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
+    "kind": "official-docs",
+    "patterns": [
+      "human-escalation",
+      "content-scoring"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "The cleanest illustration of the automation-rate versus error-rate trade-off you are actually choosing when you set a threshold.",
+    "notes_zh": "最清楚地展示了定阈值时你实际在权衡的东西：自动化率 vs 错误率。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-hierarchical-classification",
+    "title": "Cookbook: Hierarchical classification",
+    "summary": "Walks deep patent, retail, biomedical and source-code taxonomies with a parallel beam search over Choice probabilities.",
+    "summary_zh": "用对 Choice 概率做并行 beam search 的方式，遍历专利、零售、生物医学、源码这几套很深的分类体系。",
+    "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
+    "kind": "official-docs",
+    "patterns": [
+      "classification"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "How to get past the 255-option cap on a single Choice.",
+    "notes_zh": "单个 Choice 最多 255 选项这个上限的绕法。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-classification-using-confidence",
+    "title": "Cookbook: Classification using confidence",
+    "summary": "Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.",
+    "summary_zh": "把年报分入 75 个行业组，再根据答案自身的置信度决定：报这个细分组，还是退回上一层的大类。",
+    "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence",
+    "kind": "official-docs",
+    "patterns": [
+      "classification",
+      "human-escalation"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "Backing off to a coarser label instead of guessing a fine one is the single most reusable idea in the cookbooks.",
+    "notes_zh": "「与其猜一个细标签，不如退回粗标签」—— 整套 cookbook 里最可复用的一个想法。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-date-extraction",
+    "title": "Cookbook: Date extraction",
+    "summary": "Extracts absolute and relative dates by asking for the parts a document names, then resolving and validating them in code with confidence-based review.",
+    "summary_zh": "抽取绝对与相对日期：先问文档里点明了哪些部分，再在代码里做解析与校验，并按置信度决定是否送审。",
+    "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
+    "kind": "official-docs",
+    "patterns": [
+      "data-extraction"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "Note the division of labour: the model names the parts, code does the arithmetic. Date comparison is a documented weak spot.",
+    "notes_zh": "注意这里的分工：模型只负责点明部件，算术交给代码。日期比较是官方承认的弱项。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-pre-parsed-value-extraction",
+    "title": "Cookbook: Pre-parsed value extraction",
+    "summary": "Regexes find candidate emails, phone numbers and amounts; the model selects the requested span so code can normalise a verbatim value.",
+    "summary_zh": "先用正则找出候选的邮箱、电话、金额，再让模型挑出被问到的那一段，于是代码拿到的是逐字原值。",
+    "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
+    "kind": "official-docs",
+    "patterns": [
+      "data-extraction"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "The key idea behind extraction with a model that cannot generate: enumerate candidates first, then select.",
+    "notes_zh": "用「不会生成」的模型做抽取的核心思路：先枚举候选，再做选择。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-sde-cascade",
+    "title": "Cookbook: Structured data extraction cascade",
+    "summary": "A two-stage mini-then-verify-then-reasoning cascade that reaches most of a big reasoning model's quality at a fraction of the cost.",
+    "summary_zh": "「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。",
+    "url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
+    "kind": "official-docs",
+    "patterns": [
+      "data-extraction",
+      "model-routing"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-autoformat",
+    "title": "Cookbook: Structure recovery",
+    "summary": "Reconstructs Markdown from plain text that lost its formatting, in two requests: one restitches hard-wrapped lines, one classifies every block.",
+    "summary_zh": "用两次请求把丢了格式的纯文本还原成 Markdown：一次把硬换行的段落重新接起来，一次给每个块分类。",
+    "url": "https://docs.typesafe.ai/cookbooks/autoformat",
+    "kind": "official-docs",
+    "patterns": [
+      "classification",
+      "data-extraction"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "Shows companion questions that are only read when another answer makes them relevant.",
+    "notes_zh": "展示了「伴随问题」的写法：只在另一个答案让它变得相关时才去读它。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-entity-alignment",
+    "title": "Cookbook: Knowledge graph entity alignment",
+    "summary": "Decides which of 450 candidate pairs from two product catalogues describe the same thing, with one Score whose three levels are the three available actions.",
+    "summary_zh": "判断两份商品目录间 450 个候选配对里哪些指的是同一个东西 —— 一个 Score 就够，它的三级正好对应三种可执行动作。",
+    "url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
+    "kind": "official-docs",
+    "patterns": [
+      "classification",
+      "human-escalation"
+    ],
+    "question_types": [
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "Elegant design: making the scale's levels be merge / leave / escalate means there is no threshold left to fit.",
+    "notes_zh": "设计很优雅：把量表的级别直接设成「合并 / 不动 / 转人工」，于是根本不需要再去拟合阈值。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cookbook-autoresearch-feature-discovery",
+    "title": "Cookbook: Autoresearch feature discovery",
+    "summary": "An autoresearch loop that proposes questions, turns free text into numeric features, and uses model error to improve a supervised gradient-boosting regressor.",
+    "summary_zh": "一个自动研究循环：自己提出问题、把自由文本转成数值特征、再用误差反过来改进下游的梯度提升回归模型。",
+    "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
+    "kind": "official-docs",
+    "patterns": [
+      "feature-extraction"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "notes": "The most unusual use in the set: the probabilities are training features, and no user ever sees model output.",
+    "notes_zh": "整套里最不寻常的用法：概率本身就是训练特征，模型输出根本不会被用户看到。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-use-case-map",
+    "title": "Use case map",
+    "summary": "The vendor's own taxonomy: five headline categories, nineteen industry groups, and ten decision shapes from classification through to structured data extraction.",
+    "summary_zh": "厂商自己的分类体系：五大类、十九个行业方向、十种决策形态（从分类一直到结构化数据抽取）。",
+    "url": "https://docs.typesafe.ai/concepts/use-case-map",
+    "kind": "official-docs",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": false,
+    "notes": "Useful for finding a shape close to your problem. This catalog's pattern list was cross-checked against it.",
+    "notes_zh": "用来找与你问题形状相近的用例。本目录的模式分类法与它做过交叉核对。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-demo-smart-home",
+    "title": "Demo: Smart home assistant",
+    "summary": "Runnable demo code for a smart home assistant that evaluates user requests with typed decisions.",
+    "summary_zh": "一个可运行的智能家居助手示例，用类型化决策来解析用户请求。",
+    "url": "https://docs.typesafe.ai/demos/smart-home",
+    "kind": "official-docs",
+    "patterns": [
+      "intent-routing",
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-agent-skill",
+    "title": "Official agent skill for Claude Code",
+    "summary": "Installs a TypeSafe skill into Claude Code so an agent can write correct Jev calls without you pasting the API shape each time.",
+    "summary_zh": "把 TypeSafe 官方技能装进 Claude Code，让智能体自己写出正确的 Jev 调用，不必每次手动贴 API 结构。",
+    "url": "https://docs.typesafe.ai/agent-skill",
+    "kind": "official-docs",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "claude-code"
+    ],
+    "official": true,
+    "has_code": true,
+    "languages": [
+      "shell"
+    ],
+    "repo": "https://github.com/typesafe-ai/skills",
+    "repo_license": "MIT",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-sdk-python",
+    "title": "typesafe-sdk (Python)",
+    "summary": "The official Python client. Sync and async clients, retry policy with retry-after support, and Choice/Score/Noul helper classes.",
+    "summary_zh": "官方 Python 客户端。含同步与异步客户端、支持 retry-after 的重试策略，以及 Choice/Score/Noul 辅助类。",
+    "url": "https://github.com/typesafe-ai/typesafe-sdk-python",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "package": {
+      "registry": "pypi",
+      "name": "typesafe-sdk",
+      "url": "https://pypi.org/project/typesafe-sdk/"
+    },
+    "official": true,
+    "has_code": true,
+    "stars": 186,
+    "repo_license": "unknown",
+    "notes": "Method is system_one in Python but systemOne in JavaScript. Easy to get wrong when porting.",
+    "notes_zh": "Python 里方法名是 system_one，JavaScript 里是 systemOne。跨语言移植时很容易写错。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-sdk-js",
+    "title": "@typesafe-ai/sdk (TypeScript / JavaScript)",
+    "summary": "The official TypeScript client. Ships ESM, CJS and type declarations, with lowercase choice()/score()/noul() helper factories.",
+    "summary_zh": "官方 TypeScript 客户端。同时提供 ESM、CJS 和类型声明，辅助函数是小写的 choice()/score()/noul()。",
+    "url": "https://github.com/typesafe-ai/typesafe-sdk-js",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "typescript",
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "package": {
+      "registry": "npm",
+      "name": "@typesafe-ai/sdk",
+      "url": "https://www.npmjs.com/package/@typesafe-ai/sdk"
+    },
+    "official": true,
+    "has_code": true,
+    "stars": 214,
+    "repo_license": "unknown",
+    "notes": "Requires Node.js 20 or newer. Helper factories are lowercase functions here, unlike the capitalised Python classes.",
+    "notes_zh": "需要 Node.js 20 及以上。辅助工厂函数在这里是小写函数，与 Python 的大写类不同。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-skills-repo",
+    "title": "typesafe-ai/skills",
+    "summary": "The official agent-skills repository behind the Claude Code plugin, holding the SKILL.md that teaches an agent the System One API.",
+    "summary_zh": "Claude Code 插件背后的官方技能仓库，里面的 SKILL.md 教会智能体如何使用 System One API。",
+    "url": "https://github.com/typesafe-ai/skills",
+    "kind": "plugin",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "shell"
+    ],
+    "platforms": [
+      "claude-code"
+    ],
+    "official": true,
+    "has_code": true,
+    "stars": 1565,
+    "repo_license": "MIT",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "system-one-adapter-python",
+    "title": "system-one-adapter-python",
+    "summary": "A drop-in TypeSafeClient replacement backed by ordinary LLM APIs, so you can run Jev-shaped code without Jev access.",
+    "summary_zh": "一个可直接替换 TypeSafeClient 的适配器，底层走普通 LLM API —— 没有 Jev 权限也能跑 Jev 形状的代码。",
+    "url": "https://github.com/typesafe-ai/system-one-adapter-python",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "official": true,
+    "has_code": true,
+    "stars": 241,
+    "repo_license": "unknown",
+    "notes": "The best answer to \"I want to try these patterns but I am still on the waitlist\". Behaviour will differ from the real model.",
+    "notes_zh": "「想试这些模式但还在等候名单上」的最佳解法。注意它的行为与真实模型会有差异。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-launch-post",
+    "title": "Introducing System One models and Jev",
+    "summary": "The launch post: what a System One model is, why decisions were split from generation, and the vendor's latency and cost claims.",
+    "summary_zh": "发布博文：什么是 System One 模型、为什么要把决策从生成里拆出来，以及厂商自报的延迟与成本数字。",
+    "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "Diogo Almeida"
+    },
+    "official": true,
+    "has_code": false,
+    "published": "2026-09-15",
+    "flags": [
+      "vendor-reported"
+    ],
+    "notes": "All speed and cost figures here are vendor-run benchmarks. Treat them as claims, not measurements.",
+    "notes_zh": "文中所有速度与成本数字都是厂商自测。请当作宣称，而不是实测结果。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "TypeSafe AI docs index",
+        "url": "https://docs.typesafe.ai/llms.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "vercel-ai-gateway-launch",
+    "title": "TypeSafe AI Jev now available on AI Gateway",
+    "summary": "Vercel's launch note for Jev on AI Gateway, with an experimental_evaluate sample using the model string typesafe-ai/jev.",
+    "summary_zh": "Vercel 在 AI Gateway 上线 Jev 的公告，附 experimental_evaluate 示例，模型串为 typesafe-ai/jev。",
+    "url": "https://vercel.com/changelog/typesafe-ai-jev-now-available-on-ai-gateway",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "vercel-ai-gateway"
+    ],
+    "has_code": true,
+    "published": "2026-09-16",
+    "notes": "Vercel's evaluation API names the yes/no type `boolean` and returns `.probability`, where the native API uses `noul`. See docs/compatibility.md.",
+    "notes_zh": "Vercel 的 evaluation API 把是非类型叫 `boolean`、返回 `.probability`，而原生 API 用 `noul`。见 docs/compatibility.md。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Vercel changelog",
+        "url": "https://vercel.com/changelog"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "vercel-typesafe-compatible-api",
+    "title": "TypeSafe-compatible API on Vercel AI Gateway",
+    "summary": "Point the official TypeSafe SDK at Vercel by changing one baseURL, or call the gateway's systemone endpoint directly with cURL.",
+    "summary_zh": "只改一个 baseURL 就能把官方 TypeSafe SDK 指向 Vercel，也可以直接用 cURL 调网关的 systemone 端点。",
+    "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "typescript",
+      "shell"
+    ],
+    "platforms": [
+      "vercel-ai-gateway",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "notes": "The compatible path keeps the native `noul` naming; the AI SDK evaluation path does not. Pick one and stay on it.",
+    "notes_zh": "兼容路径保留原生的 `noul` 命名，AI SDK 的 evaluation 路径不保留。选一条走，别混用。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Vercel docs",
+        "url": "https://vercel.com/docs/ai-gateway"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "vercel-kb-jev-ai-sdk",
+    "title": "Using TypeSafe Jev with the AI SDK",
+    "summary": "The richest Vercel walkthrough: single and multi-question calls, probability-threshold routing, and unit tests with a mock evaluation model.",
+    "summary_zh": "Vercel 最完整的实操指南：单问题与多问题调用、按概率阈值路由，以及用 mock evaluation 模型写单元测试。",
+    "url": "https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk",
+    "kind": "tutorial",
+    "patterns": [
+      "intent-routing",
+      "fan-out"
+    ],
+    "question_types": [
+      "noul",
+      "choice",
+      "score"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "vercel-ai-gateway"
+    ],
+    "has_code": true,
+    "notes": "Needs AI SDK 7.0.105 or newer for experimental_evaluate. Confidence arrives on providerMetadata, not on the answer.",
+    "notes_zh": "需要 AI SDK 7.0.105 及以上才有 experimental_evaluate。置信度在 providerMetadata 上，不在 answer 上。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Vercel knowledge base",
+        "url": "https://vercel.com/kb"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "ai-sdk-typesafe-provider",
+    "title": "@ai-sdk/typesafe-ai provider",
+    "summary": "The AI SDK provider package for calling TypeSafe directly, with a sample covering all three question types and nested criteria shapes.",
+    "summary_zh": "直连 TypeSafe 的 AI SDK provider 包，示例覆盖三种问题类型以及嵌套的 criteria 写法。",
+    "url": "https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "typescript",
+      "javascript"
+    ],
+    "platforms": [
+      "vercel-ai-sdk",
+      "typesafe-api"
+    ],
+    "package": {
+      "registry": "npm",
+      "name": "@ai-sdk/typesafe-ai",
+      "url": "https://www.npmjs.com/package/@ai-sdk/typesafe-ai"
+    },
+    "has_code": true,
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "AI SDK providers",
+        "url": "https://ai-sdk.dev/providers"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cloudflare-workers-ai-jev",
+    "title": "Jev on Cloudflare Workers AI",
+    "summary": "Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.",
+    "summary_zh": "Workers AI binding 与 REST 示例：一次调用同时问 noul、choice、score，并给出含逐答案置信度的完整响应。",
+    "url": "https://developers.cloudflare.com/ai/models/typesafe/jev/",
+    "kind": "integration",
+    "patterns": [
+      "support-triage",
+      "fan-out"
+    ],
+    "question_types": [
+      "noul",
+      "choice",
+      "score"
+    ],
+    "languages": [
+      "typescript",
+      "shell"
+    ],
+    "platforms": [
+      "cloudflare-workers-ai"
+    ],
+    "has_code": true,
+    "notes": "Model string is typesafe/jev here, and state plus questions are wrapped in an `input` object. You cannot port a native client by swapping the URL.",
+    "notes_zh": "这里模型串是 typesafe/jev，且 state 与 questions 被包在 `input` 对象里。原生客户端不能只换 URL 就移植过来。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Cloudflare Workers AI models",
+        "url": "https://developers.cloudflare.com/ai/models/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "langchain-typesafe-provider",
+    "title": "langchain-typesafe",
+    "summary": "The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.",
+    "summary_zh": "LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。",
+    "url": "https://docs.langchain.com/oss/python/integrations/providers/typesafe",
+    "kind": "integration",
+    "patterns": [
+      "model-routing",
+      "safety-gating",
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "langchain"
+    ],
+    "package": {
+      "registry": "pypi",
+      "name": "langchain-typesafe",
+      "url": "https://pypi.org/project/langchain-typesafe/"
+    },
+    "has_code": true,
+    "flags": [
+      "early-access-required"
+    ],
+    "notes": "Published as an alpha. AutoModeMiddleware is the clearest published example of gating a destructive tool call.",
+    "notes_zh": "目前是 alpha 版。AutoModeMiddleware 是已公开的、最清楚的「拦截破坏性工具调用」示例。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "LangChain integrations",
+        "url": "https://docs.langchain.com/oss/python/integrations/providers/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "langchain-blog-jev",
+    "title": "Building a Harness with Jev",
+    "summary": "LangChain's explainer and integration walkthrough: the three question types, plus model routing and gating risky tool calls before they run.",
+    "summary_zh": "LangChain 的讲解兼集成实操：三种问题类型，加上模型路由、以及在高风险工具调用执行前拦截它。",
+    "url": "https://www.langchain.com/blog/building-a-harness-with-jev",
+    "kind": "article",
+    "patterns": [
+      "model-routing",
+      "safety-gating"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "langchain"
+    ],
+    "has_code": true,
+    "flags": [
+      "vendor-reported"
+    ],
+    "notes": "Repeats the vendor's 200x/400x figures without independent measurement. The page <title> tag differs from the on-page heading used here.",
+    "notes_zh": "文中照搬厂商 200x/400x 的数字，没有独立实测。该页 <title> 标签与此处采用的页面标题不一致。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "LangChain blog",
+        "url": "https://www.langchain.com/blog"
+      }
+    ],
+    "license": "CC0-1.0",
+    "author": {
+      "name": "Sydney Runkle, Hunter Lovell"
+    },
+    "published": "2026-09-17",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "pydantic-ai-typesafe",
+    "title": "TypeSafe models in Pydantic AI",
+    "summary": "First-party Pydantic AI support: an Agent with output_type=bool over the typesafe:jev-latest model string.",
+    "summary_zh": "Pydantic AI 的一方支持：用 typesafe:jev-latest 这个模型串、配 output_type=bool 建 Agent。",
+    "url": "https://pydantic.dev/docs/ai/models/typesafe/",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "pydantic-ai"
+    ],
+    "package": {
+      "registry": "pypi",
+      "name": "pydantic-ai-slim",
+      "url": "https://pypi.org/project/pydantic-ai-slim/"
+    },
+    "has_code": true,
+    "notes": "Its design advice is the best one-liner on the subject: ask each field the kind of judgement a knowledgeable person makes in a second.",
+    "notes_zh": "它给的设计建议是这个话题上最好的一句总结：每个字段问的，应该是懂行的人一秒钟就能下的判断。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Pydantic AI docs",
+        "url": "https://pydantic.dev/docs/ai/models/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "litellm-typesafe-passthrough",
+    "title": "TypeSafe pass-through on LiteLLM",
+    "summary": "Proxy Jev through LiteLLM for unified keys and cost tracking, with any path under /typesafe/ passed straight through.",
+    "summary_zh": "通过 LiteLLM 代理 Jev，统一密钥与成本追踪，/typesafe/ 下的任意路径都直接透传。",
+    "url": "https://docs.litellm.ai/docs/pass_through/typesafe",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "shell"
+    ],
+    "platforms": [
+      "litellm"
+    ],
+    "has_code": true,
+    "notes": "Streaming is not supported, because the upstream API does not stream. Cost tracking reads usage.input_tokens.",
+    "notes_zh": "不支持流式，因为上游 API 本身不支持。成本追踪读的是 usage.input_tokens。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "LiteLLM docs",
+        "url": "https://docs.litellm.ai/docs/pass_through"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "openrouter-typesafe",
+    "title": "TypeSafe on OpenRouter",
+    "summary": "OpenRouter's listing for Jev, with its own model ids and the unusual pricing shape of paid input and free output.",
+    "summary_zh": "OpenRouter 上的 Jev 条目，有自己的模型 id，以及「输入收费、输出免费」这种少见的定价结构。",
+    "url": "https://openrouter.ai/typesafe",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "openrouter"
+    ],
+    "has_code": false,
+    "notes": "Model ids here are typesafe/jev-1.13 and ~typesafe/jev-latest — note the tilde. The listing page carries no code sample.",
+    "notes_zh": "这里的模型 id 是 typesafe/jev-1.13 和 ~typesafe/jev-latest —— 注意那个波浪号。该页没有代码示例。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "OpenRouter providers",
+        "url": "https://openrouter.ai/providers"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "netlify-ai-gateway-jev",
+    "title": "Jev on Netlify AI Gateway",
+    "summary": "Zero-config access from a Netlify function: use the official SDK with no API key, base URL or provider setup, billed through Netlify credits.",
+    "summary_zh": "在 Netlify function 里零配置调用：直接用官方 SDK，不需要 API key、baseURL 或 provider 配置，按 Netlify credits 计费。",
+    "url": "https://www.netlify.com/changelog/typesafe-jev-ai-gateway/",
+    "kind": "integration",
+    "patterns": [
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "netlify"
+    ],
+    "has_code": true,
+    "published": "2026-09-22",
+    "notes": "The lowest-friction way to try Jev if you already deploy on Netlify. Requires Node.js 20 or newer.",
+    "notes_zh": "如果你本来就部署在 Netlify，这是门槛最低的试用方式。需要 Node.js 20 及以上。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Netlify changelog",
+        "url": "https://www.netlify.com/changelog/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "aimlapi-jev",
+    "title": "Jev on AI/ML API",
+    "summary": "Another gateway route, notable because its endpoint path and request envelope differ again from both the native API and Cloudflare's.",
+    "summary_zh": "又一个网关接入路径，值得记一笔是因为它的端点路径和请求外壳跟原生 API、跟 Cloudflare 都不一样。",
+    "url": "https://docs.aimlapi.com/api-references/decision-models/typesafe/jev",
+    "kind": "integration",
+    "patterns": [
+      "support-triage"
+    ],
+    "question_types": [
+      "noul",
+      "choice",
+      "score"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "aimlapi"
+    ],
+    "has_code": true,
+    "notes": "Posts to /v1/decisions rather than /v1/systemone. One more reason to read docs/compatibility.md before switching gateways.",
+    "notes_zh": "请求发往 /v1/decisions 而不是 /v1/systemone。又一个换网关前该读 docs/compatibility.md 的理由。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "AI/ML API docs",
+        "url": "https://docs.aimlapi.com/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "langfuse-typesafe-observability",
+    "title": "Tracing Jev calls with Langfuse",
+    "summary": "The only platform with dedicated Jev observability: an OpenInference instrumentor that traces every decision call over OpenTelemetry.",
+    "summary_zh": "目前唯一有 Jev 专用可观测性的平台：一个 OpenInference instrumentor，通过 OpenTelemetry 追踪每次决策调用。",
+    "url": "https://langfuse.com/integrations/model-providers/typesafe",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "langfuse"
+    ],
+    "package": {
+      "registry": "pypi",
+      "name": "openinference-instrumentation-typesafe",
+      "url": "https://pypi.org/project/openinference-instrumentation-typesafe/"
+    },
+    "has_code": true,
+    "notes": "Because it is plain OpenTelemetry the traces can go to any OTLP backend, though only Langfuse documents Jev-specific handling.",
+    "notes_zh": "因为走的是标准 OpenTelemetry，追踪数据可以发往任意 OTLP 后端；但只有 Langfuse 文档写了 Jev 专门的处理。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Langfuse integrations",
+        "url": "https://langfuse.com/integrations"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "spring-ai-typesafe",
+    "title": "spring-ai-typesafe",
+    "summary": "A community Spring AI starter bringing typed decisions to Java, with a builder API over the three question types.",
+    "summary_zh": "社区维护的 Spring AI starter，把类型化决策带到 Java，用 builder API 封装三种问题类型。",
+    "url": "https://spring.io/blog/2026/09/21/spring-ai-typesafe-structured-judgment",
+    "kind": "integration",
+    "patterns": [
+      "support-triage"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "java"
+    ],
+    "platforms": [
+      "spring-ai"
+    ],
+    "repo": "https://github.com/spring-ai-community/spring-ai-typesafe",
+    "has_code": true,
+    "published": "2026-09-21",
+    "notes": "Maintained by spring-ai-community, not the Spring team. The only Java route found.",
+    "notes_zh": "由 spring-ai-community 维护，不是 Spring 官方团队。目前找到的唯一 Java 路径。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Spring blog",
+        "url": "https://spring.io/blog"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "fast-jev-compaction",
+    "title": "fast-jev-compaction",
+    "summary": "A Claude Code plugin that replaces the compaction summary with per-item decisions: stale tool calls are dropped or truncated, everything kept stays verbatim.",
+    "summary_zh": "一个 Claude Code 插件，用逐条决策取代压缩式摘要：过期的工具调用被丢弃或截断，保留下来的全部逐字不变。",
+    "url": "https://github.com/tamaratran/fast-jev-compaction",
+    "kind": "plugin",
+    "patterns": [
+      "context-compaction"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "claude-code",
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "tamaratran",
+      "handle": "@tamarajtran",
+      "url": "https://github.com/tamaratran"
+    },
+    "has_code": true,
+    "stars": 6005,
+    "repo_license": "MIT",
+    "notes": "Exactly two nouls per tool call: does knowing this call happened still matter, and is the full output still needed verbatim. Despite the word \"scored\" in its own description, no score primitive is used.",
+    "notes_zh": "每次工具调用恰好两个 noul：知道这次调用发生过是否还有意义、以及是否还需要完整原文输出。尽管它自己的描述里用了「打分」，实际并未使用 score 原语。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "jevai.org community site",
+        "url": "https://www.jevai.org/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "question_types": [
+      "noul"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevlike",
+    "title": "jevlike",
+    "summary": "An independent, trainable model with the same input and output shape as Jev: text plus N options in, one probability per option out, in a single pass.",
+    "summary_zh": "一个独立可训练的模型，输入输出形状与 Jev 相同：文本加 N 个选项进，每个选项一个概率出，单次前向完成。",
+    "url": "https://github.com/vinnylarouge/jevlike",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "vinnylarouge",
+      "url": "https://github.com/vinnylarouge"
+    },
+    "has_code": true,
+    "stars": 1169,
+    "repo_license": "MIT",
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Corrected: this does not call the Jev API at all — verified, zero references across 52 files. Its own README says \"This is a research starter, not a copy of Jev\" and does not claim parity. The visual scoring is a demo, not the product.",
+    "notes_zh": "已更正：它完全不调用 Jev API —— 已核实，52 个文件中零引用。其 README 自述「这是研究起点，不是 Jev 的复制品」，也未声称达到同等质量。视觉打分只是演示，不是主体。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      },
+      {
+        "catalog": "jevai.org community site",
+        "url": "https://www.jevai.org/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevai-org-community-site",
+    "title": "jevai.org community site",
+    "summary": "An unaffiliated community site with a playground, a preset decision API, an MCP server, downloadable skills and a gallery of community apps.",
+    "summary_zh": "一个与官方无关的社区站：有 playground、预设决策 API、MCP 服务、可下载技能，以及一个社区应用展示廊。",
+    "url": "https://www.jevai.org/",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "jevai-org"
+    ],
+    "has_code": true,
+    "languages": [
+      "shell"
+    ],
+    "flags": [
+      "unverified-claims",
+      "third-party-api-key"
+    ],
+    "notes": "Not official and not TypeSafe's API — it runs its own endpoint, request shape and keys. Its /jev-api page shows a request shape that matches no primary source; do not copy code from it. See docs/vetting.md.",
+    "notes_zh": "非官方，也不是 TypeSafe 的 API —— 它跑的是自己的端点、请求结构和密钥。其 /jev-api 页面给出的请求结构与任何一手来源都不符，不要从那里抄代码。见 docs/vetting.md。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "jevai.org community site",
+        "url": "https://www.jevai.org/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevai-org-cases",
+    "title": "jevai.org community showcase cases",
+    "summary": "Nine worked community scenarios: intent routing, invoice classification, news filtering, product tagging, moderation, claim verification, CSV validation and more.",
+    "summary_zh": "九个社区演练场景：意图路由、发票分类、新闻过滤、商品打标、内容审核、主张核验、CSV 校验等。",
+    "url": "https://www.jevai.org/cases",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "document-triage",
+      "classification",
+      "content-scoring"
+    ],
+    "platforms": [
+      "jevai-org"
+    ],
+    "has_code": false,
+    "flags": [
+      "unverified-claims"
+    ],
+    "notes": "Labelled \"Community Inspiration\" on the site itself, i.e. not official material and not reviewed by TypeSafe.",
+    "notes_zh": "站点自己标注为「Community Inspiration」，即非官方内容，也未经 TypeSafe 审核。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "jevai.org community site",
+        "url": "https://www.jevai.org/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevai-org-apps-gallery",
+    "title": "jevai.org community app gallery",
+    "summary": "Thirty-six community builds curated from social posts: browser agents, spreadsheet tooling, inbox search by intent, ad blocking with judgement, games and robotics.",
+    "summary_zh": "从社交帖子里策展的 36 个社区作品：浏览器智能体、表格工具、按意图搜邮箱、会判断的广告拦截、游戏与机器人。",
+    "url": "https://www.jevai.org/apps",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "jevai-org"
+    ],
+    "has_code": false,
+    "flags": [
+      "unverified-claims"
+    ],
+    "notes": "Cards link to social posts rather than repos, so most are demos rather than runnable code. Useful for seeing the range of what people tried in week one.",
+    "notes_zh": "卡片链接的是社交帖子而非代码仓库，所以多数是演示、不是可运行代码。适合用来了解第一周大家都试了些什么。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "jevai.org community site",
+        "url": "https://www.jevai.org/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "forbes-jev-decision-costs",
+    "title": "Jev Cuts AI Decision Costs 100x And Vercel, Cloudflare Rushed To Add It",
+    "summary": "Mainstream coverage of the launch and the speed with which gateways added support.",
+    "summary_zh": "主流媒体对这次发布、以及各家网关上线速度的报道。",
+    "url": "https://www.forbes.com/sites/josipamajic/2026/09/19/jev-cuts-ai-decision-costs-100x-and-vercel-cloudflare-rushed-to-add-it/",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Josipa Majic Predin"
+    },
+    "has_code": false,
+    "published": "2026-09-19",
+    "flags": [
+      "vendor-reported",
+      "paywalled"
+    ],
+    "notes": "The 100x figure is the vendor's. \"Rushed to add it\" is the writer's framing; the integrations themselves are independently confirmed elsewhere in this catalog.",
+    "notes_zh": "100x 这个数字来自厂商。「匆忙上线」是作者的措辞；但集成本身在本目录里已独立确认。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://www.forbes.com/sites/josipamajic/"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
+    "slug": "beam-ai-jev-decision-model",
+    "title": "Jev by TypeSafe: A Decision Model for AI Agents",
+    "summary": "An agent-builder's framing of where a decision model sits in an agent stack.",
+    "summary_zh": "从智能体开发者角度，讲决策模型在智能体技术栈里的位置。",
+    "url": "https://beam.ai/agentic-insights/jev-typesafe-ai-agents",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "has_code": false,
+    "flags": [
+      "marketing"
+    ],
+    "notes": "Published on a vendor's own insights blog, so read it as positioning as well as explanation.",
+    "notes_zh": "发在某厂商自己的 insights 博客上，读的时候要意识到它同时也是在做定位宣传。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://beam.ai/agentic-insights"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "aihubmix-jev-explained",
+    "title": "Jev Explained: How to Add Fast, Typed Decisions to an AI Agent",
+    "summary": "A third-party explainer with a useful architecture sketch and an unusually honest list of cases where you should not use a decision model.",
+    "summary_zh": "第三方解读文章，给了一张有用的架构草图，还罕见地诚实列出了「不该用决策模型」的场景。",
+    "url": "https://aihubmix.com/blog/jev-explained-how-to-add-fast-typed-decisions-to-an-ai-agent",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "langchain"
+    ],
+    "has_code": true,
+    "flags": [
+      "code-untested"
+    ],
+    "notes": "Its code sample calls the LangChain classifier with keyword arguments, but the official signature takes a single dict. Read the article, not its snippet.",
+    "notes_zh": "文中代码用关键字参数调用 LangChain 分类器，而官方签名接收的是单个 dict。读文章可以，别照抄那段代码。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://aihubmix.com/blog"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "autogpt-typesafe-blocks",
+    "title": "AutoGPT TypeSafe blocks",
+    "summary": "Seven production blocks — choice, score, yes/no, ask-many, route, pick-best, filter — with a UTF-8 byte budget, verbatim wire capture and eleven test files.",
+    "summary_zh": "七个生产级 block（choice/score/yes-no/ask-many/route/pick-best/filter），带 UTF-8 字节预算、逐字报文留存和十一个测试文件。",
+    "url": "https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/blocks/typesafe",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "search-ranking",
+      "content-scoring",
+      "fan-out"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "autogpt",
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/Significant-Gravitas/AutoGPT",
+    "has_code": true,
+    "stars": 187483,
+    "repo_license": "NOASSERTION",
+    "notes": "The most engineering-serious integration found. It caps a serialised request at 30,976 UTF-8 bytes because no Jev tokenizer is published, and preserves invalid UTF-8 as base64 rather than replacement characters.",
+    "notes_zh": "目前找到的工程最严谨的集成。因为官方没有公开 Jev 的 tokenizer，它把序列化请求保守限制在 30,976 UTF-8 字节；响应含非法 UTF-8 时用 base64 保留原始字节而非替换字符。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "cua-jev-use",
+    "title": "Cua driver: jev-use example",
+    "summary": "Computer-use action selection in Python and TypeScript: Jev picks the next browser action from an immutable candidate set, with reobserve and abstain as reserved options.",
+    "summary_zh": "Python 与 TypeScript 双实现的 computer-use 动作选择：Jev 从不可变候选集里挑下一个浏览器动作，保留 reobserve 和 abstain 两个特殊选项。",
+    "url": "https://github.com/trycua/cua/tree/main/libs/cua-driver/examples/jev-use",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "python",
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/trycua/cua",
+    "has_code": true,
+    "stars": 25737,
+    "repo_license": "MIT",
+    "notes": "Worth copying its rigour: it validates that every probability is finite and in range, rejects an answer outside the candidate set, sends typed bounds instead of screenshot bytes, and ships a mock adapter so the whole loop runs with no key and no network.",
+    "notes_zh": "它的严谨程度值得照搬：校验每个概率有限且在区间内、拒绝候选集之外的答案、发送类型化坐标而非截图字节，还提供 mock 适配器让整个循环无密钥无网络也能跑。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "fastmcp-jev-search",
+    "title": "FastMCP jev_search transform",
+    "summary": "Two-stage MCP tool search: a wide Choice coarse-ranks the whole catalogue, then a shortlist gets full descriptions plus one Noul each to decide whether it does the job at all.",
+    "summary_zh": "两段式 MCP 工具检索：先用一个宽 Choice 对整个目录粗排，再给候选短名单配完整描述，每个候选各配一个 Noul 判断它到底是否胜任。",
+    "url": "https://github.com/PrefectHQ/fastmcp/blob/main/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "search-ranking"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "mcp",
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/PrefectHQ/fastmcp",
+    "has_code": true,
+    "stars": 27847,
+    "repo_license": "Apache-2.0",
+    "notes": "The per-candidate Noul is the point: it lets the search return nothing when no tool fits, instead of confidently returning the least wrong one.",
+    "notes_zh": "逐候选的那个 Noul 才是关键：它让检索在没有工具匹配时返回空，而不是自信地返回最不离谱的那个。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "lancedb-typesafe-reranker",
+    "title": "LanceDB TypeSafeReranker",
+    "summary": "A vector-database reranker that asks one Noul per result and uses the yes-probability as an absolute relevance score, comparable across queries.",
+    "summary_zh": "向量数据库的重排器：对每条结果问一个 Noul，把「是」的概率当作绝对相关性分数 —— 可以跨查询比较。",
+    "url": "https://github.com/lancedb/lancedb/blob/main/python/python/lancedb/rerankers/typesafe.py",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "lancedb",
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/lancedb/lancedb",
+    "has_code": true,
+    "stars": 11494,
+    "repo_license": "Apache-2.0",
+    "notes": "Note the design claim: because a noul is an absolute probability rather than a relative rank, scores are comparable across queries and a fixed threshold is meaningful.",
+    "notes_zh": "注意它的设计主张：因为 noul 是绝对概率而不是相对排名，分数可以跨查询比较，固定阈值才有意义。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "composio-typesafe-provider",
+    "title": "Composio TypeSafe provider",
+    "summary": "Compiles a tool catalogue into questions and reconstructs tool calls from the answers, with typed errors for abstention and confirmation-required cases.",
+    "summary_zh": "把工具目录编译成问题，再从答案还原出 tool call，并为「弃权」和「需确认」两种情况定义了专门的错误类型。",
+    "url": "https://github.com/ComposioHQ/composio/tree/next/python/providers/typesafe",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "human-escalation"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "composio",
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/ComposioHQ/composio",
+    "has_code": true,
+    "stars": 30278,
+    "repo_license": "MIT",
+    "notes": "Its docstring states the constraint plainly: Jev is not an LLM and has no tool calling, so the provider does the translation in both directions.",
+    "notes_zh": "它的 docstring 把约束讲得很直白：Jev 不是 LLM、没有 tool calling，所以这个 provider 负责双向翻译。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "opik-typesafe-tracker",
+    "title": "Opik TypeSafe tracker",
+    "summary": "Wraps the sync and async clients so every system_one call is recorded as a traced span.",
+    "summary_zh": "包装同步与异步客户端，把每次 system_one 调用记录成一个可追踪的 span。",
+    "url": "https://github.com/comet-ml/opik/blob/main/sdks/python/src/opik/integrations/typesafe/opik_tracker.py",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "opik",
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/comet-ml/opik",
+    "has_code": true,
+    "stars": 22187,
+    "repo_license": "Apache-2.0",
+    "notes": "Pins typesafe-sdk 0.7.0 or newer, because the response objects changed representation at that version. A useful warning if you are on an older SDK.",
+    "notes_zh": "要求 typesafe-sdk 0.7.0 及以上，因为响应对象在该版本换了表示方式。如果你还在用旧 SDK，这是个有用的提醒。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "bifrost-typesafe-gateway",
+    "title": "Bifrost TypeSafe gateway route",
+    "summary": "A Go gateway provider that passes the native API through one-to-one, so the official SDKs work by changing only the base URL.",
+    "summary_zh": "一个 Go 网关 provider，对原生 API 做一比一透传 —— 官方 SDK 只需改 base URL 即可使用。",
+    "url": "https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "go"
+    ],
+    "platforms": [
+      "bifrost",
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/maximhq/bifrost",
+    "has_code": true,
+    "stars": 8222,
+    "repo_license": "Apache-2.0",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "realpython-hello-jev",
+    "title": "Real Python: hello-jev",
+    "summary": "A teaching example with a deliberate control group: the same station-enquiry task written in plain Python that only accepts Y/N, next to a Noul that reads intent.",
+    "summary_zh": "带对照组的教学示例：同一个问询台任务，一份是只认 Y/N 的纯 Python 写法，旁边是一个能读出意图的 Noul。",
+    "url": "https://github.com/realpython/materials/tree/master/hello-jev",
+    "kind": "tutorial",
+    "patterns": [
+      "intent-routing"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "openrouter",
+      "typesafe-api"
+    ],
+    "repo": "https://github.com/realpython/materials",
+    "author": {
+      "name": "Real Python",
+      "url": "https://realpython.com"
+    },
+    "has_code": true,
+    "stars": 5205,
+    "repo_license": "MIT",
+    "notes": "The gentlest starting point. Its README points the SDK at OpenRouter so you can try it without a TypeSafe account, and it uses a two-sided threshold with a re-ask band in the middle.",
+    "notes_zh": "最平缓的入门点。README 把 SDK 指向 OpenRouter，于是不注册 TypeSafe 账号也能试；它用的是双侧阈值，中间区间重问一次。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-moderation-bot",
+    "title": "Jev-Moderation-Bot",
+    "summary": "A Discord moderation bot: a Choice tiers each message while a Noul carries ban urgency, and an admin pardon is fed back as a safe precedent in later requests.",
+    "summary_zh": "一个 Discord 审核机器人：用 Choice 给每条消息定级、用 Noul 表示封禁紧急度，管理员一旦赦免，该消息会作为「安全先例」注入后续请求。",
+    "url": "https://github.com/brainstormity/Jev-Moderation-Bot",
+    "kind": "project",
+    "patterns": [
+      "content-scoring",
+      "safety-gating",
+      "human-escalation"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "discord",
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "brainstormity",
+      "url": "https://github.com/brainstormity"
+    },
+    "has_code": true,
+    "stars": 42,
+    "repo_license": "unknown",
+    "notes": "The clearest end-user application found, and the only one using in-context precedent to suppress repeat false positives. Ships no LICENSE file despite the README.",
+    "notes_zh": "找到的最清晰的终端应用，也是唯一用「上下文内先例」来抑制重复误判的。README 提到许可，但仓库里没有 LICENSE 文件。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-go-community",
+    "title": "typesafe-go",
+    "summary": "A zero-dependency community Go SDK, including a static analyser that flags poorly designed questions at compile time.",
+    "summary_zh": "零依赖的社区 Go SDK，还带一个静态分析器，能在编译期指出设计不良的问题。",
+    "url": "https://github.com/Nibir1/typesafe-go",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "go"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "Nibir1",
+      "url": "https://github.com/Nibir1"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "Apache-2.0",
+    "flags": [
+      "code-untested"
+    ],
+    "notes": "There is no official Go SDK, so this fills a real gap. It states plainly that it is unaffiliated. Maturity is unverified and it has no stars yet.",
+    "notes_zh": "官方没有 Go SDK，所以它填的是真实空缺。它明确声明与官方无隶属关系。成熟度未经验证，目前也还没有 star。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "aegis-typesafe-provider",
+    "title": "aegis: TypeSafe as a first-class provider",
+    "summary": "A personal Rust AI gateway with a TypeSafe provider, usage extraction and alias resolution tested against real response bodies.",
+    "summary_zh": "一个个人 Rust AI 网关，内置 TypeSafe provider，用真实响应体测试了用量提取与别名解析。",
+    "url": "https://github.com/dvjn/aegis",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "rust"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "dvjn",
+      "url": "https://github.com/dvjn"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "flags": [
+      "code-untested"
+    ],
+    "notes": "Small, but its bundled skill file is an unusually accurate guide to writing state as a structured object and keeping deterministic work in code. No LICENSE file despite the README.",
+    "notes_zh": "规模很小，但它自带的 skill 文件是一份相当准确的指南：如何把 state 写成结构化对象、以及把确定性工作留在代码里。README 提到许可，但仓库里没有 LICENSE 文件。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "lindfors-early-access-test",
+    "title": "An early-access test of TypeSafe's Jev: calibrated judgments for half a cent",
+    "summary": "The best independent test found: 24 Norwegian documents on one pinned model version, opening with a case the model got wrong while correctly reporting low confidence.",
+    "summary_zh": "找到的最好的独立实测：固定单一模型版本、24 份挪威语文档，开篇就展示了一个模型答错、但同时正确报出低置信度的案例。",
+    "url": "https://lindfors.no/blog/a-first-look-at-typesafes-jev/",
+    "kind": "benchmark",
+    "patterns": [
+      "classification",
+      "human-escalation"
+    ],
+    "author": {
+      "name": "Lindfors"
+    },
+    "has_code": false,
+    "published": "2026-09-18",
+    "notes": "Methodology is stated cleanly and scoped honestly as a single-day snapshot. Leading with a failure case is what makes it a real calibration test rather than a testimonial.",
+    "notes_zh": "方法论交代干净，并诚实限定为「单日快照」。开篇就摆失败案例，这才让它成为真正的校准检验，而不是一篇软文。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Hacker News",
+        "url": "https://news.ycombinator.com/item?id=49752426"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "nearhere-three-way-comparison",
+    "title": "Testing TypeSafe Jev, Mistral and Gemini for local event validation",
+    "summary": "The only three-way head-to-head found, with each model's prompt tuned separately and the scope limited to one task rather than a general ranking.",
+    "summary_zh": "找到的唯一三方横评，每个模型分别调过提示词，且明确把范围限定在单一任务上、不做通用排名。",
+    "url": "https://nearhere.events/blog/typesafe-jev-mistral-gemini-event-validation",
+    "kind": "benchmark",
+    "patterns": [
+      "output-validation",
+      "classification"
+    ],
+    "author": {
+      "name": "Near Here"
+    },
+    "has_code": false,
+    "published": "2026-09-16",
+    "notes": "Self-limits correctly: a use-case study, not a model leaderboard. That restraint is rarer than the numbers.",
+    "notes_zh": "自我限定很规范：这是用例研究，不是模型排行榜。这种克制比数字本身更少见。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Hacker News",
+        "url": "https://news.ycombinator.com/item?id=49724424"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
+    "slug": "arize-decision-models-vs-llm-judges",
+    "title": "TypeSafe's Jev: Can decision models replace LLM judges?",
+    "summary": "Collects the third-party evaluations that exist so far and frames the question of where a decision model can stand in for an LLM judge.",
+    "summary_zh": "汇总了目前已有的第三方评测，并讨论决策模型能在多大程度上顶替 LLM 评判者。",
+    "url": "https://arize.com/blog/typesafe-jev-llm-judge/",
+    "kind": "article",
+    "patterns": [
+      "output-validation"
+    ],
+    "author": {
+      "name": "Laurie Voss",
+      "url": "https://arize.com"
+    },
+    "has_code": false,
+    "notes": "Useful as an aggregator. Note it is not itself a benchmark — the post says Arize had not yet run its own.",
+    "notes_zh": "作为汇总很有用。注意它本身不是实测 —— 文中说明 Arize 当时还没跑自己的基准。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://arize.com/blog/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "rlcd-explained-independent",
+    "title": "RLCD explained: Reinforcement Learning for Calibrated Decisions",
+    "summary": "An independent write-up whose most useful finding is a negative one: there is no paper, no reward function, no dataset description and no reproducible evaluation for RLCD.",
+    "summary_zh": "一份独立整理，其最有价值的结论是否定性的：RLCD 没有论文、没有奖励函数、没有数据集说明、也没有可复现的评测。",
+    "url": "https://systemonemodels.org/guides/rlcd-explained/",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "has_code": false,
+    "notes": "Beware a name collision: an unrelated 2023 paper also abbreviates to RLCD (Reinforcement Learning from Contrastive Distillation). An arXiv link labelled \"the RLCD paper\" is almost certainly that one, not this method.",
+    "notes_zh": "注意缩写撞车：2023 年有一篇无关论文也叫 RLCD（Reinforcement Learning from Contrastive Distillation）。任何标称「RLCD 论文」的 arXiv 链接几乎必然是那一篇，而不是这个方法。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://systemonemodels.org/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "flaviocopes-jev-deep-dive",
+    "title": "A deep dive into Jev, TypeSafe's System One model",
+    "summary": "The densest independent explainer: code in JS, Python and the AI SDK, all three answer shapes, the advanced patterns, and an honest list of where the model fails.",
+    "summary_zh": "技术密度最高的独立讲解：JS / Python / AI SDK 三种代码、三种应答结构、进阶模式，还诚实列出了模型的失效场景。",
+    "url": "https://flaviocopes.com/jev/",
+    "kind": "tutorial",
+    "patterns": [
+      "fan-out",
+      "content-scoring",
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "javascript",
+      "python",
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "vercel-ai-sdk"
+    ],
+    "author": {
+      "name": "Flavio Copes",
+      "url": "https://flaviocopes.com"
+    },
+    "has_code": true,
+    "published": "2026-09-21",
+    "notes": "The best single third-party read if you want code. Listing arithmetic, dates and counting as failure modes is a good sign the author used the model rather than the press release.",
+    "notes_zh": "想看代码的话，这是最好的单篇第三方文章。作者把算术、日期、计数列为失效场景，说明他真用过模型，而不是抄新闻稿。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Hacker News",
+        "url": "https://news.ycombinator.com/item?id=49774157"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "datacamp-jev-explained",
+    "title": "Jev: TypeSafe's System One Model Explained",
+    "summary": "A neutral survey of the architecture, the claimed benchmarks and the pricing, which states plainly that no large independent reproduction had surfaced.",
+    "summary_zh": "对架构、宣称的基准和定价的中立综述，并明确指出当时还没有出现大规模的独立复现。",
+    "url": "https://www.datacamp.com/blog/system-one-models-jev",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Matt Crabtree",
+      "url": "https://www.datacamp.com"
+    },
+    "has_code": false,
+    "published": "2026-09-16",
+    "notes": "Its SEO title differs from the on-page title used here.",
+    "notes_zh": "它的 SEO 标题与此处采用的页面标题不一致。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://www.datacamp.com/blog"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "medium-jev-use-cases",
+    "title": "Jev AI Use Cases",
+    "summary": "Walks through use case after use case — agent routing, an in-agent decision layer, ticket triage — each with a concrete option set and a sample response.",
+    "summary_zh": "逐个用例走一遍 —— 智能体路由、智能体内部的决策层、工单分拣 —— 每个都给出具体的选项集和示例响应。",
+    "url": "https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4",
+    "kind": "tutorial",
+    "patterns": [
+      "intent-routing",
+      "support-triage",
+      "model-routing"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "python"
+    ],
+    "author": {
+      "name": "Mehul Gupta"
+    },
+    "has_code": true,
+    "published": "2026-09-19",
+    "flags": [
+      "paywalled"
+    ],
+    "notes": "The more useful of this author's two posts. Its subtitle promises a free route that the body does not actually deliver.",
+    "notes_zh": "这位作者两篇里更有用的一篇。副标题承诺的免费通道，正文其实没给。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://medium.com/data-science-in-your-pocket"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
+    "slug": "techcrunch-chatgpt-inventor-model",
+    "title": "A new kind of AI model from a ChatGPT inventor is thrilling developers",
+    "summary": "The only launch coverage with first-hand developer quotes rather than vendor figures, including a caution that interpreting the thresholds is now your job.",
+    "summary_zh": "唯一一篇引用了开发者一手说法（而非厂商数字）的发布报道，其中还提醒：解释阈值的责任现在落在你自己头上。",
+    "url": "https://techcrunch.com/2026/09/18/a-new-kind-of-ai-model-from-a-chatgpt-inventor-is-thrilling-developers/",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Tim Fernholz",
+      "url": "https://techcrunch.com"
+    },
+    "has_code": false,
+    "published": "2026-09-18",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://techcrunch.com"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "register-typesafe-doom",
+    "title": "TypeSafe AI debuts model for machines that plays Doom",
+    "summary": "The most sceptical mainstream piece: it challenges the no-hallucination framing on the grounds that a well-formed answer is not the same as a correct one.",
+    "summary_zh": "最具怀疑视角的主流报道：它质疑「不会幻觉」的说法 —— 格式正确的答案不等于正确的答案。",
+    "url": "https://www.theregister.com/ai-and-ml/2026/09/16/typesafe-ai-debuts-model-for-machines-that-plays-doom/5296711",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Thomas Claburn",
+      "url": "https://www.theregister.com"
+    },
+    "has_code": false,
+    "published": "2026-09-16",
+    "notes": "Read it next to the launch post. The distinction it draws — schema conformance is not correctness — is the one most coverage skips.",
+    "notes_zh": "建议与发布博文对照阅读。它点出的那个区别 ——「符合 schema」不等于「正确」—— 是多数报道都跳过的。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://www.theregister.com"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "heise-jev-decide-faster",
+    "title": "AI model \"Jev\" to make machines decide faster",
+    "summary": "Focuses on the missing explainability — the model returns no reasoning in language — and on every published benchmark coming from the vendor.",
+    "summary_zh": "重点落在可解释性的缺失 —— 模型不给出语言层面的理由 —— 以及所有已公布基准都出自厂商自己。",
+    "url": "https://www.heise.de/en/news/AI-model-Jev-to-make-machines-decide-faster-11457071.html",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Tomislav Bezmalinović",
+      "url": "https://www.heise.de"
+    },
+    "has_code": false,
+    "published": "2026-09-17",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://www.heise.de"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "wikipedia-jev-model",
+    "title": "Jev (AI model) on Wikipedia",
+    "summary": "Most useful as an index: its reference list is a fast route to the coverage worth reading.",
+    "summary_zh": "最大价值在于当索引用：它的参考文献列表是找到值得读的报道的最快路径。",
+    "url": "https://en.wikipedia.org/wiki/Jev_(AI_model)",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "has_code": false,
+    "notes": "Uses the correct Choice/Score/Noul terminology, which several mainstream outlets do not.",
+    "notes_zh": "使用了正确的 Choice/Score/Noul 术语，不少主流媒体没做到这点。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://en.wikipedia.org/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "latent-space-jev-interview",
+    "title": "Jev: System One models for Prod, not God",
+    "summary": "The only long-form founder interview: why RLHF was the wrong optimisation target, why public benchmarks were withheld, and the all-synthetic data approach.",
+    "summary_zh": "唯一的长篇创始人访谈：为什么 RLHF 是错的优化目标、为什么不公开基准、以及全合成数据的路线。",
+    "url": "https://www.latent.space/p/jev",
+    "kind": "discussion",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Latent Space"
+    },
+    "has_code": false,
+    "published": "2026-09-21",
+    "notes": "Roughly two and a quarter hours. The YouTube mirror has been retitled more than once, so the site title is the stable one.",
+    "notes_zh": "约两小时十五分。YouTube 镜像的标题被改过不止一次，站内标题才是稳定的那个。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Hacker News",
+        "url": "https://news.ycombinator.com/item?id=49794590"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "hn-launch-thread",
+    "title": "Hacker News: Introducing System One Models and Jev",
+    "summary": "The launch thread, and the densest single collection of scepticism: unsupported RLCD claims, apples-to-oranges latency comparisons, and the deliberate absence of public benchmarks.",
+    "summary_zh": "发布讨论帖，也是质疑最集中的地方：RLCD 缺乏支撑材料、延迟对比不对等、以及官方刻意不公开基准。",
+    "url": "https://news.ycombinator.com/item?id=49717558",
+    "kind": "discussion",
+    "patterns": [
+      "overview"
+    ],
+    "has_code": false,
+    "published": "2026-09-15",
+    "notes": "Read this alongside the launch post. Also the best place to find people reporting what they actually migrated from, such as embedding plus cosine similarity.",
+    "notes_zh": "建议与发布博文对照阅读。这里也最容易找到有人讲自己实际是从什么方案迁移过来的，比如 embedding 加余弦相似度。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "Hacker News",
+        "url": "https://news.ycombinator.com/"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "video-sam-witteveen-classification",
+    "title": "Jev - The Ultimate Classification Model?",
+    "summary": "An ML engineer's walkthrough from the classification-task angle, which is the framing closest to what the model actually does.",
+    "summary_zh": "一位 ML 工程师从分类任务角度做的讲解 —— 这个切入角度最贴近模型的实际能力。",
+    "url": "https://youtube.com/watch?v=X117w2Rark8",
+    "kind": "video",
+    "patterns": [
+      "classification"
+    ],
+    "author": {
+      "name": "Sam Witteveen"
+    },
+    "has_code": false,
+    "notes": "Metadata verified; the video content was not reviewed for this entry.",
+    "notes_zh": "元数据已核实；本条目未逐段核对视频内容。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "YouTube search",
+        "url": "https://www.youtube.com/results?search_query=typesafe+jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "video-gary-explains-caveat",
+    "title": "Jev From TypeSafe is a New Class of AI Model that is FAST and CHEAP - But There is a Caveat!",
+    "summary": "A review that puts the limitation in the title rather than burying it.",
+    "summary_zh": "一篇把限制直接写进标题、而不是藏在正文里的评测。",
+    "url": "https://youtube.com/watch?v=qdji39XXgEY",
+    "kind": "video",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Gary Explains"
+    },
+    "has_code": false,
+    "notes": "Metadata verified; the video content was not reviewed for this entry.",
+    "notes_zh": "元数据已核实；本条目未逐段核对视频内容。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "YouTube search",
+        "url": "https://www.youtube.com/results?search_query=typesafe+jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "video-aicodeking-browser-use",
+    "title": "Jev (Fully Tested) + Browser Use: FASTEST AI Agent I'VE TRIED YET!",
+    "summary": "Wires Jev into Browser Use to drive a browser automation agent.",
+    "summary_zh": "把 Jev 接到 Browser Use 上，驱动一个浏览器自动化智能体。",
+    "url": "https://www.youtube.com/watch?v=SNJ3yuJ_QwY",
+    "kind": "video",
+    "patterns": [
+      "tool-selection"
+    ],
+    "author": {
+      "name": "AICodeKing"
+    },
+    "has_code": false,
+    "published": "2026-09-18",
+    "flags": [
+      "unverified-claims"
+    ],
+    "notes": "Channel metadata verified; the demo itself was not reviewed. The superlative in the title is that channel's house style, not a measurement.",
+    "notes_zh": "频道元数据已核实，但演示内容未逐段核对。标题里的最高级是该频道的惯用风格，不是实测结论。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "YouTube search",
+        "url": "https://www.youtube.com/results?search_query=typesafe+jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jaredpalmer-kev",
+    "title": "kev",
+    "summary": "A trainable, self-hostable family of Jev-like decision models with a System One compatible API, so the official SDK can point at your own server.",
+    "summary_zh": "一套可训练、可自托管的 Jev-like 决策模型，API 与 System One 兼容 —— 官方 SDK 可以直接指向你自己的服务。",
+    "url": "https://github.com/jaredpalmer/kev",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "Jared Palmer",
+      "url": "https://github.com/jaredpalmer"
+    },
+    "has_code": true,
+    "stars": 2544,
+    "repo_license": "Apache-2.0",
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev and not from TypeSafe. Listed because the wire compatibility means the patterns in this catalog transfer, and because Jev itself cannot be self-hosted.",
+    "notes_zh": "不是 Jev，也不是 TypeSafe 出的。收录是因为它协议兼容，本目录里的模式可以迁移过去；也因为 Jev 本身无法自托管。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "opendecision",
+    "title": "OpenDecision",
+    "summary": "An open-source semantic decision engine running a local zero-shot model, with a FastAPI server proven wire-compatible with the official SDK.",
+    "summary_zh": "一个开源语义决策引擎，本地跑零样本模型，其 FastAPI 服务已验证与官方 SDK 协议兼容。",
+    "url": "https://github.com/deepanwadhwa/OpenDecision",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "deepanwadhwa",
+      "url": "https://github.com/deepanwadhwa"
+    },
+    "has_code": true,
+    "stars": 51,
+    "repo_license": "Apache-2.0",
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev. Its examples directory includes a demo driving the real typesafe-sdk against a local base URL, which is the cleanest proof of drop-in compatibility.",
+    "notes_zh": "不是 Jev。它的 examples 目录里有一个 demo 用真实的 typesafe-sdk 指向本地 base URL，这是「可直接替换」最干净的证明。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "medium-build-your-own-jev-locally",
+    "title": "Build Your Own JEV Locally: Run a 100% Private AI Agent on Your Machine",
+    "summary": "Despite the title, this does not run Jev. It builds a Jev-like decision engine from an open LLM using constrained next-token scoring.",
+    "summary_zh": "标题误导：它并没有在跑 Jev，而是用开源 LLM 加受约束的 next-token 打分，自己搭一个 Jev-like 决策引擎。",
+    "url": "https://medium.com/coding-nexus/build-your-own-jev-locally-run-a-100-private-ai-agent-on-your-machine-bb98126d394a",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "DataScience Nexus"
+    },
+    "has_code": true,
+    "published": "2026-09-21",
+    "flags": [
+      "not-jev",
+      "paywalled",
+      "code-untested"
+    ],
+    "notes": "Listed as a correction, because the title ranks well and misleads. Jev has no published weights and cannot be run locally; anything claiming otherwise is describing a substitute.",
+    "notes_zh": "收录是为了纠偏 —— 这个标题排名不低且具误导性。Jev 未公开权重、无法本地运行；任何声称能本地跑 Jev 的内容，实际讲的都是替代品。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "web search",
+        "url": "https://medium.com/coding-nexus"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
+    "slug": "awesome-jev-projects-logicrw",
+    "title": "awesome-jev-projects",
+    "summary": "A sibling directory aiming at ecosystem breadth with commit-pinned sources, four README languages and a generated site.",
+    "summary_zh": "一个同类目录，主打生态广度：来源锚定到具体 commit、四语 README、以及一个生成式站点。",
+    "url": "https://github.com/logicrw/awesome-jev-projects",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "github"
+    ],
+    "author": {
+      "name": "logicrw",
+      "url": "https://github.com/logicrw"
+    },
+    "has_code": true,
+    "stars": 326,
+    "repo_license": "MIT",
+    "notes": "Goes wide where this catalog goes deep. Worth checking for anything missing here; it accepts issues rather than pull requests.",
+    "notes_zh": "它走的是广度，本目录走的是深度。这里缺的条目值得去它那里对一遍；它只收 issue，不收 PR。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "awesome-jev-fatwang2",
+    "title": "awesome-jev (fatwang2)",
+    "summary": "A sibling directory whose submissions are reviewed by Jev itself, with a notably thorough list of multi-language community clients.",
+    "summary_zh": "一个同类目录，提交由 Jev 自己审核，其多语言社区客户端清单相当完整。",
+    "url": "https://github.com/fatwang2/awesome-jev",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "github"
+    ],
+    "author": {
+      "name": "fatwang2",
+      "url": "https://github.com/fatwang2"
+    },
+    "has_code": true,
+    "stars": 187,
+    "repo_license": "MIT",
+    "notes": "Using the model to review submissions to a list about the model is a neat piece of dogfooding. Its SDK section is the best place to look for a client in a language the official SDKs do not cover.",
+    "notes_zh": "用这个模型来审核关于这个模型的列表的投稿，是个漂亮的自产自销。它的 SDK 分区是寻找官方未覆盖语言客户端的最佳去处。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "hermes-agent-jev-evaluation",
+    "title": "Hermes Agent: Jev compaction evaluation",
+    "summary": "Ported the Jev compaction approach, measured it against their shipping summariser, and published the conclusion not to adopt it.",
+    "summary_zh": "把 Jev 压缩方案移植过来，与自家在用的摘要器对比实测，最后公开结论：不采用。",
+    "url": "https://github.com/NousResearch/hermes-agent",
+    "kind": "benchmark",
+    "patterns": [
+      "context-compaction"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 247803,
+    "repo_license": "MIT",
+    "notes": "The single most credible row in this catalog. Recall came out below their existing summariser, and at a matched context budget it tied plain recency ordering. Cost was genuinely far lower. Publishing a negative result on a hyped model is rare.",
+    "notes_zh": "本目录可信度最高的一条。召回率低于他们现有的摘要器，在相同上下文预算下与「按时间倒序」打平。成本确实低得多。在一个被热炒的模型上公开负面结果，非常少见。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "worldmonitor-shadow-mode",
+    "title": "worldmonitor: news threat classification",
+    "summary": "Two Choice questions over threat level and category, held in shadow mode after a blind evaluation found Jev merely tied the incumbent model.",
+    "summary_zh": "用两个 Choice 判断威胁等级与类别；盲测发现 Jev 只是与原有模型打平，于是一直保持影子运行。",
+    "url": "https://github.com/koala73/worldmonitor",
+    "kind": "benchmark",
+    "patterns": [
+      "classification",
+      "content-scoring"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 87175,
+    "repo_license": "AGPL-3.0",
+    "flags": [
+      "shadow-mode-only"
+    ],
+    "notes": "Wired in but deliberately inert: by their own statement nothing Jev returns reaches a label, a cache row or an alert. Ships a golden fixture. A model to copy for how to trial a new model without betting production on it.",
+    "notes_zh": "接进去了但故意不生效：按他们自己的说法，Jev 返回的任何东西都不会进入标签、缓存行或告警。带黄金测试集。想在不拿生产环境下注的前提下试新模型，这是值得照抄的做法。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "no-mistakes-review-context",
+    "title": "no-mistakes: review context selection",
+    "summary": "One Score per candidate file to pick review context, with a measured outcome: materially more billed input for essentially no wall-clock gain.",
+    "summary_zh": "对每个候选文件打一个 Score 来挑选审查上下文；实测结果是：计费输入明显增加，而实际耗时几乎没改善。",
+    "url": "https://github.com/kunchenguid/no-mistakes",
+    "kind": "benchmark",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "score"
+    ],
+    "languages": [
+      "go"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 8595,
+    "repo_license": "MIT",
+    "notes": "Their own recommendation was to keep the feature opt-in, off by default, and ship no savings claim. That is what an honest measurement looks like.",
+    "notes_zh": "他们自己的建议是：这个功能保持可选、默认关闭、不要宣传省钱。诚实的实测就该长这样。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "ahastudio-til-jev-probing",
+    "title": "Probing Jev's behaviour with repeated API calls",
+    "summary": "Independent Korean-language notes reporting that reversing the order of options shifted a probability enough to flip a 0.9 threshold.",
+    "summary_zh": "独立的韩语实测笔记，报告仅仅把选项顺序倒过来，就能让概率移动到足以翻转 0.9 阈值的程度。",
+    "url": "https://github.com/ahastudio/til",
+    "kind": "benchmark",
+    "patterns": [
+      "classification",
+      "human-escalation"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 190,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license",
+      "unverified-claims"
+    ],
+    "notes": "The most actionable engineering caveat found anywhere: if option order alone can move a probability past your threshold, your threshold is not as stable as it looks. Independent and unreplicated, so treat the magnitude as indicative.",
+    "notes_zh": "在所有资料里找到的最具操作价值的工程警示：如果仅仅选项顺序就能把概率推过你的阈值，那你的阈值没有看上去那么稳。这是独立且未被复现的结果，具体幅度请当作指示性数据。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-ultrafast",
+    "title": "jev-ultrafast",
+    "summary": "A high-speed browser agent from Browser Use: Jev decides the operation and which element to act on, and a small LLM is called only when text must be typed.",
+    "summary_zh": "Browser Use 做的高速浏览器 Agent。Jev 每一步只判断「做什么、点哪个元素」，要打字才叫小模型。",
+    "url": "https://github.com/browser-use/jev-ultrafast",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "fan-out"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "Browser Use",
+      "url": "https://github.com/browser-use"
+    },
+    "has_code": true,
+    "stars": 16069,
+    "repo_license": "MIT",
+    "published": "2026-09-16",
+    "flags": [
+      "vendor-reported"
+    ],
+    "notes": "The textbook speculative fan-out example: one request returns the operation plus speculative targets for several possible operations, and code uses whichever became relevant. Its flight-search timing is the project's own figure.",
+    "notes_zh": "教科书级的并行扇出例子：一次请求同时返回操作本身、以及若干可能操作各自的推测性目标，再由代码取用实际相关的那个。航班搜索耗时是项目自报数字。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "inbox-zero-jev",
+    "title": "Inbox Zero: seven email decisions",
+    "summary": "Seven distinct email decisions, each with its own separately chosen threshold, falling back to the normal LLM on any error.",
+    "summary_zh": "七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。",
+    "url": "https://github.com/elie222/inbox-zero",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "classification",
+      "human-escalation"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 12276,
+    "repo_license": "NOASSERTION",
+    "notes": "The best answer to \"what threshold should I use?\" — there isn't one. Different decisions here sit anywhere from 0.3 to 0.9 depending on what being wrong costs.",
+    "notes_zh": "「阈值该设多少」的最佳答案是：没有单一答案。这里不同决策的阈值从 0.3 到 0.9 不等，取决于判错的代价。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "sub2api-moderation",
+    "title": "sub2api: Jev as a moderation endpoint",
+    "summary": "Drops in as a moderation API by asking many parallel Noul questions in one request, one per hazard category, with an anti-injection prefix on every instruction.",
+    "summary_zh": "作为审核 API 的直接替代：一次请求并行问多个 Noul，每个危害类别一个，且每条指令都带反注入前缀。",
+    "url": "https://github.com/Wei-Shaw/sub2api",
+    "kind": "project",
+    "patterns": [
+      "safety-gating",
+      "fan-out"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "go"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 42304,
+    "repo_license": "LGPL-3.0",
+    "notes": "The clearest demonstration that fan-out changes what is affordable: a per-category hazard screen becomes one request instead of one per category.",
+    "notes_zh": "最清楚地展示了并行扇出如何改变成本结构：逐类别的危害筛查从「每类一次请求」变成「总共一次请求」。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "openviking-reranking",
+    "title": "OpenViking: retrieval reranking",
+    "summary": "One Noul per candidate document in a single batched request, with the yes-probability used directly as the relevance score.",
+    "summary_zh": "单次批量请求里对每个候选文档问一个 Noul，直接把「是」的概率当相关性分数。",
+    "url": "https://github.com/volcengine/OpenViking",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 38359,
+    "repo_license": "AGPL-3.0",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "deepchat-tool-permission",
+    "title": "DeepChat: agent tool-permission review",
+    "summary": "Reviews each tool call on three axes — risk level, whether the user authorised it, and an explicit prompt-injection pressure check.",
+    "summary_zh": "从三个维度审查每次工具调用：风险等级、用户是否授权、以及一个显式的提示注入压力检查。",
+    "url": "https://github.com/ThinkInAIXYZ/deepchat",
+    "kind": "project",
+    "patterns": [
+      "safety-gating",
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 6338,
+    "repo_license": "Apache-2.0",
+    "notes": "Asking specifically about injection pressure, as its own question, is a design worth copying — though see docs/patterns.md on why this is defence in depth rather than a boundary.",
+    "notes_zh": "把「提示注入压力」单独作为一个问题来问，这个设计值得照抄 —— 但请参见 docs/patterns.md，理解为什么这属于纵深防御而非安全边界。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "agentgateway-guardrail",
+    "title": "agentgateway: CI-validated LLM guardrail",
+    "summary": "Three Score questions on a shared severity scale, blocking the request when two or more cross the line, and failing closed.",
+    "summary_zh": "三个共用同一严重度量表的 Score 问题，两项以上越线即拦截请求，并且失败时默认关闭。",
+    "url": "https://github.com/agentgateway/agentgateway",
+    "kind": "project",
+    "patterns": [
+      "safety-gating"
+    ],
+    "question_types": [
+      "score"
+    ],
+    "languages": [
+      "rust"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 4969,
+    "repo_license": "Apache-2.0",
+    "notes": "Failing closed is the right default for a gate and is easy to get wrong. Note the contrast with the trading examples in this catalog, which deliberately fail open.",
+    "notes_zh": "闸门失败时默认关闭是正确的默认值，也很容易做错。注意与本目录里那些交易类例子的对比 —— 它们刻意选择失败时开放。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jcode-memory-recall",
+    "title": "jcode: memory recall without embeddings",
+    "summary": "Replaces the whole retrieval stack for memory recall — no embeddings, no BM25, no reranker — with one batched Noul per candidate memory.",
+    "summary_zh": "把记忆召回的整套检索栈替换掉 —— 不用 embedding、不用 BM25、不用重排器 —— 改为对每条候选记忆批量问一个 Noul。",
+    "url": "https://github.com/1jehuang/jcode",
+    "kind": "project",
+    "patterns": [
+      "search-ranking",
+      "context-compaction"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "rust"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 19990,
+    "repo_license": "MIT",
+    "notes": "The most aggressive substitution found: it removes retrieval infrastructure rather than augmenting it. Whether that trade holds at scale is unmeasured.",
+    "notes_zh": "找到的最激进的替换：它是移除检索基础设施，而不是给它做增强。这个取舍在大规模下是否成立，尚无实测。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "json-render",
+    "title": "json-render",
+    "summary": "Vercel Labs' generative UI framework. In its Jev experiment the model does not write JSON token by token — it only picks components, props and layout.",
+    "summary_zh": "Vercel Labs 的生成式 UI 框架。实验里 Jev 不逐 token 写 JSON，只负责选组件、属性和布局。",
+    "url": "https://github.com/vercel-labs/json-render",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "classification"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "vercel-ai-gateway",
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "Vercel Labs",
+      "url": "https://github.com/vercel-labs"
+    },
+    "has_code": true,
+    "stars": 17964,
+    "repo_license": "Apache-2.0",
+    "notes": "A genuinely different framing of generative UI: choosing from a component registry instead of generating markup means the output cannot reference a component that does not exist.",
+    "notes_zh": "对生成式 UI 的一个真正不同的理解：从组件注册表里做选择、而不是生成标记，意味着输出不可能引用一个不存在的组件。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "agent-desktop",
+    "title": "agent-desktop",
+    "summary": "Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.",
+    "summary_zh": "桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。",
+    "url": "https://github.com/lahfir/agent-desktop",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "rust"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 1436,
+    "repo_license": "Apache-2.0",
+    "notes": "Using the accessibility tree rather than screenshots fits the model's text-only input exactly, with no vision step to lose information.",
+    "notes_zh": "用无障碍树而不是截图，正好契合模型只接受文本输入的限制，中间不需要一个会丢信息的视觉步骤。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "blink-codebase-navigator",
+    "title": "Blink",
+    "summary": "Uses Jev as a codebase navigator: at each directory level it decides which files are most relevant to the question, then descends.",
+    "summary_zh": "把 Jev 当代码库导航器。每走到一层目录，就判断哪些文件和当前问题最相关，再继续往下找。",
+    "url": "https://github.com/ellipsis-dev/blink",
+    "kind": "project",
+    "patterns": [
+      "search-ranking",
+      "classification"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 50,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license"
+    ],
+    "notes": "Level-by-level descent is the same beam-search-over-a-hierarchy shape as the official hierarchical classification cookbook, applied to a filesystem.",
+    "notes_zh": "逐层下降本质上和官方层级分类 cookbook 里「在层级上做 beam search」是同一个形状，只是这里作用在文件系统上。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "neo4jev",
+    "title": "neo4jev",
+    "summary": "Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.",
+    "summary_zh": "把 Jev 塞进知识图谱。每走到一个节点，判断下一条最值得走的边，再一路找下去。",
+    "url": "https://github.com/jexp/neo4jev",
+    "kind": "project",
+    "patterns": [
+      "search-ranking",
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 79,
+    "repo_license": "MIT",
+    "notes": "Graph traversal is a natural fit: each hop is a closed choice over the current node's edges, and the whole walk is cheap only if each hop is.",
+    "notes_zh": "图遍历天然契合：每一跳都是在当前节点的边集上做封闭选择，而整条路径便宜的前提正是每一跳都便宜。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-curate",
+    "title": "jev-curate",
+    "summary": "Curates training data: JSONL and Parquet rows are judged on quality, relevance and risk before deciding what reaches downstream training.",
+    "summary_zh": "拿 Jev 筛训练数据。JSONL / Parquet 先做质量、相关性和风险判断，再决定哪些进后面的训练。",
+    "url": "https://github.com/AkashPriyadarshii/jev-curate",
+    "kind": "project",
+    "patterns": [
+      "content-scoring",
+      "feature-extraction"
+    ],
+    "question_types": [
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "rust"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 18,
+    "repo_license": "MIT",
+    "notes": "Dataset curation is a good economic fit: millions of per-row judgements is exactly the volume where a cheap decision call beats an LLM.",
+    "notes_zh": "数据集筛选在经济性上很合适：百万量级的逐行判断，正是廉价决策调用胜过 LLM 的那个体量。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "canny-completion-check",
+    "title": "Canny",
+    "summary": "Guards against a coding agent claiming it finished: reads tool output, the diff and test results, then judges whether the completion claim holds.",
+    "summary_zh": "防 Coding Agent 嘴硬说自己做完了。看工具输出、代码 diff 和测试结果，再判断完成声明靠不靠谱。",
+    "url": "https://github.com/qkal/Canny",
+    "kind": "project",
+    "patterns": [
+      "output-validation"
+    ],
+    "question_types": [
+      "noul",
+      "score"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 28,
+    "repo_license": "MIT",
+    "notes": "A pointed use of the pattern: the thing being validated is the agent's own claim about itself, which is exactly where a separate judge earns its keep.",
+    "notes_zh": "这个模式用得很到位：被校验的对象是智能体对自己的声明 —— 而这恰恰是独立评判者最有价值的地方。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-drone",
+    "title": "jev-drone",
+    "summary": "Camera-only simulated drone where Jev makes tactical judgements at a low rate while stabilisation and safety reflexes stay in ordinary fast code.",
+    "summary_zh": "拿 Jev 控无人机。底层飞控继续负责稳定和安全，Jev 只做爬升、刹车、穿越障碍这类上层判断。",
+    "url": "https://github.com/RomanSlack/jev-drone",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "safety-gating"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 117,
+    "repo_license": "MIT",
+    "flags": [
+      "unverified-claims"
+    ],
+    "notes": "The layering is the lesson: judgement at a few hertz, control and safety reflexes orders of magnitude faster and entirely in code. Its own numbers come from a single short run, as it says.",
+    "notes_zh": "分层才是重点：判断以几赫兹运行，而控制与安全反射快上几个数量级、且完全在代码里。它自报的数字来自一次短程运行，作者本人也这么说明。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-mario",
+    "title": "typesafe-mario",
+    "summary": "Plays Super Mario Bros. from structured emulator RAM rather than screenshots, deciding run, jump and dodge.",
+    "summary_zh": "让 Jev 玩《超级马里奥》。不看截图，直接读模拟器 RAM 里的结构化状态，再决定跑、跳、躲。",
+    "url": "https://github.com/fhshaik/typesafe-mario",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 336,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license",
+      "single-commit",
+      "code-untested"
+    ],
+    "notes": "A good illustration of feeding structured state instead of pixels, given the model is text-only. One commit and no licence, so treat it as a demo to read rather than code to depend on.",
+    "notes_zh": "很好地示范了「喂结构化状态而非像素」—— 毕竟模型只接受文本。仅一次提交且无许可证，请当作可读的演示、而非可依赖的代码。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "onevonejev",
+    "title": "OneVOneJev",
+    "summary": "A browser 1v1 FPS where every decision tick judges movement, view angle, aim, fire and jump.",
+    "summary_zh": "浏览器里的 1v1 FPS。每个决策 tick 都要判断走位、视角、瞄准、开火和跳跃。",
+    "url": "https://github.com/emrickgarrett/OneVOneJev",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "fan-out"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 18,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license",
+      "code-untested"
+    ],
+    "notes": "Interesting mainly as a latency stress test: a real-time loop is the harshest setting for any per-decision round trip. No licence file.",
+    "notes_zh": "主要价值在于它是个延迟压力测试：实时循环是对「每次决策一个往返」最严苛的场景。无许可证文件。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "killmyidea",
+    "title": "killmyidea",
+    "summary": "Scores a startup idea across several dimensions and returns a verdict of kill, fix or ship.",
+    "summary_zh": "输入一个创业点子，Jev 从多个维度打分，最后给你 KILL、FIX 或 SHIP。",
+    "url": "https://github.com/monteduro/killmyidea",
+    "kind": "project",
+    "patterns": [
+      "content-scoring"
+    ],
+    "question_types": [
+      "score",
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 73,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license"
+    ],
+    "notes": "A compact composite-scoring example: several atomic scores combined in code into one of three actions, which is the shape the official composite-scoring pattern recommends.",
+    "notes_zh": "一个小而完整的复合评分例子：若干原子评分在代码里合成三种动作之一 —— 正是官方 composite-scoring 模式推荐的形状。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-trader",
+    "title": "jev-trader",
+    "summary": "High-frequency market making on a test network, deciding buy or sell from spread and trade direction.",
+    "summary_zh": "在 Monad 测试网上做高频做市。Jev 根据价差和成交方向判断下一步买还是卖。",
+    "url": "https://github.com/jarrodwatts/jev-trader",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 1871,
+    "repo_license": "MIT",
+    "flags": [
+      "unverified-claims"
+    ],
+    "notes": "Listed as a latency example, not as a strategy. It runs on a test network. Nothing in this catalog is financial advice, and a probabilistic decision in front of an irreversible trade deserves the scrutiny docs/patterns.md describes under safety-gating.",
+    "notes_zh": "收录是作为延迟示例，不是作为策略。它跑在测试网上。本目录不构成任何投资建议；在不可逆交易前放一个概率性决策，应当接受 docs/patterns.md 里 safety-gating 一节所述的审视。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "prism-liquidity-agent",
+    "title": "Prism",
+    "summary": "Does not place orders. It judges market conditions such as toxic flow and mean reversion, and hands the assessment to the existing strategy.",
+    "summary_zh": "不直接让 Jev 下单。它判断 toxic flow、市场压力、均值回归之类的状态，再交给原来的策略。",
+    "url": "https://github.com/irfndi/prism-liquidity-agent",
+    "kind": "project",
+    "patterns": [
+      "classification",
+      "feature-extraction"
+    ],
+    "question_types": [
+      "choice",
+      "score"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 68,
+    "repo_license": "MIT",
+    "notes": "The more defensible architecture of the two finance entries: the model characterises state, existing code decides. Not financial advice.",
+    "notes_zh": "两个金融类条目中架构更稳妥的一个：模型只负责刻画状态，下单由原有代码决定。不构成投资建议。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "typesafe-mcp",
+    "title": "typesafe-mcp",
+    "summary": "The easiest first step once you have a key: registers Jev into Claude Code, Claude Desktop, Codex and Pi with one command.",
+    "summary_zh": "最适合刚拿到 API 的人。把 Jev 接进 Claude Code、Claude Desktop、Codex 和 Pi，随时做 Choice / Score / Noul。",
+    "url": "https://github.com/itsmostafa/typesafe-mcp",
+    "kind": "plugin",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "go"
+    ],
+    "platforms": [
+      "mcp",
+      "claude-code",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 225,
+    "repo_license": "MIT",
+    "notes": "Start here if you want to feel the primitives before writing any code.",
+    "notes_zh": "如果你想先上手体验这几个原语、再动手写代码，从这里开始。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-mcp-jkudish",
+    "title": "jev-mcp",
+    "summary": "A ready-made judgement toolbox for agents: fact verification, content screening, semantic ranking, classification and extraction as separate tools.",
+    "summary_zh": "现成的 Agent 判断工具箱：事实核验、内容筛查、语义排序、分类和信息提取，各自独立成工具。",
+    "url": "https://github.com/jkudish/jev-mcp",
+    "kind": "plugin",
+    "patterns": [
+      "output-validation",
+      "search-ranking",
+      "classification",
+      "safety-gating"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "mcp",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 240,
+    "repo_license": "MIT",
+    "notes": "Splitting one model into task-named tools is good agent ergonomics: the agent picks a verb rather than composing a question.",
+    "notes_zh": "把一个模型拆成按任务命名的多个工具，对智能体很友好：它只需选一个动词，而不必自己组装问题。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "semdecide",
+    "title": "SemDecide",
+    "summary": "Jev as a command-line tool: classify, score and filter straight from a shell, for crawlers, CI and data pipelines.",
+    "summary_zh": "把 Jev 做成命令行。Shell 里直接分类、打分、过滤，适合接爬虫、CI 和数据流水线。",
+    "url": "https://github.com/sharziki/semdecide",
+    "kind": "plugin",
+    "patterns": [
+      "classification",
+      "content-scoring"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python",
+      "shell"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 27,
+    "repo_license": "MIT",
+    "notes": "A semantic decision usable from a pipe is a genuinely new shell primitive. Small project; read before wiring into anything that matters.",
+    "notes_zh": "能从管道里调用的语义判断，确实是一个新的 shell 原语。项目还小，接入要紧的流程前请先读代码。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-codex-router",
+    "title": "jev-codex-router",
+    "summary": "Judges how hard a coding turn is, then picks the model tier, reasoning depth and speed mode to match.",
+    "summary_zh": "先让 Jev 判断这一轮编程任务有多难，再决定模型档位、推理深度和速度模式。",
+    "url": "https://github.com/0xNatoshi/jev-codex-router",
+    "kind": "plugin",
+    "patterns": [
+      "model-routing"
+    ],
+    "question_types": [
+      "choice",
+      "score"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 177,
+    "repo_license": "MIT",
+    "notes": "Scoring difficulty and mapping to tiers in code, rather than choosing a tier directly, is the more maintainable of the two model-routing shapes.",
+    "notes_zh": "先给难度打分、再在代码里映射到档位，而不是直接选档位 —— 这是两种模型路由写法里更好维护的那个。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "winnow",
+    "title": "Winnow",
+    "summary": "Context garbage collection for Claude Code: when Read, Bash or Grep dump a wall of output, each chunk is judged for relevance to the current task.",
+    "summary_zh": "给 Claude Code 做上下文垃圾回收。Read / Bash / Grep 吐一大堆时，Jev 先判断哪些真和当前任务有关。",
+    "url": "https://github.com/GhalebDweikat/winnow",
+    "kind": "plugin",
+    "patterns": [
+      "context-compaction"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "claude-code",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 54,
+    "repo_license": "MIT",
+    "notes": "Uses dual keep/drop thresholds with a recall command to pull back full text, which is the right safety valve for a lossy filter.",
+    "notes_zh": "采用「保留/丢弃」双阈值，并提供一个召回命令取回全文 —— 这是有损过滤该有的安全阀。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-pruner",
+    "title": "jev-pruner",
+    "summary": "Trims long shell output before the model sees it, asking one Noul per chunk.",
+    "summary_zh": "在模型看到之前先修剪冗长的 shell 输出，每个片段问一个 Noul。",
+    "url": "https://github.com/tamaratran/jev-pruner",
+    "kind": "plugin",
+    "patterns": [
+      "context-compaction"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "claude-code",
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "tamaratran",
+      "url": "https://github.com/tamaratran"
+    },
+    "has_code": true,
+    "stars": 134,
+    "repo_license": "MIT",
+    "notes": "Same author as fast-jev-compaction, narrower scope. Useful if you only want Bash output trimmed and not the whole transcript touched.",
+    "notes_zh": "与 fast-jev-compaction 同一作者，范围更窄。如果你只想修剪 Bash 输出、不想动整段对话记录，这个更合适。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-review-devagrawal",
+    "title": "jev-review",
+    "summary": "Pre-screens code review with Jev to surface high-risk changes for a more expensive model or a person, with a local dashboard.",
+    "summary_zh": "代码审查前先过一遍 Jev，把高风险改动挑出来，再交给更贵的大模型或人。带本地看板。",
+    "url": "https://github.com/devagrawal09/jev-review",
+    "kind": "project",
+    "patterns": [
+      "model-routing",
+      "human-escalation",
+      "content-scoring"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 495,
+    "repo_license": "MIT",
+    "flags": [
+      "archived"
+    ],
+    "notes": "Documents a multi-stage pipeline worth reading, but commits stopped a day after creation, so treat it as a design reference rather than a maintained tool.",
+    "notes_zh": "它记录的多阶段流水线值得一读，但提交在创建次日就停了 —— 请当作设计参考，而不是仍在维护的工具。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "claude-code-templates-jev",
+    "title": "claude-code-templates: three Jev plugins",
+    "summary": "Three independently installable Claude Code plugins — guardrails, model router and skill suggestion — each with its own hooks and tests.",
+    "summary_zh": "三个可独立安装的 Claude Code 插件 —— 护栏、模型路由、技能推荐 —— 各自带 hook 和测试。",
+    "url": "https://github.com/davila7/claude-code-templates",
+    "kind": "plugin",
+    "patterns": [
+      "safety-gating",
+      "model-routing",
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python",
+      "typescript"
+    ],
+    "platforms": [
+      "claude-code",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 30896,
+    "repo_license": "MIT",
+    "notes": "Its skill-suggestion plugin implements the official cookbook of the same name, including withholding the skill listing from the main model so the choice is actually made by Jev.",
+    "notes_zh": "它的技能推荐插件实现了同名官方 cookbook，包括「不把技能清单给主模型看」这一步，从而让选择真正由 Jev 做出。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "hermes-jev-skills",
+    "title": "hermes-jev-skills",
+    "summary": "Nine agent skills plus a CLI covering model routing, memory filtering, turn retention, one-of-many skill selection and next-action choice.",
+    "summary_zh": "九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。",
+    "url": "https://github.com/kerpopule/hermes-jev-skills",
+    "kind": "plugin",
+    "patterns": [
+      "model-routing",
+      "context-compaction",
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 398,
+    "repo_license": "MIT",
+    "notes": "Notable for publishing a use it dropped: Jev-summarised handoffs had worse recall than raw transcripts.",
+    "notes_zh": "值得一提的是它公开了一个被放弃的用法：用 Jev 做交接摘要的召回率，反而不如原始对话记录。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "airflow-llm-branch-operator",
+    "title": "Airflow LLMBranchOperator with Jev",
+    "summary": "Turns downstream task ids into a choice option set, with a minimum-confidence gate that routes uncertain runs to a human.",
+    "summary_zh": "把下游任务 id 变成 choice 的选项集，并用最小置信度闸门把不确定的运行转给人处理。",
+    "url": "https://airflow.apache.org/docs/apache-airflow-providers-common-ai/stable/index.html",
+    "kind": "integration",
+    "patterns": [
+      "intent-routing",
+      "human-escalation"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "airflow",
+      "pydantic-ai"
+    ],
+    "repo": "https://github.com/apache/airflow",
+    "has_code": true,
+    "stars": 46932,
+    "repo_license": "Apache-2.0",
+    "notes": "Branching a data pipeline on a calibrated decision is a natural fit, and the docs sensibly recommend pinning a version rather than tracking the alias.",
+    "notes_zh": "用校准过的决策给数据流水线做分支很契合，而且文档明智地建议锁定版本号、而不是跟着别名走。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "effect-ai-typesafe",
+    "title": "@effect/ai-typesafe",
+    "summary": "Implements Effect's DecisionModel interface over Jev, with an unusually candid caveat about unverified rounding behaviour.",
+    "summary_zh": "在 Jev 之上实现 Effect 的 DecisionModel 接口，并罕见地坦白说明取整行为尚未核实。",
+    "url": "https://github.com/Effect-TS/effect",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "effect",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 16165,
+    "repo_license": "MIT",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "ruby-llm-typesafe",
+    "title": "ruby_llm: TypeSafe provider",
+    "summary": "A Ruby provider with a dedicated System One protocol, the main route into Jev from Ruby.",
+    "summary_zh": "带专门 System One 协议的 Ruby provider，是 Ruby 侧接入 Jev 的主要路径。",
+    "url": "https://github.com/crmne/ruby_llm",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "ruby"
+    ],
+    "platforms": [
+      "ruby-llm",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 4396,
+    "repo_license": "MIT",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "rig-typesafeai",
+    "title": "rig-typesafeai",
+    "summary": "A Rust integration with compile-time-checked option counts, so an over-255 Choice fails to build rather than at runtime.",
+    "summary_zh": "Rust 集成，选项数量在编译期检查 —— 超过 255 个选项的 Choice 会编译失败，而不是运行时才报错。",
+    "url": "https://github.com/0xPlaygrounds/rig",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "rust"
+    ],
+    "platforms": [
+      "rig",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 8692,
+    "repo_license": "MIT",
+    "notes": "Moving the 255-option limit into the type system is the nicest ergonomic touch found in any integration. Note it reads a different environment variable name than the others — see docs/compatibility.md.",
+    "notes_zh": "把 255 选项上限搬进类型系统，是所有集成里最漂亮的一处人机工程设计。注意它读的环境变量名和其他集成不同 —— 见 docs/compatibility.md。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "langchainjs-typesafe",
+    "title": "@langchain/typesafe",
+    "summary": "The JavaScript counterpart of the LangChain integration, with the same classifier and middleware shapes.",
+    "summary_zh": "LangChain 集成的 JavaScript 对应版本，分类器与 middleware 形状一致。",
+    "url": "https://github.com/langchain-ai/langchainjs",
+    "kind": "integration",
+    "patterns": [
+      "model-routing",
+      "safety-gating"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "langchain"
+    ],
+    "package": {
+      "registry": "npm",
+      "name": "@langchain/typesafe",
+      "url": "https://www.npmjs.com/package/@langchain/typesafe"
+    },
+    "has_code": true,
+    "stars": 18214,
+    "repo_license": "MIT",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "kiln-jev-adapter",
+    "title": "Kiln: Jev adapter",
+    "summary": "A JSON-Schema-to-question compiler wired into the adapter registry, with an honest note on what it cannot serve.",
+    "summary_zh": "一个接进 adapter registry 的「JSON Schema 转问题」编译器，并诚实说明了它无法支持的场景。",
+    "url": "https://github.com/Kiln-AI/Kiln",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "kiln",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 5078,
+    "repo_license": "NOASSERTION",
+    "notes": "Documents a real boundary: it cannot back judges that need token log-probabilities, because the model does not expose them.",
+    "notes_zh": "它记录了一个真实边界：需要 token 对数概率的评判器它支持不了，因为模型不暴露这些。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "opencode-zen-jev",
+    "title": "OpenCode Zen: Jev resale",
+    "summary": "A coding agent whose hosted gateway resells Jev, including a free tier model id.",
+    "summary_zh": "一个编程智能体，其托管网关转售 Jev，还提供一个免费档位的模型 id。",
+    "url": "https://github.com/anomalyco/opencode",
+    "kind": "integration",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "opencode-zen"
+    ],
+    "has_code": true,
+    "stars": 209172,
+    "repo_license": "MIT",
+    "notes": "Worth knowing about because it is one of the few routes with a free model id, useful while early access is gated.",
+    "notes_zh": "值得知道，因为它是少数提供免费模型 id 的路径之一 —— 在早期访问仍需排队时很有用。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "ai-cookbook-jev-track",
+    "title": "ai-cookbook: Jev track",
+    "summary": "A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.",
+    "summary_zh": "一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。",
+    "url": "https://github.com/daveebbelaar/ai-cookbook",
+    "kind": "tutorial",
+    "patterns": [
+      "fan-out",
+      "support-triage",
+      "intent-routing",
+      "content-scoring"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 4554,
+    "repo_license": "MIT",
+    "notes": "The best structured tutorial found. It states plainly that typed output does not guarantee a correct decision, lists the documented weaknesses, and qualifies its own cost illustration rather than selling it.",
+    "notes_zh": "找到的最好的结构化教程。它明确指出类型化输出不保证决策正确、列出了官方记录的弱项，并且对自己给出的成本示例做了限定而不是拿来营销。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "nanojev",
+    "title": "NanoJev",
+    "summary": "A self-described nano replica of Jev, for reading rather than for production.",
+    "summary_zh": "自称 Jev 的「nano 复刻版」，用途是拿来读，不是拿来上生产。",
+    "url": "https://github.com/TianyuCodings/NanoJev",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "has_code": true,
+    "stars": 1830,
+    "repo_license": "MIT",
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev, but it does call the real model as an evaluation baseline. Its own compatibility audit is candid about where it diverges, including using the AI-SDK `boolean` spelling rather than `noul`.",
+    "notes_zh": "不是 Jev，但它确实调用真实模型作为评测基线。它自己的兼容性审计很坦白地说明了分歧之处，包括采用 AI-SDK 的 `boolean` 拼法而非 `noul`。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "semif",
+    "title": "SemIf",
+    "summary": "An independent semantic-if implementation that states up front it is unaffiliated with Jev or TypeSafe.",
+    "summary_zh": "一个独立的「语义 if」实现，开门见山声明与 Jev 和 TypeSafe 无隶属关系。",
+    "url": "https://github.com/TheoLeeCJ/SemIf",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "has_code": true,
+    "stars": 3312,
+    "repo_license": "MIT",
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev. Listed because its naming makes it easy to mistake for an integration.",
+    "notes_zh": "不是 Jev。收录是因为它的命名很容易被误认为是某种集成。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "awesome-jev-yibie",
+    "title": "awesome-jev (yibie)",
+    "summary": "Currently the most-starred sibling directory in this space.",
+    "summary_zh": "目前这个领域里 star 数最高的同类目录。",
+    "url": "https://github.com/yibie/awesome-jev",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "github"
+    ],
+    "has_code": false,
+    "stars": 1010,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license"
+    ],
+    "notes": "Listed for completeness. There are dozens of directories in this space; this catalog competes on verification rather than on coverage.",
+    "notes_zh": "为完整性而收录。这个领域有数十个同类目录；本目录竞争的是核实严谨度，不是收录数量。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "pg-jev",
+    "title": "pg-jev",
+    "summary": "A real PostgreSQL extension exposing the primitives as SQL functions, so a semantic decision can appear in a WHERE clause over any row type.",
+    "summary_zh": "一个真正的 PostgreSQL 扩展，把三个原语暴露成 SQL 函数 —— 语义判断可以直接写进任意行类型的 WHERE 子句。",
+    "url": "https://github.com/realZachi/pg-jev",
+    "kind": "project",
+    "patterns": [
+      "classification",
+      "content-scoring",
+      "search-ranking"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python",
+      "shell"
+    ],
+    "platforms": [
+      "postgresql",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 284,
+    "repo_license": "NOASSERTION",
+    "notes": "The most surprising integration found. Putting a calibrated decision behind a SQL function changes where this kind of judgement can live at all — though it also means a query can now cost money and block on a network call.",
+    "notes_zh": "找到的最出人意料的集成。把校准决策放进 SQL 函数，改变了这类判断能存在的位置 —— 但也意味着一条查询从此会花钱、并且会阻塞在网络调用上。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "w3cj-jev-chat",
+    "title": "jev-chat: a tool-calling chatbot with no LLM",
+    "summary": "A chat bot that does tool calling with no language model anywhere: one request asks the request kind, the tool, and every tool's arguments at once.",
+    "summary_zh": "一个完全不含语言模型的 tool calling 聊天机器人：一次请求同时问清请求类型、该调哪个工具、以及每个工具的参数。",
+    "url": "https://github.com/w3cj/jev-chat",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "fan-out",
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 83,
+    "repo_license": "MIT",
+    "notes": "The purest demonstration in this catalog: verified to contain no LLM at all. Read it to see exactly how far closed-set decisions alone can carry an agent loop, and where they stop.",
+    "notes_zh": "本目录里最纯粹的演示：已核实完全不含 LLM。想知道「只靠封闭集决策」能把智能体循环推进到哪一步、又在哪里必须停下，读它。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "perch-semantic-linting",
+    "title": "perch: semantic code linting",
+    "summary": "Tree-sitter finds and ranks methods, then user-authored YAML rules compile into nouls, with severity read as the rubric's expected value rather than the top band.",
+    "summary_zh": "先用 tree-sitter 找出并排序方法，再把用户自写的 YAML 规则编译成 noul；严重度取评分量表的期望值，而不是概率最高的那一档。",
+    "url": "https://github.com/lakeday-org/perch",
+    "kind": "project",
+    "patterns": [
+      "output-validation",
+      "content-scoring",
+      "classification"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 167,
+    "repo_license": "MIT",
+    "notes": "The most careful probability handling found. Taking the expected value across a score's levels, instead of the argmax band, is the statistically right reading of what a score actually returns.",
+    "notes_zh": "找到的概率处理最讲究的一个。在 score 的各级上取期望值、而不是取概率最高的那一档，才是对「score 究竟返回了什么」的正确统计读法。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jevpilot",
+    "title": "jevpilot",
+    "summary": "A driving simulator autopilot asking two choices per tick, which short-circuits single-option questions locally instead of paying to send them.",
+    "summary_zh": "驾驶模拟器的自动驾驶，每个 tick 问两个 choice；只剩单一选项的问题直接在本地短路，不花钱发出去。",
+    "url": "https://github.com/standardagents/jevpilot",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 152,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license"
+    ],
+    "notes": "Two optimisations worth stealing: never send a question whose answer is forced, and factor the state table losslessly to cut tokens. No licence file.",
+    "notes_zh": "两个值得偷的优化：答案已被唯一确定的问题就不要发出去；以及对状态表做无损重构以减少 token。无许可证文件。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-voice-browser",
+    "title": "jev-voice-browser",
+    "summary": "Voice-driven browser control where target criteria are rebuilt per request from the live element list, always including a none option.",
+    "summary_zh": "语音驱动的浏览器控制：目标选项每次请求都按当前实时元素列表重建，并且总是包含一个 none 选项。",
+    "url": "https://github.com/moritzkremb/jev-voice-browser",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 212,
+    "repo_license": "MIT",
+    "notes": "Pins a specific model version rather than tracking the alias, which is the right call once you have tuned thresholds. Also asks a separate noul for whether a command is destructive.",
+    "notes_zh": "它锁定具体模型版本而不是跟随别名 —— 一旦你调好了阈值，这就是正确做法。它还单独用一个 noul 判断命令是否具破坏性。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-search-superagents",
+    "title": "jev-search",
+    "summary": "Jev-driven web search: chooses the recency window and the best query rewrite, then reranks results in batches with one noul each.",
+    "summary_zh": "Jev 驱动的网页搜索：先选时间窗口和最佳查询改写，再分批对结果逐条用 noul 重排。",
+    "url": "https://github.com/superagents-lab/jev-search",
+    "kind": "project",
+    "patterns": [
+      "search-ranking",
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "vercel-ai-gateway"
+    ],
+    "has_code": true,
+    "stars": 382,
+    "repo_license": "MIT",
+    "notes": "Shows the whole retrieval chain as decisions: which engines to query, how to rewrite the query, and which results survive.",
+    "notes_zh": "把整条检索链都变成决策：查哪些引擎、如何改写查询、哪些结果留下。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-cu",
+    "title": "Jev-cu",
+    "summary": "A computer-use agent that asks which accessibility-tree element to act on, plus a separate noul for whether the action needs explicit user confirmation.",
+    "summary_zh": "一个 computer-use 智能体：判断该对无障碍树里哪个元素操作，并单独用一个 noul 判断这个动作是否需要用户显式确认。",
+    "url": "https://github.com/Sac-Y/Jev-cu",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "safety-gating"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 547,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license"
+    ],
+    "notes": "Its risk noul enumerates the cases that need a human — delete, send, pay, permissions, credentials — and a local policy gate enforces the threshold. Sends text only, never screenshots. No licence file.",
+    "notes_zh": "它的风险 noul 明确列举了需要人介入的情形 —— 删除、发送、付款、权限、凭据 —— 并由本地策略闸门执行阈值。只发文本，从不发截图。无许可证文件。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "hyperedit",
+    "title": "hyperedit",
+    "summary": "An AI video editor routing an editing instruction to an operation, a target clip and a track, with a keyword router as fallback.",
+    "summary_zh": "一个 AI 视频编辑器：把编辑指令路由到具体操作、目标片段和轨道，并以关键词路由作为兜底。",
+    "url": "https://github.com/kevinbadi/hyperedit",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 173,
+    "repo_license": "unknown",
+    "flags": [
+      "no-license"
+    ],
+    "notes": "Keeping a deterministic keyword router as the fallback path is a sensible pattern: the model improves the common case without becoming a hard dependency. No licence file.",
+    "notes_zh": "保留一条确定性的关键词路由作为兜底是个合理模式：模型改善常见情形，但不成为硬依赖。无许可证文件。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-chat-jarvis",
+    "title": "jev-chat-jarvis",
+    "summary": "An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.",
+    "summary_zh": "一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。",
+    "url": "https://github.com/jev-chat/jev-chat-jarvis",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "content-scoring",
+      "search-ranking"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "java"
+    ],
+    "platforms": [
+      "openrouter",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 1340,
+    "repo_license": "MIT",
+    "notes": "A clean split of labour on a phone: Jev judges and ranks, other models read the screen and write the words. Reads on-screen message content, so consider the privacy implications before running it.",
+    "notes_zh": "手机端的一个清晰分工：Jev 负责判断与排序，其他模型负责读屏和写字。它会读取屏幕上的消息内容，运行前请先考虑隐私影响。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "jev-skill-wuyoscar",
+    "title": "jev-skill",
+    "summary": "An agent skill plus CLI that validates all three primitives, requires explicit consent before a billed call, and forbids inventing output when simulating.",
+    "summary_zh": "一个 agent 技能加 CLI：校验三种原语、在产生计费调用前要求明确同意、并禁止在模拟时编造输出。",
+    "url": "https://github.com/wuyoscar/jev-skill",
+    "kind": "plugin",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "claude-code",
+      "openrouter",
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 372,
+    "repo_license": "MIT",
+    "notes": "Its skill files are unusually disciplined for this space: consent before spending, an explicit marker when no call was made, and the line that selection is not permission.",
+    "notes_zh": "它的技能文件在这个领域里格外自律：花钱前先征得同意、未实际调用时打出明确标记，以及那句「被选中不等于被授权」。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "simple-jev",
+    "title": "simple-jev",
+    "summary": "Turns any open-weights model into a Jev-shaped endpoint by reading next-token logits, with the server constructing the JSON rather than the model generating it.",
+    "summary_zh": "通过读取 next-token logits，把任意开源权重模型变成 Jev 形状的端点 —— JSON 由服务端组装，而不是模型生成。",
+    "url": "https://github.com/featherless-ai/simple-jev",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "has_code": true,
+    "stars": 455,
+    "repo_license": "Apache-2.0",
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev. Worth reading anyway: it makes concrete what constrained decoding over a fixed option set actually is, which is the mechanism the whole category rests on.",
+    "notes_zh": "不是 Jev。但仍值得一读：它把「在固定选项集上做受约束解码」讲得很具体 —— 而这正是整个类别赖以成立的机制。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "GitHub code search",
+        "url": "https://github.com/search"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "example-three-primitives",
+    "title": "Example: three primitives in one request",
+    "summary": "A minimal first call asking a choice, a score and a noul together, annotated with the asymmetries that catch people out.",
+    "summary_zh": "最小化的第一次调用：同时问一个 choice、一个 score 和一个 noul，并标注了容易踩的那几处不对称。",
+    "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/examples/01-three-primitives/main.py",
+    "kind": "snippet",
+    "patterns": [
+      "support-triage",
+      "fan-out"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "flags": [
+      "code-untested"
+    ],
+    "notes": "Written from the official API reference and checked field by field against it, but not executed against the live API.",
+    "notes_zh": "按官方 API 参考编写并逐字段对照核实，但未针对线上 API 实际执行过。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "this repository",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "example-confidence-gate",
+    "title": "Example: confidence-gated escalation",
+    "summary": "Routing with an act-or-escalate gate, where the policy function is deliberately left unimplemented because the thresholds are yours to choose.",
+    "summary_zh": "带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。",
+    "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py",
+    "kind": "snippet",
+    "patterns": [
+      "human-escalation",
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "flags": [
+      "code-untested"
+    ],
+    "notes": "The docstring lays out the trade-offs: one cutoff or two, whether it varies by queue, and when the runner-up probability matters more than confidence.",
+    "notes_zh": "文档字符串里列出了取舍：一个阈值还是两个、是否按队列区分、以及什么时候「第二名的概率」比置信度更重要。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "this repository",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "example-fan-out",
+    "title": "Example: speculative fan-out",
+    "summary": "Asks for an operation plus a target for each operation it might have picked, so a browser step never needs a second round trip.",
+    "summary_zh": "一次问清操作本身、以及每个可能操作各自的目标 —— 于是浏览器的一步永远不需要第二次往返。",
+    "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/examples/03-fan-out/main.py",
+    "kind": "snippet",
+    "patterns": [
+      "fan-out",
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "flags": [
+      "code-untested"
+    ],
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "this repository",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "notes": "Written from the official API reference, not executed against the live API. Note the budget: speculative questions are cheap but share the 64k-per-request context with everything else.",
+    "notes_zh": "按官方 API 参考编写，未针对线上 API 实际执行。注意预算：推测性问题很便宜，但它们和其他内容共享每次请求 64k 的上下文。",
+    "checked": "2026-09-22",
+    "link_status": 200
+  },
+  {
+    "slug": "example-tool-selection",
+    "title": "Example: tool selection with a none option",
+    "summary": "Pairs a choice over tools with a separate noul on whether a tool is needed at all, because those are different questions.",
+    "summary_zh": "把「选哪个工具」的 choice 和「到底需不需要工具」的 noul 配对使用 —— 因为这是两个不同的问题。",
+    "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/examples/04-tool-selection/main.py",
+    "kind": "snippet",
+    "patterns": [
+      "tool-selection"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "flags": [
+      "code-untested"
+    ],
+    "notes": "A closed set with no escape hatch cannot decline, so it returns the least wrong tool instead. The none option is the fix.",
+    "notes_zh": "没有退出选项的封闭集无法「拒绝」，只会返回最不离谱的那个工具。加一个 none 选项就是解法。",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "this repository",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-22",
+    "link_status": 200
+  }
+]

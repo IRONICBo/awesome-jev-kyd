@@ -1,0 +1,128 @@
+# Data and method
+
+How the first build of this catalog was produced, what was checked, and where it
+is weakest. If you want to reproduce or audit it, this is the page.
+
+## Pipeline
+
+1. **Establish the primary facts first.** The official docs serve raw Markdown at
+   `<page>.md`, so the API reference, primitives, confidence, models and
+   limitations pages were fetched and read directly rather than summarised. Every
+   claim about the model in this repo traces to one of those.
+2. **Sweep in parallel, along four axes.** Official sources; platform and
+   framework integrations; open-source projects and packages; articles, videos
+   and discussion. Four passes, each required to cite a URL per claim and to mark
+   anything it could not confirm.
+3. **Verify code entries at the call site.** For every row claiming code, the
+   actual calling file was read to confirm which primitives are used. This is
+   where README descriptions and reality diverge most often.
+4. **Verify repository metadata from the API.** Stars, licence, creation date and
+   last push came from the GitHub API on 2026-09-22, not from badges.
+5. **Reject aggressively.** See "What was excluded".
+6. **Write both summaries by hand**, English and Chinese, from what the page
+   actually said.
+7. **Validate and generate.** `scripts/lint.py` then `scripts/build_readme.py`.
+
+## What the first build checked, and what it found
+
+- **148 entries**, 124 carrying code, 36 official.
+- **Two agent reports contradicted each other twice**, and both conflicts were
+  resolved by direct inspection rather than by majority:
+  - A Discord moderation bot was called a name collision by one pass. Reading
+    `moderator.py` showed a real `typesafe` import and `jev-latest` default. It
+    stayed in.
+  - A widely-starred repository was catalogued by the community site as a visual
+    inference tool using Jev. Scanning all 52 of its files found **zero**
+    references to the API. Its own README says it is a research starter, not a
+    copy. It was reclassified as `alternative` with a `not-jev` flag.
+- **A fabricated integration was found and excluded**: a skills repository
+  documenting a Jev API that does not exist, with primitives' meanings inverted,
+  linking to a repository that returns 404.
+- **The linter caught a bug in its own rule.** The `official` check originally
+  accepted only `typesafe.ai` hosts, which wrongly rejected the vendor's own
+  GitHub org. The rule was widened to the org and no further.
+
+## Why a status code is not a verdict
+
+Every row's `link_status` says the URL answered. That is all it says. It does not
+mean the code runs, the project is maintained, the benchmark is sound, or the
+approach suits your system.
+
+The distinction matters more here than in most catalogs, because this ecosystem
+is days old. A repository can have four figures of stars, one commit, no licence
+and a description written for a launch-week audience. Popularity and substance
+have not had time to correlate. That is why `stars` is documented in the schema
+as "a popularity signal, not a quality verdict", and why `single-commit`,
+`no-license`, `archived` and `shadow-mode-only` exist as flags.
+
+## Field precedence
+
+When sources disagree:
+
+1. The official raw Markdown docs win on anything about the model.
+2. A platform's own docs win on how to reach the model through that platform.
+3. The code at the call site wins over any prose describing it, including the
+   project's own README.
+4. The GitHub API wins over README badges.
+5. Where a page's `<title>` and on-page heading differ, the heading a reader sees
+   is used, and `notes` records the discrepancy.
+
+## What was excluded
+
+- **Content-farm and SEO rewrites of the launch announcement.** Dozens exist.
+  Exclusion criterion: adds no observation of its own.
+- **Press-release redistributions.** Many outlets carried the same wire copy.
+- **Fabricated API documentation**, including the community site's own `/jev-api`
+  page, whose request shape matches neither the official API nor that same
+  site's other documentation.
+- **Name collisions.** "JEV" is also Japanese encephalitis virus, a person's
+  name, an Eve Online asset manager, a smart-camera vision framework, a Joomla
+  component and several car models. Every candidate was checked for whether it
+  genuinely concerns TypeSafe's model. All searching used qualifying terms;
+  bare "JEV" returns mostly noise.
+- **Claimed research papers.** There is no published paper for the training
+  method. An unrelated 2023 paper abbreviates to the same four letters, and an
+  arXiv link labelled as "the paper" is almost certainly that one.
+
+## Known limits
+
+- **No code was executed and the live API was never called.** Early access is
+  gated. Every row with code was read, not run. The in-repo examples carry
+  `code-untested` for the same reason.
+- **Performance claims were not reproduced.** Rows repeating vendor benchmarks
+  carry `vendor-reported`. The independent measurements catalogued here are few,
+  and that ratio is itself a finding.
+- **Reddit produced nothing verifiable.** Four retrieval routes failed. There is
+  no Reddit row, which is a gap rather than a judgement that none exists.
+- **X/Twitter is barely represented**, for the same reason.
+- **Video content was verified by metadata only.** Channel, title and existence
+  were confirmed; the demonstrations inside were not reviewed, and the rows say
+  so.
+- **The ecosystem is far larger than this catalog.** Searching for the model
+  alongside the vendor name returns repositories in the thousands. This is a
+  curated subset chosen for being verifiable, not an enumeration. Nobody can
+  enumerate it at this growth rate.
+- **Star counts move hourly** and were true on 2026-09-22.
+
+## Reproducing it
+
+```bash
+git clone https://github.com/kydlikebtc/awesome-jev
+cd awesome-jev
+
+python3 scripts/lint.py          # schema plus cross-entry invariants
+python3 scripts/build_readme.py  # regenerate both READMEs
+python3 scripts/counts.py        # coverage, with gaps marked
+python3 scripts/check_links.py   # sweep every URL, report only
+```
+
+`check_links.py --write` stamps `checked` and `link_status` on rows that
+answered. It never retires a row: that needs a human-written reason.
+
+## Kept current
+
+- `lint` runs on every push and pull request, and fails if the generated READMEs
+  drift from `catalog.json`.
+- `links` sweeps every URL weekly and opens a red build on a dead link, rather
+  than silently rewriting data.
+- `pages` republishes the searchable site when the catalog or site changes.

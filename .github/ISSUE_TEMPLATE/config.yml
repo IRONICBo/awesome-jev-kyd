@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Official TypeSafe AI documentation
+    url: https://docs.typesafe.ai/
+    about: Questions about the model, the API, pricing or access belong with the vendor, not here. This is an unaffiliated community index.
+  - name: Known limitations of the current model
+    url: https://docs.typesafe.ai/model-jaggedness/jev-1.13
+    about: "\"Why did it get this wrong?\" is usually answered here — the vendor documents its weak spots."
+  - name: Cross-platform compatibility
+    url: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/compatibility.md
+    about: Model strings, field names, request shapes and environment variables differ per platform. Check here before filing a bug against an integration.

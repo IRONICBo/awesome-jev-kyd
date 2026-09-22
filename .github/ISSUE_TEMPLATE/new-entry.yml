@@ -1,0 +1,111 @@
+name: Add an entry
+description: Suggest a Jev usage example for the catalog
+labels: ["new entry"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This catalog competes on verification, not size. The bar is: **could a
+        reader act on this row without opening the link?**
+
+        Please only submit something you have actually opened. If a tool
+        suggested it and you have not checked it, check it first — fabricated
+        entries are the failure mode this repository exists to avoid.
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: The one link a reader should open.
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: As published at the source. If the page title and on-page heading differ, give the heading a reader sees.
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What does it actually demonstrate?
+      description: >
+        One or two lines on the decision it makes — not what its README claims.
+        "Routes support tickets with a choice and a score" beats "revolutionary
+        AI-powered triage".
+    validations:
+      required: true
+
+  - type: dropdown
+    id: is_jev
+    attributes:
+      label: Does it call Jev?
+      description: >
+        Several of the most-starred repositories mentioning Jev never call it —
+        they are independent reimplementations. Those are catalogued separately.
+      options:
+        - "Yes — I read the call site"
+        - "Yes — the docs say so, I did not read the code"
+        - "No — it is a Jev-like alternative or reimplementation"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: primitives
+    attributes:
+      label: Which primitives does the code actually call?
+      description: >
+        Read the call site rather than inferring from the README — several
+        projects describe "scoring" while using only `noul`. Leave all unchecked
+        if there is no code.
+      options:
+        - label: "`choice`"
+        - label: "`score`"
+        - label: "`noul`"
+
+  - type: textarea
+    id: patterns
+    attributes:
+      label: Which decision pattern(s)?
+      description: >
+        See docs/patterns.md. For example tool-selection, intent-routing,
+        context-compaction, safety-gating, search-ranking, classification.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: caveats
+    attributes:
+      label: Anything a reader deserves to know before clicking?
+      description: A flagged row is more useful than an unflagged one.
+      options:
+        - label: "Performance numbers in it are the vendor's, not measured"
+        - label: "It makes measurement claims I could not verify"
+        - label: "Jev is wired in but changes no behaviour (shadow mode)"
+        - label: "I read the code but did not run it"
+        - label: "One commit, or development has visibly stopped"
+        - label: "No LICENSE file (whatever the README badge says)"
+        - label: "Needs early access, or a key for a third-party service"
+        - label: "Paywalled, marketing content, or looks machine-written"
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: >
+        If you checked any box above, explain briefly — a flag a reader cannot
+        interpret is worse than no flag. Also the place for anything surprising.
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I opened this link and wrote the summary from what was actually there
+          required: true
+        - label: If this is my own project, I have described what it does rather than marketed it

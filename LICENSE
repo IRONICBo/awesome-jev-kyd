@@ -1,0 +1,17 @@
+This repository is dual-licensed, separating code from data.
+
+  Code    scripts/, site/, examples/        MIT          see LICENSE-MIT
+  Data    catalog.json, retired.json,       CC0-1.0      see LICENSE-CC0
+          schema/, docs/, README*.md
+
+Rows in catalog.json carry a per-row `license` field. Every row in the current
+build is CC0-1.0. A row whose descriptive text was inherited from a CC BY 4.0
+source carries `CC-BY-4.0` instead, and its attribution is that row's `sources`
+array.
+
+Works linked FROM this catalog remain under their own licences. The
+`repo_license` field on a row records what the linked project declares, which is
+not always what its README badge claims. Rows flagged `no-license` link to
+projects that ship no LICENSE file at all — check before reusing their code.
+
+See docs/sources.md for the full licence position.

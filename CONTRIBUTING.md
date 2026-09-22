@@ -1,0 +1,113 @@
+# Contributing
+
+This catalog competes on verification, not on size. There are dozens of Jev
+directories; the reason to use this one is that every row was opened by a person
+and says what it does not know. A submission that adds a link without adding
+that confidence makes the list worse, not longer.
+
+So the bar is: **could a reader act on this row without opening the link?**
+
+## Adding an entry
+
+1. Add an object to `catalog.json`. Required fields: `slug`, `title`, `summary`,
+   `summary_zh`, `url`, `kind`, `patterns`, `sources`, `license`.
+2. Run the checks:
+
+```bash
+python3 scripts/lint.py && python3 scripts/build_readme.py
+```
+
+3. Commit `catalog.json` **and** both generated READMEs. CI fails if they drift.
+
+No Python dependencies are needed. The schema validator is self-contained.
+
+## Field rules
+
+- **`title`** — as published at the source. If the page's `<title>` and its
+  on-page heading disagree, use the heading a reader sees, and say so in `notes`.
+- **`summary`** — what the example _actually demonstrates_, not what its README
+  claims. "Routes support tickets with a choice and a score" beats "revolutionary
+  AI-powered triage".
+- **`summary_zh`** — write it yourself if you can. If you machine-translated it,
+  set `zh_machine: true`. The READMEs report the split; claiming hand-written
+  Chinese that is not is the one thing that would quietly make the data untrue.
+- **`kind`** — the form of the thing. Use `alternative` for anything that does
+  not call Jev, however Jev-shaped it is.
+- **`patterns`** — which decisions it demonstrates. Read
+  [`docs/patterns.md`](docs/patterns.md) first. `overview` cannot be combined
+  with a specific pattern; the linter enforces that.
+- **`question_types`** — only the primitives the code _actually_ calls. Read the
+  call site; do not infer from the README. Several projects describe "scoring"
+  while using only `noul`. The primitive is `noul`, never `binary`.
+- **`official`** — true only for `typesafe.ai` hosts and the `typesafe-ai`
+  GitHub org. A first-party integration published by another vendor is not
+  official. The linter checks this.
+- **`stars`**, **`repo_license`** — from the GitHub API on the date you add the
+  row, not from a README badge. Several repos have a licence badge and no
+  `LICENSE` file; that gets the `no-license` flag.
+- **`sources`** — at least one, so the row is attributable. Name where you found
+  it, not where it lives.
+
+## Flags are the point
+
+Use them generously. A flagged row is more useful than an unflagged one.
+
+| Flag                                     | Use when                                        |
+| ---------------------------------------- | ----------------------------------------------- |
+| `vendor-reported`                        | it repeats the vendor's own performance numbers |
+| `unverified-claims`                      | it makes measurement claims you could not check |
+| `not-jev`                                | it does not call Jev at all                     |
+| `shadow-mode-only`                       | Jev is wired in but changes no behaviour        |
+| `code-untested`                          | you read the code but did not run it            |
+| `single-commit`                          | one commit, so maintenance is unlikely          |
+| `no-license`                             | no `LICENSE` file, whatever the README says     |
+| `archived`                               | development visibly stopped                     |
+| `paywalled`, `marketing`, `ai-generated` | as they say                                     |
+| `early-access-required`                  | needs waitlist access to use                    |
+| `third-party-api-key`                    | needs a key for a service other than TypeSafe   |
+
+`ai-generated`, `unverified-claims` and `code-untested` require a `notes` line
+saying why — a flag a reader cannot interpret is worse than no flag.
+
+## What does not belong here
+
+- **Anything you have not opened.** Including anything an AI tool suggested and
+  you did not check. Fabricated entries are the failure mode this catalog is
+  built to avoid.
+- **A model string, package name or endpoint you have not seen in a primary
+  source.** `typesafe/jev-1` is the canonical example: it appears in no
+  documentation and keeps getting repeated.
+- **Content-farm rewrites of the launch announcement.** There are hundreds. If it
+  adds no observation of its own, it adds nothing here.
+- **"Run Jev locally" content filed as a Jev tutorial.** There are no published
+  weights. File it as `alternative` with `not-jev`.
+- **Your own project, described the way you would describe it to an investor.**
+  Self-submissions are welcome; marketing copy is not. Say what decision it makes
+  and which primitive it uses.
+
+## Reporting a dead link
+
+Open an issue with the slug. Do not delete the row — retiring an entry means
+moving it to `retired.json` with a `notes` line explaining why, so the dead
+reference stays searchable. `scripts/check_links.py` finds them but deliberately
+never moves them; that judgement is a person's.
+
+## Adding a pattern
+
+A pattern earns a heading once **two independent real examples** exist. Adding
+one means editing three places: the schema enum, the label table and order list
+in `scripts/build_readme.py`, and `docs/patterns.md`. The build fails loudly if
+you miss the labels, which is intentional — a silent fallback to a raw slug is
+how a bilingual list starts rotting.
+
+## Adding a runnable example
+
+See [`examples/README.md`](examples/README.md). Two patterns have no example yet
+— `retry-control` and `recommendation` — and either would be a genuinely useful
+contribution. Say plainly in the file whether you ran it against the live API.
+
+## Ground rules
+
+Be accurate, be brief, and say what you do not know. If you are not sure whether
+something qualifies, open an issue and ask rather than guessing — an honest
+question costs nothing and a wrong row costs a reader's trust.
