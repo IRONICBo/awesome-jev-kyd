@@ -56,10 +56,15 @@ jobs:
             echo '```'
           } > /tmp/body.md
 
+          gh label create claims --color d29922 \
+            --description "A cited call site no longer substantiates its claim" 2>/dev/null || true
+
           existing=$(gh issue list --state open --label claims --json number --jq '.[0].number')
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body-file /tmp/body.md
           else
             gh issue create --title "Stale claims found by the weekly re-read" \
-              --label claims --body-file /tmp/body.md
+              --label claims --body-file /tmp/body.md \
+              || gh issue create --title "Stale claims found by the weekly re-read" \
+                   --body-file /tmp/body.md
           fi

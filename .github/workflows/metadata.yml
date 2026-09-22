@@ -75,8 +75,15 @@ jobs:
             echo '```'
           } > /tmp/body.md
 
+          # A fresh clone or a fork has no labels, and a missing label must not
+          # fail a job whose real work already landed.
+          gh label create metadata --color 1f6feb \
+            --description "Automated refresh of repository facts" 2>/dev/null || true
+
           existing=$(gh pr list --head "$branch" --json number --jq '.[0].number')
           if [ -z "$existing" ]; then
             gh pr create --title "chore: weekly metadata refresh" \
-              --body-file /tmp/body.md --label metadata
+              --body-file /tmp/body.md --label metadata \
+              || gh pr create --title "chore: weekly metadata refresh" \
+                   --body-file /tmp/body.md
           fi
