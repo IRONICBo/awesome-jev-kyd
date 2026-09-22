@@ -161,6 +161,25 @@ def check_entry_invariants(entry: dict, path: str, *, retired: bool) -> None:
     if entry.get("question_types") and not entry.get("has_code"):
         err(path, f"{slug}: question_types set but has_code is not true")
 
+    # A primitive claim should be re-checkable, or say why it is not. A warning
+    # rather than an error so a new row is never blocked — but the count of
+    # unbacked claims is what the README reports, so it stays visible.
+    if entry.get("question_types") and not (entry.get("evidence") or entry.get("evidence_none")):
+        warn(
+            path,
+            f"{slug}: claims primitives but carries neither evidence nor evidence_none. "
+            "Run 'python3 scripts/verify_claims.py --discover --only " + str(slug) + "'",
+        )
+
+    # Evidence without a repository to read it from cannot be verified.
+    if entry.get("evidence"):
+        url = entry.get("url", "")
+        repo = entry.get("repo", "")
+        if "github.com" not in url and "github.com" not in repo:
+            err(path, f"{slug}: has evidence but no GitHub repository to re-read it from")
+    if entry.get("evidence") and entry.get("evidence_none"):
+        err(path, f"{slug}: has both evidence and evidence_none; they are exclusive")
+
     # `official` is a factual claim about who published the thing, so it is
     # checked against the vendor's own hosts and GitHub org rather than trusted.
     if entry.get("official"):

@@ -1,0 +1,65 @@
+# Weekly re-check that the primitive claims in catalog.json are still true
+# upstream. Reports by opening an issue rather than failing the build: an
+# upstream rename is a false positive, and a permanently red repo teaches
+# people to ignore the signal.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block. The issue
+# body is read from a file the script wrote, never interpolated into a shell.
+name: claims
+
+on:
+  schedule:
+    # Tuesdays 06:00 UTC, a day after the link sweep so the two do not collide.
+    - cron: "0 6 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verify:
+    name: Re-read every cited call site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify claims
+        id: verify
+        env:
+          # 5000 requests/hour instead of the unauthenticated 60.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          python3 scripts/verify_claims.py | tee /tmp/report.txt
+          echo "failed=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update an issue when a claim stops holding
+        if: steps.verify.outputs.failed != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo "A scheduled re-read found catalog rows whose primitive claim no longer"
+            echo "holds upstream. Each needs a person:"
+            echo
+            echo '- `path-gone` — the file moved or was renamed. Update `evidence.path`.'
+            echo '- `claim-gone` — the strings are gone. The integration may have been'
+            echo '  removed, in which case `question_types` on that row is now wrong.'
+            echo
+            echo '```'
+            cat /tmp/report.txt
+            echo '```'
+          } > /tmp/body.md
+
+          existing=$(gh issue list --state open --label claims --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file /tmp/body.md
+          else
+            gh issue create --title "Stale claims found by the weekly re-read" \
+              --label claims --body-file /tmp/body.md
+          fi

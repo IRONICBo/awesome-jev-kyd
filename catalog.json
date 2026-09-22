@@ -34,7 +34,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "typesafe-api-reference",
@@ -102,7 +103,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "typesafe-confidence",
@@ -282,7 +284,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "typesafe-pattern-intent-routing",
@@ -315,7 +318,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-parallel-questions",
@@ -410,7 +414,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-llm-guardrails",
@@ -446,7 +451,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-classifying-rag-passages",
@@ -510,7 +516,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-skill-suggestion",
@@ -545,7 +552,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-citation-check",
@@ -578,7 +586,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-consistency-noul",
@@ -610,7 +619,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-consistency-choice",
@@ -645,7 +655,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-hierarchical-classification",
@@ -679,7 +690,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-classification-using-confidence",
@@ -714,7 +726,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-date-extraction",
@@ -779,7 +792,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-sde-cascade",
@@ -876,7 +890,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cookbook-autoresearch-feature-discovery",
@@ -1039,7 +1054,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/typesafe_sdk/_core/client/aio/client.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "typesafe-sdk-js",
@@ -1083,7 +1108,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/types.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "typesafe-skills-repo",
@@ -1216,7 +1251,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "vercel-typesafe-compatible-api",
@@ -1251,7 +1287,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "vercel-kb-jev-ai-sdk",
@@ -1287,7 +1324,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "not-a-repository"
   },
   {
     "slug": "ai-sdk-typesafe-provider",
@@ -1327,7 +1365,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "cloudflare-workers-ai-jev",
@@ -1364,7 +1403,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "langchain-typesafe-provider",
@@ -1409,7 +1449,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "langchain-blog-jev",
@@ -1573,7 +1614,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "aimlapi-jev",
@@ -1608,7 +1650,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "langfuse-typesafe-observability",
@@ -1648,7 +1691,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "spring-ai-typesafe",
@@ -1685,7 +1729,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "examples/src/main/java/org/springaicommunity/typesafe/demo/JevQuickstart.java",
+      "matched": [
+        "systemOne",
+        "TypeSafeClient",
+        "Noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "fast-jev-compaction",
@@ -1726,7 +1780,16 @@
       "noul"
     ],
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/request.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jevlike",
@@ -1998,7 +2061,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "autogpt_platform/backend/backend/blocks/typesafe/_client.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "cua-jev-use",
@@ -2035,7 +2107,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "libs/cua-driver/examples/jev-use/python/jev_adapter.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "choice",
+        "Choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "fastmcp-jev-search",
@@ -2074,7 +2156,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "fastmcp_slim/fastmcp/experimental/transforms/jev_search.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-latest",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "lancedb-typesafe-reranker",
@@ -2111,7 +2203,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "python/python/lancedb/rerankers/typesafe.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-latest",
+        "noul",
+        "score"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "composio-typesafe-provider",
@@ -2149,7 +2251,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "python/providers/typesafe/composio_typesafe/provider.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-latest",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "opik-typesafe-tracker",
@@ -2256,7 +2367,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "hello-jev/jev_noul.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-moderation-bot",
@@ -2299,7 +2420,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "typesafe/__init__.py",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe_sdk",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "typesafe-go-community",
@@ -2343,7 +2474,15 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "cmd/typesafe/main.go",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "aegis-typesafe-provider",
@@ -2535,7 +2674,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "not-a-repository"
   },
   {
     "slug": "datacamp-jev-explained",
@@ -2601,7 +2741,8 @@
         "url": "https://medium.com/data-science-in-your-pocket"
       }
     ],
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "evidence_none": "paywalled"
   },
   {
     "slug": "techcrunch-chatgpt-inventor-model",
@@ -2890,7 +3031,15 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "playground/scripts/jev-evaluate.mjs",
+      "matched": [
+        "typesafe-ai/jev",
+        "noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "opendecision",
@@ -2934,7 +3083,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "examples/m3_typesafe_sdk_demo.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "Noul",
+        "Choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "medium-build-your-own-jev-locally",
@@ -3078,7 +3237,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "evals/compaction/jev_arm.py",
+      "matched": [
+        "typesafe/jev",
+        "jev-latest",
+        "noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "worldmonitor-shadow-mode",
@@ -3117,7 +3285,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "shared/jev-classify.js",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-1.13",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "no-mistakes-review-context",
@@ -3152,7 +3329,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "internal/jev/jev.go",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "ahastudio-til-jev-probing",
@@ -3233,7 +3420,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "jev_ultrafast/model.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "inbox-zero-jev",
@@ -3271,7 +3467,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "apps/web/utils/decision-model/typesafe.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "/v1/systemone",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "sub2api-moderation",
@@ -3307,7 +3513,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "backend/internal/pkg/typesafe/client.go",
+      "matched": [
+        "/v1/systemone",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "openviking-reranking",
@@ -3340,7 +3555,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "openviking/models/rerank/jev_rerank.py",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe-ai/jev",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "deepchat-tool-permission",
@@ -3377,7 +3602,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/shared/jevProtocol.ts",
+      "matched": [
+        "jev-1.13",
+        "/v1/systemone",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "agentgateway-guardrail",
@@ -3412,7 +3647,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "examples/llm-guardrail-jev/guardrail.ts",
+      "matched": [
+        "jev-latest",
+        "choice",
+        "score"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jcode-memory-recall",
@@ -3448,7 +3692,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "crates/jcode-base/src/jev.rs",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe/jev",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "json-render",
@@ -3489,7 +3743,14 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "apps/web/lib/jev/compose.ts",
+      "matched": [
+        "typesafe-ai/jev"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "agent-desktop",
@@ -3524,7 +3785,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "scripts/jev/act.mjs",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "blink-codebase-navigator",
@@ -3563,7 +3834,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/search.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "jev-latest",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "neo4jev",
@@ -3599,7 +3879,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/neo4jev/navigator.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-curate",
@@ -3636,7 +3926,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/client.rs",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-1.13",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "canny-completion-check",
@@ -3672,7 +3972,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-drone",
@@ -3713,7 +4023,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "tactics.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-latest",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "typesafe-mario",
@@ -3755,7 +4075,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/typesafe_mario/policy.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "onevonejev",
@@ -3795,7 +4125,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "server/src/jev.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "killmyidea",
@@ -3834,7 +4174,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/lib/typesafe.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-trader",
@@ -3872,7 +4222,14 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/config.ts",
+      "matched": [
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "prism-liquidity-agent",
@@ -3909,7 +4266,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "engine/jev-service.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "typesafe-mcp",
@@ -3948,7 +4315,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "cmd/evaluate/main.go",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe/jev",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-mcp-jkudish",
@@ -3989,7 +4366,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/provider.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "typesafe-ai/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "semdecide",
@@ -4028,7 +4414,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/reflex_guard/providers/typesafe.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-codex-router",
@@ -4064,7 +4460,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "server/jev_server.py",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "winnow",
@@ -4100,7 +4506,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "sidecar/src/winnow/judge.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-pruner",
@@ -4140,7 +4555,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-review-devagrawal",
@@ -4182,7 +4607,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/review/codebase-judgments.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "systemOne",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "claude-code-templates-jev",
@@ -4223,7 +4658,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "scripts/jev-spike.mjs",
+      "matched": [
+        "api.typesafe.ai",
+        "@typesafe-ai/sdk",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "hermes-jev-skills",
@@ -4262,7 +4707,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "jevkit/client.py",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe/jev",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "airflow-llm-branch-operator",
@@ -4300,7 +4755,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence_none": "docs-page"
   },
   {
     "slug": "effect-ai-typesafe",
@@ -4336,7 +4792,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "packages/ai/typesafe/src/TypeSafeDecisionModel.ts",
+      "matched": [
+        "jev-latest",
+        "jev-1.13",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "ruby-llm-typesafe",
@@ -4372,7 +4838,15 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "lib/ruby_llm/providers/typesafe.rb",
+      "matched": [
+        "api.typesafe.ai",
+        "system_one"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "rig-typesafeai",
@@ -4410,7 +4884,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "crates/rig-typesafeai/src/wire.rs",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "langchainjs-typesafe",
@@ -4451,7 +4934,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "libs/providers/langchain-typesafe/src/types.ts",
+      "matched": [
+        "/v1/systemone",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "kiln-jev-adapter",
@@ -4489,7 +4981,15 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "libs/core/kiln_ai/adapters/jev/jev_client.py",
+      "matched": [
+        "api.typesafe.ai",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "opencode-zen-jev",
@@ -4561,7 +5061,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "models/jev/06-criteria.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-1.13",
+        "noul",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "nanojev",
@@ -4704,7 +5214,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "sql/jev--0.2.0.sql",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "jev-1.13"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "w3cj-jev-chat",
@@ -4742,7 +5261,15 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "apps/server/src/jev/client.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "perch-semantic-linting",
@@ -4781,7 +5308,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/cli.js",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jevpilot",
@@ -4819,7 +5356,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "server/jev.js",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-voice-browser",
@@ -4857,7 +5403,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/jev.js",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "systemOne",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-search-superagents",
@@ -4895,7 +5451,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "src/lib/typesafe.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe-ai/jev",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-cu",
@@ -4935,7 +5501,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "scripts/jev-decide.mjs",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "hyperedit",
@@ -4975,7 +5551,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "scripts/jev.js",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-chat-jarvis",
@@ -5015,7 +5601,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "app/src/main/java/com/jev/probe/jev/JevQuestions.kt",
+      "matched": [
+        "noul",
+        "choice",
+        "score"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "jev-skill-wuyoscar",
@@ -5054,7 +5649,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "skills/jev/scripts/jev.py",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe/jev",
+        "noul",
+        "choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "simple-jev",
@@ -5128,7 +5733,17 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "examples/01-three-primitives/main.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "Choice",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "example-confidence-gate",
@@ -5165,7 +5780,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "examples/02-confidence-gate/main.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "Choice"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "example-fan-out",
@@ -5203,7 +5827,17 @@
     "notes": "Written from the official API reference, not executed against the live API. Note the budget: speculative questions are cheap but share the 64k-per-request context with everything else.",
     "notes_zh": "按官方 API 参考编写，未针对线上 API 实际执行。注意预算：推测性问题很便宜，但它们和其他内容共享每次请求 64k 的上下文。",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "examples/03-fan-out/main.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "Choice",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   },
   {
     "slug": "example-tool-selection",
@@ -5240,6 +5874,16 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-09-22",
-    "link_status": 200
+    "link_status": 200,
+    "evidence": {
+      "path": "examples/04-tool-selection/main.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "Choice",
+        "Noul"
+      ],
+      "read_on": "2026-09-22"
+    }
   }
 ]

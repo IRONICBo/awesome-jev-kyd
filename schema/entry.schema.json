@@ -192,6 +192,43 @@
         "url": { "type": "string", "format": "uri" }
       }
     },
+    "evidence": {
+      "description": "Where the primitive claim in question_types was actually read, so a machine can re-check it. scripts/verify_claims.py fetches path from the repo's default branch and asserts every string in matched still appears. Deliberately not pinned to a commit: the point is to notice when a claim stops being true upstream.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "matched"],
+      "properties": {
+        "path": {
+          "description": "Repository-relative path of the file the call site is in.",
+          "type": "string",
+          "minLength": 1
+        },
+        "matched": {
+          "description": "Strings found in that file that substantiate the claim — an import, an endpoint, a primitive name. Every one must still be present for the row to verify.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 }
+        },
+        "read_on": {
+          "description": "Date the call site was last read by a person.",
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        }
+      }
+    },
+    "evidence_none": {
+      "description": "Why this row carries no machine-checkable evidence — a documentation page, a video, a paywalled article. Required instead of evidence when question_types is set and the source is not a readable repository file.",
+      "type": "string",
+      "enum": [
+        "not-a-repository",
+        "paywalled",
+        "video",
+        "docs-page",
+        "not-yet-backfilled"
+      ]
+    },
     "official": {
       "description": "True only when published by TypeSafe AI itself. Community content from the jevai.org site is NOT official.",
       "type": "boolean"

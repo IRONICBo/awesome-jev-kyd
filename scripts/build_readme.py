@@ -156,7 +156,7 @@ EN = {
     ),
     "generated": "This file is generated from catalog.json. Edit the catalog, then run `python3 scripts/build_readme.py`.",
     "shot_alt": "The awesome-jev site: a coverage histogram down the left acting as the pattern filter, dense entry cards on the right",
-    "shot_cap": "Filter by clicking a bar. Two more views: <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=prims\">primitives</a> · <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=compat\">compatibility</a>. Every filter and entry is a shareable URL.",
+    "shot_cap": 'Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL.',
     # ---- what this is ----
     "about_h": "What this is",
     "about_rows": [
@@ -232,6 +232,14 @@ EN = {
     "th_file": "File",
     "th_what": "What it is",
     "verified_h": "What is verified, and what is not",
+    "stat_rechecked": "claims re--checked",
+    "verified_recheck": (
+        "**Re-checked weekly** — {n} rows record the file their primitive claim was read in. "
+        "A scheduled job re-reads each one from the repository's default branch and opens an "
+        "issue if the claim stopped holding, so an upstream removal cannot leave a false claim "
+        "sitting here. Deliberately unpinned to a commit: pinning would verify a historical "
+        "snapshot forever."
+    ),
     "verified_yes": (
         "**Verified** — the URL returned a success status on the date in `checked`; a person opened "
         "it and wrote the summary from what was there; for code rows the call site was read to "
@@ -292,7 +300,7 @@ ZH = {
     ),
     "generated": "本文件由 catalog.json 生成。请修改目录数据后运行 `python3 scripts/build_readme.py`。",
     "shot_alt": "awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片",
-    "shot_cap": "点击条形即可筛选。另有两个视图：<a href=\"https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh\">三个原语</a> · <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh\">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。",
+    "shot_cap": '点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。',
     "about_h": "这是什么",
     "about_rows": [
         (
@@ -358,6 +366,13 @@ ZH = {
     "th_file": "文件",
     "th_what": "是什么",
     "verified_h": "哪些经过核实，哪些没有",
+    "stat_rechecked": "\u58f0\u660e\u53ef\u590d\u68c0",
+    "verified_recheck": (
+        "**每周复检** —— 有 {n} 行记录了其原语声明是在哪个文件里读到的。"
+        "定时任务会从该仓库的默认分支重新读取，一旦声明不再成立就开 issue，"
+        "因此上游把集成删掉了也不会留下一条假声明。刻意不锁 commit —— "
+        "锁了就会永远在校验一个历史快照。"
+    ),
     "verified_yes": (
         "**已核实** —— 该链接在 `checked` 日期返回成功状态；有人打开它、按页面实际内容写了摘要；"
         "含代码的行都读过调用处、确认了实际使用的原语；star 数与许可证来自 GitHub API。"
@@ -870,6 +885,9 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     verified = sum(
         1 for entry in catalog if 200 <= (entry.get("link_status") or 0) < 300
     )
+    # Rows whose primitive claim cites a file a machine can re-read weekly.
+    # This number is the difference between asserting verification and having it.
+    rechecked = sum(1 for entry in catalog if entry.get("evidence"))
 
     # ---- header ----
     add("<!--")
@@ -887,6 +905,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         f"[![links]({REPO_URL}/actions/workflows/links.yml/badge.svg)]({REPO_URL}/actions/workflows/links.yml) "
         f"[![entries](https://img.shields.io/badge/{strings['stat_entries']}-{len(catalog)}-f5a524?style=flat-square)]({SITE}) "
         f"[![verified](https://img.shields.io/badge/{strings['stat_verified'].replace(' ', '%20').replace('-', '--')}-{verified}-3fb950?style=flat-square)]({SITE}) "
+        f"[![rechecked](https://img.shields.io/badge/{strings['stat_rechecked'].replace(' ', '%20')}-{rechecked}-58a6ff?style=flat-square)]({REPO_URL}/actions/workflows/claims.yml) "
         "[![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) "
         "[![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)"
     )
@@ -926,7 +945,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add("")
     add(strings["prims_intro"])
     add("")
-    add('<picture>')
+    add("<picture>")
     add(
         f'  <source media="(prefers-color-scheme: dark)" '
         f'srcset="docs/assets/primitives-{lang}-dark.svg">'
@@ -965,7 +984,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add("")
     add(strings["coverage_intro"])
     add("")
-    add('<picture>')
+    add("<picture>")
     add(
         f'  <source media="(prefers-color-scheme: dark)" '
         f'srcset="docs/assets/coverage-{lang}-dark.svg">'
@@ -1049,6 +1068,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add(f"## {strings['verified_h']}")
     add("")
     add(f"- ✅ {strings['verified_yes']}")
+    add(f"- 🔁 {strings['verified_recheck'].replace('{n}', str(rechecked))}")
     add(f"- ❌ {strings['verified_no']}")
     add("")
     add(f"### {strings['verified_flags_h']}")

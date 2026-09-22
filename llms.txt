@@ -10,7 +10,7 @@ Catalog (148 entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/
 Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
 JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
 
-Each entry carries: slug, title, summary (English), summary_zh (Chinese), url, kind, patterns[], question_types[], languages[], platforms[], author{name,handle,url}, repo, stars, repo_license, package{registry,name,url}, official, has_code, published, first_seen, checked, link_status, flags[], notes, notes_zh, sources[] (per-row attribution), license.
+Each entry carries: slug, title, summary (English), summary_zh (Chinese), url, kind, patterns[], question_types[], languages[], platforms[], author{name,handle,url}, repo, stars, repo_license, package{registry,name,url}, official, has_code, published, first_seen, checked, link_status, flags[], notes, notes_zh, evidence{path,matched,read_on} (the file a primitive claim was read in, re-checked weekly) or evidence_none (why no file can be cited), sources[] (per-row attribution), license.
 
 ## Two axes
 
@@ -32,6 +32,8 @@ Runnable examples: https://github.com/kydlikebtc/awesome-jev/blob/main/examples/
 ## What is verified
 
 Verified: the URL returned a success status on the date in `checked`; a person opened it and wrote the summary from what was actually on the page; for code entries, the call site was read to confirm which primitives are actually used; repository stars, licence and creation date came from the GitHub API.
+
+Of the 92 rows asserting which primitives a project's code calls, 65 cite the exact file that assertion was read in, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
 
 A row with no `checked` or `link_status` is one whose host refuses scripted requests — a 403 from Forbes or Medium is not evidence a page is gone, so those rows were left unstamped rather than retired or falsely marked as verified.
 

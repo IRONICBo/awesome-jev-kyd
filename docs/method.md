@@ -42,6 +42,35 @@ is weakest. If you want to reproduce or audit it, this is the page.
   accepted only `typesafe.ai` hosts, which wrongly rejected the vendor's own
   GitHub org. The rule was widened to the org and no further.
 
+## Claims are re-checked, not just asserted
+
+A row carrying `question_types` asserts which primitives a project's code calls.
+That was true when a person read the call site, and nothing stopped it going
+stale — an upstream refactor could remove the integration entirely and this
+catalog would keep claiming it.
+
+So every such row records `evidence`: the file the claim was read in, and
+strings from that file that substantiate it. `scripts/verify_claims.py` fetches
+each one from the repository's default branch and asserts those strings are
+still there. A scheduled job runs it weekly and opens an issue on failure,
+rather than failing the build — an upstream rename is a false positive, and a
+permanently red repo teaches people to ignore the signal.
+
+Deliberately unpinned to a commit. Pinning would verify a historical snapshot
+forever and never notice a removal, which defeats the purpose.
+
+The first backfill was machine-assisted and human-reviewed: a `--discover` mode
+reads each repository and proposes a path, then a person checks it. That review
+mattered — the discoverer favoured test files over implementations in seven
+cases, and proposed the same file for all four of this repo's own examples. It
+also caught a mistake in the review itself: one hand-written override cited a
+file that did not contain the strings claimed, and the verifier failed it on the
+first real run.
+
+Rows whose source is not a readable repository file — a docs page, a video, a
+paywalled article — carry `evidence_none` saying which, rather than a fabricated
+citation.
+
 ## Why a status code is not a verdict
 
 Every row's `link_status` says the URL answered. That is all it says. It does not
@@ -114,7 +143,15 @@ python3 scripts/lint.py          # schema plus cross-entry invariants
 python3 scripts/build_readme.py  # regenerate both READMEs
 python3 scripts/counts.py        # coverage, with gaps marked
 python3 scripts/check_links.py   # sweep every URL, report only
+python3 scripts/verify_claims.py # re-read every cited call site
+python3 scripts/build_assets.py  # regenerate the README figures
+python3 scripts/build_compat.py  # regenerate the compatibility tables
 ```
+
+`verify_claims.py` needs `GITHUB_TOKEN` set — unauthenticated GitHub is 60
+requests an hour, which will not cover a full sweep. `--discover` proposes
+evidence for a row that has none; the proposal is a starting point for a
+person, never written automatically.
 
 `check_links.py --write` stamps `checked` and `link_status` on rows that
 answered. It never retires a row: that needs a human-written reason.

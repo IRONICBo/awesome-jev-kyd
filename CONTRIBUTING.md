@@ -46,6 +46,20 @@ No Python dependencies are needed. The schema validator is self-contained.
 - **`question_types`** — only the primitives the code _actually_ calls. Read the
   call site; do not infer from the README. Several projects describe "scoring"
   while using only `noul`. The primitive is `noul`, never `binary`.
+- **`evidence`** — the file you read that claim in, and strings from it that
+  substantiate it. This is what makes the claim re-checkable rather than
+  asserted, so a weekly job can notice when it stops being true. Let the
+  discoverer propose one and then check it yourself:
+
+  ```bash
+  python3 scripts/verify_claims.py --discover --only <slug>
+  python3 scripts/verify_claims.py --only <slug>
+  ```
+
+  Prefer the implementation over a test file: tests get deleted while features
+  stay, and a mocked string is weaker proof than a real call site. When the
+  source is a docs page, a video or a paywalled post, set `evidence_none`
+  instead and say which.
 - **`official`** — true only for `typesafe.ai` hosts and the `typesafe-ai`
   GitHub org. A first-party integration published by another vendor is not
   official. The linter checks this.
