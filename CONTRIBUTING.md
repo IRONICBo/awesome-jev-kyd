@@ -14,10 +14,17 @@ So the bar is: **could a reader act on this row without opening the link?**
 2. Run the checks:
 
 ```bash
-python3 scripts/lint.py && python3 scripts/build_readme.py
+python3 scripts/lint.py \
+  && python3 scripts/build_readme.py \
+  && python3 scripts/build_assets.py
 ```
 
-3. Commit `catalog.json` **and** both generated READMEs. CI fails if they drift.
+`build_assets.py` regenerates the README's SVG figures from the catalog. CI
+fails if they are stale, because a coverage chart that disagrees with the
+catalog is worse than no chart.
+
+3. Commit `catalog.json`, both generated READMEs, **and** any changed
+   `docs/assets/*.svg`. CI fails if any of them drift.
 
 No Python dependencies are needed. The schema validator is self-contained.
 
@@ -95,10 +102,16 @@ never moves them; that judgement is a person's.
 ## Adding a pattern
 
 A pattern earns a heading once **two independent real examples** exist. Adding
-one means editing three places: the schema enum, the label table and order list
-in `scripts/build_readme.py`, and `docs/patterns.md`. The build fails loudly if
-you miss the labels, which is intentional — a silent fallback to a raw slug is
-how a bilingual list starts rotting.
+one means editing four places:
+
+1. the enum in `schema/entry.schema.json`
+2. the label table and order list in `scripts/build_readme.py`
+3. the `PATTERNS` list in `scripts/build_assets.py`, which draws the figure
+4. `docs/patterns.md`, with an explicit *when NOT to use this*
+
+Both generators fail loudly on a pattern they have no label for, which is
+intentional — a silent fallback to a raw slug is how a bilingual list starts
+rotting.
 
 ## Adding a runnable example
 

@@ -156,7 +156,7 @@ EN = {
     ),
     "generated": "This file is generated from catalog.json. Edit the catalog, then run `python3 scripts/build_readme.py`.",
     "shot_alt": "The awesome-jev site: a coverage histogram down the left acting as the pattern filter, dense entry cards on the right",
-    "shot_cap": "The histogram down the left of the site is the filter — each bar is a decision pattern, sized by how many examples exist for it. The site also carries two reference views: <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=prims\">the three primitives</a> and <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=compat\">the cross-platform matrix</a>. Any filter, view or single entry is a shareable URL.",
+    "shot_cap": "Filter by clicking a bar. Two more views: <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=prims\">primitives</a> · <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=compat\">compatibility</a>. Every filter and entry is a shareable URL.",
     # ---- what this is ----
     "about_h": "What this is",
     "about_rows": [
@@ -197,6 +197,12 @@ EN = {
         "Full cross-platform differences: [`docs/compatibility.md`](docs/compatibility.md)."
     ),
     # ---- sections ----
+    "l_patterns": "Patterns",
+    "l_compat": "Compatibility",
+    "l_vetting": "Vetting",
+    "cov_alt": "Horizontal bar chart of how many catalog examples exist for each of the eighteen decision patterns",
+    "prim_alt": "Three panels describing the choice, score and noul primitives and what each returns",
+    "coverage_after": "Two patterns have no examples yet. Both are plausible fits nobody appears to have published — see [`docs/status.md`](docs/status.md).",
     "start_h": "Start here",
     "start_intro": 'Six things in reading order. Hand-picked, because "most starred" is not the same as "read this first".',
     "th_why_read": "Why this one",
@@ -286,7 +292,7 @@ ZH = {
     ),
     "generated": "本文件由 catalog.json 生成。请修改目录数据后运行 `python3 scripts/build_readme.py`。",
     "shot_alt": "awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片",
-    "shot_cap": "站点左侧那个直方图就是筛选器 —— 每根条是一个决策模式，长度是该模式下的例子数量。站点还有两个参考视图：<a href=\"https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh\">三个原语</a> 和 <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh\">跨平台对照矩阵</a>。任何筛选条件、视图或单个条目都是可分享的 URL。",
+    "shot_cap": "点击条形即可筛选。另有两个视图：<a href=\"https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh\">三个原语</a> · <a href=\"https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh\">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。",
     "about_h": "这是什么",
     "about_rows": [
         (
@@ -319,6 +325,12 @@ ZH = {
         "权重未公开，因此无法本地运行。"
         "跨平台差异全表见 [`docs/compatibility.md`](docs/compatibility.md)。"
     ),
+    "l_patterns": "决策模式",
+    "l_compat": "兼容性",
+    "l_vetting": "核查指南",
+    "cov_alt": "十八个决策模式各有多少个目录条目的横向条形图",
+    "prim_alt": "三个面板，分别说明 choice、score、noul 三个原语各自返回什么",
+    "coverage_after": "有两个模式目前没有例子。两者都是合理的适用场景，只是还没人公开发表 —— 见 [`docs/status.md`](docs/status.md)。",
     "start_h": "从这里开始",
     "start_intro": "六条，按阅读顺序。手工挑选 —— 因为「star 最多」和「该先读哪个」不是一回事。",
     "th_why_read": "为什么是它",
@@ -786,56 +798,54 @@ def sort_key(entry: dict) -> tuple:
     )
 
 
-def entry_table(
-    entries: list[dict], strings: dict, *, notes: bool = False
-) -> list[str]:
-    """Render rows as a table.
+def entry_list(entries: list[dict], strings: dict, *, notes: bool = False) -> list[str]:
+    """Render rows as a list rather than a table.
 
-    `notes=False` is the compact form used for the big pattern sections: four
-    short columns, with the kind and author folded under the title and caveats
-    reduced to tags. `notes=True` adds the full note beneath the summary, and is
-    only for the curated sections where there are a handful of rows and the note
-    is the reason the row is there.
+    Tables lose here. GitHub sizes columns by content, so with 148 rows the
+    title column gets squeezed until names wrap onto three lines while the
+    summary column hogs the width — measured at a 61px median row height and a
+    46px title column. A list has no columns to fight over: one line of title
+    and summary, one dim line of signals, and long titles simply wrap normally.
+
+    `notes=True` adds the full note as a third line, for the curated sections
+    where there are a handful of rows and the note is why the row is there.
     """
     lang = strings["lang_code"]
     if not entries:
         return [strings["no_entries"], ""]
 
-    lines = [
-        f"| {strings['th_example']} | {strings['th_shows']} | {strings['th_code']} | {strings['th_caveats']} |",
-        "| --- | --- | :-- | :-- |",
-    ]
+    lines = []
     for entry in sorted(entries, key=sort_key):
-        title = f"**[{esc(entry['title'])}]({entry['url']})**"
+        head = f"- **[{esc(entry['title'])}]({entry['url']})**"
         if entry.get("official"):
-            title += " ⭐"
-        sub = [label(KIND_LABELS, entry["kind"], lang)]
-        if entry.get("stars") is not None:
-            sub.append(f"★{entry['stars']:,}")
-        if entry.get("author"):
-            sub.append(esc(entry["author"]["name"]))
-        title += f"<br><sub>{' · '.join(sub)}</sub>"
+            head += " ⭐"
+        lines.append(f"{head} — {summary_of(entry, lang)}")
 
-        shows = summary_of(entry, lang)
+        # Signals go on a dim second line: kind, popularity, author, language,
+        # primitives, then caveats last so they read as the final word.
+        bits = [f"`{label(KIND_LABELS, entry['kind'], lang)}`"]
+        if entry.get("stars") is not None:
+            bits.append(f"★{entry['stars']:,}")
+        if entry.get("author"):
+            bits.append(esc(entry["author"]["name"]))
+        for item in entry.get("languages", []):
+            bits.append(f"`{LANG_LABELS.get(item, item)}`")
+        for item in entry.get("question_types", []):
+            bits.append(f"`{item}`")
+        flags = [
+            f"`{label(FLAG_LABELS, flag, lang)}`"
+            for flag in FLAG_ORDER
+            if flag in entry.get("flags", [])
+        ]
+        if flags:
+            bits.append("⚠ " + " ".join(flags))
+        lines.append(f"  <sub>{' · '.join(bits)}</sub>")
+
         if notes:
             note = entry.get("notes_zh" if lang == "zh" else "notes")
             if note:
-                shows += f"<br><sub>{esc(note)}</sub>"
-
-        code = "—"
-        if entry.get("has_code"):
-            bits = [
-                " ".join(
-                    f"`{LANG_LABELS.get(item, item)}`"
-                    for item in entry.get("languages", [])
-                )
-            ]
-            if entry.get("question_types"):
-                bits.append("<sub>" + " ".join(entry["question_types"]) + "</sub>")
-            code = "<br>".join(part for part in bits if part) or "✓"
-
-        lines.append(f"| {title} | {shows} | {code} | {flags_of(entry, lang)} |")
-    lines.append("")
+                lines.append(f"  <sub>{esc(note)}</sub>")
+        lines.append("")
     return lines
 
 
@@ -866,38 +876,38 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add(f"  {strings['generated']}")
     add("-->")
     add("")
+    add('<div align="center">')
+    add("")
     add("# awesome-jev")
+    add("")
+    add(f"**{strings['tagline']}**")
     add("")
     add(
         f"[![lint]({REPO_URL}/actions/workflows/lint.yml/badge.svg)]({REPO_URL}/actions/workflows/lint.yml) "
         f"[![links]({REPO_URL}/actions/workflows/links.yml/badge.svg)]({REPO_URL}/actions/workflows/links.yml) "
-        f"[![entries](https://img.shields.io/badge/{strings['stat_entries']}-{len(catalog)}-f5a524)]({SITE}) "
-        "[![data: CC0-1.0](https://img.shields.io/badge/data-CC0--1.0-4ec97a)](LICENSE-CC0) "
-        "[![code: MIT](https://img.shields.io/badge/code-MIT-5fb3d9)](LICENSE-MIT)"
-    )
-    add("")
-    add(f"> {strings['tagline']}")
-    add("")
-    add(
-        f"**{strings['other_name']}** · [{strings['other_readme']}]({strings['other_readme']})"
-        f" &nbsp;·&nbsp; **{strings['site_label']}** · [{SITE.replace('https://', '')}]({SITE})"
+        f"[![entries](https://img.shields.io/badge/{strings['stat_entries']}-{len(catalog)}-f5a524?style=flat-square)]({SITE}) "
+        f"[![verified](https://img.shields.io/badge/{strings['stat_verified'].replace(' ', '%20').replace('-', '--')}-{verified}-3fb950?style=flat-square)]({SITE}) "
+        "[![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) "
+        "[![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)"
     )
     add("")
     add(
-        f"`{len(catalog)}` {strings['stat_entries']} &nbsp;·&nbsp; "
-        f"`{with_code}` {strings['stat_with_code']} &nbsp;·&nbsp; "
-        f"`{official}` {strings['stat_official']} &nbsp;·&nbsp; "
-        f"`{verified}` {strings['stat_verified']} &nbsp;·&nbsp; "
-        f"`{len(live_patterns)}/{len(PATTERN_ORDER)}` {strings['stat_patterns']} &nbsp;·&nbsp; "
-        f"`{len(retired)}` {strings['stat_retired']} &nbsp;·&nbsp; `{today}`"
+        f"[{strings['site_label']}]({SITE}) &nbsp;·&nbsp; "
+        f"[{strings['other_name']}]({strings['other_readme']}) &nbsp;·&nbsp; "
+        f"[{strings['l_patterns']}](docs/patterns.md) &nbsp;·&nbsp; "
+        f"[{strings['l_compat']}](docs/compatibility.md) &nbsp;·&nbsp; "
+        f"[{strings['l_vetting']}](docs/vetting.md)"
     )
     add("")
     shot = "site-chinese.png" if lang == "zh" else "site-desktop.png"
     add(
-        f'<a href="{SITE}"><img src="docs/screenshots/{shot}" alt="{strings["shot_alt"]}" width="100%"></a>'
+        f'<a href="{SITE}"><img src="docs/screenshots/{shot}" '
+        f'alt="{strings["shot_alt"]}" width="760"></a>'
     )
     add("")
     add(f"<sub>{strings['shot_cap']}</sub>")
+    add("")
+    add("</div>")
     add("")
     add("---")
     add("")
@@ -911,22 +921,21 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add(f"> ⚠️ {strings['about_not']}")
     add("")
 
-    # ---- primitives, as a table rather than a paragraph ----
+    # ---- primitives, as a generated figure ----
     add(f"## {strings['prims_h']}")
     add("")
     add(strings["prims_intro"])
     add("")
+    add('<picture>')
     add(
-        f"| | {strings['th_prim']} | {strings['th_returns']} | "
-        f"{strings['th_limit']} | {strings['th_for']} |"
+        f'  <source media="(prefers-color-scheme: dark)" '
+        f'srcset="docs/assets/primitives-{lang}-dark.svg">'
     )
-    add("| :-: | --- | --- | --- | --- |")
-    for prim in PRIMITIVES:
-        suffix = "_zh" if lang == "zh" else "_en"
-        add(
-            f"| {prim['glyph']} | **`{prim['name']}`** | {prim['returns' + suffix]} "
-            f"| {prim['limit' + suffix]} | {prim['for' + suffix]} |"
-        )
+    add(
+        f'  <img src="docs/assets/primitives-{lang}-light.svg" '
+        f'alt="{strings["prim_alt"]}" width="660">'
+    )
+    add("</picture>")
     add("")
     add(strings["prims_after"])
     add("")
@@ -936,8 +945,6 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add("")
     add(strings["start_intro"])
     add("")
-    add(f"| | {strings['th_example']} | {strings['th_why_read']} |")
-    add("| :-: | --- | --- |")
     for index, slug in enumerate(START_HERE, 1):
         entry = by_slug.get(slug)
         if entry is None:
@@ -948,28 +955,28 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         why = entry.get("notes_zh" if lang == "zh" else "notes") or summary_of(
             entry, lang
         )
-        add(f"| `{index}` | **[{esc(entry['title'])}]({entry['url']})** | {esc(why)} |")
-    add("")
+        # An ordered list: a table squeezed the title column until names wrapped.
+        add(f"{index}. **[{esc(entry['title'])}]({entry['url']})**")
+        add(f"   <sub>{esc(why)}</sub>")
+        add("")
 
-    # ---- coverage: the histogram doubles as the index ----
+    # ---- coverage: a generated figure, not block characters ----
     add(f"## {strings['coverage_h']}")
     add("")
     add(strings["coverage_intro"])
     add("")
-    peak = max((len(by_pattern[key]) for key in PATTERN_ORDER), default=1) or 1
-    add(f"| {strings['th_pattern']} | {strings['th_count']} | {strings['th_shows']} |")
-    add("| --- | :-- | --- |")
-    for key in PATTERN_ORDER:
-        name = label(PATTERN_LABELS, key, lang)
-        count = len(by_pattern[key])
-        blurb = label(PATTERN_LABELS, key, lang, field=2)
-        if count:
-            add(
-                f"| **[{name}](#{anchor(name)})** | `{count:>2}` {bar(count, peak)} | {esc(blurb)} |"
-            )
-        else:
-            # Deliberately unlinked and unbarred: the gap should look like a gap.
-            add(f"| {name} | `0` &nbsp;·&nbsp; _{strings['gap']}_ | {esc(blurb)} |")
+    add('<picture>')
+    add(
+        f'  <source media="(prefers-color-scheme: dark)" '
+        f'srcset="docs/assets/coverage-{lang}-dark.svg">'
+    )
+    add(
+        f'  <img src="docs/assets/coverage-{lang}-light.svg" '
+        f'alt="{strings["cov_alt"]}" width="100%">'
+    )
+    add("</picture>")
+    add("")
+    add(strings["coverage_after"])
     add("")
 
     # ---- measured results: the differentiator, surfaced early ----
@@ -984,7 +991,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         add("")
         add(strings["measured_intro"])
         add("")
-        out.extend(entry_table(measured, strings, notes=True))
+        out.extend(entry_list(measured, strings, notes=True))
 
     # ---- by pattern ----
     add(f"## {strings['patterns_h']}")
@@ -1003,11 +1010,11 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
             add("<details>")
             add(f"<summary><b>{len(rows)}</b> {strings['collapse']}</summary>")
             add("")
-            out.extend(entry_table(rows, strings))
+            out.extend(entry_list(rows, strings))
             add("</details>")
             add("")
         else:
-            out.extend(entry_table(rows, strings))
+            out.extend(entry_list(rows, strings))
 
     # ---- by kind, as a table with its own bars ----
     add(f"## {strings['kinds_h']}")

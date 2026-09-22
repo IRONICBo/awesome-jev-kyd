@@ -49,5 +49,16 @@ jobs:
       - name: compatibility.md is in sync with compat.json
         run: python3 scripts/build_compat.py --check
 
+      - name: README figures are in sync with catalog.json
+        run: |
+          python3 scripts/build_assets.py
+          if ! git diff --quiet -- docs/assets; then
+            echo "::error::docs/assets/*.svg are out of sync with catalog.json."
+            echo "Run 'python3 scripts/build_assets.py' and commit the result."
+            git --no-pager diff --stat -- docs/assets
+            exit 1
+          fi
+          echo "figures in sync"
+
       - name: Catalog stats
         run: python3 scripts/counts.py
