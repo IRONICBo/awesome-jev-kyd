@@ -13,6 +13,10 @@ platform it is using, in the language it is writing.
 pip install -r mcp/requirements.txt
 ```
 
+This needs the 2.x MCP SDK. `MCPServer` is the name 2.x gave what 1.x called
+`FastMCP`, so an environment already pinned to `mcp<2` installs cleanly and then
+dies at import — check that first if the server never starts.
+
 Then register it. For Claude Code:
 
 ```bash
@@ -23,13 +27,13 @@ Any MCP client works; it speaks stdio.
 
 ## Tools
 
-| Tool | What it answers |
-| --- | --- |
-| `search_examples` | "Show me safety-gating examples in TypeScript that call `noul`." |
-| `get_example` | One row in full, including its sources and its `evidence`. |
-| `list_patterns` | The decision taxonomy, with how many examples exist for each. |
-| `compatibility` | Model string, field names, request shape and env var per platform. |
-| `check_model_string` | "Is `typesafe/jev-1` real?" — it is not, and that matters. |
+| Tool                 | What it answers                                                    |
+| -------------------- | ------------------------------------------------------------------ |
+| `search_examples`    | "Show me safety-gating examples in TypeScript that call `noul`."   |
+| `get_example`        | One row in full, including its sources and its `evidence`.         |
+| `list_patterns`      | The decision taxonomy, with how many examples exist for each.      |
+| `compatibility`      | Model string, field names, request shape and env var per platform. |
+| `check_model_string` | "Is `typesafe/jev-1` real?" — it is not, and that matters.         |
 
 ## Three things it does on purpose
 
