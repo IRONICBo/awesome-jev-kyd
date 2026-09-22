@@ -20,7 +20,9 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import pathlib
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -31,6 +33,10 @@ CATALOG = ROOT / "catalog.json"
 
 TIMEOUT = 20
 WORKERS = 8
+
+# A bare repository root and nothing else. A /blob/ or /tree/ path must not
+# match: see github_repo_status for why.
+GITHUB_ROOT = re.compile(r"^https://github\.com/([^/]+)/([^/#?]+?)/?$")
 
 # A plain urllib request gets 403'd by a lot of CDNs. Look like a browser.
 HEADERS = {
@@ -53,8 +59,53 @@ GET_ONLY = (
 )
 
 
+def github_repo_status(url: str) -> tuple[int, str] | None:
+    """Check a GitHub repo root through the API. None means "not applicable".
+
+    github.com's HTML answers 429 after a few dozen unauthenticated requests,
+    so on an 800-row sweep most GitHub rows came back BLOK and never got
+    stamped — the checker was rate-limiting itself into uselessness. The API
+    with a token allows 5000/hour.
+
+    Only a bare repo root qualifies. A /blob/ path still goes through HTTP,
+    because /repos/{owner}/{name} answering 200 says nothing about whether
+    that file still exists, and quietly swapping in the weaker check would
+    make the sweep claim more than it verified.
+    """
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if not token:
+        return None
+    match = GITHUB_ROOT.match(url)
+    if not match:
+        return None
+
+    request = urllib.request.Request(
+        f"https://api.github.com/repos/{match.group(1)}/{match.group(2)}",
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "awesome-jev",
+            "Authorization": f"Bearer {token}",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+            return response.status, ""
+    except urllib.error.HTTPError as exc:
+        # 404 here is real: the repo is gone or went private. Anything else
+        # is about us, not the repo, so fall back to the HTML request.
+        if exc.code == 404:
+            return 404, "repository not found via API"
+        return None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def fetch_status(url: str) -> tuple[int, str]:
     """Return (status, note). Status 0 means the request never completed."""
+    via_api = github_repo_status(url)
+    if via_api is not None:
+        return via_api
+
     method = "GET" if any(host in url for host in GET_ONLY) else "HEAD"
 
     for attempt in (method, "GET"):

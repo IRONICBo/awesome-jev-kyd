@@ -638,6 +638,23 @@
         border-left-color: rgba(232, 86, 75, 0.45);
       }
 
+      .more {
+        display: block;
+        width: 100%;
+        background: none;
+        border: 1px dashed var(--rule-2);
+        color: var(--fg-3);
+        font: 12px var(--mono);
+        padding: 9px;
+        margin: 2px 0 10px;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+      .more:hover {
+        color: var(--amber);
+        border-color: var(--amber-dim);
+        background: var(--ink-2);
+      }
       .empty {
         text-align: center;
         color: var(--fg-3);
@@ -1005,6 +1022,7 @@
           t_flag: "no caveats",
           t_ind: "measured, not claimed",
           shown: "shown",
+          more: "show {n} more",
           disc: "An unaffiliated community index. A row means the link resolved and a person read it — not that the code runs, the numbers hold, or the approach suits your system. Performance figures in this space are almost all vendor-reported; rows carrying independent measurement are marked.",
           v_catalog: "Catalogue",
           v_prims: "Primitives",
@@ -1058,6 +1076,7 @@
           t_flag: "无警示",
           t_ind: "实测而非宣称",
           shown: "已显示",
+          more: "展开其余 {n} 条",
           disc: "一个与官方无关的社区索引。收录只意味着链接可访问、并且有人读过 —— 不代表代码能跑、数字成立、或这个做法适合你的系统。这个领域流传的性能数字几乎全是厂商自报；带独立实测的条目已单独标记。",
           v_catalog: "目录",
           v_prims: "三个原语",
@@ -1531,6 +1550,13 @@
         (b.stars || 0) - (a.stars || 0) ||
         a.title.localeCompare(b.title);
 
+      // Cards rendered per group before a "show the rest" button. An entry
+      // appears once per pattern it carries, so the unfiltered view was
+      // building 600+ cards and growing with the catalogue. Filtering and
+      // search still run over every row — only the DOM is capped.
+      const GROUP_CAP = 24;
+      const expanded = new Set();
+
       function render() {
         seenIds.clear();
         const hits = DATA.filter(ok),
@@ -1541,6 +1567,7 @@
           out.innerHTML = `<p class="empty">${S().empty}</p>`;
           return;
         }
+        // A chosen pattern is already a narrowed view; show it whole.
         if (st.pattern) {
           out.innerHTML = hits.sort(cmp).map(card).join("");
           return;
@@ -1548,9 +1575,25 @@
         out.innerHTML = P_ORDER.map((p) => {
           const rows = hits.filter((e) => e.patterns.includes(p));
           if (!rows.length) return "";
+          rows.sort(cmp);
+          const open = expanded.has(p) || rows.length <= GROUP_CAP;
+          const shown = open ? rows : rows.slice(0, GROUP_CAP);
+          const more = open
+            ? ""
+            : `<button class="more" data-more="${p}">${S().more.replace(
+                "{n}",
+                rows.length - GROUP_CAP,
+              )}</button>`;
           return `<div class="gh"><h2>${lbl(PAT, p)}</h2><span class="n">${rows.length}</span></div>
-      <p class="gd">${pdesc(p)}</p>${rows.sort(cmp).map(card).join("")}`;
+      <p class="gd">${pdesc(p)}</p>${shown.map(card).join("")}${more}`;
         }).join("");
+
+        document.querySelectorAll(".more[data-more]").forEach((b) => {
+          b.onclick = () => {
+            expanded.add(b.dataset.more);
+            render();
+          };
+        });
       }
 
       document.getElementById("q").oninput = (e) => {

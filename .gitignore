@@ -1,5 +1,9 @@
-# Copied in at build time by the pages workflow; never committed.
+# Copied in at build time by the pages workflow; never committed. Committing
+# one would create a second copy of a source of truth that nothing checks:
+# build_compat.py only compares compat.json against docs/compatibility.md, so a
+# stale site/compat.json would drift silently.
 site/catalog.json
+site/compat.json
 site/.nojekyll
 
 __pycache__/
@@ -10,3 +14,4 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+.claude/

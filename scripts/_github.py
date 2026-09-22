@@ -12,6 +12,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -53,15 +54,31 @@ def api_get(path: str) -> dict | list | None:
         return None
 
 
-def raw_get(repo: str, branch: str, path: str) -> str | None:
+def raw_get(repo: str, branch: str, path: str, *, retries: int = 1) -> str | None:
+    """Fetch a file, retrying once before giving up.
+
+    Without the retry a transient hiccup from the raw host is indistinguishable
+    from a deleted file, and verify_claims.py reports `path-gone`. Two of the
+    first three failures on an 805-row sweep were exactly that — the path was
+    still there on the next request — which would have opened a weekly issue
+    for nothing and taught everyone to ignore it.
+    """
     req = urllib.request.Request(
         f"{RAW}/{repo}/{branch}/{path}", headers={"User-Agent": "awesome-jev"}
     )
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
-            return response.read().decode("utf-8", "replace")
-    except Exception:  # noqa: BLE001
-        return None
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
+                return response.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as exc:
+            # A real 404 will not become a 200 on a retry.
+            if exc.code == 404:
+                return None
+        except Exception:  # noqa: BLE001
+            pass
+        if attempt < retries:
+            time.sleep(1.5)
+    return None
 
 
 def repo_of(entry: dict) -> str | None:

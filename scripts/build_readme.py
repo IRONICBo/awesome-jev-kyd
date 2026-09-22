@@ -94,9 +94,12 @@ START_HERE = [
     "hermes-agent-jev-evaluation",
 ]
 
-# Patterns whose tables are long and mostly context rather than technique.
-# Collapsed so the page stays scannable; still fully indexed and searchable.
-COLLAPSE = {"overview"}
+# Any section longer than this collapses behind a <details>. Below it the rows
+# are worth scrolling past; above it they are a wall, and GitHub's own outline
+# stops being usable. `overview` always collapses regardless of size: it is
+# context rather than technique.
+COLLAPSE_OVER = 30
+ALWAYS_COLLAPSE = {"overview"}
 
 # The three primitives, rendered as a table rather than described in a
 # paragraph. Every fact here is from the official API reference.
@@ -934,7 +937,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         add("")
         add(f"_{blurb}_")
         add("")
-        if key in COLLAPSE:
+        if key in ALWAYS_COLLAPSE or len(rows) > COLLAPSE_OVER:
             add("<details>")
             add(f"<summary><b>{len(rows)}</b> {strings['collapse']}</summary>")
             add("")
