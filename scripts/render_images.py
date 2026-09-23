@@ -23,14 +23,13 @@ whose fetch failed would otherwise go live looking like a real preview.
 Stdlib plus a Chrome binary. GitHub's ubuntu runners ship Google Chrome, so CI
 needs no install step; locally, set CHROME if it is not found.
 
-Run: python3 scripts/render_images.py              # after copying data into site/
+Run: python3 scripts/assemble_site.py && python3 scripts/render_images.py
 """
 
 from __future__ import annotations
 
 import functools
 import http.server
-import json
 import os
 import pathlib
 import platform
@@ -41,9 +40,8 @@ import threading
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-import _stats  # noqa: E402
+from assemble_site import ROOT, RUNTIME_FILES  # noqa: E402
 
-ROOT = _stats.ROOT
 SITE = ROOT / "site"
 OUT = SITE / "img"
 BUDGET_MS = 15000
@@ -113,13 +111,9 @@ def chrome(
 
 
 def main() -> int:
-    for name in ("catalog.json", "patterns.json", "compat.json", "taxonomy.json"):
+    for name in (*RUNTIME_FILES, "stats.json"):
         if not (SITE / name).exists():
-            raise SystemExit(f"error: site/{name} is missing; copy the data in first")
-
-    # The card reads the same numbers the README badges use, rather than
-    # recounting them in JavaScript with its own idea of "link-verified".
-    (SITE / "stats.json").write_text(json.dumps(_stats.compute(), ensure_ascii=False))
+            raise SystemExit(f"error: site/{name} is missing; run assemble_site.py first")
 
     OUT.mkdir(exist_ok=True)
     binary = find_chrome()

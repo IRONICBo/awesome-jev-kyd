@@ -212,6 +212,15 @@
         color: var(--fg-3);
         margin-top: 7px;
       }
+      /* When the figure was last true. If the weekly sweep ever stalls, this
+         is where a reader sees it, instead of a number that looks current. */
+      .rd .d {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--fg-3);
+        opacity: 0.75;
+        margin-top: 4px;
+      }
       .rd.hot .v {
         color: var(--amber);
       }
@@ -1011,6 +1020,7 @@
           code: "with code",
           official: "official",
           verified: "link-verified",
+          swept: "swept",
           l_pat: "Patterns",
           l_cmp: "Compatibility",
           l_vet: "Vetting",
@@ -1065,6 +1075,7 @@
           code: "含代码",
           official: "官方",
           verified: "链接已核实",
+          swept: "扫描于",
           l_pat: "决策模式",
           l_cmp: "兼容性",
           l_vet: "核查指南",
@@ -1115,6 +1126,7 @@
       let PAT = {},
         KIND = {},
         FLAG = {},
+        STATS = {},
         P_ORDER = [];
       const labelsFrom = (list, withShort) =>
         Object.fromEntries(
@@ -1250,18 +1262,17 @@
         e.kind === "benchmark" && !(e.flags || []).includes("vendor-reported");
 
       function chrome() {
-        const verified = DATA.filter(
-          (e) => e.link_status >= 200 && e.link_status < 300,
-        ).length;
+        // Headline figures come from stats.json (scripts/_stats.py), the same
+        // definitions as the README badges, rather than a recount here.
         document.getElementById("readout").innerHTML = [
-          [DATA.length, S().entries, "hot"],
-          [DATA.filter((e) => e.has_code).length, S().code, ""],
-          [DATA.filter((e) => e.official).length, S().official, ""],
-          [verified, S().verified, "ok"],
+          [STATS.entries, S().entries, "hot", ""],
+          [STATS.with_code, S().code, "", ""],
+          [STATS.official, S().official, "", ""],
+          [STATS.link_ok, S().verified, "ok", `${S().swept} ${STATS.last_sweep}`],
         ]
           .map(
-            ([v, k, c]) =>
-              `<div class="rd ${c}"><div class="v">${v}</div><div class="k">${k}</div></div>`,
+            ([v, k, c, d]) =>
+              `<div class="rd ${c}"><div class="v">${v}</div><div class="k">${k}</div>${d ? `<div class="d">${esc(d)}</div>` : ""}</div>`,
           )
           .join("");
 
@@ -1715,8 +1726,10 @@
         getJson("catalog.json"),
         getJson("patterns.json"),
         getJson("taxonomy.json"),
+        getJson("stats.json"),
       ])
-        .then(([d, patterns, taxonomy]) => {
+        .then(([d, patterns, taxonomy, stats]) => {
+          STATS = stats;
           PAT = labelsFrom(patterns.patterns, true);
           P_ORDER = patterns.patterns.map((x) => x.key);
           KIND = labelsFrom(taxonomy.kinds, false);
@@ -1738,7 +1751,7 @@
           i18n();
           document.getElementById("out").innerHTML =
             `<p class="empty">Could not load the catalogue data (${err.message}). ` +
-            "The Pages build copies catalog.json, patterns.json, taxonomy.json and compat.json into site/ — locally, copy them there and serve with <code>python3 -m http.server</code>.</p>";
+            "The Pages build assembles them — locally, run <code>python3 scripts/assemble_site.py</code>, then serve site/ with <code>python3 -m http.server</code>.</p>";
         });
     </script>
   </body>

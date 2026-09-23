@@ -1,29 +1,33 @@
-# Weekly refresh of the repository facts in catalog.json — stars, licences and
-# archive status — from the GitHub API.
+# Weekly refresh of every machine-checkable fact in catalog.json: link status
+# (`checked`, `link_status`), and stars, licences and archive status from the
+# GitHub API. Everything generated from those facts is rebuilt in the same run,
+# and the full lint chain has to pass before anything is pushed.
 #
-# Pushes a branch and opens an issue with a one-click link to raise the PR,
-# rather than pushing to main. The bot only ever touches facts a machine can
-# check; summaries, notes, patterns and question_types are human judgements, and
-# keeping a person in the loop matters most on the surprising cases — a
-# repository that stopped resolving, or a project that got archived.
+# Link stamping used to be nobody's job. links.yml reports dead links but never
+# writes, so `checked` froze at the first sweep while the site went on saying
+# "link-verified" — a figure whose meaning quietly became "once, in September".
+# links.yml stays as the alarm for dead links; this run stamps the live ones.
 #
-# It opens an issue rather than the PR itself because creating pull requests
-# from Actions is off by default under Settings -> Actions -> General ->
-# Workflow permissions. Turning that on is the repository owner's call, not
-# something a workflow should require. With it on, the compare link in the
-# issue is one click from the same result.
+# The bot only ever touches facts a machine can check. Summaries, notes,
+# patterns and question_types are human judgements, and retiring a dead row
+# needs a human-written reason, so neither happens here.
 #
-# Permissions note: this is the one workflow here that is not read-only. It
-# needs `contents: write` to push its branch and `issues: write` to file the
-# notice. It writes nowhere except that branch.
+# Delivery: pushes a branch and opens an issue with a one-click link to raise
+# the PR. Creating pull requests from Actions is off by default under Settings ->
+# Actions -> General -> Workflow permissions; turning it on is the repository
+# owner's call. With it on, the compare link in the issue is one click from the
+# same result.
 #
-# Injection review: no `github.event.*` value reaches a `run:` block. The PR
-# body is read from a file the script wrote, never interpolated into a shell.
+# Permissions note: the one workflow here that is not read-only. It needs
+# `contents: write` to push its branch and `issues: write` to file the notice.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block. The issue
+# body is read from a file a script wrote, never interpolated into a shell.
 name: metadata
 
 on:
   schedule:
-    # Wednesdays 06:00 UTC, clear of the link sweep (Mon) and claims (Tue).
+    # Wednesdays 06:00 UTC, clear of the link alarm (Mon) and claims (Tue).
     - cron: "0 6 * * 3"
   workflow_dispatch:
 
@@ -33,7 +37,7 @@ permissions:
 
 jobs:
   refresh:
-    name: Re-read stars, licences and archive status
+    name: Re-stamp links and re-read repository facts
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,17 +46,34 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Refresh from the GitHub API
+      - name: Stamp every link that still answers
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python3 scripts/refresh_metadata.py --write | tee /tmp/report.txt
+          # A dead link exits non-zero; that is links.yml's alarm to raise, and
+          # must not stop the live rows from being stamped here. --write only
+          # ever stamps rows that answered, so a partial run is still correct.
+          python3 scripts/check_links.py --write > /tmp/links.log || true
+          tail -5 /tmp/links.log
 
-      - name: Regenerate anything that embeds those numbers
+      - name: Refresh stars, licences and archive status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Not piped: the default shell has no pipefail, and a rate-limited run
+          # must fail this step rather than carry on as if it had refreshed.
+          python3 scripts/refresh_metadata.py --write --digest /tmp/digest.md > /tmp/refresh.log
+          tail -3 /tmp/refresh.log
+
+      - name: Rebuild everything generated from those facts, then lint it all
         run: |
           python3 scripts/build_readme.py
           python3 scripts/build_assets.py
+          python3 scripts/build_docs.py
           python3 scripts/lint.py
+          python3 scripts/build_compat.py --check
+          python3 scripts/build_docs.py --check
+          python3 scripts/lint_docs.py
 
       - name: Push a branch and file a notice when something moved
         env:
@@ -67,26 +88,21 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add catalog.json README.md README.zh-CN.md docs/assets
-          git commit -m "chore: refresh repository metadata from the GitHub API"
+          git add -A catalog.json README.md README.zh-CN.md docs llms.txt site/index.html
+          git commit -m "chore: weekly refresh of link status and repository facts"
           git push -u origin "$branch" --force
 
           repo="${GITHUB_REPOSITORY}"
           {
-            echo "Stars, licences and archive status re-read from the GitHub API."
+            echo "Links re-stamped and repository facts re-read; everything generated"
+            echo "from them rebuilt, and the full lint chain passed."
             echo
-            echo "Branch: \`$branch\`"
+            echo "Branch: \`$branch\` · **[Open the pull request](https://github.com/$repo/compare/main...$branch?expand=1)**"
             echo
-            echo "**[Open the pull request](https://github.com/$repo/compare/main...$branch?expand=1)**"
+            cat /tmp/digest.md
             echo
             echo "The bot touches only machine-checkable facts. Summaries, notes,"
-            echo "patterns and question_types are untouched. Anything below that is"
-            echo "not a number moving — a repository that stopped resolving, or one"
-            echo "that got archived — is worth a look before merging."
-            echo
-            echo '```'
-            cat /tmp/report.txt
-            echo '```'
+            echo "patterns and question_types are untouched."
           } > /tmp/body.md
 
           # A fork has no labels, and a missing label must not fail a job whose
@@ -98,8 +114,8 @@ jobs:
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body-file /tmp/body.md
           else
-            gh issue create --title "Metadata refresh ready to merge" \
+            gh issue create --title "Weekly refresh ready to merge" \
               --label metadata --body-file /tmp/body.md \
-              || gh issue create --title "Metadata refresh ready to merge" \
+              || gh issue create --title "Weekly refresh ready to merge" \
                    --body-file /tmp/body.md
           fi

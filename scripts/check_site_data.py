@@ -14,14 +14,9 @@ import json
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-# Every file the site fetches at runtime. The Pages job copies each one in, so
-# each one needs the same guard: a stale or missing copy publishes a site that
-# disagrees with the repository it is built from. One list, so adding a fourth
-# runtime file cannot forget its check — which is how compat.json once went
-# unignored while catalog.json was.
-RUNTIME_FILES = ("catalog.json", "compat.json", "patterns.json", "taxonomy.json")
+from assemble_site import ROOT, RUNTIME_FILES, stats_payload  # noqa: E402
 
 # The site renders these fields unconditionally; a missing one is a blank cell.
 REQUIRED = ("slug", "title", "summary", "summary_zh", "url", "kind", "patterns")
@@ -37,6 +32,13 @@ def main() -> int:
             print(f"error: site/{name} differs from {name}", file=sys.stderr)
             return 1
         print(f"site/{name} matches {name}")
+
+    # stats.json is derived, not copied, so it is compared with a recompute.
+    stats = ROOT / "site" / "stats.json"
+    if not stats.exists() or json.loads(stats.read_text()) != stats_payload():
+        print("error: site/stats.json is missing or stale; run assemble_site.py", file=sys.stderr)
+        return 1
+    print("site/stats.json matches _stats.compute()")
 
     for entry in json.loads((ROOT / "site" / "catalog.json").read_text()):
         missing = [field for field in REQUIRED if field not in entry]

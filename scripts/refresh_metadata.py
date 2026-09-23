@@ -54,17 +54,16 @@ def fetch(entry: dict) -> dict | None:
     if not isinstance(data, dict) or "stargazers_count" not in data:
         return {"slug": entry["slug"], "repo": repo, "gone": True}
 
-    spdx = ((data.get("license") or {}).get("spdx_id") or "").strip()
-    # GitHub reports NOASSERTION for a LICENSE file it cannot identify, which
-    # is different from having none at all — keep the distinction.
-    if not spdx or spdx == "NOASSERTION" and not data.get("license"):
-        spdx = "unknown"
+    # GitHub reports NOASSERTION for a LICENSE file it cannot identify — custom
+    # or modified terms — which is different from having none at all, so it is
+    # kept as-is. Only a repository with no licence file becomes "unknown".
+    spdx = ((data.get("license") or {}).get("spdx_id") or "").strip() or "unknown"
     return {
         "slug": entry["slug"],
         "repo": repo,
         "gone": False,
         "stars": data["stargazers_count"],
-        "repo_license": spdx or "unknown",
+        "repo_license": spdx,
         "archived": bool(data.get("archived")),
     }
 
@@ -92,8 +91,12 @@ def diff_for(entry: dict, fresh: dict) -> list[tuple[str, object, object]]:
     if not fresh["archived"] and "archived" in flags:
         changes.append(("flags", "archived", "remove"))
 
-    unlicensed = fresh["repo_license"] in ("unknown", "NOASSERTION")
-    if unlicensed and "no-license" not in flags and fresh["repo_license"] == "unknown":
+    # `no-license` means no LICENSE file at all, which is exactly repo_license
+    # "unknown" — the same definition lint.py enforces. This used to count
+    # NOASSERTION as unlicensed too, so a row that correctly moved to NOASSERTION
+    # kept telling readers there was no licence: 28 rows, vercel/ai among them.
+    unlicensed = fresh["repo_license"] == "unknown"
+    if unlicensed and "no-license" not in flags:
         changes.append(("flags", "no-license", "add"))
     if not unlicensed and "no-license" in flags:
         changes.append(("flags", "no-license", "remove"))
@@ -122,7 +125,14 @@ def main() -> int:
     parser.add_argument("--write", action="store_true", help="apply the changes")
     parser.add_argument("--json", action="store_true", help="machine-readable output")
     parser.add_argument(
-        "--only", default="", help="only refresh rows whose slug contains this substring"
+        "--only",
+        default="",
+        help="only refresh rows whose slug contains this substring",
+    )
+    parser.add_argument(
+        "--digest",
+        default="",
+        help="also write a Markdown summary to this path, for an issue body",
     )
     args = parser.parse_args()
 
@@ -161,6 +171,9 @@ def main() -> int:
     if args.write and report:
         CATALOG.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n")
 
+    if args.digest:
+        pathlib.Path(args.digest).write_text(digest(report, gone, len(rows)))
+
     if args.json:
         print(
             json.dumps(
@@ -191,6 +204,48 @@ def main() -> int:
     if report and not args.write:
         print("Run with --write to apply.")
     return 0
+
+
+def digest(report: list[dict], gone: list[str], checked: int) -> str:
+    """What a person needs from a weekly refresh, in a form that fits an issue.
+
+    Stars move on most rows every week; listing each one produced a report far
+    past GitHub's 65,536-character issue body limit, so the notice for a
+    refresh would have failed to post. Star-only changes are counted. Anything
+    else — a licence changing, a project archived, a repository gone — is the
+    reason a person reads this at all, and is listed in full.
+    """
+    stars_only = [r for r in report if {c["field"] for c in r["changes"]} == {"stars"}]
+    notable = [r for r in report if r not in stars_only]
+    lines = [
+        f"Re-read {checked} repositories: {len(report)} rows changed, "
+        f"{len(stars_only)} of them stars only.",
+        "",
+    ]
+    if notable:
+        lines += ["**Worth a look before merging:**", ""]
+        for item in notable:
+            parts = [
+                f"{c['field']} {c['from']} → {c['to']}"
+                if c["field"] != "flags"
+                else f"flag `{c['from']}` {c['to']}"
+                for c in item["changes"]
+                if c["field"] != "stars"
+            ]
+            lines.append(f"- `{item['slug']}` ({item['repo']}): " + "; ".join(parts))
+        lines.append("")
+    if gone:
+        lines += [
+            f"**{len(gone)} repositories did not resolve** — deleted, renamed or "
+            "private. A rename is fixable; a deletion means retiring the row with a "
+            "notes line saying why.",
+            "",
+        ]
+        lines += [f"- {item}" for item in gone]
+        lines.append("")
+    if not notable and not gone:
+        lines += ["Nothing but star counts moved.", ""]
+    return "\n".join(lines)
 
 
 if __name__ == "__main__":

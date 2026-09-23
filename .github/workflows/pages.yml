@@ -17,6 +17,7 @@ on:
       - "patterns.json"
       - "taxonomy.json"
       - "scripts/_stats.py"
+      - "scripts/assemble_site.py"
       - "scripts/render_images.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -42,13 +43,9 @@ jobs:
           python-version: "3.12"
 
       - name: Assemble the site
-        run: |
-          # Every file the site fetches at runtime; check_site_data.py holds the
-          # same list and fails the deploy if a copy is missing or differs.
-          cp catalog.json compat.json patterns.json taxonomy.json site/
-          # Pages serves the artifact as-is; .nojekyll stops Jekyll touching it.
-          touch site/.nojekyll
-          ls -la site/
+        # Copies every runtime data file and writes stats.json; the same script
+        # a local preview uses, so the two cannot assemble different sites.
+        run: python3 scripts/assemble_site.py
 
       - name: Sanity-check the copied catalog
         run: python3 scripts/check_site_data.py
