@@ -24,6 +24,7 @@ source.
 | YouTube search | <https://www.youtube.com/results?search_query=typesafe+jev> | 3 |
 | AI SDK providers | <https://ai-sdk.dev/providers> | 1 |
 | AI/ML API docs | <https://docs.aimlapi.com/> | 1 |
+| Author submission | <https://github.com/suenot/codex-jev-router> | 1 |
 | Cloudflare Workers AI models | <https://developers.cloudflare.com/ai/models/> | 1 |
 | community submission (issue #2) | <https://github.com/kydlikebtc/awesome-jev/issues/2> | 1 |
 | LangChain blog | <https://www.langchain.com/blog> | 1 |
@@ -73,7 +74,7 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 469 |
+| MIT | 470 |
 | None declared | 141 |
 | Apache-2.0 | 79 |
 | NOASSERTION (non-standard terms) | 32 |
