@@ -7105,6 +7105,7 @@
     "title": "jev-social",
     "summary": "Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded SocAI CLI action from fresh browser evidence; code validates targets and preserves source links.",
     "summary_zh": "只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 SocAI CLI 动作；代码校验目标并保留来源链接。",
+    "zh_machine": true,
     "url": "https://github.com/socai-io/jev-social",
     "kind": "project",
     "patterns": [
