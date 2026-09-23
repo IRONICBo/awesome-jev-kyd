@@ -48,7 +48,13 @@
         --alert: #e8564b; /* caveats */
         --cool: #5fb3d9; /* patterns */
 
-        --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        /* IBM Plex Mono has no CJK glyphs. Without the Noto Sans SC fallback, a
+           machine with no Chinese system font — any stock Linux, and the CI
+           runner that renders the README screenshots — draws every Chinese
+           label in the monospace UI as empty boxes. */
+        --mono:
+          "IBM Plex Mono", "Noto Sans SC", ui-monospace, SFMono-Regular, Menlo,
+          monospace;
         --sans:
           "IBM Plex Sans", "Noto Sans SC", -apple-system, BlinkMacSystemFont,
           sans-serif;

@@ -202,6 +202,30 @@ def check_pattern_docs() -> list[str]:
     ]
 
 
+CJK = re.compile(r"[\u3400-\u9fff]")
+FONT_STACK = re.compile(r"--(mono|sans):\s*([^;]+);")
+
+
+def check_cjk_fallback() -> list[str]:
+    """A page that shows Chinese needs a CJK font in every stack it draws text
+    with. IBM Plex has no CJK glyphs; a Mac falls back to a system font
+    silently, while a machine with none — stock Linux, and the CI runner that
+    renders the README screenshots — draws empty boxes. The screenshots shipped
+    that way once, which is how this was found."""
+    problems = []
+    for rel in tracked("site/*.html"):
+        text = (ROOT / rel).read_text()
+        if not CJK.search(text):
+            continue
+        for m in FONT_STACK.finditer(text):
+            if "Noto Sans SC" not in m.group(2):
+                problems.append(
+                    f"{rel}:{line_of(text, m.start())}: --{m.group(1)} has no CJK "
+                    "fallback; add \"Noto Sans SC\" (already loaded) to the stack"
+                )
+    return problems
+
+
 def check_leading_markers(rel: str, text: str) -> list[str]:
     """CommonMark opens a raw HTML block on any line beginning with `<!--`, so an
     inline value at the start of a line splits its sentence into two
@@ -242,6 +266,7 @@ def main() -> int:
         problems += check_vendor_facts(rel, (ROOT / rel).read_text(), facts)
 
     problems += check_pattern_docs()
+    problems += check_cjk_fallback()
 
     for problem in problems:
         print(f"error: {problem}", file=sys.stderr)
