@@ -31,19 +31,19 @@ _判断用户意图，把请求分流到正确的分支。_
   <sub>`教程` · ★4,570 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
-  <sub>`开源项目` · ★4,098 · `Java` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★4,213 · `Java` · `choice` · `score` · `noul`</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — 一个「软件工厂工头」，用 Jev 决定智能体流水线下一步该做什么。
-  <sub>`开源项目` · ★517 · thruwire · `Py`</sub>
+  <sub>`开源项目` · ★518 · thruwire · `Py`</sub>
 
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev 驱动的网页搜索：先选时间窗口和最佳查询改写，再分批对结果逐条用 noul 重排。
-  <sub>`开源项目` · ★416 · `TS` · `choice` · `noul`</sub>
+  <sub>`开源项目` · ★417 · `TS` · `choice` · `noul`</sub>
 
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — 语音驱动的浏览器控制：目标选项每次请求都按当前实时元素列表重建，并且总是包含一个 none 选项。
   <sub>`开源项目` · ★247 · `JS` · `choice` · `score` · `noul`</sub>
 
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — 一个 AI 视频编辑器：把编辑指令路由到具体操作、目标片段和轨道，并以关键词路由作为兜底。
-  <sub>`开源项目` · ★189 · `TS` · `choice` · `noul` · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · ★190 · `TS` · `choice` · `noul` · ⚠ `无许可证`</sub>
 
 - **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的 AI 任务中枢：把邮件、Teams、Slack 与报表汇成一条时间线。 <sub>(机翻)</sub>
   <sub>`插件` · ★118 · ldbumble · `Py`</sub>

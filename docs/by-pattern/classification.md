@@ -19,10 +19,10 @@ Every catalogued example of this decision — 82 of them, official first, then r
   <sub>`Official docs` · `Py`</sub>
 
 - **[worldmonitor: news threat classification](https://github.com/koala73/worldmonitor)** — Two Choice questions over threat level and category, held in shadow mode after a blind evaluation found Jev merely tied the incumbent model.
-  <sub>`Benchmark` · ★87,238 · `TS` · `choice` · ⚠ `shadow mode`</sub>
+  <sub>`Benchmark` · ★87,239 · `TS` · `choice` · ⚠ `shadow mode`</sub>
 
 - **[json-render](https://github.com/vercel-labs/json-render)** — Vercel Labs' generative UI framework. In its Jev experiment the model does not write JSON token by token — it only picks components, props and layout.
-  <sub>`Project` · ★18,110 · Vercel Labs · `TS` · `choice`</sub>
+  <sub>`Project` · ★18,113 · Vercel Labs · `TS` · `choice`</sub>
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — Seven distinct email decisions, each with its own separately chosen threshold, falling back to the normal LLM on any error.
   <sub>`Project` · ★12,304 · `TS` · `choice` · `noul`</sub>
@@ -31,19 +31,19 @@ Every catalogued example of this decision — 82 of them, official first, then r
   <sub>`Plugin` · ★411 · mrmps · `TS`</sub>
 
 - **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — Tax document page classifier built on Jev decisions. 100% strict accuracy across 261 IRS forms, ~$0.001 per page.
-  <sub>`Project` · ★398 · kyotofin · `TS`</sub>
+  <sub>`Project` · ★399 · kyotofin · `TS`</sub>
 
 - **[pg-jev](https://github.com/realZachi/pg-jev)** — A real PostgreSQL extension exposing the primitives as SQL functions, so a semantic decision can appear in a WHERE clause over any row type.
-  <sub>`Project` · ★314 · `Py` · `sh` · `choice` · `score` · `noul`</sub>
+  <sub>`Project` · ★315 · `Py` · `sh` · `choice` · `score` · `noul`</sub>
+
+- **[docjev](https://github.com/jerryjliu/docjev)** — A very fast document classifier/splitter using Jev
+  <sub>`Project` · ★292 · jerryjliu · `Py`</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — A ready-made judgement toolbox for agents: fact verification, content screening, semantic ranking, classification and extraction as separate tools.
   <sub>`Plugin` · ★290 · `JS` · `choice` · `score` · `noul`</sub>
 
-- **[docjev](https://github.com/jerryjliu/docjev)** — A very fast document classifier/splitter using Jev
-  <sub>`Project` · ★286 · jerryjliu · `Py`</sub>
-
 - **[unclutter](https://github.com/kitze/unclutter)** — A browser extension that removes page clutter, with reusable template rules.
-  <sub>`Project` · ★202 · kitze · `TS`</sub>
+  <sub>`Project` · ★203 · kitze · `TS`</sub>
 
 - **[Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til)** — Independent Korean-language notes reporting that reversing the order of options shifted a probability enough to flip a 0.9 threshold.
   <sub>`Benchmark` · ★190 · `Py` · ⚠ `no licence` `unverified claims`</sub>

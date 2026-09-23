@@ -10,7 +10,7 @@ _把自由文本转成数值特征，喂给下游的传统模型。_
   <sub>`官方文档` · `Py`</sub>
 
 - **[nimble](https://github.com/bespokelabsai/nimble)** — 本地类型化决策、对比式数据筛选与模型评测。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★1,637 · bespokelabsai · `Py` · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · ★1,638 · bespokelabsai · `Py` · ⚠ `无许可证`</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — 从人类反馈出发，构建经过校准的决策函数。
   <sub>`开源项目` · ★276 · sutro-sh · `Py`</sub>

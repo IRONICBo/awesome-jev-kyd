@@ -10,7 +10,7 @@ Every catalogued example of this decision — 7 of them, official first, then ro
   <sub>`Official docs` · `Py`</sub>
 
 - **[nimble](https://github.com/bespokelabsai/nimble)** — Local typed decisions, contrastive data curation, and model evaluation.
-  <sub>`Project` · ★1,637 · bespokelabsai · `Py` · ⚠ `no licence`</sub>
+  <sub>`Project` · ★1,638 · bespokelabsai · `Py` · ⚠ `no licence`</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — Builds calibrated decision functions from human feedback.
   <sub>`Project` · ★276 · sutro-sh · `Py`</sub>

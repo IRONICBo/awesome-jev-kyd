@@ -79,7 +79,7 @@ _在输出到达用户前，按评分标准检查模型产出。_
   <sub>`开源项目` · ★18 · chopratejas · `Py`</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-jev)** — 类型化的 System One 决策、排序、校验，以及可选启用的 Hermes 工具闸门。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★16 · keeltrace · `Py`</sub>
+  <sub>`开源项目` · ★17 · keeltrace · `Py`</sub>
 
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — 可复现的基准：衡量 Jev 在 RAG 里的重排质量、延迟与成本。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★14 · erendikmenn · `Py`</sub>
@@ -129,14 +129,14 @@ _在输出到达用户前，按评分标准检查模型产出。_
 - **[jev-pref](https://github.com/doeixd/jev-pref)** — 把 AGENTS.md 里的偏好变成一个由 Jev 驱动的快速 AI linter。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★5 · doeixd · `JS`</sub>
 
+- **[jev-spec](https://github.com/nozomi-koborinai/jev-spec)** — 每次提交都检查规格漂移：用 Jev 对照你的 Markdown 规格检查代码。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★5 · nozomi-koborinai · `TS`</sub>
+
 - **[hunch](https://github.com/Kelbie/hunch)** — 用 Jev、大白话规则与 Agent 技能做语义代码审查。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · kelbie · `TS`</sub>
 
 - **[jev-oas-sentinel](https://github.com/ShuhanSun/jev-oas-sentinel)** — 用确定性检查加 Jev 语义判断，揪出藏在 OpenAPI 描述文字里的破坏性变更。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · shuhansun · `Py`</sub>
-
-- **[jev-spec](https://github.com/nozomi-koborinai/jev-spec)** — 每次提交都检查规格漂移：用 Jev 对照你的 Markdown 规格检查代码。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★4 · nozomi-koborinai · `TS`</sub>
 
 - **[taste-lint](https://github.com/mblode/taste-lint)** — 在发布前拦住 AI 水文。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · mblode · `TS`</sub>

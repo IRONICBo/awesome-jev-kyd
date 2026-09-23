@@ -1,6 +1,6 @@
 # awesome-jev
 
-> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. <!--n:entries-->805<!--/n--> entries, every row attributable to a named source. <!--n:link_ok-->801<!--/n--> answered with a 2xx status on the last link sweep (<!--n:last_sweep-->2026-09-23<!--/n-->); the other <!--n:link_unstamped-->4<!--/n--> carry no `link_status` — see *What is verified* for why.
+> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. <!--n:entries-->805<!--/n--> entries, every row attributable to a named source. <!--n:link_ok-->802<!--/n--> answered with a 2xx status on the last link sweep (<!--n:last_sweep-->2026-09-23<!--/n-->); the other <!--n:link_unstamped-->3<!--/n--> carry no `link_status` — see *What is verified* for why.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 

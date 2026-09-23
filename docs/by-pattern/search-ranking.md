@@ -19,7 +19,7 @@ Every catalogued example of this decision — 43 of them, official first, then r
   <sub>`Project` · ★187,503 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[OpenViking: retrieval reranking](https://github.com/volcengine/OpenViking)** — One Noul per candidate document in a single batched request, with the yes-probability used directly as the relevance score.
-  <sub>`Project` · ★38,480 · `Py` · `noul`</sub>
+  <sub>`Project` · ★38,483 · `Py` · `noul`</sub>
 
 - **[FastMCP jev_search transform](https://github.com/PrefectHQ/fastmcp/blob/main/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py)** — Two-stage MCP tool search: a wide Choice coarse-ranks the whole catalogue, then a shortlist gets full descriptions plus one Noul each to decide whether it does the job at all.
   <sub>`Project` · ★27,873 · `Py` · `choice` · `noul`</sub>
@@ -31,19 +31,19 @@ Every catalogued example of this decision — 43 of them, official first, then r
   <sub>`Project` · ★11,505 · `Py` · `noul`</sub>
 
 - **[no-mistakes: review context selection](https://github.com/kunchenguid/no-mistakes)** — One Score per candidate file to pick review context, with a measured outcome: materially more billed input for essentially no wall-clock gain.
-  <sub>`Benchmark` · ★8,608 · `Go` · `score`</sub>
+  <sub>`Benchmark` · ★8,609 · `Go` · `score`</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.
-  <sub>`Project` · ★4,098 · `Java` · `choice` · `score` · `noul`</sub>
+  <sub>`Project` · ★4,213 · `Java` · `choice` · `score` · `noul`</sub>
 
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)** — Biologically-inspired memory for AI agents. Decay, retrieval strengthening, consolidation. Zero runtime deps, SQLite, MCP. Benchmarked retrieval with an opt-in TypeSafe Jev reranker.
   <sub>`Benchmark` · ★756 · kitfunso · `TS`</sub>
 
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev-driven web search: chooses the recency window and the best query rewrite, then reranks results in batches with one noul each.
-  <sub>`Project` · ★416 · `TS` · `choice` · `noul`</sub>
+  <sub>`Project` · ★417 · `TS` · `choice` · `noul`</sub>
 
 - **[pg-jev](https://github.com/realZachi/pg-jev)** — A real PostgreSQL extension exposing the primitives as SQL functions, so a semantic decision can appear in a WHERE clause over any row type.
-  <sub>`Project` · ★314 · `Py` · `sh` · `choice` · `score` · `noul`</sub>
+  <sub>`Project` · ★315 · `Py` · `sh` · `choice` · `score` · `noul`</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — A ready-made judgement toolbox for agents: fact verification, content screening, semantic ranking, classification and extraction as separate tools.
   <sub>`Plugin` · ★290 · `JS` · `choice` · `score` · `noul`</sub>
@@ -61,10 +61,10 @@ Every catalogued example of this decision — 43 of them, official first, then r
   <sub>`Plugin` · ★114 · dicklesworthstone · `Rs`</sub>
 
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish-style zsh history autosuggestions, ranked by Jev rather than by recency.
-  <sub>`Project` · ★103 · mrnugget · `TS` · ⚠ `no licence`</sub>
+  <sub>`Project` · ★104 · mrnugget · `TS` · ⚠ `no licence`</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.
-  <sub>`Project` · ★99 · `Py` · `choice`</sub>
+  <sub>`Project` · ★100 · `Py` · `choice`</sub>
 
 - **[jegrep](https://github.com/can1357/jegrep)** — Semantic grep: find code by describing what you're looking for, powered by Jev.
   <sub>`Project` · ★83 · can1357 · `Rs`</sub>
@@ -79,13 +79,13 @@ Every catalogued example of this decision — 43 of them, official first, then r
   <sub>`Project` · ★32 · samdotmak · `TS`</sub>
 
 - **[pi-jev-skill-picker](https://github.com/safzanpirani/pi-jev-skill-picker)** — Rank Pi Agent Skills for the current task with TypeSafe Jev
-  <sub>`Plugin` · ★28 · safzanpirani · `TS`</sub>
+  <sub>`Plugin` · ★29 · safzanpirani · `TS`</sub>
 
 - **[jgrep](https://github.com/keltokhy/jgrep)** — grep, but the pattern is a description. Filters lines by meaning with TypeSafe's Jev decision model: ~200 ms and a thousandth of a cent per line.
-  <sub>`Project` · ★20 · keltokhy · `Py`</sub>
+  <sub>`Project` · ★21 · keltokhy · `Py`</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-jev)** — Typed System One decisions, ranking, verification, and an opt-in Hermes tool gate using TypeSafe Jev.
-  <sub>`Project` · ★16 · keeltrace · `Py`</sub>
+  <sub>`Project` · ★17 · keeltrace · `Py`</sub>
 
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — Reproducible benchmark for measuring Jev reranking quality, latency, and cost in RAG
   <sub>`Benchmark` · ★14 · erendikmenn · `Py`</sub>

@@ -7,10 +7,10 @@ _介绍模型或整个领域，而非单一模式。_
 这个决策的全部已收录例子 —— 共 301 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Official agent skill for Claude Code](https://docs.typesafe.ai/agent-skill)** ⭐ — 把 TypeSafe 官方技能装进 Claude Code，让智能体自己写出正确的 Jev 调用，不必每次手动贴 API 结构。
-  <sub>`官方文档` · ★1,861 · `sh`</sub>
+  <sub>`官方文档` · ★1,871 · `sh`</sub>
 
 - **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐ — Claude Code 插件背后的官方技能仓库，里面的 SKILL.md 教会智能体如何使用 System One API。
-  <sub>`插件` · ★1,861 · `sh`</sub>
+  <sub>`插件` · ★1,871 · `sh`</sub>
 
 - **[system-one-adapter-python](https://github.com/typesafe-ai/system-one-adapter-python)** ⭐ — 一个可直接替换 TypeSafeClient 的适配器，底层走普通 LLM API —— 没有 Jev 权限也能跑 Jev 形状的代码。
   <sub>`SDK` · ★266 · `Py`</sub>
@@ -40,58 +40,58 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`官方文档`</sub>
 
 - **[OpenCode Zen: Jev resale](https://github.com/anomalyco/opencode)** — 一个编程智能体，其托管网关转售 Jev，还提供一个免费档位的模型 id。
-  <sub>`平台集成` · ★209,457 · `TS`</sub>
+  <sub>`平台集成` · ★209,463 · `TS`</sub>
 
 - **[langchain](https://github.com/langchain-ai/langchain)** — 智能体工程平台。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★146,900 · langchain-ai · `Py`</sub>
+  <sub>`开源项目` · ★146,903 · langchain-ai · `Py`</sub>
 
 - **[litellm](https://github.com/BerriAI/litellm)** — 高性能 AI 网关：Rust 内核加 Python SDK，以 OpenAI 或原生格式调用上百种 LLM API。 <sub>(机翻)</sub>
-  <sub>`平台集成` · ★59,429 · berriai · `Py`</sub>
+  <sub>`平台集成` · ★59,430 · berriai · `Py`</sub>
 
 - **[oh-my-pi](https://github.com/can1357/oh-my-pi)** — 深度整合 IDE 的编程智能体。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★32,807 · can1357 · `TS`</sub>
+  <sub>`开源项目` · ★32,816 · can1357 · `TS`</sub>
 
 - **[ai](https://github.com/vercel/ai)** — TypeScript 的 AI 工具包，来自 Next.js 的作者们。 <sub>(机翻)</sub>
   <sub>`SDK` · ★26,900 · vercel · `TS`</sub>
 
 - **[openwork](https://github.com/different-ai/openwork)** — 某协作工具的开源替代品。 <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · ★23,699 · different-ai · `TS` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★23,700 · different-ai · `TS` · ⚠ `并非 Jev 本身`</sub>
 
 - **[Opik TypeSafe tracker](https://github.com/comet-ml/opik/blob/main/sdks/python/src/opik/integrations/typesafe/opik_tracker.py)** — 包装同步与异步客户端，把每次 system_one 调用记录成一个可追踪的 span。
   <sub>`开源项目` · ★22,202 · `Py`</sub>
 
 - **[pydantic-ai](https://github.com/pydantic/pydantic-ai)** — Python 做 AI 的方式：智能体、实时语音、图像生成、嵌入。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★20,123 · pydantic · `Py`</sub>
+  <sub>`开源项目` · ★20,124 · pydantic · `Py`</sub>
 
 - **[eliza](https://github.com/elizaOS/eliza)** — 开源的智能体操作系统。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★19,410 · elizaos · `TS`</sub>
 
 - **[@effect/ai-typesafe](https://github.com/Effect-TS/effect)** — 在 Jev 之上实现 Effect 的 DecisionModel 接口，并罕见地坦白说明取整行为尚未核实。
-  <sub>`平台集成` · ★16,181 · `TS` · `choice` · `score` · `noul`</sub>
+  <sub>`平台集成` · ★16,182 · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[rig-typesafeai](https://github.com/0xPlaygrounds/rig)** — Rust 集成，选项数量在编译期检查 —— 超过 255 个选项的 Choice 会编译失败，而不是运行时才报错。
-  <sub>`平台集成` · ★8,703 · `Rs` · `choice` · `score` · `noul`</sub>
+  <sub>`平台集成` · ★8,704 · `Rs` · `choice` · `score` · `noul`</sub>
 
 - **[deep-searcher](https://github.com/zilliztech/deep-searcher)** — 开源的深度研究替代方案，在私有数据上推理与检索。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★8,280 · zilliztech · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[Bifrost TypeSafe gateway route](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe)** — 一个 Go 网关 provider，对原生 API 做一比一透传 —— 官方 SDK 只需改 base URL 即可使用。
-  <sub>`开源项目` · ★8,249 · `Go`</sub>
+  <sub>`开源项目` · ★8,250 · `Go`</sub>
 
 - **[laya-mlx](https://github.com/mizorewww/laya-mlx)** — 给 Laya 类型化决策模型的原生 MLX 运行时：短决策 7–14 毫秒，不生成文本。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★5,526 · mizorewww · `Py`</sub>
+  <sub>`开源项目` · ★5,547 · mizorewww · `Py`</sub>
 
 - **[Kiln: Jev adapter](https://github.com/Kiln-AI/Kiln)** — 一个接进 adapter registry 的「JSON Schema 转问题」编译器，并诚实说明了它无法支持的场景。
   <sub>`平台集成` · ★5,077 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[kev](https://github.com/jaredpalmer/kev)** — 一套可训练、可自托管的 Jev-like 决策模型，API 与 System One 兼容 —— 官方 SDK 可以直接指向你自己的服务。
-  <sub>`Jev 替代实现` · ★4,443 · Jared Palmer · `Py` · `choice` · `score` · `noul` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★4,504 · Jared Palmer · `Py` · `choice` · `score` · `noul` · ⚠ `并非 Jev 本身`</sub>
 
 - **[ruby_llm: TypeSafe provider](https://github.com/crmne/ruby_llm)** — 带专门 System One 协议的 Ruby provider，是 Ruby 侧接入 Jev 的主要路径。
   <sub>`平台集成` · ★4,401 · `Rb` · `choice` · `score` · `noul`</sub>
 
 - **[SemIf](https://github.com/TheoLeeCJ/SemIf)** — 一个独立的「语义 if」实现，开门见山声明与 Jev 和 TypeSafe 无隶属关系。
-  <sub>`Jev 替代实现` · ★3,875 · `Py` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★3,888 · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[ax](https://github.com/ax-llm/ax)** — TypeScript 版的 DSPy 框架。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★2,945 · ax-llm · `TS`</sub>
@@ -100,13 +100,13 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`插件` · ★2,640 · zilliztech · `Py`</sub>
 
 - **[NanoJev](https://github.com/TianyuCodings/NanoJev)** — 自称 Jev 的「nano 复刻版」，用途是拿来读，不是拿来上生产。
-  <sub>`Jev 替代实现` · ★2,017 · `Py` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★2,019 · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[vellum-assistant](https://github.com/vellum-ai/vellum-assistant)** — 易于配置的 AI 助手：全天候工作、了解你的偏好。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1,303 · vellum-ai · `TS`</sub>
 
 - **[jevlike](https://github.com/vinnylarouge/jevlike)** — 一个独立可训练的模型，输入输出形状与 Jev 相同：文本加 N 个选项进，每个选项一个概率出，单次前向完成。
-  <sub>`Jev 替代实现` · ★1,240 · vinnylarouge · `Py` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★1,241 · vinnylarouge · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[celesto](https://github.com/CelestoAI/celesto)** — 给 AI 智能体的安全持久化计算环境。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★966 · celestoai · `Py`</sub>
@@ -118,10 +118,10 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`开源项目` · ★678 · uezo · `Py`</sub>
 
 - **[kody](https://github.com/kentcdodds/kody)** — 你的助手之家：AI 智能体所需的记忆、密钥、代码与自动化。 <sub>(机翻)</sub>
-  <sub>`插件` · ★666 · kentcdodds · `TS`</sub>
+  <sub>`插件` · ★667 · kentcdodds · `TS`</sub>
 
 - **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — 覆盖最广的同类目录：数百个项目、六种语言，且它的 README 本身就是被解析的数据源。
-  <sub>`开源项目` · ★584 · heyjunpenn · `TS`</sub>
+  <sub>`开源项目` · ★597 · heyjunpenn · `TS`</sub>
 
 - **[req_llm](https://github.com/agentjido/req_llm)** — 基于 Req 和 Finch 的可组合 Elixir LLM 交互库。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★581 · agentjido · `Ex`</sub>
@@ -130,28 +130,28 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`Jev 替代实现` · ★485 · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[jev-skill](https://github.com/wuyoscar/jev-skill)** — 一个 agent 技能加 CLI：校验三种原语、在产生计费调用前要求明确同意、并禁止在模拟时编造输出。
-  <sub>`插件` · ★437 · `Py` · `choice` · `score` · `noul`</sub>
+  <sub>`插件` · ★438 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[smithers](https://github.com/smithersai/smithers)** — Smithers：用简单 TypeScript 配置定义工作流的智能体工作流框架。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★420 · smithersai · `TS`</sub>
+  <sub>`开源项目` · ★421 · smithersai · `TS`</sub>
 
 - **[awesome-jev-projects](https://github.com/logicrw/awesome-jev-projects)** — 一个同类目录，主打生态广度：来源锚定到具体 commit、四语 README、以及一个生成式站点。
-  <sub>`开源项目` · ★396 · logicrw · `JS`</sub>
+  <sub>`开源项目` · ★398 · logicrw · `JS`</sub>
 
 - **[rizzo-flow](https://github.com/Rizzo-AI-Academy/rizzo-flow)** — Jev 的开源本地版：由 LLM 产出类型化决策，且不生成任何 token。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★348 · rizzo-ai-academy · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[openjev](https://github.com/razorback16/openjev)** — 基于开源扩散模型的 Jev 兼容决策服务。
-  <sub>`Jev 替代实现` · ★318 · razorback16 · `Py` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★320 · razorback16 · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[decider](https://github.com/Mapika/decider)** — 一族 System One 风格的模型，从开源基座微调而来，做单次类型化决策。
-  <sub>`Jev 替代实现` · ★315 · mapika · `Py` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★318 · mapika · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[jev-chat-windows](https://github.com/jev-chat/jev-chat-windows)** — 微信（Windows）旁挂回复辅助：截图加本地 OCR 读消息，Jev 判断意图，生成候选，发送永远手动。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★302 · jev-chat · `Py`</sub>
+  <sub>`开源项目` · ★308 · jev-chat · `Py`</sub>
 
 - **[laya](https://github.com/receptron/laya)** — 通过 ONNX Runtime 从 Node.js／TypeScript 运行开源的 Jev 兼容 System-1 决策模型。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★295 · receptron · `TS`</sub>
+  <sub>`开源项目` · ★296 · receptron · `TS`</sub>
 
 - **[third-hand](https://github.com/shhivv/third-hand)** — 由决策模型驱动的 computer-use 助手。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★288 · shhivv · `Swift`</sub>
@@ -163,16 +163,16 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`Jev 替代实现` · ★272 · ekzhang · `Py` · ⚠ `并非 Jev 本身` `无许可证`</sub>
 
 - **[typesafe-mcp](https://github.com/itsmostafa/typesafe-mcp)** — 最适合刚拿到 API 的人。把 Jev 接进 Claude Code、Claude Desktop、Codex 和 Pi，随时做 Choice / Score / Noul。
-  <sub>`插件` · ★262 · `Go` · `choice` · `score` · `noul`</sub>
+  <sub>`插件` · ★263 · `Go` · `choice` · `score` · `noul`</sub>
 
 - **[pi-fabric](https://github.com/monotykamary/pi-fabric)** — 给 Pi 的可编程工具与智能体运行时。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★253 · monotykamary · `TS`</sub>
+  <sub>`开源项目` · ★254 · monotykamary · `TS`</sub>
+
+- **[jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)** — 微信消息意图识别悬浮窗（macOS）：看屏加本地小模型判断意图与风险，再生成回复候选。纯只读。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★231 · jev-chat · `Py`</sub>
 
 - **[jeff](https://github.com/logan-markewich/jeff)** — 自托管的 Jev 直接替代品，底层由 GliFormer 驱动。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★219 · logan-markewich · `Py` · ⚠ `并非 Jev 本身`</sub>
-
-- **[jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)** — 微信消息意图识别悬浮窗（macOS）：看屏加本地小模型判断意图与风险，再生成回复候选。纯只读。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★217 · jev-chat · `Py`</sub>
 
 - **[awesome-jev (fatwang2)](https://github.com/fatwang2/awesome-jev)** — 一个同类目录，提交由 Jev 自己审核，其多语言社区客户端清单相当完整。
   <sub>`开源项目` · ★198 · fatwang2 · `JS`</sub>
@@ -181,7 +181,7 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`开源项目` · ★187 · knuckles92 · `Py`</sub>
 
 - **[crush-monitor](https://github.com/FerryCorleone/crush-monitor)** — 用 Jev 分析微信聊天的情绪、意图与回复表现，本机部署、自带密钥。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★177 · ferrycorleone · `TS`</sub>
+  <sub>`开源项目` · ★178 · ferrycorleone · `TS`</sub>
 
 - **[djev-spark](https://github.com/mmastrac/djev-spark)** — 在 DGX Spark 上跑 DiffusionGemma NVFP4 结构化决策的容器配方。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★176 · mmastrac · `TS` · ⚠ `无许可证`</sub>
@@ -193,7 +193,7 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`开源项目` · ★135 · wquguru · `JS` · ⚠ `无许可证`</sub>
 
 - **[webctl](https://github.com/dorkitude/webctl)** — 给智能体用的智能网页搜索 CLI，由 Jev 支撑，大幅省 token。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★123 · dorkitude · `Go`</sub>
+  <sub>`开源项目` · ★124 · dorkitude · `Go`</sub>
 
 - **[laya-ultrafast](https://github.com/ipenywis/laya-ultrafast)** — 与 jev-ultrafast 相同，但换成 Laya。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★116 · ipenywis · `Py`</sub>
@@ -381,6 +381,9 @@ _介绍模型或整个领域，而非单一模式。_
 - **[jev-minesweeper](https://github.com/comoc/jev-minesweeper)** — 让 Jev 解浏览器扫雷的演示（日语）。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★8 · comoc · `JS` · ⚠ `无许可证`</sub>
 
+- **[edgejev](https://github.com/yzfly/edgejev)** — 离线可用的本地类型化决策：4 核 CPU 单题 15.6 毫秒，ONNX 加 INT8。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★7 · yzfly · `Py`</sub>
+
 - **[jev-grand-prix](https://github.com/enoyola/jev-grand-prix)** — 一个 F1 赛车游戏：Jev 选择赛车线与踏板，并逐条赛道学习。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★7 · enoyola · `JS`</sub>
 
@@ -389,9 +392,6 @@ _介绍模型或整个领域，而非单一模式。_
 
 - **[laya-jev-lab](https://github.com/yibie/laya-jev-lab)** — 类型化决策模型的独立实测：Jev 对比开源权重的 Laya。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★7 · yibie · `Py`</sub>
-
-- **[edgejev](https://github.com/yzfly/edgejev)** — 离线可用的本地类型化决策：4 核 CPU 单题 15.6 毫秒，ONNX 加 INT8。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★6 · yzfly · `Py`</sub>
 
 - **[jev-benchmark](https://github.com/wondertwins/jev-benchmark)** — Jev 的基准与 playground：国际象棋，以及语音转写中的说话对象判定。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★6 · wondertwins · `Py`</sub>
@@ -868,7 +868,7 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`开源项目` · ★0 · aliceroselia · `Py`</sub>
 
 - **[awesome-jev (yibie)](https://github.com/yibie/awesome-jev)** — 目前这个领域里 star 数最高的同类目录。
-  <sub>`开源项目` · ★1,329 · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · ★1,334 · ⚠ `无许可证`</sub>
 
 - **[A new kind of AI model from a ChatGPT inventor is thrilling developers](https://techcrunch.com/2026/09/18/a-new-kind-of-ai-model-from-a-chatgpt-inventor-is-thrilling-developers/)** — 唯一一篇引用了开发者一手说法（而非厂商数字）的发布报道，其中还提醒：解释阈值的责任现在落在你自己头上。
   <sub>`文章` · Tim Fernholz</sub>

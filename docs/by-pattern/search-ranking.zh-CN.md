@@ -19,7 +19,7 @@ _对来自廉价检索步骤的候选做打分或重排。_
   <sub>`开源项目` · ★187,503 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[OpenViking: retrieval reranking](https://github.com/volcengine/OpenViking)** — 单次批量请求里对每个候选文档问一个 Noul，直接把「是」的概率当相关性分数。
-  <sub>`开源项目` · ★38,480 · `Py` · `noul`</sub>
+  <sub>`开源项目` · ★38,483 · `Py` · `noul`</sub>
 
 - **[FastMCP jev_search transform](https://github.com/PrefectHQ/fastmcp/blob/main/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py)** — 两段式 MCP 工具检索：先用一个宽 Choice 对整个目录粗排，再给候选短名单配完整描述，每个候选各配一个 Noul 判断它到底是否胜任。
   <sub>`开源项目` · ★27,873 · `Py` · `choice` · `noul`</sub>
@@ -31,19 +31,19 @@ _对来自廉价检索步骤的候选做打分或重排。_
   <sub>`开源项目` · ★11,505 · `Py` · `noul`</sub>
 
 - **[no-mistakes: review context selection](https://github.com/kunchenguid/no-mistakes)** — 对每个候选文件打一个 Score 来挑选审查上下文；实测结果是：计费输入明显增加，而实际耗时几乎没改善。
-  <sub>`基准测试` · ★8,608 · `Go` · `score`</sub>
+  <sub>`基准测试` · ★8,609 · `Go` · `score`</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
-  <sub>`开源项目` · ★4,098 · `Java` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★4,213 · `Java` · `choice` · `score` · `noul`</sub>
 
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)** — 受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★756 · kitfunso · `TS`</sub>
 
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev 驱动的网页搜索：先选时间窗口和最佳查询改写，再分批对结果逐条用 noul 重排。
-  <sub>`开源项目` · ★416 · `TS` · `choice` · `noul`</sub>
+  <sub>`开源项目` · ★417 · `TS` · `choice` · `noul`</sub>
 
 - **[pg-jev](https://github.com/realZachi/pg-jev)** — 一个真正的 PostgreSQL 扩展，把三个原语暴露成 SQL 函数 —— 语义判断可以直接写进任意行类型的 WHERE 子句。
-  <sub>`开源项目` · ★314 · `Py` · `sh` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★315 · `Py` · `sh` · `choice` · `score` · `noul`</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — 现成的 Agent 判断工具箱：事实核验、内容筛查、语义排序、分类和信息提取，各自独立成工具。
   <sub>`插件` · ★290 · `JS` · `choice` · `score` · `noul`</sub>
@@ -61,10 +61,10 @@ _对来自廉价检索步骤的候选做打分或重排。_
   <sub>`插件` · ★114 · dicklesworthstone · `Rs`</sub>
 
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish 风格的 zsh 历史自动建议，由 Jev 排序而不是按时间。
-  <sub>`开源项目` · ★103 · mrnugget · `TS` · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · ★104 · mrnugget · `TS` · ⚠ `无许可证`</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — 把 Jev 塞进知识图谱。每走到一个节点，判断下一条最值得走的边，再一路找下去。
-  <sub>`开源项目` · ★99 · `Py` · `choice`</sub>
+  <sub>`开源项目` · ★100 · `Py` · `choice`</sub>
 
 - **[jegrep](https://github.com/can1357/jegrep)** — 语义 grep：用描述来找代码。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★83 · can1357 · `Rs`</sub>
@@ -79,13 +79,13 @@ _对来自廉价检索步骤的候选做打分或重排。_
   <sub>`开源项目` · ★32 · samdotmak · `TS`</sub>
 
 - **[pi-jev-skill-picker](https://github.com/safzanpirani/pi-jev-skill-picker)** — 用 Jev 给当前任务的 Pi Agent 技能排序。 <sub>(机翻)</sub>
-  <sub>`插件` · ★28 · safzanpirani · `TS`</sub>
+  <sub>`插件` · ★29 · safzanpirani · `TS`</sub>
 
 - **[jgrep](https://github.com/keltokhy/jgrep)** — grep，但模式是一段描述：用 Jev 按含义过滤行，约 200 毫秒处理上千行。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★20 · keltokhy · `Py`</sub>
+  <sub>`开源项目` · ★21 · keltokhy · `Py`</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-jev)** — 类型化的 System One 决策、排序、校验，以及可选启用的 Hermes 工具闸门。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★16 · keeltrace · `Py`</sub>
+  <sub>`开源项目` · ★17 · keeltrace · `Py`</sub>
 
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — 可复现的基准：衡量 Jev 在 RAG 里的重排质量、延迟与成本。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★14 · erendikmenn · `Py`</sub>

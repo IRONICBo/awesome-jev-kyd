@@ -1012,7 +1012,7 @@
     "license": "CC0-1.0",
     "checked": "2026-09-23",
     "link_status": 200,
-    "stars": 1861
+    "stars": 1871
   },
   {
     "slug": "typesafe-sdk-python",
@@ -1139,7 +1139,7 @@
     ],
     "official": true,
     "has_code": true,
-    "stars": 1861,
+    "stars": 1871,
     "repo_license": "MIT",
     "first_seen": "2026-09-22",
     "sources": [
@@ -1767,7 +1767,7 @@
       "url": "https://github.com/tamaratran"
     },
     "has_code": true,
-    "stars": 6339,
+    "stars": 6350,
     "repo_license": "MIT",
     "notes": "Exactly two nouls per tool call: does knowing this call happened still matter, and is the full output still needed verbatim. Despite the word \"scored\" in its own description, no score primitive is used.",
     "notes_zh": "每次工具调用恰好两个 noul：知道这次调用发生过是否还有意义、以及是否还需要完整原文输出。尽管它自己的描述里用了「打分」，实际并未使用 score 原语。",
@@ -1812,7 +1812,7 @@
       "url": "https://github.com/vinnylarouge"
     },
     "has_code": true,
-    "stars": 1240,
+    "stars": 1241,
     "repo_license": "MIT",
     "flags": [
       "not-jev"
@@ -2318,7 +2318,7 @@
     ],
     "repo": "https://github.com/maximhq/bifrost",
     "has_code": true,
-    "stars": 8249,
+    "stars": 8250,
     "repo_license": "Apache-2.0",
     "first_seen": "2026-09-22",
     "sources": [
@@ -2581,7 +2581,9 @@
         "url": "https://news.ycombinator.com/item?id=49724424"
       }
     ],
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "checked": "2026-09-23",
+    "link_status": 200
   },
   {
     "slug": "arize-decision-models-vs-llm-judges",
@@ -3019,7 +3021,7 @@
       "url": "https://github.com/jaredpalmer"
     },
     "has_code": true,
-    "stars": 4443,
+    "stars": 4504,
     "repo_license": "Apache-2.0",
     "flags": [
       "not-jev"
@@ -3157,7 +3159,7 @@
       "url": "https://github.com/logicrw"
     },
     "has_code": true,
-    "stars": 396,
+    "stars": 398,
     "repo_license": "MIT",
     "notes": "Goes wide where this catalog goes deep. Worth checking for anything missing here; it accepts issues rather than pull requests.",
     "notes_zh": "它走的是广度，本目录走的是深度。这里缺的条目值得去它那里对一遍；它只收 issue，不收 PR。",
@@ -3228,7 +3230,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 248141,
+    "stars": 248148,
     "repo_license": "MIT",
     "notes": "The single most credible row in this catalog. Recall came out below their existing summariser, and at a matched context budget it tied plain recency ordering. Cost was genuinely far lower. Publishing a negative result on a hyped model is rare.",
     "notes_zh": "本目录可信度最高的一条。召回率低于他们现有的摘要器，在相同上下文预算下与「按时间倒序」打平。成本确实低得多。在一个被热炒的模型上公开负面结果，非常少见。",
@@ -3273,7 +3275,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 87238,
+    "stars": 87239,
     "repo_license": "AGPL-3.0",
     "flags": [
       "shadow-mode-only"
@@ -3320,7 +3322,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 8608,
+    "stars": 8609,
     "repo_license": "MIT",
     "notes": "Their own recommendation was to keep the feature opt-in, off by default, and ship no savings claim. That is what an honest measurement looks like.",
     "notes_zh": "他们自己的建议是：这个功能保持可选、默认关闭、不要宣传省钱。诚实的实测就该长这样。",
@@ -3407,7 +3409,7 @@
       "url": "https://github.com/browser-use"
     },
     "has_code": true,
-    "stars": 18209,
+    "stars": 18256,
     "repo_license": "MIT",
     "published": "2026-09-16",
     "flags": [
@@ -3504,7 +3506,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 42433,
+    "stars": 42438,
     "repo_license": "LGPL-3.0",
     "notes": "The clearest demonstration that fan-out changes what is affordable: a per-category hazard screen becomes one request instead of one per category.",
     "notes_zh": "最清楚地展示了并行扇出如何改变成本结构：逐类别的危害筛查从「每类一次请求」变成「总共一次请求」。",
@@ -3548,7 +3550,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 38480,
+    "stars": 38483,
     "repo_license": "AGPL-3.0",
     "first_seen": "2026-09-22",
     "sources": [
@@ -3734,7 +3736,7 @@
       "url": "https://github.com/vercel-labs"
     },
     "has_code": true,
-    "stars": 18110,
+    "stars": 18113,
     "repo_license": "Apache-2.0",
     "notes": "A genuinely different framing of generative UI: choosing from a component registry instead of generating markup means the output cannot reference a component that does not exist.",
     "notes_zh": "对生成式 UI 的一个真正不同的理解：从组件注册表里做选择、而不是生成标记，意味着输出不可能引用一个不存在的组件。",
@@ -3776,7 +3778,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 1522,
+    "stars": 1524,
     "repo_license": "Apache-2.0",
     "notes": "Using the accessibility tree rather than screenshots fits the model's text-only input exactly, with no vision step to lose information.",
     "notes_zh": "用无障碍树而不是截图，正好契合模型只接受文本输入的限制，中间不需要一个会丢信息的视觉步骤。",
@@ -3870,7 +3872,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 99,
+    "stars": 100,
     "repo_license": "MIT",
     "notes": "Graph traversal is a natural fit: each hop is a closed choice over the current node's edges, and the whole walk is cheap only if each hop is.",
     "notes_zh": "图遍历天然契合：每一跳都是在当前节点的边集上做封闭选择，而整条路径便宜的前提正是每一跳都便宜。",
@@ -4011,7 +4013,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 134,
+    "stars": 136,
     "repo_license": "MIT",
     "flags": [
       "unverified-claims"
@@ -4061,7 +4063,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 354,
+    "stars": 356,
     "repo_license": "unknown",
     "flags": [
       "no-license",
@@ -4162,7 +4164,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 107,
+    "stars": 109,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -4210,7 +4212,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 2079,
+    "stars": 2082,
     "repo_license": "MIT",
     "flags": [
       "unverified-claims"
@@ -4306,7 +4308,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 262,
+    "stars": 263,
     "repo_license": "MIT",
     "notes": "Start here if you want to feel the primitives before writing any code.",
     "notes_zh": "如果你想先上手体验这几个原语、再动手写代码，从这里开始。",
@@ -4451,7 +4453,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 228,
+    "stars": 229,
     "repo_license": "MIT",
     "notes": "Scoring difficulty and mapping to tiers in code, rather than choosing a tier directly, is the more maintainable of the two model-routing shapes.",
     "notes_zh": "先给难度打分、再在代码里映射到档位，而不是直接选档位 —— 这是两种模型路由写法里更好维护的那个。",
@@ -4497,7 +4499,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 68,
+    "stars": 69,
     "repo_license": "MIT",
     "notes": "Uses dual keep/drop thresholds with a recall command to pull back full text, which is the right safety valve for a lossy filter.",
     "notes_zh": "采用「保留/丢弃」双阈值，并提供一个召回命令取回全文 —— 这是有损过滤该有的安全阀。",
@@ -4646,7 +4648,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 31169,
+    "stars": 31184,
     "repo_license": "MIT",
     "notes": "Its skill-suggestion plugin implements the official cookbook of the same name, including withholding the skill listing from the main model so the choice is actually made by Jev.",
     "notes_zh": "它的技能推荐插件实现了同名官方 cookbook，包括「不把技能清单给主模型看」这一步，从而让选择真正由 Jev 做出。",
@@ -4695,7 +4697,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 596,
+    "stars": 604,
     "repo_license": "MIT",
     "notes": "Notable for publishing a use it dropped: Jev-summarised handoffs had worse recall than raw transcripts.",
     "notes_zh": "值得一提的是它公开了一个被放弃的用法：用 Jev 做交接摘要的召回率，反而不如原始对话记录。",
@@ -4782,7 +4784,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 16181,
+    "stars": 16182,
     "repo_license": "MIT",
     "first_seen": "2026-09-22",
     "sources": [
@@ -4872,7 +4874,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 8703,
+    "stars": 8704,
     "repo_license": "MIT",
     "notes": "Moving the 255-option limit into the type system is the nicest ergonomic touch found in any integration. Note it reads a different environment variable name than the others — see docs/compatibility.md.",
     "notes_zh": "把 255 选项上限搬进类型系统，是所有集成里最漂亮的一处人机工程设计。注意它读的环境变量名和其他集成不同 —— 见 docs/compatibility.md。",
@@ -5009,7 +5011,7 @@
       "opencode-zen"
     ],
     "has_code": true,
-    "stars": 209457,
+    "stars": 209463,
     "repo_license": "MIT",
     "notes": "Worth knowing about because it is one of the few routes with a free model id, useful while early access is gated.",
     "notes_zh": "值得知道，因为它是少数提供免费模型 id 的路径之一 —— 在早期访问仍需排队时很有用。",
@@ -5091,7 +5093,7 @@
       "self-hosted"
     ],
     "has_code": true,
-    "stars": 2017,
+    "stars": 2019,
     "repo_license": "MIT",
     "flags": [
       "not-jev"
@@ -5126,7 +5128,7 @@
       "self-hosted"
     ],
     "has_code": true,
-    "stars": 3875,
+    "stars": 3888,
     "repo_license": "MIT",
     "flags": [
       "not-jev"
@@ -5158,7 +5160,7 @@
       "github"
     ],
     "has_code": false,
-    "stars": 1329,
+    "stars": 1334,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -5202,7 +5204,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 314,
+    "stars": 315,
     "repo_license": "NOASSERTION",
     "notes": "The most surprising integration found. Putting a calibrated decision behind a SQL function changes where this kind of judgement can live at all — though it also means a query can now cost money and block on a network call.",
     "notes_zh": "找到的最出人意料的集成。把校准决策放进 SQL 函数，改变了这类判断能存在的位置 —— 但也意味着一条查询从此会花钱、并且会阻塞在网络调用上。",
@@ -5341,7 +5343,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 169,
+    "stars": 170,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -5439,7 +5441,7 @@
       "vercel-ai-gateway"
     ],
     "has_code": true,
-    "stars": 416,
+    "stars": 417,
     "repo_license": "MIT",
     "notes": "Shows the whole retrieval chain as decisions: which engines to query, how to rewrite the query, and which results survive.",
     "notes_zh": "把整条检索链都变成决策：查哪些引擎、如何改写查询、哪些结果留下。",
@@ -5486,7 +5488,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 581,
+    "stars": 582,
     "repo_license": "MIT",
     "notes": "Its risk noul enumerates the cases that need a human — delete, send, pay, permissions, credentials — and a local policy gate enforces the threshold. Sends text only, never screenshots. No licence file.",
     "notes_zh": "它的风险 noul 明确列举了需要人介入的情形 —— 删除、发送、付款、权限、凭据 —— 并由本地策略闸门执行阈值。只发文本，从不发截图。无许可证文件。",
@@ -5533,7 +5535,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 189,
+    "stars": 190,
     "repo_license": "unknown",
     "flags": [
       "no-license"
@@ -5586,7 +5588,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 4098,
+    "stars": 4213,
     "repo_license": "MIT",
     "notes": "A clean split of labour on a phone: Jev judges and ranks, other models read the screen and write the words. Reads on-screen message content, so consider the privacy implications before running it.",
     "notes_zh": "手机端的一个清晰分工：Jev 负责判断与排序，其他模型负责读屏和写字。它会读取屏幕上的消息内容，运行前请先考虑隐私影响。",
@@ -5634,7 +5636,7 @@
       "typesafe-api"
     ],
     "has_code": true,
-    "stars": 437,
+    "stars": 438,
     "repo_license": "MIT",
     "notes": "Its skill files are unusually disciplined for this space: consent before spending, an explicit marker when no call was made, and the line that selection is not permission.",
     "notes_zh": "它的技能文件在这个领域里格外自律：花钱前先征得同意、未实际调用时打出明确标记，以及那句「被选中不等于被授权」。",
@@ -5902,7 +5904,7 @@
       "url": "https://github.com/awlevin"
     },
     "has_code": true,
-    "stars": 842,
+    "stars": 846,
     "repo_license": "MIT",
     "evidence": {
       "path": "typesafe_computer_use/decide.py",
@@ -5946,7 +5948,7 @@
       "url": "https://github.com/thruwire"
     },
     "has_code": true,
-    "stars": 517,
+    "stars": 518,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/foreman/foreman/jev.py",
@@ -6073,7 +6075,7 @@
       "url": "https://github.com/wy-coliney"
     },
     "has_code": true,
-    "stars": 385,
+    "stars": 389,
     "repo_license": "MIT",
     "evidence": {
       "path": "skills/jev-browser-use/bridge.mjs",
@@ -6205,7 +6207,7 @@
       "url": "https://github.com/billionsbobby"
     },
     "has_code": true,
-    "stars": 172,
+    "stars": 174,
     "repo_license": "MIT",
     "evidence": {
       "path": "functions/api/jev.js",
@@ -6378,7 +6380,7 @@
       "url": "https://github.com/mrnugget"
     },
     "has_code": true,
-    "stars": 103,
+    "stars": 104,
     "repo_license": "unknown",
     "evidence": {
       "path": "src/cli.ts",
@@ -6639,7 +6641,7 @@
       "url": "https://github.com/kitze"
     },
     "has_code": true,
-    "stars": 202,
+    "stars": 203,
     "repo_license": "MIT",
     "evidence": {
       "path": "lib/jev.ts",
@@ -7249,7 +7251,7 @@
       "url": "https://github.com/mapika"
     },
     "has_code": true,
-    "stars": 315,
+    "stars": 318,
     "repo_license": "Apache-2.0",
     "evidence": {
       "path": "decider/bench/loadtest.py",
@@ -7343,7 +7345,7 @@
       "url": "https://github.com/razorback16"
     },
     "has_code": true,
-    "stars": 318,
+    "stars": 320,
     "repo_license": "Apache-2.0",
     "evidence": {
       "path": "openjev/api.py",
@@ -7392,7 +7394,7 @@
       "url": "https://github.com/heyjunpenn"
     },
     "has_code": true,
-    "stars": 584,
+    "stars": 597,
     "repo_license": "MIT",
     "notes": "Goes wide where this catalog goes deep, and its 'Other lists' section is where docs/sibling-lists.txt was seeded from. It ships no LICENSE file, so its descriptive text cannot be reused — the rows it surfaced here were re-verified at the call site and summarised independently.",
     "notes_zh": "它走广度，本目录走深度；docs/sibling-lists.txt 的种子就来自它的 Other lists 一节。它没有 LICENSE 文件，因此其描述文字不可复用 —— 由它引出的条目都是在调用点重新核实、并独立撰写摘要的。",
@@ -7644,7 +7646,7 @@
       "url": "https://github.com/luantak"
     },
     "has_code": true,
-    "stars": 22,
+    "stars": 23,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/jev.ts",
@@ -7733,7 +7735,7 @@
       "url": "https://github.com/kyotofin"
     },
     "has_code": true,
-    "stars": 398,
+    "stars": 399,
     "repo_license": "Apache-2.0",
     "evidence": {
       "path": "src/backend.ts",
@@ -8494,7 +8496,7 @@
       "url": "https://github.com/yinsongxu"
     },
     "has_code": true,
-    "stars": 141,
+    "stars": 142,
     "repo_license": "Apache-2.0",
     "evidence": {
       "path": "src/llm2jev/sglang_server.py",
@@ -8942,7 +8944,7 @@
       "url": "https://github.com/keltokhy"
     },
     "has_code": true,
-    "stars": 20,
+    "stars": 21,
     "repo_license": "MIT",
     "evidence": {
       "path": "bench/code_review.py",
@@ -10502,7 +10504,7 @@
       "url": "https://github.com/keeltrace"
     },
     "has_code": true,
-    "stars": 16,
+    "stars": 17,
     "repo_license": "MIT",
     "evidence": {
       "path": "hermes_nerve/client.py",
@@ -10681,7 +10683,7 @@
       "url": "https://github.com/jerryjliu"
     },
     "has_code": true,
-    "stars": 286,
+    "stars": 292,
     "repo_license": "Apache-2.0",
     "evidence": {
       "path": "src/jev_docs/engines/jev.py",
@@ -11303,7 +11305,7 @@
       "url": "https://github.com/bespokelabsai"
     },
     "has_code": true,
-    "stars": 1637,
+    "stars": 1638,
     "repo_license": "unknown",
     "evidence": {
       "path": "nimble/evaluation/evaluate_public_jev.py",
@@ -12418,7 +12420,7 @@
       "url": "https://github.com/vinilana"
     },
     "has_code": true,
-    "stars": 178,
+    "stars": 180,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/jev.ts",
@@ -12506,7 +12508,7 @@
       "url": "https://github.com/devin-axis"
     },
     "has_code": true,
-    "stars": 114,
+    "stars": 116,
     "repo_license": "unknown",
     "evidence": {
       "path": "service/jev.mjs",
@@ -12690,7 +12692,7 @@
       "url": "https://github.com/openlayer-ai"
     },
     "has_code": true,
-    "stars": 63,
+    "stars": 64,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/jevals/backends/typesafe.py",
@@ -12733,7 +12735,7 @@
       "url": "https://github.com/lykycy123"
     },
     "has_code": true,
-    "stars": 33,
+    "stars": 35,
     "repo_license": "Apache-2.0",
     "evidence": {
       "path": "src/jev_vla_sim/config.py",
@@ -14380,7 +14382,7 @@
       "url": "https://github.com/brnyxx"
     },
     "has_code": true,
-    "stars": 2,
+    "stars": 3,
     "repo_license": "MIT",
     "evidence": {
       "path": "jev_ra/config.py",
@@ -14513,7 +14515,7 @@
       "url": "https://github.com/berriai"
     },
     "has_code": true,
-    "stars": 59429,
+    "stars": 59430,
     "repo_license": "NOASSERTION",
     "evidence": {
       "path": "litellm/proxy/guardrails/guardrail_hooks/typesafe/typesafe.py",
@@ -14557,7 +14559,7 @@
       "url": "https://github.com/yikangy873-gif"
     },
     "has_code": true,
-    "stars": 62,
+    "stars": 63,
     "repo_license": "MIT",
     "evidence": {
       "path": "plugins/jev-desktop/scripts/bridge-server.mjs",
@@ -14739,7 +14741,7 @@
       "url": "https://github.com/mizorewww"
     },
     "has_code": true,
-    "stars": 5526,
+    "stars": 5547,
     "repo_license": "Apache-2.0",
     "evidence": {
       "path": "laya_mlx/agent.py",
@@ -14783,7 +14785,7 @@
       "url": "https://github.com/zwlijay"
     },
     "has_code": true,
-    "stars": 19,
+    "stars": 20,
     "repo_license": "NOASSERTION",
     "evidence": {
       "path": "jevforge/bench_jev.py",
@@ -15186,7 +15188,7 @@
       "url": "https://github.com/nozomi-koborinai"
     },
     "has_code": true,
-    "stars": 4,
+    "stars": 5,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/evaluator/jev-evaluator.ts",
@@ -16615,7 +16617,7 @@
       "url": "https://github.com/receptron"
     },
     "has_code": true,
-    "stars": 295,
+    "stars": 296,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/laya.ts",
@@ -16658,7 +16660,7 @@
       "url": "https://github.com/different-ai"
     },
     "has_code": true,
-    "stars": 23699,
+    "stars": 23700,
     "repo_license": "NOASSERTION",
     "evidence": {
       "path": ".github/scripts/jev-test-coverage-review.mjs",
@@ -16705,7 +16707,7 @@
       "url": "https://github.com/can1357"
     },
     "has_code": true,
-    "stars": 32807,
+    "stars": 32816,
     "repo_license": "MIT",
     "evidence": {
       "path": "packages/ai/src/judgment/typesafe.ts",
@@ -18076,7 +18078,7 @@
       "url": "https://github.com/himomohi"
     },
     "has_code": true,
-    "stars": 7,
+    "stars": 8,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/aside_jev/jev.py",
@@ -19413,7 +19415,7 @@
       "url": "https://github.com/ferrycorleone"
     },
     "has_code": true,
-    "stars": 177,
+    "stars": 178,
     "repo_license": "MIT",
     "evidence": {
       "path": "server/analysis.ts",
@@ -20115,7 +20117,7 @@
       "url": "https://github.com/smithersai"
     },
     "has_code": true,
-    "stars": 420,
+    "stars": 421,
     "repo_license": "MIT",
     "evidence": {
       "path": "apps/server/src/jev.ts",
@@ -20157,7 +20159,7 @@
       "url": "https://github.com/pydantic"
     },
     "has_code": true,
-    "stars": 20123,
+    "stars": 20124,
     "repo_license": "MIT",
     "evidence": {
       "path": "pydantic_ai_slim/pydantic_ai/models/typesafe.py",
@@ -20379,7 +20381,7 @@
       "url": "https://github.com/langchain-ai"
     },
     "has_code": true,
-    "stars": 146900,
+    "stars": 146903,
     "repo_license": "MIT",
     "evidence": {
       "path": "libs/partners/typesafe/langchain_typesafe/classifier.py",
@@ -20597,7 +20599,7 @@
       "url": "https://github.com/danielgshea"
     },
     "has_code": true,
-    "stars": 75,
+    "stars": 76,
     "repo_license": "unknown",
     "evidence": {
       "path": "src/evals/judges/__init__.py",
@@ -22236,7 +22238,7 @@
       "url": "https://github.com/jev-chat"
     },
     "has_code": true,
-    "stars": 217,
+    "stars": 231,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/judge_jev.py",
@@ -22997,7 +22999,7 @@
       "url": "https://github.com/yzfly"
     },
     "has_code": true,
-    "stars": 6,
+    "stars": 7,
     "repo_license": "NOASSERTION",
     "evidence": {
       "path": "edgejev/serve.py",
@@ -23132,7 +23134,7 @@
       "url": "https://github.com/tianyucodings"
     },
     "has_code": true,
-    "stars": 144,
+    "stars": 145,
     "repo_license": "unknown",
     "evidence": {
       "path": "auto_jev/providers.py",
@@ -24424,7 +24426,7 @@
       "url": "https://github.com/dorkitude"
     },
     "has_code": true,
-    "stars": 123,
+    "stars": 124,
     "repo_license": "MIT",
     "evidence": {
       "path": "internal/jev/client.go",
@@ -24692,7 +24694,7 @@
       "url": "https://github.com/libingzheren"
     },
     "has_code": true,
-    "stars": 32,
+    "stars": 33,
     "repo_license": "MIT",
     "evidence": {
       "path": "memory/jev_client.py",
@@ -25091,7 +25093,7 @@
       "url": "https://github.com/jev-chat"
     },
     "has_code": true,
-    "stars": 302,
+    "stars": 308,
     "repo_license": "NOASSERTION",
     "evidence": {
       "path": "core/jev_client.py",
@@ -25135,7 +25137,7 @@
       "url": "https://github.com/timpratim"
     },
     "has_code": true,
-    "stars": 138,
+    "stars": 139,
     "repo_license": "MIT",
     "evidence": {
       "path": "macbrow/generator.py",
@@ -25444,7 +25446,7 @@
       "url": "https://github.com/monotykamary"
     },
     "has_code": true,
-    "stars": 253,
+    "stars": 254,
     "repo_license": "MIT",
     "evidence": {
       "path": "src/jev/routes.ts",
@@ -25928,7 +25930,7 @@
       "url": "https://github.com/kentcdodds"
     },
     "has_code": true,
-    "stars": 666,
+    "stars": 667,
     "repo_license": "NOASSERTION",
     "evidence": {
       "path": "packages/worker/src/mcp/tools/search-jev-rerank.ts",
@@ -35189,7 +35191,7 @@
       "url": "https://github.com/safzanpirani"
     },
     "has_code": true,
-    "stars": 28,
+    "stars": 29,
     "repo_license": "MIT",
     "evidence": {
       "path": "extensions/jev.ts",

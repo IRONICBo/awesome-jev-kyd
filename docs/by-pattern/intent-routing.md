@@ -31,19 +31,19 @@ Every catalogued example of this decision — 29 of them, official first, then r
   <sub>`Tutorial` · ★4,570 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.
-  <sub>`Project` · ★4,098 · `Java` · `choice` · `score` · `noul`</sub>
+  <sub>`Project` · ★4,213 · `Java` · `choice` · `score` · `noul`</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — A software-factory foreman that uses Jev to decide what an agent pipeline should do next.
-  <sub>`Project` · ★517 · thruwire · `Py`</sub>
+  <sub>`Project` · ★518 · thruwire · `Py`</sub>
 
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev-driven web search: chooses the recency window and the best query rewrite, then reranks results in batches with one noul each.
-  <sub>`Project` · ★416 · `TS` · `choice` · `noul`</sub>
+  <sub>`Project` · ★417 · `TS` · `choice` · `noul`</sub>
 
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — Voice-driven browser control where target criteria are rebuilt per request from the live element list, always including a none option.
   <sub>`Project` · ★247 · `JS` · `choice` · `score` · `noul`</sub>
 
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — An AI video editor routing an editing instruction to an operation, a target clip and a track, with a keyword router as fallback.
-  <sub>`Project` · ★189 · `TS` · `choice` · `noul` · ⚠ `no licence`</sub>
+  <sub>`Project` · ★190 · `TS` · `choice` · `noul` · ⚠ `no licence`</sub>
 
 - **[taskuary](https://github.com/ldbumble/taskuary)** — Automate your job: local-first AI task hub. Email, Teams, Slack & reports -> one timeline -> AI triage -> your coding agents (Claude Code, Codex, Gemini) do the work, you approve.
   <sub>`Plugin` · ★118 · ldbumble · `Py`</sub>

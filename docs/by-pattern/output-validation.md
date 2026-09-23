@@ -79,7 +79,7 @@ Every catalogued example of this decision — 95 of them, official first, then r
   <sub>`Project` · ★18 · chopratejas · `Py`</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-jev)** — Typed System One decisions, ranking, verification, and an opt-in Hermes tool gate using TypeSafe Jev.
-  <sub>`Project` · ★16 · keeltrace · `Py`</sub>
+  <sub>`Project` · ★17 · keeltrace · `Py`</sub>
 
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — Reproducible benchmark for measuring Jev reranking quality, latency, and cost in RAG
   <sub>`Benchmark` · ★14 · erendikmenn · `Py`</sub>
@@ -129,14 +129,14 @@ Every catalogued example of this decision — 95 of them, official first, then r
 - **[jev-pref](https://github.com/doeixd/jev-pref)** — Turn your AGENTS.md preferences into a fast, Jev-powered AI linter.
   <sub>`Project` · ★5 · doeixd · `JS`</sub>
 
+- **[jev-spec](https://github.com/nozomi-koborinai/jev-spec)** — ⚡ Catch spec drift on every commit: check your code against your Markdown specs with TypeSafe AI's Jev model.
+  <sub>`Project` · ★5 · nozomi-koborinai · `TS`</sub>
+
 - **[hunch](https://github.com/Kelbie/hunch)** — Semantic code review with Jev, plain-English rules and Agent Skills.
   <sub>`Project` · ★4 · kelbie · `TS`</sub>
 
 - **[jev-oas-sentinel](https://github.com/ShuhanSun/jev-oas-sentinel)** — Catch breaking API behavior hidden in OpenAPI prose with deterministic checks and TypeSafe JEV System One semantic review.
   <sub>`Project` · ★4 · shuhansun · `Py`</sub>
-
-- **[jev-spec](https://github.com/nozomi-koborinai/jev-spec)** — ⚡ Catch spec drift on every commit: check your code against your Markdown specs with TypeSafe AI's Jev model.
-  <sub>`Project` · ★4 · nozomi-koborinai · `TS`</sub>
 
 - **[taste-lint](https://github.com/mblode/taste-lint)** — Catch AI slop before you ship.
   <sub>`Project` · ★4 · mblode · `TS`</sub>
