@@ -2920,6 +2920,9 @@ _介绍模型或整个领域，而非单一模式。_
 - **[req_llm](https://github.com/agentjido/req_llm)** — 基于 Req 和 Finch 的可组合 Elixir LLM 交互库。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★581 · agentjido · `Ex`</sub>
 
+- **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — 覆盖最广的同类目录：数百个项目、六种语言，且它的 README 本身就是被解析的数据源。
+  <sub>`开源项目` · ★575 · heyjunpenn · `TS`</sub>
+
 - **[simple-jev](https://github.com/featherless-ai/simple-jev)** — 通过读取 next-token logits，把任意开源权重模型变成 Jev 形状的端点 —— JSON 由服务端组装，而不是模型生成。
   <sub>`Jev 替代实现` · ★462 · `Py` · ⚠ `并非 Jev`</sub>
 
@@ -2949,9 +2952,6 @@ _介绍模型或整个领域，而非单一模式。_
 
 - **[openjev-sglang](https://github.com/ekzhang/openjev-sglang)** — 用开源模型提供的 Jev 兼容端点，仅做 prefill。
   <sub>`Jev 替代实现` · ★259 · ekzhang · `Py` · ⚠ `并非 Jev` `无许可证`</sub>
-
-- **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — 覆盖最广的同类目录：数百个项目、六种语言，且它的 README 本身就是被解析的数据源。
-  <sub>`开源项目` · ★256 · heyjunpenn · `TS` · ⚠ `无许可证`</sub>
 
 - **[pi-fabric](https://github.com/monotykamary/pi-fabric)** — 给 Pi 的可编程工具与智能体运行时。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★244 · monotykamary · `TS`</sub>

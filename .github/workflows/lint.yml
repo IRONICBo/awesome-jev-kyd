@@ -49,6 +49,15 @@ jobs:
       - name: compatibility.md is in sync with compat.json
         run: python3 scripts/build_compat.py --check
 
+      # status.md, sources.md, llms.txt and the site's meta tags all froze at
+      # the first build's 148 entries because nothing regenerated them.
+      - name: Generated numbers in the docs are current
+        run: python3 scripts/build_docs.py --check
+
+      # And no new hand-written count can creep back in beside them.
+      - name: Hand-written docs carry no stale-prone numbers
+        run: python3 scripts/lint_docs.py
+
       - name: README figures are in sync with catalog.json
         run: |
           python3 scripts/build_assets.py

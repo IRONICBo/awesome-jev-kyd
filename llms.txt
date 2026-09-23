@@ -1,22 +1,22 @@
 # awesome-jev
 
-> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. 148 entries, every row attributable to a named source. 144 returned HTTP 200 on 2026-09-22; the remaining 4 are hosts that refuse scripted requests and carry no `link_status`.
+> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. <!--n:entries-->805<!--/n--> entries, every row attributable to a named source. <!--n:link_ok-->801<!--/n--> answered with a 2xx status on the last link sweep (<!--n:last_sweep-->2026-09-22<!--/n-->); the other <!--n:link_unstamped-->4<!--/n--> carry no `link_status` — see *What is verified* for why.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 
 ## Machine-readable data
 
-Catalog (148 entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
+Catalog (<!--n:entries-->805<!--/n--> entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
 Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
 JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
 
-Each entry carries: slug, title, summary (English), summary_zh (Chinese), url, kind, patterns[], question_types[], languages[], platforms[], author{name,handle,url}, repo, stars, repo_license, package{registry,name,url}, official, has_code, published, first_seen, checked, link_status, flags[], notes, notes_zh, evidence{path,matched,read_on} (the file a primitive claim was read in, re-checked weekly) or evidence_none (why no file can be cited), sources[] (per-row attribution), license.
+Each entry carries the fields defined in the JSON Schema: <!--n:fields-->slug, title, summary, summary_zh, zh_machine, url, kind, patterns, question_types, languages, platforms, author, repo, stars, repo_license, package, evidence, evidence_none, official, has_code, published, first_seen, checked, link_status, flags, notes, notes_zh, sources, license<!--/n-->. `summary` is English and `summary_zh` Chinese; `evidence` names the file a claim was read in, and `evidence_none` says why no file can be cited.
 
 ## Two axes
 
-`kind` is the form of the resource: official-docs, sdk, integration, snippet, project, plugin, tutorial, case-study, benchmark, article, video, discussion, alternative.
+`kind` is the form of the resource: <!--n:kinds-->official-docs, integration, project, plugin, sdk, snippet, tutorial, article, video, case-study, benchmark, discussion, alternative<!--/n-->.
 
-`patterns` is what decision the example makes, and is the primary index: tool-selection, intent-routing, context-compaction, safety-gating, output-validation, retry-control, human-escalation, model-routing, fan-out, search-ranking, data-extraction, classification, feature-extraction, document-triage, support-triage, content-scoring, recommendation, overview.
+`patterns` is what decision the example makes, and is the primary index: <!--n:pattern_keys-->tool-selection, intent-routing, context-compaction, safety-gating, output-validation, retry-control, human-escalation, model-routing, fan-out, search-ranking, data-extraction, classification, feature-extraction, document-triage, support-triage, content-scoring, recommendation, overview<!--/n-->.
 
 ## Human pages
 
@@ -42,7 +42,7 @@ Platform matrix: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/c
 
 Verified: the URL returned a success status on the date in `checked`; a person opened it and wrote the summary from what was actually on the page; for code entries, the call site was read to confirm which primitives are actually used; repository stars, licence and creation date came from the GitHub API.
 
-Of the 92 rows asserting which primitives a project's code calls, 65 cite the exact file that assertion was read in, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
+In all, <!--n:evidence_rows-->721<!--/n--> rows cite the exact file that shows the project calls Jev, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. That is a claim about *whether* a project calls Jev. The narrower claim about *which* primitives it calls is made by <!--n:primitive_rows-->93<!--/n--> rows, of which <!--n:primitive_rows_cited-->66<!--/n--> cite the file it was read in. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
 
 A row with no `checked` or `link_status` is one whose host refuses scripted requests — a 403 from Forbes or Medium is not evidence a page is gone, so those rows were left unstamped rather than retired or falsely marked as verified.
 

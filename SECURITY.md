@@ -4,7 +4,7 @@
 
 An index of links and metadata, plus small example scripts. It ships no service,
 collects no data, and has no runtime. The realistic risks are therefore about
-what the catalog points readers *toward*.
+what the catalog points readers _toward_.
 
 ## Reporting a problem with this repository
 
@@ -28,7 +28,8 @@ Read [docs/vetting.md](docs/vetting.md). Briefly:
 
 - Rows flagged `code-untested` were read, not executed — including this
   repository's own examples.
-- Fourteen linked projects declare no licence.
+- Many linked projects declare no licence — rows flagged `no-license`; the
+  current count is in [docs/sources.md](docs/sources.md#licences).
 - Some linked projects read screen contents, mailboxes or source trees by design.
 - A few were created with a single commit and never touched again.
 

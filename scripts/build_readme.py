@@ -37,7 +37,9 @@ PATTERNS_FILE = ROOT / "patterns.json"
 RETIRED = ROOT / "retired.json"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _stats  # noqa: E402
 from _github import SELF as REPO  # noqa: E402
+
 REPO_URL = f"https://github.com/{REPO}"
 RAW = f"https://raw.githubusercontent.com/{REPO}/main"
 SITE = "https://kydlikebtc.github.io/awesome-jev/"
@@ -793,14 +795,14 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
 
     live_patterns = [key for key in PATTERN_ORDER if by_pattern[key]]
     live_kinds = [key for key in KIND_ORDER if by_kind[key]]
-    with_code = sum(1 for entry in catalog if entry.get("has_code"))
-    official = sum(1 for entry in catalog if entry.get("official"))
-    verified = sum(
-        1 for entry in catalog if 200 <= (entry.get("link_status") or 0) < 300
-    )
-    # Rows whose primitive claim cites a file a machine can re-read weekly.
-    # This number is the difference between asserting verification and having it.
-    rechecked = sum(1 for entry in catalog if entry.get("evidence"))
+    # Counted in _stats so the badges, docs/status.md, llms.txt and the site's
+    # meta tags all use one definition of "with code" or "link-verified".
+    stats = _stats.compute()
+    with_code, official = stats["with_code"], stats["official"]
+    verified = stats["link_ok"]
+    # Rows citing a file a machine re-reads weekly: the difference between
+    # asserting verification and having it.
+    rechecked = stats["evidence_rows"]
 
     # ---- header ----
     add("<!--")

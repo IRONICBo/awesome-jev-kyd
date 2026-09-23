@@ -21,58 +21,43 @@ Usage:
 
 from __future__ import annotations
 
-import json
 import pathlib
-import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
+import _stats  # noqa: E402
 from _github import SELF, api_get, token  # noqa: E402
-
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-CATALOG = ROOT / "catalog.json"
 
 
 def main() -> int:
-    actual = len(json.loads(CATALOG.read_text()))
+    stats = _stats.compute()
+    expected = _stats.pitch(stats)
 
     if not token():
-        print(f"skipped: no GITHUB_TOKEN. Catalogue holds {actual} entries.")
+        print(f"skipped: no GITHUB_TOKEN. Catalogue holds {stats['entries']} entries.")
         return 0
 
     data = api_get(f"/repos/{SELF}")
     if not isinstance(data, dict):
-        print(f"skipped: could not read {SELF} description.")
+        print(f"skipped: could not read the {SELF} description.")
         return 0
 
     description = (data.get("description") or "").strip()
-    if not description:
-        print("error: the repository has no description at all.")
-        return 1
+    if description == expected:
+        print(f"description matches the catalogue: {stats['entries']} entries")
+        return 0
 
-    # The first run of digits, which is how the description opens: "805 verified
-    # examples of Jev …". Deliberately not a search for any number anywhere —
-    # "CC0-1.0" or a year later in the sentence must not be mistaken for a count.
-    match = re.match(r"\s*([0-9][0-9,]*)\b", description)
-    if not match:
-        print("error: the description does not open with an entry count.")
-        print(f"  description: {description}")
-        print(f"  catalogue:   {actual} entries")
-        return 1
-
-    claimed = int(match.group(1).replace(",", ""))
-    if claimed != actual:
-        print("error: the published description is stale.")
-        print(f"  it claims:  {claimed} entries")
-        print(f"  catalogue:  {actual} entries")
-        print()
-        print("Fix it with:")
-        print(f'  gh repo edit --description "{actual}{description[match.end() :]}"')
-        return 1
-
-    print(f"description matches the catalogue: {actual} entries")
-    return 0
+    # The whole sentence is compared, not just its number. The same sentence is
+    # the site's og:description (build_docs.py), so an exact match here is what
+    # guarantees a link to the repo and a link to the site say the same thing.
+    print("error: the published repository description has drifted.")
+    print(f"  published: {description or '(empty)'}")
+    print(f"  expected:  {expected}")
+    print()
+    print("Fix it with:")
+    print(f'  gh repo edit --description "{expected}"')
+    return 1
 
 
 if __name__ == "__main__":

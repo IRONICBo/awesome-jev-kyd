@@ -20,6 +20,9 @@ import json
 import pathlib
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from _markers import normalise, replace_block  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 COMPAT = ROOT / "compat.json"
 DOC = ROOT / "docs" / "compatibility.md"
@@ -97,46 +100,16 @@ def build() -> str:
     text = original
 
     for name, (header, row_of) in BLOCKS.items():
-        start, end = f"<!-- {name}:start -->", f"<!-- {name}:end -->"
-        if start not in text or end not in text:
-            raise SystemExit(
-                f"error: docs/compatibility.md is missing the {start} / {end} markers"
-            )
         body = "\n".join(table(header, [row_of(p) for p in platforms]))
-        head, _, rest = text.partition(start)
-        _, _, tail = rest.partition(end)
-        text = f"{head}{start}\n{body}\n{end}{tail}"
+        text = replace_block(text, name, body, where="docs/compatibility.md")
 
-    start, end = "<!-- limits:start -->", "<!-- limits:end -->"
-    if start in text and end in text:
+    if "<!-- limits:start -->" in text:
         body = "\n".join(limits_table(data["limits"]))
-        head, _, rest = text.partition(start)
-        _, _, tail = rest.partition(end)
-        text = f"{head}{start}\n{body}\n{end}{tail}"
+        text = replace_block(text, "limits", body, where="docs/compatibility.md")
 
     text = text.replace("<!-- as_of -->", data["as_of"])
     return text
 
-
-def normalise(text: str) -> str:
-    """Collapse table cell padding so the check compares data, not formatting.
-
-    A markdown formatter will happily pad every pipe to align columns, which is
-    harmless but byte-different from what this script emits. Without this, CI
-    would fail for a contributor whose editor runs prettier — a false alarm
-    that teaches people to ignore the check. Real data drift still fails.
-    """
-    lines = []
-    for line in text.splitlines():
-        stripped = line.strip()
-        if stripped.startswith("|") and stripped.endswith("|"):
-            cells = [cell.strip() for cell in stripped.strip("|").split("|")]
-            # A separator row is only dashes and colons; length is cosmetic.
-            cells = ["-" if set(c) <= set("-: ") and c else c for c in cells]
-            lines.append("|" + "|".join(cells) + "|")
-        else:
-            lines.append(stripped)
-    return "\n".join(lines)
 
 
 def main() -> int:

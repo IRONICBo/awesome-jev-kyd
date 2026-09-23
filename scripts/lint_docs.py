@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""Keep the hand-written docs from quietly going stale.
+
+scripts/lint.py validates the data. This validates the prose around it, where
+every staleness bug in this repository has actually lived: a status page stuck
+at 148 entries, a licence warning that said fourteen when the answer was 171, a
+link-preview sentence nobody regenerated. Each rule below exists because the
+failure it catches already happened once.
+
+Stdlib only, like the rest of scripts/.
+
+Run: python3 scripts/lint_docs.py
+"""
+
+from __future__ import annotations
+
+import pathlib
+import re
+import subprocess
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+# Fully generated: their numbers are checked by the generator that wrote them.
+GENERATED = {"README.md", "README.zh-CN.md"}
+# Dated logs. "The first build had 148 entries" is true forever, and rewriting it
+# to today's number would falsify the history rather than update it.
+HISTORY = {"docs/method.md"}
+
+BLOCK = re.compile(r"<!-- ([a-z-]+):start -->.*?<!-- \1:end -->", re.S)
+INLINE = re.compile(r"<!--n:[a-z_]+-->.*?<!--/n-->", re.S)
+
+# A number followed by a noun that only ever describes this catalogue. Kept
+# deliberately narrow: "the top 40", "2–10 levels" or "52 of its files" are not
+# catalogue counts, and a rule that cries wolf is a rule people learn to bypass.
+WORDS = (
+    "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|"
+    "fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|"
+    "fifty|sixty|seventy|eighty|ninety|hundred"
+)
+NOUNS = r"(?:verified\s+)?(?:entries|examples|rows|linked\s+projects|repositories|call\s+sites)\b"
+BARE_COUNT = re.compile(
+    # 805 entries · 1,887 repositories · Fourteen linked projects
+    rf"(?<![\w.#/-])(?:\d{{1,3}}(?:,\d{{3}})+|\d+|(?:{WORDS})(?:[- ](?:{WORDS}))*)\s+{NOUNS}"
+    # 805 条目
+    r"|(?<![\w.#/-])\d+\s*(?:条目|个条目|个例子|个项目|个仓库)",
+    re.I,
+)
+# `document-triage` (1) — a per-pattern count written by hand.
+PATTERN_COUNT = re.compile(r"`[a-z]+(?:-[a-z]+)*`\s*\(\d+\)")
+# A table whose header announces counts, or whose first column is a stat label.
+COUNT_HEADER = re.compile(r"^(rows|repositories|entries|count|examples|条目)$", re.I)
+STAT_LABEL = re.compile(
+    r"^(entries|carrying code|with code|official.*|patterns covered|retired.*|link.*verified.*)$",
+    re.I,
+)
+
+
+def tracked(*patterns: str) -> list[str]:
+    out = subprocess.run(
+        ["git", "ls-files", *patterns],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return [line for line in out.stdout.splitlines() if line]
+
+
+def line_of(text: str, index: int) -> int:
+    return text.count("\n", 0, index) + 1
+
+
+def check_bare_counts(rel: str, text: str) -> list[str]:
+    """A catalogue count outside a generated marker is a number nothing updates."""
+    # Blank the generated regions but keep their newlines, so line numbers in
+    # the report still point at the real line.
+    masked = BLOCK.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
+    masked = INLINE.sub(lambda m: " " * len(m.group(0)), masked)
+    hint = "wrap it in <!--n:key-->…<!--/n--> (see scripts/build_docs.py) or reword it"
+    found = [
+        f"{rel}:{line_of(masked, m.start())}: bare catalogue count {m.group(0).strip()!r} — {hint}"
+        for rx in (BARE_COUNT, PATTERN_COUNT)
+        for m in rx.finditer(masked)
+    ]
+    return found + check_count_tables(rel, masked)
+
+
+def check_count_tables(rel: str, masked: str) -> list[str]:
+    """Hand-written tables are where status.md and sources.md froze: `| Entries |
+    148 |` puts the number after the noun, so the prose rule never sees it."""
+    found = []
+    header: list[str] | None = None
+    for n, line in enumerate(masked.splitlines(), 1):
+        row = line.strip()
+        if not (row.startswith("|") and row.endswith("|")):
+            header = None
+            continue
+        cells = [c.strip() for c in row.strip("|").split("|")]
+        if all(set(c) <= set("-: ") for c in cells):
+            continue  # separator row
+        if header is None:
+            header = cells
+            continue
+        numeric = [i for i, c in enumerate(cells) if re.fullmatch(r"[\d,]+( of \d+)?", c)]
+        counted = any(COUNT_HEADER.match(header[i]) for i in numeric if i < len(header))
+        labelled = numeric and STAT_LABEL.match(cells[0])
+        if counted or labelled:
+            found.append(
+                f"{rel}:{n}: hand-written count in a table — generate the table "
+                "between <!-- name:start --> / <!-- name:end --> markers instead"
+            )
+    return found
+
+
+def check_leading_markers(rel: str, text: str) -> list[str]:
+    """CommonMark opens a raw HTML block on any line beginning with `<!--`, so an
+    inline value at the start of a line splits its sentence into two
+    paragraphs. Prettier then inserts the blank line and makes it visible."""
+    return [
+        f"{rel}:{n}: line starts with an inline value; put a word before it"
+        for n, line in enumerate(text.splitlines(), 1)
+        if line.lstrip().startswith("<!--n:")
+    ]
+
+
+def main() -> int:
+    problems: list[str] = []
+    files = [
+        f
+        for f in tracked("*.md", "*.txt", "*.html")
+        if f not in GENERATED and not f.startswith(("LICENSE",))
+    ]
+    for rel in files:
+        text = (ROOT / rel).read_text()
+        if rel not in HISTORY:
+            problems += check_bare_counts(rel, text)
+        if rel.endswith((".md", ".txt")):
+            problems += check_leading_markers(rel, text)
+
+    for problem in problems:
+        print(f"error: {problem}", file=sys.stderr)
+    if problems:
+        print(f"\n{len(problems)} problem(s) in hand-written docs", file=sys.stderr)
+        return 1
+    print(f"checked {len(files)} hand-written files: no stale-prone numbers")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

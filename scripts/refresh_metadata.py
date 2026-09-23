@@ -121,10 +121,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true", help="apply the changes")
     parser.add_argument("--json", action="store_true", help="machine-readable output")
+    parser.add_argument(
+        "--only", default="", help="only refresh rows whose slug contains this substring"
+    )
     args = parser.parse_args()
 
     catalog = json.loads(CATALOG.read_text())
-    rows = [e for e in catalog if repo_of(e) and repo_of(e) != SELF]
+    rows = [
+        e
+        for e in catalog
+        if repo_of(e) and repo_of(e) != SELF and args.only in e["slug"]
+    ]
     print(f"refreshing {len(rows)} row(s) with a GitHub repository\n", file=sys.stderr)
 
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:

@@ -107,10 +107,10 @@ A second aggregation run verified the 320 most-cited repositories missing here
 and added 223. At that volume two standards had to bend, and both are recorded
 in the data rather than hidden:
 
-* **Summaries are the project's own description**, normalised, rather than a
-  sentence written after reading the code. What *was* read is the call site,
+- **Summaries are the project's own description**, normalised, rather than a
+  sentence written after reading the code. What _was_ read is the call site,
   and `evidence` on every row proves it.
-* **Chinese is bulk-translated**, so those rows carry `zh_machine: true`. The
+- **Chinese is bulk-translated**, so those rows carry `zh_machine: true`. The
   counts script reports the split — 183 of 404 hand-written at the time of
   writing — because a catalogue that claimed all of them were would be lying
   about the one thing it sells.
@@ -128,6 +128,28 @@ breaker that asks whether an HTTP 200 is a silent failure. The other apparent
 matches were false positives and were removed. `recommendation` is still empty
 across 32 lists and 1,887 repositories, which is now a reasonably strong claim
 that nobody has published one.
+
+### The long tail, 2026-09-22
+
+A third run took the next 700 most-cited repositories and added 401, taking the
+catalogue from 404 to 805. The median candidate was cited by two lists and had
+two stars, so this pass is mostly the long tail rather than anything popular.
+The same two concessions apply, and the same `zh_machine` flag records them.
+
+Running at this size broke three things that had worked at 400 rows, all of
+them in the machinery that keeps the catalogue honest rather than in the data:
+
+- Two of the first three `path-gone` verdicts were transient fetch failures, not
+  deleted files. The raw-file fetch now retries once before believing a miss.
+- Scraping github.com HTML for link status hit its rate limit a few dozen rows
+  in, so most GitHub rows never got stamped. Bare repository URLs now go through
+  the authenticated API; paths inside a repository still go through HTTP,
+  because the API answering for the repository says nothing about one file.
+- The published repository description still said 148. It is the one claim
+  that lives in GitHub's database rather than in git, so no build had ever
+  checked it. It is checked now.
+
+`recommendation` is still empty.
 
 ## Why a status code is not a verdict
 

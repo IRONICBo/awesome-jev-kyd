@@ -4,25 +4,46 @@ Every row in `catalog.json` carries a `sources` array naming where it was found,
 so the catalog is auditable rather than asserted. This page aggregates that
 array and states the licence position.
 
-## Where the first build's rows came from
+## Where the rows come from
 
-Counts as of 2026-09-22, 148 entries. A row can cite more than one source.
+Regenerated from every row's `sources[]` on each build, so the order is what is
+true now rather than what was true at launch. A row can cite more than one
+source.
 
-| Source                                | URL                                                                                                   | Rows |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------- | ---- |
-| GitHub code search                    | <https://github.com/search>                                                                           | 51   |
-| TypeSafe AI docs index                | <https://docs.typesafe.ai/llms.txt>                                                                   | 36   |
-| Maintainer submission                 | <https://github.com/kydlikebtc/awesome-jev>                                                           | 19   |
-| jevai.org community site              | <https://www.jevai.org/>                                                                              | 5    |
-| This repository (`examples/`)         | <https://github.com/kydlikebtc/awesome-jev>                                                           | 4    |
-| YouTube search                        | <https://www.youtube.com/>                                                                            | 3    |
-| Hacker News                           | <https://news.ycombinator.com/>                                                                       | 5    |
-| Web search — news and analysis        | various                                                                                               | 11   |
-| Platform documentation and changelogs | Vercel, Cloudflare, LangChain, Pydantic AI, LiteLLM, OpenRouter, Netlify, AI/ML API, Langfuse, Spring | 11   |
+<!-- sources:start -->
+| Source | URL | Rows |
+| --- | --- | --- |
+| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 656 |
+| GitHub code search | <https://github.com/search> | 51 |
+| TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
+| maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 20 |
+| web search | various | 12 |
+| Hacker News | various | 5 |
+| jevai.org community site | <https://www.jevai.org/> | 5 |
+| this repository | <https://github.com/kydlikebtc/awesome-jev> | 4 |
+| YouTube search | <https://www.youtube.com/results?search_query=typesafe+jev> | 3 |
+| AI SDK providers | <https://ai-sdk.dev/providers> | 1 |
+| AI/ML API docs | <https://docs.aimlapi.com/> | 1 |
+| Cloudflare Workers AI models | <https://developers.cloudflare.com/ai/models/> | 1 |
+| community submission (issue #2) | <https://github.com/kydlikebtc/awesome-jev/issues/2> | 1 |
+| LangChain blog | <https://www.langchain.com/blog> | 1 |
+| LangChain integrations | <https://docs.langchain.com/oss/python/integrations/providers/> | 1 |
+| Langfuse integrations | <https://langfuse.com/integrations> | 1 |
+| LiteLLM docs | <https://docs.litellm.ai/docs/pass_through> | 1 |
+| Netlify changelog | <https://www.netlify.com/changelog/> | 1 |
+| OpenRouter providers | <https://openrouter.ai/providers> | 1 |
+| Pydantic AI docs | <https://pydantic.dev/docs/ai/models/> | 1 |
+| Spring blog | <https://spring.io/blog> | 1 |
+| Vercel changelog | <https://vercel.com/changelog> | 1 |
+| Vercel docs | <https://vercel.com/docs/ai-gateway> | 1 |
+| Vercel knowledge base | <https://vercel.com/kb> | 1 |
+<!-- sources:end -->
 
-The official docs index is the single largest source, and deliberately so: the
-18 official cookbooks and 4 official pattern pages are the most directly useful
-usage examples that exist, and they are primary material.
+Most of the long tail arrives through the sibling-list aggregate: a repository
+that several other Jev directories cite gets its code read, and only enters here
+if that reading finds a call site. By usefulness per row, though, the official
+cookbooks and pattern pages remain the best material in the catalogue — they are
+primary sources, written by the people who built the model.
 
 ## Licences
 
@@ -35,10 +56,12 @@ repository established.
 | `catalog.json`, `retired.json`, `schema/` | [CC0-1.0](../LICENSE-CC0) |
 | `docs/`, `README*.md`                     | CC0-1.0                   |
 
-Every row in the current build is `CC0-1.0`, meaning no descriptive text was
-inherited from a source that requires attribution. If a future row does inherit
-text from a CC BY 4.0 catalog, it gets `license: "CC-BY-4.0"` and the attribution
-is that row's `sources` array.
+<!-- row-licences:start -->
+Every row in the current build is `CC0-1.0`, meaning no descriptive text was inherited from a source that requires attribution.
+<!-- row-licences:end -->
+
+If a row does inherit text from a CC BY 4.0 catalog, it gets
+`license: "CC-BY-4.0"` and the attribution is that row's `sources` array.
 
 **Linked works keep their own licences.** The `repo_license` field on a row
 records what the linked project declares, which is not always what its README
@@ -47,17 +70,23 @@ file at all.
 
 Declared licences across the catalog's linked repositories:
 
-| Licence                          | Repositories |
-| -------------------------------- | ------------ |
-| MIT                              | 42           |
-| Apache-2.0                       | 13           |
-| None declared                    | 14           |
-| NOASSERTION (non-standard terms) | 4            |
-| AGPL-3.0                         | 2            |
-| LGPL-3.0                         | 1            |
+<!-- licences:start -->
+| Licence | Repositories |
+| --- | --- |
+| MIT | 467 |
+| None declared | 171 |
+| Apache-2.0 | 79 |
+| AGPL-3.0 | 4 |
+| GPL-3.0 | 4 |
+| NOASSERTION (non-standard terms) | 4 |
+| BSD-3-Clause | 2 |
+| CC0-1.0 | 2 |
+| LGPL-3.0 | 1 |
+<!-- licences:end -->
 
-Fourteen linked projects declare no licence. If you plan to reuse code from one,
-that is a blocker, not a detail — check before you copy.
+In all, <!--n:no_licence-->171<!--/n--> linked projects declare no licence. If you
+plan to reuse code from one, that is a blocker, not a detail — check before you
+copy.
 
 ## Relationship to TypeSafe AI
 

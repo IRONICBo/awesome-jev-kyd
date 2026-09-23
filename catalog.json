@@ -7395,11 +7395,8 @@
       "url": "https://github.com/heyjunpenn"
     },
     "has_code": true,
-    "stars": 256,
+    "stars": 575,
     "repo_license": "MIT",
-    "flags": [
-      "no-license"
-    ],
     "notes": "Goes wide where this catalog goes deep, and its 'Other lists' section is where docs/sibling-lists.txt was seeded from. It ships no LICENSE file, so its descriptive text cannot be reused — the rows it surfaced here were re-verified at the call site and summarised independently.",
     "notes_zh": "它走广度，本目录走深度；docs/sibling-lists.txt 的种子就来自它的 Other lists 一节。它没有 LICENSE 文件，因此其描述文字不可复用 —— 由它引出的条目都是在调用点重新核实、并独立撰写摘要的。",
     "first_seen": "2026-09-22",

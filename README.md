@@ -2920,6 +2920,9 @@ _Surveys the model or the space rather than one pattern._
 - **[req_llm](https://github.com/agentjido/req_llm)** — Composable Elixir library for LLM interactions built on Req and Finch
   <sub>`Project` · ★581 · agentjido · `Ex`</sub>
 
+- **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — The broadest sibling directory: hundreds of projects in six languages, with a README that is itself the parsed data source.
+  <sub>`Project` · ★575 · heyjunpenn · `TS`</sub>
+
 - **[simple-jev](https://github.com/featherless-ai/simple-jev)** — Turns any open-weights model into a Jev-shaped endpoint by reading next-token logits, with the server constructing the JSON rather than the model generating it.
   <sub>`Jev-like alternative` · ★462 · `Py` · ⚠ `not Jev`</sub>
 
@@ -2949,9 +2952,6 @@ _Surveys the model or the space rather than one pattern._
 
 - **[openjev-sglang](https://github.com/ekzhang/openjev-sglang)** — A Jev-compatible endpoint served from open models, prefill only.
   <sub>`Jev-like alternative` · ★259 · ekzhang · `Py` · ⚠ `not Jev` `no licence`</sub>
-
-- **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — The broadest sibling directory: hundreds of projects in six languages, with a README that is itself the parsed data source.
-  <sub>`Project` · ★256 · heyjunpenn · `TS` · ⚠ `no licence`</sub>
 
 - **[pi-fabric](https://github.com/monotykamary/pi-fabric)** — A programmable tool and agent runtime for Pi
   <sub>`Project` · ★244 · monotykamary · `TS`</sub>

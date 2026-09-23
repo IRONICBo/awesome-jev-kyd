@@ -165,11 +165,15 @@ def check_entry_invariants(entry: dict, path: str, *, retired: bool) -> None:
     # A primitive claim should be re-checkable, or say why it is not. A warning
     # rather than an error so a new row is never blocked — but the count of
     # unbacked claims is what the README reports, so it stays visible.
-    if entry.get("question_types") and not (entry.get("evidence") or entry.get("evidence_none")):
+    if entry.get("question_types") and not (
+        entry.get("evidence") or entry.get("evidence_none")
+    ):
         warn(
             path,
             f"{slug}: claims primitives but carries neither evidence nor evidence_none. "
-            "Run 'python3 scripts/verify_claims.py --discover --only " + str(slug) + "'",
+            "Run 'python3 scripts/verify_claims.py --discover --only "
+            + str(slug)
+            + "'",
         )
 
     # Evidence without a repository to read it from cannot be verified.
@@ -177,7 +181,10 @@ def check_entry_invariants(entry: dict, path: str, *, retired: bool) -> None:
         url = entry.get("url", "")
         repo = entry.get("repo", "")
         if "github.com" not in url and "github.com" not in repo:
-            err(path, f"{slug}: has evidence but no GitHub repository to re-read it from")
+            err(
+                path,
+                f"{slug}: has evidence but no GitHub repository to re-read it from",
+            )
     if entry.get("evidence") and entry.get("evidence_none"):
         err(path, f"{slug}: has both evidence and evidence_none; they are exclusive")
 
@@ -243,6 +250,23 @@ def check_entry_invariants(entry: dict, path: str, *, retired: bool) -> None:
     if retired and not entry.get("notes"):
         err(path, f"{slug}: retired entries need notes saying why they were retired")
 
+    # `no-license` and repo_license "unknown" state the same fact twice, so they
+    # must agree. They drifted once: a project added a LICENSE upstream, the
+    # weekly refresh noticed, and the row kept its flag because that refresh
+    # was never merged — a row simultaneously claiming MIT and no licence.
+    if "repo_license" in entry:
+        unlicensed = entry["repo_license"] == "unknown"
+        if unlicensed and "no-license" not in flags:
+            err(
+                path,
+                f"{slug}: repo_license is 'unknown' but the row lacks the no-license flag",
+            )
+        if not unlicensed and "no-license" in flags:
+            err(
+                path,
+                f"{slug}: flagged no-license but repo_license is {entry['repo_license']!r}",
+            )
+
 
 def main() -> int:
     for required_file in (CATALOG, RETIRED, SCHEMA):
@@ -263,9 +287,15 @@ def main() -> int:
         taxonomy = {p["key"] for p in json.loads(PATTERNS_FILE.read_text())["patterns"]}
         enum = set(schema["properties"]["patterns"]["items"]["enum"])
         for key in sorted(enum - taxonomy):
-            err("patterns.json", f"schema allows {key!r} but patterns.json has no label for it")
+            err(
+                "patterns.json",
+                f"schema allows {key!r} but patterns.json has no label for it",
+            )
         for key in sorted(taxonomy - enum):
-            err("patterns.json", f"patterns.json labels {key!r} but the schema does not allow it")
+            err(
+                "patterns.json",
+                f"patterns.json labels {key!r} but the schema does not allow it",
+            )
 
     for name, data in (("catalog.json", catalog), ("retired.json", retired)):
         if not isinstance(data, list):

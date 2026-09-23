@@ -1,27 +1,47 @@
 # Ecosystem status
 
-Snapshot at **2026-09-22**. The model entered early access on 2026-09-15, so
-everything below describes week one. Expect it to age badly; that is the point of
-dating it.
+This page has two halves that age differently. The first is regenerated from
+`catalog.json` by `scripts/build_docs.py` on every build, so it is current by
+construction. The second is a dated snapshot, written at **2026-09-22** — a week
+after the model entered early access on 2026-09-15 — and is meant to age; that
+is the point of dating it.
 
-## Shape of the catalog
+## The catalogue, now
 
-|                              |          |
-| ---------------------------- | -------- |
-| Entries                      | 148      |
-| Carrying code                | 124      |
-| Official (TypeSafe AI's own) | 36       |
-| Patterns covered             | 16 of 18 |
-| Retired links                | 0        |
+<!-- shape:start -->
+|  |  |
+| --- | --- |
+| Entries | 805 |
+| Carrying code | 781 |
+| Official (TypeSafe AI's own) | 36 |
+| Link answered 2xx on the last sweep (2026-09-22) | 801 |
+| Rows citing a call site CI re-reads weekly | 721 |
+| Patterns covered | 17 of 18 |
+| Retired links | 0 |
+<!-- shape:end -->
 
-Run `python3 scripts/counts.py` for the live version, including a marked list of
-which patterns have no entries yet.
+### Coverage gaps
 
-## What week one actually looks like
+<!-- gaps:start -->
+No entries yet:
 
-**The official material is the best material.** The 18 cookbooks and 4 pattern
-pages in the vendor's docs are more useful than almost anything written about
-them, and they are primary sources. If you only read five things, read those.
+- **`recommendation`** — Choose what to surface next, fast enough for a live conversation.
+
+Thin (fewer than 10): `retry-control` (4), `feature-extraction` (7), `support-triage` (7).
+<!-- gaps:end -->
+
+Two holes are in the research rather than the ecosystem: **Reddit** produced
+nothing verifiable across four retrieval routes, and **X/Twitter** is barely
+represented for the same reason. Both are gaps, not judgements.
+
+Run `python3 scripts/counts.py` for the full breakdown by kind, language and
+platform.
+
+## Snapshot at 2026-09-22: what week one looked like
+
+**The official material is the best material.** The cookbooks and pattern pages
+in the vendor's docs are more useful than almost anything written about them,
+and they are primary sources. If you only read five things, read those.
 
 **Adoption was unusually fast.** First-class integrations landed within days
 across the AI SDK, LangChain in both languages, Pydantic AI, LiteLLM, Effect,
@@ -66,21 +86,6 @@ at least two ship the integration deliberately inert. Hence the `single-commit`,
 function, no dataset description and no reproducible evaluation for RLCD. An
 unrelated 2023 paper abbreviates to the same four letters, which is a reliable
 source of confusion.
-
-## Coverage gaps
-
-Two patterns have no entries, and no in-repo example either:
-
-- **`retry-control`** — deciding whether a failed step is worth retrying. An
-  obvious fit that nobody appears to have published.
-- **`recommendation`** — real-time next-best-thing selection. The vendor lists it
-  as a use case; no public example surfaced.
-
-Also thin: `document-triage` (1), `feature-extraction` (3), `data-extraction` (4).
-
-And two known holes in the research rather than the ecosystem: **Reddit** produced
-nothing verifiable across four retrieval routes, and **X/Twitter** is barely
-represented for the same reason. Both are gaps, not judgements.
 
 ## What to watch
 
