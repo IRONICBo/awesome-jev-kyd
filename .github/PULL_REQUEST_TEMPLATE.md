@@ -5,7 +5,7 @@
 ## If you edited catalog.json
 
 - [ ] `python3 scripts/lint.py` passes
-- [ ] `python3 scripts/build_readme.py` run, and **both** READMEs committed
+- [ ] `python3 scripts/build_readme.py` run, and **both** READMEs and everything under `docs/by-pattern/` committed — including any page it created or deleted
 - [ ] I opened every link I added and wrote the summaries from what was there
 - [ ] `question_types` reflects the actual call site, not the README
 - [ ] `stars` / `repo_license` came from the GitHub API, not a badge

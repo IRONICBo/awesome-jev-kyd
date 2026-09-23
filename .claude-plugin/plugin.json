@@ -1,0 +1,31 @@
+{
+  "name": "awesome-jev",
+  "version": "0.1.0",
+  "description": "Build with Jev, TypeSafe AI's decision model: a skill for the facts generated code most often gets wrong, and an MCP server over a verified catalogue of public examples indexed by the decision each one makes.",
+  "author": {
+    "name": "kydlikebtc",
+    "url": "https://github.com/kydlikebtc"
+  },
+  "homepage": "https://kydlikebtc.github.io/awesome-jev/",
+  "repository": "https://github.com/kydlikebtc/awesome-jev",
+  "license": "MIT",
+  "keywords": [
+    "jev",
+    "typesafe",
+    "decision-model",
+    "mcp",
+    "catalogue"
+  ],
+  "mcpServers": {
+    "awesome-jev": {
+      "command": "uvx",
+      "args": [
+        "--refresh-package",
+        "awesome-jev-mcp",
+        "--from",
+        "${CLAUDE_PLUGIN_ROOT}",
+        "awesome-jev-mcp"
+      ]
+    }
+  }
+}

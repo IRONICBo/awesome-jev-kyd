@@ -1,0 +1,50 @@
+# Packaging for the MCP server only.
+#
+# The catalogue's own pipeline — lint, build, verify, refresh — stays stdlib-only
+# and is not installed by this, so CI remains `setup-python` with no install
+# step. Nothing under scripts/ imports anything declared here.
+#
+# The floor is mcp>=2.0, not >=1.2: server.py imports MCPServer, which is what
+# the 2.x SDK renamed FastMCP to. A `>=1.2` constraint resolves happily to
+# 1.30.0, where that import raises and the server never starts.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "awesome-jev-mcp"
+version = "0.1.0"
+description = "An MCP server over a verified catalogue of public Jev examples, indexed by the decision each one makes"
+readme = "src/awesome_jev_mcp/README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "LICENSE-MIT", "LICENSE-CC0"]
+keywords = ["mcp", "jev", "typesafe", "llm", "agent", "catalogue"]
+dependencies = ["mcp>=2.0"]
+
+[project.urls]
+Homepage = "https://github.com/kydlikebtc/awesome-jev"
+Catalogue = "https://kydlikebtc.github.io/awesome-jev/"
+Issues = "https://github.com/kydlikebtc/awesome-jev/issues"
+
+[project.scripts]
+awesome-jev-mcp = "awesome_jev_mcp.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/awesome_jev_mcp"]
+
+# The offline last resort, and the reason it is built rather than committed.
+#
+# These three files live at the repository root and are the single source of
+# truth. Copying them into src/ to make them packageable would put two copies in
+# git, which is precisely the drift this repository spends its CI preventing.
+# force-include takes the snapshot at build time instead, so the wheel carries a
+# frozen copy and the repository never does.
+#
+# data.py treats it as the bottom of the ladder and says so in every result,
+# because a snapshot is exactly as old as the release it shipped in.
+[tool.hatch.build.targets.wheel.force-include]
+"catalog.json" = "awesome_jev_mcp/_bundled/catalog.json"
+"compat.json" = "awesome_jev_mcp/_bundled/compat.json"
+"patterns.json" = "awesome_jev_mcp/_bundled/patterns.json"

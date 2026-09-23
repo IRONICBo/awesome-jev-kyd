@@ -58,9 +58,20 @@ If the MCP server is available, prefer it over guessing:
 - `list_patterns()` — the taxonomy, including which decisions nobody has
   published an example of
 
-Otherwise read [`catalog.json`](catalog.json) and
-[`compat.json`](compat.json) directly, or
-[the searchable site](https://kydlikebtc.github.io/awesome-jev/).
+Every result carries a `data` line saying where the catalogue came from and how
+current it is. If it begins `STALE`, the server could not reach GitHub and is
+answering from a cache or from the snapshot it was installed with — say so when
+you rely on it, the same way you would pass on a row's caveat flags.
+
+The Claude Code plugin for this repository starts the server for you. Elsewhere,
+`pip install git+https://github.com/kydlikebtc/awesome-jev` and run
+`awesome-jev-mcp`.
+
+Without it, read
+[`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json)
+and
+[`compat.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json)
+directly, or [the searchable site](https://kydlikebtc.github.io/awesome-jev/).
 
 ## Design rules worth following
 

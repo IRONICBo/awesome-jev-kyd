@@ -1,12 +1,12 @@
 # awesome-jev
 
-> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. 148 entries, every row attributable to a named source. 144 returned HTTP 200 on 2026-09-22; the remaining 4 are hosts that refuse scripted requests and carry no `link_status`.
+> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. 805 entries, every row attributable to a named source. 801 returned HTTP 200 on 2026-09-22; the remaining 4 are hosts that refuse scripted requests and carry no `link_status`.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 
 ## Machine-readable data
 
-Catalog (148 entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
+Catalog (805 entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
 Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
 JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
 
@@ -23,6 +23,7 @@ Each entry carries: slug, title, summary (English), summary_zh (Chinese), url, k
 English index: https://github.com/kydlikebtc/awesome-jev/blob/main/README.md
 Chinese index: https://github.com/kydlikebtc/awesome-jev/blob/main/README.zh-CN.md
 Decision patterns, with when NOT to use each: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/patterns.md
+Every example of one decision, on its own page: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/by-pattern/<pattern>.md (for example safety-gating.md; append .zh-CN before .md for Chinese). The README shows the first ten of each.
 Cross-platform compatibility table: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/compatibility.md
 What to check before trusting an entry: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/vetting.md
 How the catalog was built: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/method.md
@@ -31,9 +32,9 @@ Runnable examples: https://github.com/kydlikebtc/awesome-jev/blob/main/examples/
 
 ## For agents
 
-MCP server: https://github.com/kydlikebtc/awesome-jev/tree/main/mcp — query the catalogue by decision pattern, language and primitive rather than reading it. Tools: search_examples, get_example, list_patterns, compatibility, check_model_string. Every result carries the row's caveat flags; rows that do not call Jev at all are excluded by default.
+MCP server: in Claude Code, `/plugin marketplace add kydlikebtc/awesome-jev` then `/plugin install awesome-jev@awesome-jev` (installs this and the agent skill together); elsewhere, `pip install git+https://github.com/kydlikebtc/awesome-jev` and run `awesome-jev-mcp`. Source at https://github.com/kydlikebtc/awesome-jev/tree/main/src/awesome_jev_mcp — query the catalogue by decision pattern, language and primitive rather than reading it. Tools: search_examples, get_example, list_patterns, compatibility, check_model_string. Every result carries the row's caveat flags; rows that do not call Jev at all are excluded by default.
 
-Agent skill: https://github.com/kydlikebtc/awesome-jev/blob/main/SKILL.md — the facts generated Jev code most often gets wrong, and the design rules worth following.
+Agent skill: https://github.com/kydlikebtc/awesome-jev/blob/main/skills/awesome-jev/SKILL.md — the facts generated Jev code most often gets wrong, and the design rules worth following.
 
 Decision taxonomy: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json
 Platform matrix: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json
@@ -42,7 +43,7 @@ Platform matrix: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/c
 
 Verified: the URL returned a success status on the date in `checked`; a person opened it and wrote the summary from what was actually on the page; for code entries, the call site was read to confirm which primitives are actually used; repository stars, licence and creation date came from the GitHub API.
 
-Of the 92 rows asserting which primitives a project's code calls, 65 cite the exact file that assertion was read in, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
+Of the 93 rows asserting which primitives a project's code calls, 66 cite the exact file that assertion was read in, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
 
 A row with no `checked` or `link_status` is one whose host refuses scripted requests — a 403 from Forbes or Medium is not evidence a page is gone, so those rows were left unstamped rather than retired or falsely marked as verified.
 

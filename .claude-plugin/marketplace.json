@@ -1,0 +1,16 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "awesome-jev",
+  "description": "A verified catalogue of public Jev examples, as a Claude Code plugin: an agent skill plus an MCP server that answers with provenance attached.",
+  "owner": {
+    "name": "kydlikebtc",
+    "url": "https://github.com/kydlikebtc"
+  },
+  "plugins": [
+    {
+      "name": "awesome-jev",
+      "source": "./",
+      "description": "Build with Jev, TypeSafe AI's decision model: a skill for the facts generated code most often gets wrong, and an MCP server over a verified catalogue of public examples indexed by the decision each one makes."
+    }
+  ]
+}
