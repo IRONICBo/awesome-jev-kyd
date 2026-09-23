@@ -12,14 +12,24 @@
 # patterns and question_types are human judgements, and retiring a dead row
 # needs a human-written reason, so neither happens here.
 #
-# Delivery: pushes a branch and opens an issue with a one-click link to raise
-# the PR. Creating pull requests from Actions is off by default under Settings ->
-# Actions -> General -> Workflow permissions; turning it on is the repository
-# owner's call. With it on, the compare link in the issue is one click from the
-# same result.
+# Delivery: commits straight to main, because every fact here is mechanical and
+# the whole lint chain has passed before the commit is made. It used to push a
+# branch and wait for a person to merge it each week; the week that did not
+# happen, one row went on claiming both an MIT licence and no licence at all.
+# Judgement calls still go to people: a dead link is links.yml's alarm, a moved
+# call site is claims.yml's issue, and anything here that is not a number moving
+# — a licence changing, a project archived, a repository gone — opens an issue
+# after it lands. If main moved underneath the run and the refresh no longer
+# rebases cleanly, it falls back to a branch and an issue rather than forcing.
+#
+# A push made with GITHUB_TOKEN does not trigger other workflows, so the run
+# dispatches pages (and lint, for a visible check) itself; workflow_dispatch is
+# the documented exception. Without that the site would keep serving last
+# week's figures and images.
 #
 # Permissions note: the one workflow here that is not read-only. It needs
-# `contents: write` to push its branch and `issues: write` to file the notice.
+# `contents: write` to push, `issues: write` to file a notice, and
+# `actions: write` to dispatch the rebuild.
 #
 # Injection review: no `github.event.*` value reaches a `run:` block. The issue
 # body is read from a file a script wrote, never interpolated into a shell.
@@ -34,6 +44,12 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write
+
+# Two refreshes racing each other would both try to push the same facts.
+concurrency:
+  group: metadata
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -75,47 +91,75 @@ jobs:
           python3 scripts/build_docs.py --check
           python3 scripts/lint_docs.py
 
-      - name: Push a branch and file a notice when something moved
+      - name: Commit to main, or fall back to a branch if main moved
+        id: land
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if git diff --quiet; then
             echo "nothing changed"
+            echo "landed=none" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          branch="metadata/refresh-$(date -u +%Y-%m-%d)"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$branch"
           git add -A catalog.json README.md README.zh-CN.md docs llms.txt site/index.html
-          git commit -m "chore: weekly refresh of link status and repository facts"
-          git push -u origin "$branch" --force
+          git commit -q -m "chore: weekly refresh of link status and repository facts" \
+                        -m "$(head -1 /tmp/digest.md)"
 
+          # Someone may have pushed while this ran. Rebase onto them; if the
+          # facts no longer apply cleanly, never force — hand it to a person.
+          if git pull -q --rebase origin main && git push -q origin HEAD:main; then
+            echo "landed=main" >> "$GITHUB_OUTPUT"
+          else
+            git rebase --abort 2>/dev/null || true
+            branch="metadata/refresh-$(date -u +%Y-%m-%d)"
+            git push -q -u origin "HEAD:refs/heads/$branch" --force
+            echo "landed=$branch" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Rebuild the site from the refreshed data
+        if: steps.land.outputs.landed == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run pages.yml --ref main
+          gh workflow run lint.yml --ref main
+
+      - name: File a notice when something needs a person
+        if: steps.land.outputs.landed != 'none'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LANDED: ${{ steps.land.outputs.landed }}
+        run: |
           repo="${GITHUB_REPOSITORY}"
+          if [ "$LANDED" = "main" ]; then
+            # Stars alone are not worth anyone's attention.
+            if ! grep -qE "Worth a look|did not resolve" /tmp/digest.md; then
+              echo "only star counts moved; landed silently"
+              exit 0
+            fi
+            title="Weekly refresh: changes worth a look"
+            lead="Landed on main after the full lint chain passed. These are the changes that were more than a star count:"
+          else
+            title="Weekly refresh could not land on main"
+            lead="main moved during the run and the refresh no longer rebased cleanly, so it is on branch '$LANDED' instead. **[Open the pull request](https://github.com/$repo/compare/main...$LANDED?expand=1)**"
+          fi
           {
-            echo "Links re-stamped and repository facts re-read; everything generated"
-            echo "from them rebuilt, and the full lint chain passed."
-            echo
-            echo "Branch: \`$branch\` · **[Open the pull request](https://github.com/$repo/compare/main...$branch?expand=1)**"
+            echo "$lead"
             echo
             cat /tmp/digest.md
-            echo
-            echo "The bot touches only machine-checkable facts. Summaries, notes,"
-            echo "patterns and question_types are untouched."
           } > /tmp/body.md
 
           # A fork has no labels, and a missing label must not fail a job whose
           # real work already landed.
           gh label create metadata --color 1f6feb \
             --description "Automated refresh of repository facts" 2>/dev/null || true
-
           existing=$(gh issue list --state open --label metadata --json number --jq '.[0].number')
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body-file /tmp/body.md
           else
-            gh issue create --title "Weekly refresh ready to merge" \
-              --label metadata --body-file /tmp/body.md \
-              || gh issue create --title "Weekly refresh ready to merge" \
-                   --body-file /tmp/body.md
+            gh issue create --title "$title" --label metadata --body-file /tmp/body.md \
+              || gh issue create --title "$title" --body-file /tmp/body.md
           fi
