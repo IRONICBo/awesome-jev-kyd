@@ -27,17 +27,22 @@ directory and ignores later changes to it — so a plugin whose code or bundled
 snapshot had been updated would go on running the old one, with nothing to say
 so. The dependencies stay cached; only this package is rebuilt.
 
-**Anywhere else**, install from the repository and register the command with
-your client:
+**Anywhere else**, install the package and register the command with your
+client:
 
 ```bash
-pip install git+https://github.com/kydlikebtc/awesome-jev
+pip install awesome-jev-mcp
 awesome-jev-mcp
 ```
 
-It speaks stdio, so any MCP client works. The package is not on PyPI yet;
-installing from the repository tracks `main`, which is also where the catalogue
-itself is fetched from.
+It speaks stdio, so any MCP client works. The catalogue it serves is fetched
+from the repository's `main`, not frozen into the release, so a release only
+needs upgrading for changes to the server itself. To run the server as it is on
+`main` rather than as released:
+
+```bash
+pip install git+https://github.com/kydlikebtc/awesome-jev
+```
 
 Needs the 2.x MCP SDK, which the package declares. `MCPServer` is the name 2.x
 gave what 1.x called `FastMCP`, so an environment already pinned to `mcp<2`

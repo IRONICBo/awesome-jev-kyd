@@ -29,7 +29,7 @@ server is worse than a dependency, and the catalogue's own CI never imports
 this module — the dependency-free build pipeline is untouched.
 
 Run:
-    pip install git+https://github.com/kydlikebtc/awesome-jev
+    pip install awesome-jev-mcp
     awesome-jev-mcp
 
 From a checkout, `python3 -m awesome_jev_mcp` does the same thing and serves the

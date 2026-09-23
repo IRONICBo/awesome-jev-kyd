@@ -31,6 +31,23 @@ Issues = "https://github.com/kydlikebtc/awesome-jev/issues"
 [project.scripts]
 awesome-jev-mcp = "awesome_jev_mcp.__main__:main"
 
+# What the sdist carries: exactly what building the wheel needs, and nothing
+# else. Left to its default, hatchling packed the whole repository — CI
+# workflows, docs, screenshots, the site, the plugin manifests — into a Python
+# package, 115 files where eleven will do. The three JSON files must be here
+# because the wheel snapshots them from the sdist when pip builds from source.
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src/awesome_jev_mcp",
+  "/pyproject.toml",
+  "/catalog.json",
+  "/compat.json",
+  "/patterns.json",
+  "/LICENSE",
+  "/LICENSE-MIT",
+  "/LICENSE-CC0",
+]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/awesome_jev_mcp"]
 
