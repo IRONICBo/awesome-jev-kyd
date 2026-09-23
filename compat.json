@@ -15,7 +15,8 @@
       "endpoint": "POST /v1/systemone",
       "env": "TYPESAFE_API_KEY",
       "notes": "The reference surface. Everything else is measured against this.",
-      "notes_zh": "基准面。其他所有平台都以它为参照。"
+      "notes_zh": "基准面。其他所有平台都以它为参照。",
+      "model_source": "https://docs.typesafe.ai/models"
     },
     {
       "id": "vercel-eval",
@@ -113,7 +114,8 @@
       "endpoint": "POST /typesafe/v1/systemone",
       "env": "TYPESAFE_BASE_URL",
       "notes": "One-to-one pass-through of the native API.",
-      "notes_zh": "对原生 API 做一比一透传。"
+      "notes_zh": "对原生 API 做一比一透传。",
+      "model_source": "https://raw.githubusercontent.com/maximhq/bifrost/dev/docs/providers/supported-providers/typesafe.mdx"
     },
     {
       "id": "aimlapi",
@@ -191,19 +193,30 @@
       "k": "choice options",
       "v": "max 255",
       "why": "Walk a hierarchy with a beam search over probabilities to get past it.",
-      "why_zh": "要突破它，就用对概率做 beam search 的方式遍历层级。"
+      "why_zh": "要突破它，就用对概率做 beam search 的方式遍历层级。",
+      "n": {
+        "max": 255
+      }
     },
     {
       "k": "score levels",
       "v": "2 to 10, 0-indexed, ordered low to high",
       "why": "A score is probability-weighted, so it lands between levels. Do not assume an integer.",
-      "why_zh": "score 是概率加权的，会落在两级之间。不要假设它是整数。"
+      "why_zh": "score 是概率加权的，会落在两级之间。不要假设它是整数。",
+      "n": {
+        "min": 2,
+        "max": 10
+      }
     },
     {
       "k": "context",
       "v": "64k tokens per request; 32k for state plus the longest question",
       "why": "No tokenizer is published, which is why at least one production integration budgets in UTF-8 bytes with headroom.",
-      "why_zh": "官方没有公开 tokenizer —— 所以至少有一个生产级集成改用「UTF-8 字节数 + 留余量」来做预算。"
+      "why_zh": "官方没有公开 tokenizer —— 所以至少有一个生产级集成改用「UTF-8 字节数 + 留余量」来做预算。",
+      "n": {
+        "request_k": 64,
+        "state_k": 32
+      }
     },
     {
       "k": "input",
@@ -228,6 +241,16 @@
       "v": "impossible; no published weights",
       "why": "Anything that runs locally is a different model with a compatible wire format. Calibration does not transfer, so neither do thresholds.",
       "why_zh": "任何能本地运行的都是另一个模型，只是协议兼容。校准不会迁移，所以阈值也不会。"
+    }
+  ],
+  "not_model_strings": [
+    {
+      "s": "typesafe/jev-1",
+      "why": "The most repeated fabrication about this model. It appears in no vendor or gateway documentation; OpenRouter's string is typesafe/jev-1.13."
+    },
+    {
+      "s": "jev-1",
+      "why": "Not a model ID. The native API accepts jev-1.13.0, jev-latest and jev-preview."
     }
   ]
 }

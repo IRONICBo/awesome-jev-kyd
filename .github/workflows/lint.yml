@@ -27,7 +27,7 @@ jobs:
         run: |
           python3 -c "
           import json
-          for path in ('catalog.json', 'retired.json', 'compat.json', 'schema/entry.schema.json'):
+          for path in ('catalog.json', 'retired.json', 'compat.json', 'patterns.json', 'taxonomy.json', 'schema/entry.schema.json'):
               json.load(open(path))
               print(f'  ok {path}')
           "
@@ -54,8 +54,9 @@ jobs:
       - name: Generated numbers in the docs are current
         run: python3 scripts/build_docs.py --check
 
-      # And no new hand-written count can creep back in beside them.
-      - name: Hand-written docs carry no stale-prone numbers
+      # And no new hand-written count can creep back in beside them; and every
+      # model string or limit stated anywhere agrees with compat.json.
+      - name: Docs carry no stale numbers and agree with compat.json
         run: python3 scripts/lint_docs.py
 
       - name: README figures are in sync with catalog.json

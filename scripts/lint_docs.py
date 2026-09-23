@@ -14,6 +14,7 @@ Run: python3 scripts/lint_docs.py
 
 from __future__ import annotations
 
+import json
 import pathlib
 import re
 import subprocess
@@ -113,6 +114,72 @@ def check_count_tables(rel: str, masked: str) -> list[str]:
     return found
 
 
+# ---- vendor facts ------------------------------------------------------------
+#
+# Model strings and limits change when the vendor ships, not when the catalogue
+# grows. compat.json is their one source; everything else that states them is a
+# copy, and is held to it here. When jev-1.13.0 is superseded and compat.json is
+# updated, every doc still naming the old version goes red on the same push.
+
+# Narrow on purpose. A bare version must carry a dot — `jev-1.13.0` is how a
+# real version drift looks — because `jev-2048` is a catalogued project's name,
+# not a model. And `typesafe/jev…` preceded by a slash is a URL path
+# (github.com/typesafe-ai/jev-…), not a model string.
+MODEL = re.compile(
+    r"(?<![\w/.-])~?typesafe(?:-ai)?[/:]jev[-\w.]*"
+    r"|(?<![\w/.-])jev-(?:latest|preview|\d+\.\d+(?:\.\d+)*)"
+)
+LIMIT_RULES = (
+    # (what, pattern, how to read the captured numbers)
+    ("choice options", re.compile(r"\b(?:max(?:imum)?|up to)\s+(\d{2,})\b|\b(\d{2,})\s+options\b", re.I)),
+    ("score levels", re.compile(r"\b(\d+)\s*(?:–|-|to)\s*(\d+)\s+(?:ordered\s+)?levels\b", re.I)),
+    ("context", re.compile(r"\b(\d+)k\b(?=\s+(?:tokens|for\b|context))", re.I)),
+)
+
+
+def vendor_facts() -> tuple[set[str], set[str], dict]:
+    compat = json.loads((ROOT / "compat.json").read_text())
+    canonical = {
+        re.sub(r"\s*\(.*\)$", "", part.strip())
+        for platform in compat["platforms"]
+        for part in platform["model"].split("·")
+        if part.strip() not in ("", "—")
+    }
+    refuted = {item["s"] for item in compat.get("not_model_strings", [])}
+    limits = {item["k"]: item["n"] for item in compat["limits"] if "n" in item}
+    return canonical, refuted, limits
+
+
+def check_vendor_facts(rel: str, text: str, facts: tuple) -> list[str]:
+    canonical, refuted, limits = facts
+    found = []
+    for m in MODEL.finditer(text):
+        token = m.group(0).rstrip(".")
+        if token not in canonical and token not in refuted:
+            found.append(
+                f"{rel}:{line_of(text, m.start())}: model string {token!r} is not in "
+                "compat.json — fix the doc, or add it there (or to not_model_strings "
+                "if the doc is refuting it)"
+            )
+    choice_max = limits["choice options"]["max"]
+    levels = (limits["score levels"]["min"], limits["score levels"]["max"])
+    context = {limits["context"]["request_k"], limits["context"]["state_k"]}
+    for what, rx in LIMIT_RULES:
+        for m in rx.finditer(text):
+            nums = tuple(int(g) for g in m.groups() if g)
+            ok = (
+                (what == "choice options" and nums == (choice_max,))
+                or (what == "score levels" and nums == levels)
+                or (what == "context" and set(nums) <= context)
+            )
+            if not ok:
+                found.append(
+                    f"{rel}:{line_of(text, m.start())}: {m.group(0)!r} disagrees with "
+                    f"compat.json's {what} limit"
+                )
+    return found
+
+
 def check_leading_markers(rel: str, text: str) -> list[str]:
     """CommonMark opens a raw HTML block on any line beginning with `<!--`, so an
     inline value at the start of a line splits its sentence into two
@@ -138,12 +205,26 @@ def main() -> int:
         if rel.endswith((".md", ".txt")):
             problems += check_leading_markers(rel, text)
 
+    # Vendor facts are checked everywhere they are stated, including generated
+    # output: the README's primitive table and the SVG figures carry facts that
+    # live as constants inside build_readme.py and build_assets.py, so checking
+    # what they emit is how those constants get checked.
+    facts = vendor_facts()
+    fact_files = sorted(
+        set(files) | GENERATED | set(tracked("examples/*.py", "docs/assets/*.svg"))
+    )
+    for rel in fact_files:
+        problems += check_vendor_facts(rel, (ROOT / rel).read_text(), facts)
+
     for problem in problems:
         print(f"error: {problem}", file=sys.stderr)
     if problems:
         print(f"\n{len(problems)} problem(s) in hand-written docs", file=sys.stderr)
         return 1
-    print(f"checked {len(files)} hand-written files: no stale-prone numbers")
+    print(
+        f"checked {len(files)} hand-written files for stale numbers and "
+        f"{len(fact_files)} files for vendor facts against compat.json"
+    )
     return 0
 
 

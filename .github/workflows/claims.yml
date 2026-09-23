@@ -1,5 +1,6 @@
-# Weekly re-check that the primitive claims in catalog.json are still true
-# upstream. Reports by opening an issue rather than failing the build: an
+# Weekly re-check that what this repository says about things it does not control
+# is still true upstream: the call sites cited in catalog.json, and the model
+# strings compat.json records for each platform. Reports by opening an issue rather than failing the build: an
 # upstream rename is a false positive, and a permanently red repo teaches
 # people to ignore the signal.
 #
@@ -35,25 +36,52 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set +e
-          python3 scripts/verify_claims.py | tee /tmp/report.txt
-          echo "failed=$?" >> "$GITHUB_OUTPUT"
+          python3 scripts/verify_claims.py > /tmp/report.txt
+          code=$?
+          tail -3 /tmp/report.txt
+          echo "failed=$code" >> "$GITHUB_OUTPUT"
 
-      - name: Open or update an issue when a claim stops holding
-        if: steps.verify.outputs.failed != '0'
+      - name: Verify the platform matrix
+        id: compat
+        run: |
+          set +e
+          python3 scripts/verify_compat.py | tee /tmp/compat.txt
+          echo "failed=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update an issue when something stops holding
+        if: steps.verify.outputs.failed != '0' || steps.compat.outputs.failed != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLAIMS_FAILED: ${{ steps.verify.outputs.failed }}
+          COMPAT_FAILED: ${{ steps.compat.outputs.failed }}
         run: |
           {
-            echo "A scheduled re-read found catalog rows whose primitive claim no longer"
-            echo "holds upstream. Each needs a person:"
-            echo
-            echo '- `path-gone` — the file moved or was renamed. Update `evidence.path`.'
-            echo '- `claim-gone` — the strings are gone. The integration may have been'
-            echo '  removed, in which case `question_types` on that row is now wrong.'
-            echo
-            echo '```'
-            cat /tmp/report.txt
-            echo '```'
+            echo "A scheduled re-read found something this repository states that no"
+            echo "longer holds upstream. Each needs a person."
+            if [ "$CLAIMS_FAILED" != "0" ]; then
+              echo
+              echo "### Cited call sites"
+              echo
+              echo '- `path-gone` — the file moved or was renamed. Update `evidence.path`.'
+              echo '- `claim-gone` — the strings are gone. The integration may have been'
+              echo '  removed, in which case `question_types` on that row is now wrong.'
+              echo
+              echo '```'
+              grep -vE '^\s+ok\s' /tmp/report.txt
+              echo '```'
+            fi
+            if [ "$COMPAT_FAILED" != "0" ]; then
+              echo
+              echo "### Platform model strings"
+              echo
+              echo 'A string compat.json records is no longer on its platform page. Update'
+              echo 'compat.json, then run `build_compat.py` and `lint_docs.py`: every doc'
+              echo 'still quoting the old string will show up as an error.'
+              echo
+              echo '```'
+              cat /tmp/compat.txt
+              echo '```'
+            fi
           } > /tmp/body.md
 
           gh label create claims --color d29922 \
