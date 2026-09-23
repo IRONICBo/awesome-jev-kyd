@@ -27,20 +27,28 @@ from __future__ import annotations
 
 import argparse
 import collections
+import datetime as dt
 import json
 import pathlib
 import re
 import sys
+import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-from _github import api_get, default_branch, raw_get, repo_of  # noqa: E402
+from _github import SELF, api_get, default_branch, raw_get, repo_of  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
 SIBLINGS = ROOT / "docs" / "sibling-lists.txt"
+# Candidates a person read and chose not to add, one `owner/name  # reason` per
+# line. Without it the weekly run would re-propose the same rejects forever.
+DECLINED = ROOT / "docs" / "declined.txt"
+# A repository judged not to call Jev is re-read after this long: projects add
+# integrations, and a verdict from two months ago is not a verdict about today.
+RECHECK_DAYS = 60
 WORKERS = 8
 
 GH = re.compile(r"https://github\.com/([A-Za-z0-9][\w.-]*)/([\w.-]+)")
@@ -114,58 +122,105 @@ CODE_EXT = (
 # Read the suggestion, then decide.
 # ---------------------------------------------------------------------------
 
-def classify(desc, name, lang):
-    d = (desc or "").lower(); n = name.lower(); t = f"{d} {n}"
-    def has(p): return bool(re.search(p, t))
 
-    if has(r'\b(alternative|jev-?like|jev-?style|reimplement|open-?jev|clone of|drop-?in replacement|'
-           r'turn any .{0,24}llm into|local (take on|jev)|own decision model|fine-?tuned from|'
-           r'without generating a single to|self-?hosted drop-?in)'):
+def classify(desc, name, lang):
+    d = (desc or "").lower()
+    n = name.lower()
+    t = f"{d} {n}"
+
+    def has(p):
+        return bool(re.search(p, t))
+
+    if has(
+        r"\b(alternative|jev-?like|jev-?style|reimplement|open-?jev|clone of|drop-?in replacement|"
+        r"turn any .{0,24}llm into|local (take on|jev)|own decision model|fine-?tuned from|"
+        r"without generating a single to|self-?hosted drop-?in)"
+    ):
         kind = "alternative"
-    elif has(r'\b(benchmark|bench\b|audit|leaderboard|capability (atlas|study)|head-?to-?head|'
-             r'reproducible .{0,20}evaluation|measures how well|evaluation of jev)'):
+    elif has(
+        r"\b(benchmark|bench\b|audit|leaderboard|capability (atlas|study)|head-?to-?head|"
+        r"reproducible .{0,20}evaluation|measures how well|evaluation of jev)"
+    ):
         kind = "benchmark"
-    elif has(r'\b(sdk|client library|client for|idiomatic .{0,14}(client|sdk)|port of the|'
-             r'bindings?\b|dependency-?free cli|small cli)'):
+    elif has(
+        r"\b(sdk|client library|client for|idiomatic .{0,14}(client|sdk)|port of the|"
+        r"bindings?\b|dependency-?free cli|small cli)"
+    ):
         kind = "sdk"
-    elif has(r'\b(mcp|skill\b|hook\b|plugin|extension|\.nvim|claude code|codex|neovim|vscode|cursor|'
-             r'pytest|pre-?commit|starter\b)'):
+    elif has(
+        r"\b(mcp|skill\b|hook\b|plugin|extension|\.nvim|claude code|codex|neovim|vscode|cursor|"
+        r"pytest|pre-?commit|starter\b)"
+    ):
         kind = "plugin"
-    elif has(r'\b(provider|integration|adapter|middleware|for (hono|django|rails|spring|langchain|duckdb))'):
+    elif has(
+        r"\b(provider|integration|adapter|middleware|for (hono|django|rails|spring|langchain|duckdb))"
+    ):
         kind = "integration"
     else:
         kind = "project"
 
     P = []
+
     def add(p):
-        if p not in P: P.append(p)
+        if p not in P:
+            P.append(p)
 
     # Tightened: a circuit breaker genuinely decides whether to retry; a
     # benchmark about failure *attribution* does not, and matched before.
-    if has(r'\bcircuit breaker|retry|retries|back-?off|resilien'): add("retry-control")
-    if has(r'\brerank|re-?rank|relevance|retriev|\brag\b|semantic (search|find|sql|grep)|'
-           r'\bgrep|ranking|rank(s|ing)? |select(or|ion) .{0,20}(context|evidence)|shortlist'): add("search-ranking")
-    if has(r'\b(which|cheapest|pick a) (model|llm)|model (routing|selection)|tier\b|'
-           r'route .{0,16}model|route accordingly|when to use'): add("model-routing")
-    if has(r'\bclassif|categor|\btag\b|label(s|ling)?\b|taxonom|detect(s|ing|ion)?\b|identif|'
-           r'sort(s|ing)?\b|triage'): add("classification")
-    if has(r'\bbrowser|computer use|\bclick|\bgui\b|screen|next action|tool call|agent step|'
-           r'control|robot|drive[sn]?\b|navigat|autonomous|tool routing|chains? .{0,14}primitive|'
-           r'reflex|harness|which tool|picks? each action'): add("tool-selection")
-    if has(r'\bguard|block(s|ing)?\b|gate|safety|risk|secret|injection|moderat|spam|harmful|'
-           r'malicio|permission|censor|sponsor|adblock|\bads?\b'): add("safety-gating")
-    if has(r'\bverif|validat|assert|lint(er|ing)?\b|review|quality|hallucinat|stop hook|'
-           r'diagnostic|check(s|ing)?\b|claim|correctness'): add("output-validation")
-    if has(r'\bscore|rate[sd]?\b|grade|meter|judg'): add("content-scoring")
-    if has(r'\bcompact|prune|trim|context (window|garbage|select)|token budget|history'): add("context-compaction")
-    if has(r'\bcalibrat|threshold|confidence|uncertain|human review|escalat'): add("human-escalation")
-    if has(r'\bextract|parse|structured data|field'): add("data-extraction")
-    if has(r'\bintent|support ticket|inbox|\bmail|email|customer'): add("intent-routing")
-    if has(r'\bparallel|batch|fan-?out|many questions|more than 255|beyond 255'): add("fan-out")
+    if has(r"\bcircuit breaker|retry|retries|back-?off|resilien"):
+        add("retry-control")
+    if has(
+        r"\brerank|re-?rank|relevance|retriev|\brag\b|semantic (search|find|sql|grep)|"
+        r"\bgrep|ranking|rank(s|ing)? |select(or|ion) .{0,20}(context|evidence)|shortlist"
+    ):
+        add("search-ranking")
+    if has(
+        r"\b(which|cheapest|pick a) (model|llm)|model (routing|selection)|tier\b|"
+        r"route .{0,16}model|route accordingly|when to use"
+    ):
+        add("model-routing")
+    if has(
+        r"\bclassif|categor|\btag\b|label(s|ling)?\b|taxonom|detect(s|ing|ion)?\b|identif|"
+        r"sort(s|ing)?\b|triage"
+    ):
+        add("classification")
+    if has(
+        r"\bbrowser|computer use|\bclick|\bgui\b|screen|next action|tool call|agent step|"
+        r"control|robot|drive[sn]?\b|navigat|autonomous|tool routing|chains? .{0,14}primitive|"
+        r"reflex|harness|which tool|picks? each action"
+    ):
+        add("tool-selection")
+    if has(
+        r"\bguard|block(s|ing)?\b|gate|safety|risk|secret|injection|moderat|spam|harmful|"
+        r"malicio|permission|censor|sponsor|adblock|\bads?\b"
+    ):
+        add("safety-gating")
+    if has(
+        r"\bverif|validat|assert|lint(er|ing)?\b|review|quality|hallucinat|stop hook|"
+        r"diagnostic|check(s|ing)?\b|claim|correctness"
+    ):
+        add("output-validation")
+    if has(r"\bscore|rate[sd]?\b|grade|meter|judg"):
+        add("content-scoring")
+    if has(
+        r"\bcompact|prune|trim|context (window|garbage|select)|token budget|history"
+    ):
+        add("context-compaction")
+    if has(r"\bcalibrat|threshold|confidence|uncertain|human review|escalat"):
+        add("human-escalation")
+    if has(r"\bextract|parse|structured data|field"):
+        add("data-extraction")
+    if has(r"\bintent|support ticket|inbox|\bmail|email|customer"):
+        add("intent-routing")
+    if has(r"\bparallel|batch|fan-?out|many questions|more than 255|beyond 255"):
+        add("fan-out")
     # Tightened: "suggest" alone matched a skill router, which is tool-selection.
-    if has(r'\brecommend(s|ation|er)?\b|what to (watch|read|buy)|next-?best'): add("recommendation")
-    if has(r'\bfeature (extraction|engineering)|training data|curation|dataset'): add("feature-extraction")
-    if has(r'\bdocument|\binvoice|\breceipt|\bpdf\b|\bform\b'): add("document-triage")
+    if has(r"\brecommend(s|ation|er)?\b|what to (watch|read|buy)|next-?best"):
+        add("recommendation")
+    if has(r"\bfeature (extraction|engineering)|training data|curation|dataset"):
+        add("feature-extraction")
+    if has(r"\bdocument|\binvoice|\breceipt|\bpdf\b|\bform\b"):
+        add("document-triage")
 
     if not P:
         P = ["overview"]
@@ -244,7 +299,9 @@ def inspect(slug: str) -> dict:
         if best is None or score > best[0]:
             best = (score, path, found[:3])
     if best:
-        kind, patterns = classify(out["description"], slug.split("/")[1], out["language"])
+        kind, patterns = classify(
+            out["description"], slug.split("/")[1], out["language"]
+        )
         return {
             **out,
             "verdict": "calls-jev",
@@ -264,11 +321,135 @@ def inspect(slug: str) -> dict:
     return {**out, "verdict": "mentions-only" if mentions else "no-signal"}
 
 
+def read_declined() -> dict[str, str]:
+    if not DECLINED.exists():
+        return {}
+    out = {}
+    for line in DECLINED.read_text().splitlines():
+        body, _, reason = line.partition("#")
+        if body.strip():
+            out[body.strip().lower()] = reason.strip()
+    return out
+
+
+def find_new_lists(lists: list[str]) -> list[dict]:
+    """Sibling directories GitHub search can see that sibling-lists.txt cannot.
+    The discovery surface should grow on its own, not stay at the lists that
+    happened to exist the week this repository was built."""
+    known = {slug_of(*GH.match(u).groups()) for u in lists if GH.match(u)}
+    found: dict[str, dict] = {}
+    for query in ("awesome-jev in:name", "jev awesome in:name,description"):
+        data = api_get(
+            "/search/repositories?per_page=50&sort=updated&q="
+            + urllib.parse.quote(query)
+        )
+        for repo in (data or {}).get("items", []):
+            slug = repo["full_name"].lower()
+            if slug in known or slug == SELF.lower() or repo.get("fork"):
+                continue
+            found[slug] = {
+                "slug": repo["full_name"],
+                "url": repo["html_url"],
+                "stars": repo.get("stargazers_count", 0),
+                "description": repo.get("description") or "",
+            }
+    return sorted(found.values(), key=lambda r: -r["stars"])
+
+
+def inert(text: str, limit: int = 100) -> str:
+    """A repository description is text a stranger chose, and it lands in an
+    issue this repository posts. Neutralise the three things it could do there:
+    @-mention someone (a zero-width joiner after @ stops the ping), break out of
+    a table cell, or start a new Markdown block."""
+    text = " ".join(text.split())[:limit]
+    return text.replace("@", "@\u2060").replace("|", "\\|").replace("<", "&lt;")
+
+
+def report_markdown(
+    results: list[dict],
+    new_hits: list[dict],
+    waiting: list[str],
+    new_lists: list[dict],
+    reached: int,
+    total_lists: int,
+) -> str:
+    """The weekly discovery issue. A shortlist for a person, never a row: each
+    candidate still has to be read and summarised before it enters the catalog."""
+    counts = collections.Counter(r["verdict"] for r in results)
+    lines = [
+        f"Harvested {reached}/{total_lists} sibling lists and read the code of "
+        f"{len(results)} cited repositories not yet in the catalog: "
+        + ", ".join(f"{n} {v}" for v, n in counts.most_common())
+        + ".",
+        "",
+    ]
+    if new_hits:
+        lines += [
+            f"### {len(new_hits)} new candidate{'s' if len(new_hits) != 1 else ''} with a call site",
+            "",
+            "| Repository | Cited by | ★ | Call site | Suggested |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+        for r in sorted(new_hits, key=lambda r: (-r["cited_by"], -r.get("stars", 0)))[:60]:
+            branch_path = f"{r['url']}/blob/HEAD/{r['evidence_path']}"
+            warn = " ⚠ test file" if r.get("evidence_is_test") else ""
+            lines.append(
+                f"| [{r['slug']}]({r['url']}) | {r['cited_by']} | {r.get('stars', 0)} "
+                f"| [`{r['evidence_path']}`]({branch_path}){warn} "
+                f"| {r['suggested_kind']} · {', '.join(r['suggested_patterns'])} |"
+            )
+        lines.append("")
+    else:
+        lines += ["No new candidate with a call site this week.", ""]
+    if waiting:
+        lines += [
+            f"{len(waiting)} candidates proposed in earlier weeks are still neither "
+            "catalogued nor declined. Add each, or decline it in "
+            "`docs/declined.txt` with a reason.",
+            "",
+        ]
+    if new_lists:
+        lines += [
+            f"### {len(new_lists)} possible sibling director{'ies' if len(new_lists) != 1 else 'y'}",
+            "",
+            "Not in `docs/sibling-lists.txt`. Adding a real one widens next week's harvest.",
+            "",
+        ]
+        lines += [
+            f"- [{r['slug']}]({r['url']}) ★{r['stars']} — {inert(r['description'])}"
+            for r in new_lists[:20]
+        ]
+        lines.append("")
+    lines.append(
+        "A call site found by a script is a reason to read the code, not a catalog "
+        "row. Suggested kinds and patterns come from keyword rules with a known "
+        "error rate; check both."
+    )
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--top", type=int, default=40, help="candidates to verify")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--seen",
+        default="",
+        help="JSON cache of past verdicts; skips fresh ones and records this run's",
+    )
+    parser.add_argument(
+        "--markdown", default="", help="write a Markdown report here, for an issue body"
+    )
+    parser.add_argument(
+        "--find-lists",
+        action="store_true",
+        help="also search GitHub for sibling directories not yet in sibling-lists.txt",
+    )
     args = parser.parse_args()
+    today = dt.date.today()
+    seen: dict[str, dict] = {}
+    if args.seen and pathlib.Path(args.seen).exists():
+        seen = json.loads(pathlib.Path(args.seen).read_text())
 
     if not SIBLINGS.exists():
         print(f"error: {SIBLINGS.relative_to(ROOT)} is missing", file=sys.stderr)
@@ -300,8 +481,22 @@ def main() -> int:
     have = {h.lower() for h in have if h}
     # Sibling lists themselves are already catalogued or deliberately excluded.
     have |= {slug_of(*GH.match(u).groups()) for u in lists if GH.match(u)}
+    declined = read_declined()
+    have |= set(declined)
 
-    candidates = [(slug, n) for slug, n in cites.most_common() if slug not in have]
+    def fresh(slug: str) -> bool:
+        """Read recently enough that reading it again would only repeat the
+        verdict. A candidate already proposed is counted as waiting instead —
+        re-reading it every week spent a third of each run's budget on
+        repositories that were already on a person's list."""
+        past = seen.get(slug)
+        return bool(past) and (
+            today - dt.date.fromisoformat(past["on"])
+        ).days < RECHECK_DAYS
+
+    candidates = [
+        (slug, n) for slug, n in cites.most_common() if slug not in have and not fresh(slug)
+    ]
     print(
         f"reached {reached}/{len(lists)} lists, {len(cites)} repos cited, "
         f"{len(candidates)} not in the catalog",
@@ -327,6 +522,28 @@ def main() -> int:
         seen_urls.add(key)
         deduped.append(r)
     results = deduped
+
+    # Proposed before, still neither catalogued nor declined: counted, not
+    # re-listed, so the weekly issue shows what is new rather than a wall.
+    waiting = [
+        slug
+        for slug, past in seen.items()
+        if past["verdict"] == "calls-jev" and slug not in have
+    ]
+    new_hits = [
+        r for r in results if r["verdict"] == "calls-jev" and r["slug"] not in seen
+    ]
+    for r in results:
+        seen[r["slug"]] = {"verdict": r["verdict"], "on": today.isoformat()}
+    if args.seen:
+        pathlib.Path(args.seen).parent.mkdir(parents=True, exist_ok=True)
+        pathlib.Path(args.seen).write_text(json.dumps(seen, indent=1, sort_keys=True))
+
+    new_lists = find_new_lists(lists) if args.find_lists else []
+    if args.markdown:
+        pathlib.Path(args.markdown).write_text(
+            report_markdown(results, new_hits, waiting, new_lists, reached, len(lists))
+        )
 
     if args.json:
         print(json.dumps(results, indent=2, ensure_ascii=False))

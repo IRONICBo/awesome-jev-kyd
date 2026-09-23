@@ -1,0 +1,7 @@
+# Candidates a person read and decided not to add. One per line:
+#
+#   owner/name  # why — e.g. "README claims Jev, code never calls it"
+#
+# scripts/discover_candidates.py skips everything listed here, so the weekly
+# discovery issue stops re-proposing it. A reason is required in spirit: a
+# decline nobody can explain is indistinguishable from a mistake.
