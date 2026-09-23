@@ -14,7 +14,7 @@ is the point of dating it.
 | Entries | 805 |
 | Carrying code | 781 |
 | Official (TypeSafe AI's own) | 36 |
-| Link answered 2xx on the last sweep (2026-09-22) | 801 |
+| Link answered 2xx on the last sweep (2026-09-23) | 801 |
 | Rows citing a call site CI re-reads weekly | 721 |
 | Patterns covered | 17 of 18 |
 | Retired links | 0 |

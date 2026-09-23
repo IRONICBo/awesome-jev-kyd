@@ -73,18 +73,18 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 467 |
-| None declared | 171 |
+| MIT | 469 |
+| None declared | 141 |
 | Apache-2.0 | 79 |
+| NOASSERTION (non-standard terms) | 32 |
 | AGPL-3.0 | 4 |
 | GPL-3.0 | 4 |
-| NOASSERTION (non-standard terms) | 4 |
 | BSD-3-Clause | 2 |
 | CC0-1.0 | 2 |
 | LGPL-3.0 | 1 |
 <!-- licences:end -->
 
-In all, <!--n:no_licence-->171<!--/n--> linked projects declare no licence. If you
+In all, <!--n:no_licence-->141<!--/n--> linked projects declare no licence. If you
 plan to reuse code from one, that is a blocker, not a detail — check before you
 copy.
 
