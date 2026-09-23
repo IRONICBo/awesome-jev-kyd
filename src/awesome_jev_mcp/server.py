@@ -39,6 +39,7 @@ working tree rather than the published catalogue.
 from __future__ import annotations
 
 import functools
+import importlib.metadata
 
 from typing import Any, Literal
 
@@ -48,7 +49,25 @@ from .data import load
 
 CATALOG, COMPAT, PATTERNS, PROVENANCE = load()
 
-mcp = MCPServer("awesome-jev")
+
+def _version() -> str:
+    """The installed version, reported to clients in serverInfo.
+
+    Empty by default, which leaves anyone debugging a client unable to tell
+    which build answered. Running straight from source has no installed
+    metadata, and says so rather than guessing.
+    """
+    try:
+        return importlib.metadata.version("awesome-jev-mcp")
+    except importlib.metadata.PackageNotFoundError:
+        return "0+source"
+
+
+mcp = MCPServer(
+    "awesome-jev",
+    version=_version(),
+    website_url="https://github.com/kydlikebtc/awesome-jev",
+)
 
 
 def tool(fn):

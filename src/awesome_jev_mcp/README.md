@@ -10,20 +10,34 @@ platform it is using, in the language it is writing.
 
 ## Install
 
+**In Claude Code**, install the plugin. It brings this server and the
+[agent skill](https://github.com/kydlikebtc/awesome-jev/blob/main/skills/awesome-jev/SKILL.md) together, and starts the server
+for you:
+
+```
+/plugin marketplace add kydlikebtc/awesome-jev
+/plugin install awesome-jev@awesome-jev
+```
+
+The plugin launches the server with `uvx`, so it needs
+[uv](https://docs.astral.sh/uv/) on your PATH. It rebuilds the package from the
+plugin's own copy every time it starts, which costs about two seconds in the
+background. Without that, uvx keeps the first environment it built for a local
+directory and ignores later changes to it — so a plugin whose code or bundled
+snapshot had been updated would go on running the old one, with nothing to say
+so. The dependencies stay cached; only this package is rebuilt.
+
+**Anywhere else**, install from the repository and register the command with
+your client:
+
 ```bash
 pip install git+https://github.com/kydlikebtc/awesome-jev
 awesome-jev-mcp
 ```
 
-Register `awesome-jev-mcp` with your client; it speaks stdio, so any MCP client
-works. For Claude Code:
-
-```bash
-claude mcp add awesome-jev -- awesome-jev-mcp
-```
-
-The package is not on PyPI yet. Installing from the repository tracks `main`,
-which is also where the catalogue itself is fetched from.
+It speaks stdio, so any MCP client works. The package is not on PyPI yet;
+installing from the repository tracks `main`, which is also where the catalogue
+itself is fetched from.
 
 Needs the 2.x MCP SDK, which the package declares. `MCPServer` is the name 2.x
 gave what 1.x called `FastMCP`, so an environment already pinned to `mcp<2`

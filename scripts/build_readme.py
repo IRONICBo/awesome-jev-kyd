@@ -38,6 +38,7 @@ RETIRED = ROOT / "retired.json"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from _github import SELF as REPO  # noqa: E402
+
 REPO_URL = f"https://github.com/{REPO}"
 RAW = f"https://raw.githubusercontent.com/{REPO}/main"
 SITE = "https://kydlikebtc.github.io/awesome-jev/"
@@ -631,12 +632,17 @@ REPO_FILES = [
         "一条目录记录允许包含什么。",
     ),
     (
-        "src/awesome_jev_mcp/",
-        "An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result.",
-        "一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示一起返回。",
+        ".claude-plugin/",
+        "Install the skill and the MCP server together in Claude Code: `/plugin marketplace add kydlikebtc/awesome-jev`, then `/plugin install awesome-jev@awesome-jev`.",
+        "在 Claude Code 里一次装好技能和 MCP server：先 `/plugin marketplace add kydlikebtc/awesome-jev`，再 `/plugin install awesome-jev@awesome-jev`。",
     ),
     (
-        "SKILL.md",
+        "src/awesome_jev_mcp/",
+        "An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result, and so does how current the data is.",
+        "一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示，也带着数据有多新。",
+    ),
+    (
+        "skills/awesome-jev/",
         "An agent skill: the facts that generated Jev code most often gets wrong, and the design rules worth following.",
         "一份 agent 技能：生成的 Jev 代码最常搞错的那些事实，以及值得遵循的设计规则。",
     ),

@@ -3741,8 +3741,9 @@ The parts that are not the catalog.
 | [`docs/sources.md`](docs/sources.md) | Where every row came from, and the licence position. |
 | [`examples/`](examples/) | Four runnable examples. One deliberately leaves the threshold policy to you. |
 | [`schema/entry.schema.json`](schema/entry.schema.json) | What a catalog entry may contain. |
-| [`src/awesome_jev_mcp/`](src/awesome_jev_mcp/) | An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result. |
-| [`SKILL.md`](SKILL.md) | An agent skill: the facts that generated Jev code most often gets wrong, and the design rules worth following. |
+| [`.claude-plugin/`](.claude-plugin/) | Install the skill and the MCP server together in Claude Code: `/plugin marketplace add kydlikebtc/awesome-jev`, then `/plugin install awesome-jev@awesome-jev`. |
+| [`src/awesome_jev_mcp/`](src/awesome_jev_mcp/) | An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result, and so does how current the data is. |
+| [`skills/awesome-jev/`](skills/awesome-jev/) | An agent skill: the facts that generated Jev code most often gets wrong, and the design rules worth following. |
 | [`scripts/verify_claims.py`](scripts/verify_claims.py) | Re-reads every cited call site weekly, so a primitive claim is checkable rather than asserted. |
 | [`scripts/refresh_metadata.py`](scripts/refresh_metadata.py) | Re-reads stars, licences and archive status from the GitHub API and opens a PR. |
 
