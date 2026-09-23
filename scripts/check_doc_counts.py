@@ -178,41 +178,113 @@ def line_of(text: str, offset: int) -> int:
 # Display names come from patterns.json, which already exists precisely so the
 # README builder, the figure builder and the MCP server cannot drift apart; this
 # makes it the fourth reader rather than a fifth copy of the same table.
-BAR = re.compile(r'<span>([^<]+)</span><span class="n">(\d+)</span>')
+#
+# The bar's drawn width is checked too, against the largest count on the card.
+# Widths are the one number here a person computes by hand while editing, which
+# makes them the likeliest to be left half-updated: a correct label over a bar
+# drawn for last month's count is a chart that contradicts its own caption.
+BAR = re.compile(
+    r'<span>([^<]+)</span><span class="n">(\d+)</span>\s*</div>\s*'
+    r'<div class="track">\s*<span class="fill" style="width: (\d+)%"'
+)
+LABEL = re.compile(r'<span class="n">\d+</span>')
 CARD = "docs/social-card.html"
 
+# docs/status.md names thin patterns inline as `key` (count). Same approach as
+# the bars: scan whatever is written, check each one. The first version of this
+# guard did not do this, and status.md promptly said retry-control had "three
+# entries" in words — invisible to every pattern above — the day it reached four.
+INLINE = re.compile(r"`([a-z][a-z-]*)`(?:\*\*)? \((\d+)\)")
+STATUS = "docs/status.md"
 
-def check_pattern_bars(catalog: list[dict]) -> list[str]:
-    names = {
-        pattern["en"]: pattern["key"]
-        for pattern in json.loads((ROOT / "patterns.json").read_text())["patterns"]
-    }
+
+def pattern_counts(catalog: list[dict]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for entry in catalog:
         for pattern in entry["patterns"]:
             counts[pattern] = counts.get(pattern, 0) + 1
+    return counts
+
+
+def taxonomy() -> list[dict]:
+    return json.loads((ROOT / "patterns.json").read_text())["patterns"]
+
+
+def check_pattern_bars(catalog: list[dict]) -> list[str]:
+    names = {pattern["en"]: pattern["key"] for pattern in taxonomy()}
+    counts = pattern_counts(catalog)
 
     text = (ROOT / CARD).read_text()
-    pairs = list(BAR.finditer(text))
-    if not pairs:
+    bars = list(BAR.finditer(text))
+    if not bars:
         return [
             f"{CARD}: found no pattern bars at all. The markup changed; update "
             f"BAR in scripts/check_doc_counts.py."
         ]
+    # Every count label must belong to a bar the full pattern understood.
+    # Otherwise a change to the track markup would quietly drop the width check
+    # while the count check carried on looking healthy.
+    if len(LABEL.findall(text)) != len(bars):
+        return [
+            f"{CARD}: {len(LABEL.findall(text))} count labels but only {len(bars)} "
+            f"parse as complete bars. The markup changed; update BAR in "
+            f"scripts/check_doc_counts.py."
+        ]
 
+    peak = max(int(match.group(2)) for match in bars)
     problems = []
-    for match in pairs:
-        label, shown = html.unescape(match.group(1)), match.group(2)
+    for match in bars:
+        label, shown, width = (
+            html.unescape(match.group(1)),
+            match.group(2),
+            match.group(3),
+        )
         key = names.get(label)
         if key is None:
             problems.append(
                 f"{CARD}:{line_of(text, match.start(1))}: {label!r} is not a "
                 f"pattern name in patterns.json"
             )
-        elif int(shown) != counts.get(key, 0):
+            continue
+        if int(shown) != counts.get(key, 0):
             problems.append(
                 f"{CARD}:{line_of(text, match.start(2))}: bar for {label!r} says "
                 f"{shown}, catalog.json says {counts.get(key, 0)}"
+            )
+        # One point of slack, so rounding half-up by hand is not an error.
+        drawn = round(int(shown) / peak * 100)
+        if abs(int(width) - drawn) > 1:
+            problems.append(
+                f"{CARD}:{line_of(text, match.start(3))}: bar for {label!r} is "
+                f"drawn at {width}%, but {shown} of a peak {peak} is {drawn}%"
+            )
+    return problems
+
+
+def check_inline_counts(catalog: list[dict]) -> list[str]:
+    keys = {pattern["key"] for pattern in taxonomy()}
+    counts = pattern_counts(catalog)
+
+    text = (ROOT / STATUS).read_text()
+    found = list(INLINE.finditer(text))
+    if not found:
+        return [
+            f"{STATUS}: no `pattern` (count) mentions found. The coverage section "
+            f"was reworded; update INLINE in scripts/check_doc_counts.py."
+        ]
+
+    problems = []
+    for match in found:
+        key, shown = match.group(1), int(match.group(2))
+        if key not in keys:
+            problems.append(
+                f"{STATUS}:{line_of(text, match.start(1))}: `{key}` ({shown}) is "
+                f"not a pattern key in patterns.json"
+            )
+        elif shown != counts.get(key, 0):
+            problems.append(
+                f"{STATUS}:{line_of(text, match.start(2))}: `{key}` says {shown}, "
+                f"catalog.json says {counts.get(key, 0)}"
             )
     return problems
 
@@ -253,7 +325,9 @@ def main() -> int:
                     f"{found!r}, catalog.json says {expected!r}"
                 )
 
-    problems += check_pattern_bars(json.loads((ROOT / "catalog.json").read_text()))
+    catalog = json.loads((ROOT / "catalog.json").read_text())
+    problems += check_pattern_bars(catalog)
+    problems += check_inline_counts(catalog)
 
     if problems:
         print(
@@ -269,7 +343,11 @@ def main() -> int:
         return 1
 
     bars = len(BAR.findall((ROOT / CARD).read_text()))
-    print(f"{len(CHECKS)} doc counts and {bars} pattern bars agree with catalog.json:")
+    inline = len(INLINE.findall((ROOT / STATUS).read_text()))
+    print(
+        f"{len(CHECKS)} doc counts, {bars} pattern bars and {inline} inline pattern "
+        f"counts agree with catalog.json:"
+    )
     for key, value in truth.items():
         print(f"  {key:<17} {value}")
     return 0
