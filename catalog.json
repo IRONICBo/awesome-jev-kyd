@@ -10899,7 +10899,7 @@
   {
     "slug": "neurolink",
     "title": "neurolink",
-    "summary": "One TypeScript interface for 40 AI providers across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev, not text. MCP-native, voice (TTS/STT/realtime), RAG, memory, file processors. Powers Tara, Yama and Clair",
+    "summary": "The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev, not text.",
     "summary_zh": "用一套 TypeScript 接口对接 40 家 AI 供应商，覆盖生成、流式与决策三种推理形态。",
     "zh_machine": true,
     "url": "https://github.com/juspay/neurolink",
