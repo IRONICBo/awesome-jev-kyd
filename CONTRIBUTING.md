@@ -16,17 +16,47 @@ So the bar is: **could a reader act on this row without opening the link?**
 ```bash
 python3 scripts/lint.py \
   && python3 scripts/build_readme.py \
-  && python3 scripts/build_assets.py
+  && python3 scripts/build_assets.py \
+  && python3 scripts/build_docs.py \
+  && python3 scripts/lint_docs.py
 ```
 
-`build_assets.py` regenerates the README's SVG figures from the catalog. CI
-fails if they are stale, because a coverage chart that disagrees with the
-catalog is worse than no chart.
+`build_assets.py` regenerates the README's SVG figures, and `build_docs.py`
+refills every generated number in `docs/status.md`, `docs/sources.md`,
+`llms.txt` and the site's meta tags. CI fails if any of them are stale, because
+a figure that disagrees with the catalog is worse than no figure.
 
-3. Commit `catalog.json`, both generated READMEs, **and** any changed
-   `docs/assets/*.svg`. CI fails if any of them drift.
+3. Commit `catalog.json`, both generated READMEs, and whatever else those
+   scripts rewrote. CI fails if any of it drifts.
 
 No Python dependencies are needed. The schema validator is self-contained.
+
+To preview the site locally:
+
+```bash
+python3 scripts/assemble_site.py && python3 -m http.server --directory site
+```
+
+## Numbers in prose
+
+Never type a catalogue count into a doc. Every one that was typed by hand froze
+at the first build and quietly became wrong. Either reword the sentence without
+the number, or let `build_docs.py` fill it:
+
+```markdown
+In all, <!--n:no_licence-->141<!--/n--> linked projects declare no licence.
+```
+
+The keys are in `inline_values()` in `scripts/build_docs.py`. Put a word before
+the marker — a line that *starts* with `<!--` is a raw HTML block in Markdown
+and splits the sentence in two. `lint_docs.py` rejects bare counts, hand-written
+count tables and line-leading markers. Dated history in `docs/method.md` is
+exempt: a log entry about the first build is true forever.
+
+Model strings and limits are held to `compat.json` the same way: write
+`jev-latest` or `max 255` anywhere and `lint_docs.py` checks it against that
+file. If the vendor changes one, change `compat.json` and every stale copy
+turns red.
 
 ## Field rules
 
@@ -108,6 +138,9 @@ saying why — a flag a reader cannot interpret is worse than no flag.
 
 ## Finding things to add
 
+The weekly `discover` workflow does this for you and keeps an open issue
+labelled `discovery` with what it found. To run it by hand:
+
 ```bash
 python3 scripts/discover_candidates.py --top 40
 ```
@@ -116,6 +149,9 @@ This harvests every list in `docs/sibling-lists.txt`, ranks repositories by how
 many cite each, and reads the candidate's code before reporting. A `calls-jev`
 verdict means a call site was found — it is a shortlist, not a row. Read it,
 write the summary yourself, and keep the evidence path the scan produced.
+
+Read one and decided it does not belong? Add it to `docs/declined.txt` with a
+reason, and the weekly run stops proposing it.
 
 Know a directory we are not harvesting? Add it to `docs/sibling-lists.txt`.
 That is a useful contribution on its own.
@@ -130,16 +166,21 @@ never moves them; that judgement is a person's.
 ## Adding a pattern
 
 A pattern earns a heading once **two independent real examples** exist. Adding
-one means editing four places:
+one means editing three places:
 
 1. the enum in `schema/entry.schema.json`
-2. the label table and order list in `scripts/build_readme.py`
-3. the `PATTERNS` list in `scripts/build_assets.py`, which draws the figure
-4. `docs/patterns.md`, with an explicit *when NOT to use this*
+2. `patterns.json` — the English and Chinese label, the long blurb the README
+   uses and the short one the site uses. The README, the figures, the site and
+   the MCP server all read this one file.
+3. `docs/patterns.md`, a `## key` section with an explicit *when NOT to use this*
 
-Both generators fail loudly on a pattern they have no label for, which is
-intentional — a silent fallback to a raw slug is how a bilingual list starts
-rotting.
+`lint.py` fails if the schema and `patterns.json` disagree or a field is
+missing, and `lint_docs.py` fails if `docs/patterns.md` has no section for it —
+a silent fallback to a raw slug is how a bilingual list starts rotting.
+
+A new `kind` or flag is the same, minus the doc section: the schema enum, then
+`taxonomy.json`, which holds both languages' labels for the README and the
+site.
 
 ## Adding a runnable example
 

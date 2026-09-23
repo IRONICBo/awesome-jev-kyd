@@ -180,6 +180,22 @@ def check_vendor_facts(rel: str, text: str, facts: tuple) -> list[str]:
     return found
 
 
+def check_pattern_docs() -> list[str]:
+    """docs/patterns.md has one `## key` section per pattern, carrying the
+    "when NOT to use this" that no generator can write. A pattern added to
+    patterns.json without one would ship with its most important caveat
+    missing, and nothing else would notice."""
+    keys = [p["key"] for p in json.loads((ROOT / "patterns.json").read_text())["patterns"]]
+    heads = set(
+        re.findall(r"^## ([a-z]+(?:-[a-z]+)*)\s*$", (ROOT / "docs" / "patterns.md").read_text(), re.M)
+    )
+    return [
+        f"docs/patterns.md: no `## {k}` section for a pattern in patterns.json" for k in keys if k not in heads
+    ] + [
+        f"docs/patterns.md: `## {h}` is not a pattern in patterns.json" for h in sorted(heads - set(keys))
+    ]
+
+
 def check_leading_markers(rel: str, text: str) -> list[str]:
     """CommonMark opens a raw HTML block on any line beginning with `<!--`, so an
     inline value at the start of a line splits its sentence into two
@@ -215,6 +231,8 @@ def main() -> int:
     )
     for rel in fact_files:
         problems += check_vendor_facts(rel, (ROOT / rel).read_text(), facts)
+
+    problems += check_pattern_docs()
 
     for problem in problems:
         print(f"error: {problem}", file=sys.stderr)

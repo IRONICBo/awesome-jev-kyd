@@ -4,8 +4,7 @@
 
 ## If you edited catalog.json
 
-- [ ] `python3 scripts/lint.py` passes
-- [ ] `python3 scripts/build_readme.py` run, and **both** READMEs committed
+- [ ] `lint.py`, `build_readme.py`, `build_assets.py`, `build_docs.py` and `lint_docs.py` run, and everything they rewrote is committed
 - [ ] I opened every link I added and wrote the summaries from what was there
 - [ ] `question_types` reflects the actual call site, not the README
 - [ ] `stars` / `repo_license` came from the GitHub API, not a badge
@@ -14,8 +13,12 @@
 
 ## If you added a pattern
 
-- [ ] Schema enum, label table and order list in `scripts/build_readme.py`, and `docs/patterns.md` all updated
+- [ ] Schema enum, `patterns.json` (both languages, long and short blurb) and a `## key` section in `docs/patterns.md` all updated
 - [ ] There are at least two independent real examples of it
+
+## If you touched any doc
+
+- [ ] No catalogue count typed by hand — reworded, or filled by `build_docs.py` (see CONTRIBUTING, *Numbers in prose*)
 
 ## If you added a runnable example
 

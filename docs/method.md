@@ -238,8 +238,26 @@ answered. It never retires a row: that needs a human-written reason.
 
 ## Kept current
 
-- `lint` runs on every push and pull request, and fails if the generated READMEs
-  drift from `catalog.json`.
-- `links` sweeps every URL weekly and opens a red build on a dead link, rather
-  than silently rewriting data.
-- `pages` republishes the searchable site when the catalog or site changes.
+Every figure this repository publishes changes for one of four reasons, and each
+reason has its own mechanism. The rule underneath all of them: **a number may
+appear only where something re-derives it.** Anything typed by hand froze at the
+first build — the status page, the licence warning, the link-preview text, the
+social card and the README screenshots all said 148 entries long after the
+catalogue passed 800, and no build ever went red.
+
+| What changes | When | Kept current by |
+| --- | --- | --- |
+| Counts and tables about the catalogue | Whenever a row is added or edited | Generated from `catalog.json` — the READMEs by `build_readme.py`, the figures by `build_assets.py`, and every number inside the hand-written docs, `llms.txt` and the site's meta tags by `build_docs.py`. All numbers share one definition in `scripts/_stats.py`. `lint` fails on any drift, and `lint_docs.py` rejects a catalogue count typed anywhere else. |
+| Images that show data | Same | Rendered from the data on every Pages deploy by `render_images.py` and never committed: the site's `og:image`, and the README and compatibility screenshots. The deploy refuses to publish a page that did not finish loading its data. |
+| The GitHub social preview | Never | It can only be uploaded by hand, so it is the durable card: no figure on it can go stale. `lint` reports whether one is uploaded. |
+| The repository description | Whenever the count changes | Compared, whole sentence, with the same `_stats.pitch()` the site uses for its `og:description`, on every push. |
+| Labels for patterns, kinds and flags | When the taxonomy changes | One copy each, in `patterns.json` and `taxonomy.json`, read by the README generators and by the site at runtime. `lint` checks both against the schema; `lint_docs` checks `docs/patterns.md` has a section for each pattern. |
+| Model strings and limits | When the vendor or a gateway ships | One source, `compat.json`. `lint_docs` checks every copy — in docs, examples, and the generated README and figures — against it. `claims` re-reads each platform's documentation weekly and opens an issue if a recorded string disappears. |
+| Link status, stars, licences, archive status | Continuously, upstream | `metadata` weekly: stamps every link that answers, re-reads the GitHub API, rebuilds everything generated, runs the whole lint chain, and pushes a branch with an issue linking the PR. `links` weekly is the separate alarm for a dead link, which only a person may retire. The site shows the date of the sweep its figure comes from. |
+| Whether a cited call site still exists | Continuously, upstream | `claims` weekly re-reads every `evidence` file and opens an issue for anything moved or removed. |
+| What the catalogue is missing | Continuously, upstream | `discover` weekly: harvests every sibling directory, reads the code of the most-cited uncatalogued repositories, searches for sibling directories not yet harvested, and files one issue. It never adds a row. |
+| Dated history | Never | This page's log sections are append-only and exempt from the number rules: what the first build found is true forever. |
+
+- `lint` runs on every push and pull request.
+- `pages` rebuilds the site and its images whenever the data, the site or the
+  rendering scripts change.
