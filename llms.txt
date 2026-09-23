@@ -23,6 +23,7 @@ Each entry carries: slug, title, summary (English), summary_zh (Chinese), url, k
 English index: https://github.com/kydlikebtc/awesome-jev/blob/main/README.md
 Chinese index: https://github.com/kydlikebtc/awesome-jev/blob/main/README.zh-CN.md
 Decision patterns, with when NOT to use each: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/patterns.md
+Every example of one decision, on its own page: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/by-pattern/<pattern>.md (for example safety-gating.md; append .zh-CN before .md for Chinese). The README shows the first ten of each.
 Cross-platform compatibility table: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/compatibility.md
 What to check before trusting an entry: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/vetting.md
 How the catalog was built: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/method.md
