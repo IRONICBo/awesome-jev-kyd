@@ -12,7 +12,7 @@ dating it.
 | Carrying code                  | 781        |
 | Official (TypeSafe AI's own)   | 36         |
 | Patterns covered               | 17 of 18   |
-| Chinese summaries hand-written | 183 of 805 |
+| Chinese summaries hand-written | 184 of 805 |
 | Retired links                  | 0          |
 
 Run `python3 scripts/counts.py` for the live version, including a marked list of
@@ -77,7 +77,7 @@ One pattern still has no entries, and no in-repo example either:
   repositories, which by now is a reasonably strong claim that nobody has
   published one.
 
-**`retry-control`** came off that list, but barely: three entries, led by a
+**`retry-control`** (4) came off that list, but only just. The first was a
 semantic circuit breaker that asks whether an HTTP 200 is a silent failure. Most
 apparent matches remain false positives — an HTTP client advertising "observable
 retries" is not a retry decision.
