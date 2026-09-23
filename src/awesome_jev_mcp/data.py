@@ -1,6 +1,6 @@
 """Where the catalogue comes from, and how honest that answer is.
 
-Installed from PyPI, this package has no repository around it, so the three JSON
+Installed as a package, this has no repository around it, so the three JSON
 files it serves have to come from somewhere. It fetches them, and every result
 the server returns says which layer answered.
 

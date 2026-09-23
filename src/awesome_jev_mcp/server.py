@@ -15,8 +15,8 @@ Three design choices worth knowing:
 * **Results are trimmed by default.** An agent pays for every token of a tool
   result, so `search_examples` returns compact rows and `get_example` returns
   the whole thing when one row actually matters.
-* **The data's own provenance is a caveat too.** Installed from PyPI there is no
-  repository around this file, so the catalogue is fetched and cached. Every
+* **The data's own provenance is a caveat too.** Installed as a package there is
+  no repository around this file, so the catalogue is fetched and cached. Every
   result therefore carries a `data` line naming which layer answered and how
   current it is, and anything stale says so in capitals. See `data.py` for the
   ladder; the short version is that a checkout beats the network, the network
@@ -29,7 +29,7 @@ server is worse than a dependency, and the catalogue's own CI never imports
 this module — the dependency-free build pipeline is untouched.
 
 Run:
-    pip install awesome-jev-mcp
+    pip install git+https://github.com/kydlikebtc/awesome-jev
     awesome-jev-mcp
 
 From a checkout, `python3 -m awesome_jev_mcp` does the same thing and serves the

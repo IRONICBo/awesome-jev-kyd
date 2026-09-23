@@ -11,16 +11,19 @@ platform it is using, in the language it is writing.
 ## Install
 
 ```bash
-pip install awesome-jev-mcp
+pip install git+https://github.com/kydlikebtc/awesome-jev
+awesome-jev-mcp
 ```
 
-Then register it. For Claude Code:
+Register `awesome-jev-mcp` with your client; it speaks stdio, so any MCP client
+works. For Claude Code:
 
 ```bash
 claude mcp add awesome-jev -- awesome-jev-mcp
 ```
 
-Any MCP client works; it speaks stdio.
+The package is not on PyPI yet. Installing from the repository tracks `main`,
+which is also where the catalogue itself is fetched from.
 
 Needs the 2.x MCP SDK, which the package declares. `MCPServer` is the name 2.x
 gave what 1.x called `FastMCP`, so an environment already pinned to `mcp<2`
@@ -58,7 +61,7 @@ source answered, and anything stale says so in capitals:
 
 ## Where the catalogue comes from
 
-Installed from PyPI there is no repository around this code, so the three JSON
+Installed as a package there is no repository around this code, so the three JSON
 files have to be fetched. They are, in this order, and the first complete answer
 wins:
 
