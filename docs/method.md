@@ -220,7 +220,7 @@ git clone https://github.com/kydlikebtc/awesome-jev
 cd awesome-jev
 
 python3 scripts/lint.py          # schema plus cross-entry invariants
-python3 scripts/build_readme.py  # regenerate both READMEs
+python3 scripts/build_readme.py  # regenerate both READMEs and docs/by-pattern/
 python3 scripts/counts.py        # coverage, with gaps marked
 python3 scripts/check_links.py   # sweep every URL, report only
 python3 scripts/verify_claims.py # re-read every cited call site

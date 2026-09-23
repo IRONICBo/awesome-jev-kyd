@@ -17,6 +17,7 @@ is the point of dating it.
 | Link answered 2xx on the last sweep (2026-09-23) | 801 |
 | Rows citing a call site CI re-reads weekly | 721 |
 | Patterns covered | 17 of 18 |
+| Chinese summaries hand-written | 184 of 805 |
 | Retired links | 0 |
 <!-- shape:end -->
 
@@ -25,9 +26,20 @@ is the point of dating it.
 <!-- gaps:start -->
 No entries yet:
 
-- **`recommendation`** — Choose what to surface next, fast enough for a live conversation.
+- **`recommendation`** — Choose what to surface next, fast enough for a live conversation. The vendor lists it as a use case, and nothing has surfaced across every sibling directory harvested so far — by now a reasonably strong claim that nobody has published one.
 
-Thin (fewer than 10): `retry-control` (4), `feature-extraction` (7), `support-triage` (7).
+Empty kinds:
+
+- **`case-study`**. Projects are running this in production; none has published what it cost and what it changed.
+
+Thin — under 2.5% of the catalogue:
+
+- `retry-control` (4 of 805) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
+- `feature-extraction` (7 of 805)
+- `support-triage` (7 of 805)
+- `data-extraction` (12 of 805)
+- `document-triage` (16 of 805)
+- `context-compaction` (20 of 805)
 <!-- gaps:end -->
 
 Two holes are in the research rather than the ecosystem: **Reddit** produced

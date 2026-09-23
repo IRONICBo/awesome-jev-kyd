@@ -17,9 +17,10 @@ from collections import Counter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
-# Below this many entries a pattern is reported as thin. Low enough that a
-# pattern with one real example is not hidden, high enough to be a signal.
-THIN = 10
+# A pattern holding less than this share of the catalogue is reported as thin.
+# A share rather than a count: ten rows was a signal at 148 entries and is
+# noise at 800.
+THIN_SHARE = 0.025
 
 
 def load() -> tuple[list[dict], list[dict], list[dict], dict, dict]:
@@ -64,6 +65,11 @@ def compute() -> dict:
         "zh_hand": sum(1 for e in catalog if not e.get("zh_machine")),
         "patterns_total": len(patterns),
         "patterns_covered": sum(1 for p in patterns if by_pattern[p["key"]]),
+        "empty_kinds": [
+            k
+            for k in schema["properties"]["kind"]["enum"]
+            if not any(e["kind"] == k for e in catalog)
+        ],
         "platforms": len(compat["platforms"]),
         "sibling_lists": len(siblings),
         "by_pattern": {p["key"]: by_pattern[p["key"]] for p in patterns},

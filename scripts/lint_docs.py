@@ -23,7 +23,13 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 # Fully generated: their numbers are checked by the generator that wrote them.
+# docs/by-pattern/ is build_readme.py's output too, one page per pattern.
 GENERATED = {"README.md", "README.zh-CN.md"}
+GENERATED_DIRS = ("docs/by-pattern/",)
+
+
+def generated(rel: str) -> bool:
+    return rel in GENERATED or rel.startswith(GENERATED_DIRS)
 # Dated logs. "The first build had 148 entries" is true forever, and rewriting it
 # to today's number would falsify the history rather than update it.
 HISTORY = {"docs/method.md"}
@@ -212,8 +218,9 @@ def main() -> int:
     files = [
         f
         for f in tracked("*.md", "*.txt", "*.html")
-        if f not in GENERATED and not f.startswith(("LICENSE",))
+        if not generated(f) and not f.startswith(("LICENSE",))
     ]
+
     for rel in files:
         text = (ROOT / rel).read_text()
         if rel not in HISTORY:
@@ -227,7 +234,9 @@ def main() -> int:
     # what they emit is how those constants get checked.
     facts = vendor_facts()
     fact_files = sorted(
-        set(files) | GENERATED | set(tracked("examples/*.py", "docs/assets/*.svg"))
+        set(files)
+        | {f for f in tracked("*.md") if generated(f)}
+        | set(tracked("examples/*.py", "docs/assets/*.svg"))
     )
     for rel in fact_files:
         problems += check_vendor_facts(rel, (ROOT / rel).read_text(), facts)

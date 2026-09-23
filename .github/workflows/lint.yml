@@ -35,16 +35,21 @@ jobs:
       - name: Validate entries against the schema
         run: python3 scripts/lint.py
 
-      - name: READMEs are in sync with catalog.json
+      # `git status --porcelain`, not `git diff --quiet`: the pattern pages are
+      # created and deleted as patterns gain or lose entries, and git diff cannot
+      # see an untracked file. The first example of an empty pattern would make
+      # the README link to a page nobody committed, with this step still green.
+      - name: READMEs and pattern pages are in sync with catalog.json
         run: |
           python3 scripts/build_readme.py
-          if ! git diff --quiet -- README.md README.zh-CN.md; then
-            echo "::error::README.md / README.zh-CN.md are out of sync with catalog.json."
-            echo "Run 'python3 scripts/build_readme.py' and commit the result."
-            git --no-pager diff --stat -- README.md README.zh-CN.md
+          drift=$(git status --porcelain -- README.md README.zh-CN.md docs/by-pattern)
+          if [ -n "$drift" ]; then
+            echo "::error::README.md / README.zh-CN.md / docs/by-pattern are out of sync with catalog.json."
+            echo "Run 'python3 scripts/build_readme.py' and commit the result, including new or deleted pages."
+            echo "$drift"
             exit 1
           fi
-          echo "READMEs in sync"
+          echo "READMEs and pattern pages in sync"
 
       - name: compatibility.md is in sync with compat.json
         run: python3 scripts/build_compat.py --check

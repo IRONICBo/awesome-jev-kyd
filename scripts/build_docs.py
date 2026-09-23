@@ -73,33 +73,66 @@ def shape_block(s: dict) -> str:
             [f"Link answered 2xx on the last sweep ({s['last_sweep']})", s["link_ok"]],
             ["Rows citing a call site CI re-reads weekly", s["evidence_rows"]],
             ["Patterns covered", f"{s['patterns_covered']} of {s['patterns_total']}"],
+            ["Chinese summaries hand-written", f"{s['zh_hand']} of {s['entries']}"],
             ["Retired links", s["retired"]],
         ],
     )
 
 
+# Editorial commentary on a gap, shown only while the gap exists. A note that
+# says "nobody has published one" must disappear the day someone does; written
+# as free prose beside the generated list, it would contradict it instead.
+GAP_NOTES = {
+    "recommendation": (
+        "The vendor lists it as a use case, and nothing has surfaced across every "
+        "sibling directory harvested so far — by now a reasonably strong claim that "
+        "nobody has published one."
+    ),
+    "retry-control": (
+        "Most apparent matches are false positives: an HTTP client advertising "
+        "\"observable retries\" is not a retry decision. The first real one was a "
+        "semantic circuit breaker asking whether an HTTP 200 is a silent failure."
+    ),
+    "case-study": (
+        "Projects are running this in production; none has published what it cost "
+        "and what it changed."
+    ),
+}
+
+
 def gaps_block(s: dict, patterns: list[dict]) -> str:
     counts = s["by_pattern"]
+    # Thin is a share, not a count: ten rows meant something at 148 entries and
+    # means much less at 800.
+    thin_below = s["entries"] * _stats.THIN_SHARE
     empty = [p for p in patterns if counts[p["key"]] == 0]
-    thin = [
-        p
-        for p in patterns
-        if 0 < counts[p["key"]] < _stats.THIN and p["key"] != "overview"
-    ]
+    thin = sorted(
+        (p for p in patterns if 0 < counts[p["key"]] < thin_below and p["key"] != "overview"),
+        key=lambda p: counts[p["key"]],
+    )
+    note = lambda key: f" {GAP_NOTES[key]}" if key in GAP_NOTES else ""  # noqa: E731
+
     lines = []
     if empty:
-        lines.append("No entries yet:")
-        lines.append("")
-        lines += [f"- **`{p['key']}`** — {p['blurb_en']}" for p in empty]
+        lines += ["No entries yet:", ""]
+        lines += [f"- **`{p['key']}`** — {p['blurb_en']}{note(p['key'])}" for p in empty]
     else:
         lines.append("Every pattern has at least one entry.")
+    if s["empty_kinds"]:
+        lines += ["", "Empty kinds:", ""]
+        lines += [f"- **`{k}`**.{note(k)}" for k in s["empty_kinds"]]
     if thin:
-        lines.append("")
-        lines.append(
-            f"Thin (fewer than {_stats.THIN}): "
-            + ", ".join(f"`{p['key']}` ({counts[p['key']]})" for p in thin)
-            + "."
-        )
+        pct = f"{_stats.THIN_SHARE:.1%}".replace(".0%", "%")
+        lines += [
+            "",
+            f"Thin — under {pct} of the catalogue:",
+            "",
+        ]
+        lines += [
+            f"- `{p['key']}` ({counts[p['key']]} of {s['entries']})"
+            + (f" —{note(p['key'])}" if p["key"] in GAP_NOTES else "")
+            for p in thin
+        ]
     return "\n".join(lines)
 
 

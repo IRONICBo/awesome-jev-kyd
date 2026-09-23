@@ -77,12 +77,21 @@ START_HERE = [
     "hermes-agent-jev-evaluation",
 ]
 
-# Any section longer than this collapses behind a <details>. Below it the rows
-# are worth scrolling past; above it they are a wall, and GitHub's own outline
-# stops being usable. `overview` always collapses regardless of size: it is
-# context rather than technique.
-COLLAPSE_OVER = 30
-ALWAYS_COLLAPSE = {"overview"}
+# The README shows this many rows per pattern and links to a page with the rest.
+#
+# It used to show every row, collapsing long sections behind <details>. That
+# kept the scroll short but not the file: at 805 entries the README was 323 KB,
+# 92% of it this one section, with every multi-pattern row printed once per
+# pattern. Collapsing hides rows from the eye, not from the download, the
+# renderer or anyone reading the raw file.
+#
+# Ten is enough to show what a pattern looks like in practice, in the same
+# order the site and the MCP server use — official first, then code, then
+# stars — so all three surfaces agree on what comes first. Each pattern also
+# gets its own generated page, which is a URL worth having for its own sake:
+# "every safety-gating example" can now be linked to.
+INLINE_PER_PATTERN = 10
+PAGES_DIR = ROOT / "docs" / "by-pattern"
 
 # The three primitives, rendered as a table rather than described in a
 # paragraph. Every fact here is from the official API reference.
@@ -252,7 +261,18 @@ EN = {
     "retired_h": "Retired links",
     "retired_intro": "Links that stopped resolving, kept so a dead reference stays searchable instead of vanishing.",
     "th_why": "Why",
-    "collapse": "rows — click to expand",
+    "pattern_more": "**{shown} of {n}** shown · [all {n} on one page →]({page}) · [filter on the site]({site})",
+    "pattern_all": "All {n} shown · [on its own page]({page}) · [filter on the site]({site})",
+    "page_intro": (
+        "Every catalogued example of this decision — {n} of them, official first, then rows "
+        "with code, then by stars. The same rows, with caveats, are in [the index]({readme}); "
+        "[the site]({site}) can filter them further by language, primitive and kind."
+    ),
+    "page_other_lang": "[中文]({other})",
+    "page_footer": (
+        "<sub>Generated from `catalog.json` by `scripts/build_readme.py`. "
+        "Edit the catalogue, not this file — CI fails if the two disagree.</sub>"
+    ),
     "gap": "no examples yet",
     # ---- stats ----
     "stat_entries": "entries",
@@ -381,7 +401,17 @@ ZH = {
     "retired_h": "已退休的链接",
     "retired_intro": "已无法访问的链接。保留下来，让失效的引用仍可被搜索到，而不是凭空消失。",
     "th_why": "原因",
-    "collapse": "条 —— 点击展开",
+    "pattern_more": "已显示 **{shown} / {n}** 条 · [在单独页面查看全部 {n} 条 →]({page}) · [在站点上筛选]({site})",
+    "pattern_all": "已显示全部 {n} 条 · [单独页面]({page}) · [在站点上筛选]({site})",
+    "page_intro": (
+        "这个决策的全部已收录例子 —— 共 {n} 条，官方优先，其次是含代码的，再按 star 排序。"
+        "同样这些行及其警示也在[索引]({readme})里；[站点]({site})还能按语言、原语和形态进一步筛选。"
+    ),
+    "page_other_lang": "[English]({other})",
+    "page_footer": (
+        "<sub>由 `scripts/build_readme.py` 从 `catalog.json` 生成。"
+        "请修改目录，不要改这个文件 —— 两者不一致时 CI 会失败。</sub>"
+    ),
     "gap": "暂无例子",
     "stat_entries": "条目",
     "stat_with_code": "含代码",
@@ -456,12 +486,17 @@ REPO_FILES = [
         "一条目录记录允许包含什么。",
     ),
     (
-        "mcp/",
-        "An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result.",
-        "一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示一起返回。",
+        ".claude-plugin/",
+        "Install the skill and the MCP server together in Claude Code: `/plugin marketplace add kydlikebtc/awesome-jev`, then `/plugin install awesome-jev@awesome-jev`.",
+        "在 Claude Code 里一次装好技能和 MCP server：先 `/plugin marketplace add kydlikebtc/awesome-jev`，再 `/plugin install awesome-jev@awesome-jev`。",
     ),
     (
-        "SKILL.md",
+        "src/awesome_jev_mcp/",
+        "An MCP server, so an agent can query the catalogue instead of reading it. Caveats travel with every result, and so does how current the data is.",
+        "一个 MCP server —— 让智能体可以查询目录而不是阅读它。每条结果都带着它的警示，也带着数据有多新。",
+    ),
+    (
+        "skills/awesome-jev/",
         "An agent skill: the facts that generated Jev code most often gets wrong, and the design rules worth following.",
         "一份 agent 技能：生成的 Jev 代码最常搞错的那些事实，以及值得遵循的设计规则。",
     ),
@@ -602,15 +637,59 @@ def entry_list(entries: list[dict], strings: dict, *, notes: bool = False) -> li
     return lines
 
 
+def group_by_pattern(catalog: list[dict]) -> dict[str, list[dict]]:
+    """Rows per pattern, each list already in display order."""
+    by_pattern: dict[str, list[dict]] = {key: [] for key in PATTERN_ORDER}
+    for entry in catalog:
+        for pattern in entry["patterns"]:
+            by_pattern[pattern].append(entry)
+    return {key: sorted(rows, key=sort_key) for key, rows in by_pattern.items()}
+
+
+def page_name(key: str, lang: str) -> str:
+    """File name of a pattern's page, mirroring README.md / README.zh-CN.md."""
+    return f"{key}.zh-CN.md" if lang == "zh" else f"{key}.md"
+
+
+def site_link(key: str, lang: str) -> str:
+    # The site reads ?p= for the pattern filter and ?lang= for the language, so a
+    # reader who came from the Chinese README lands on the Chinese site.
+    return f"{SITE}?p={key}&lang={lang}"
+
+
+def render_page(key: str, rows: list[dict], strings: dict) -> str:
+    """One pattern's complete list, as its own linkable page."""
+    lang = strings["lang_code"]
+    name = label(PATTERN_LABELS, key, lang)
+    readme = "README.zh-CN.md" if lang == "zh" else "README.md"
+    other = page_name(key, "en" if lang == "zh" else "zh")
+
+    out = [
+        f"# {name}",
+        "",
+        f"<sub>[awesome-jev](../../{readme}) · "
+        f"{strings['page_other_lang'].format(other=other)}</sub>",
+        "",
+        f"_{label(PATTERN_LABELS, key, lang, field=2)}_",
+        "",
+        strings["page_intro"].format(
+            n=len(rows),
+            readme=f"../../{readme}#{anchor(name)}",
+            site=site_link(key, lang),
+        ),
+        "",
+    ]
+    out.extend(entry_list(rows, strings))
+    out += ["---", "", strings["page_footer"], ""]
+    return "\n".join(out)
+
+
 def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) -> str:
     lang = strings["lang_code"]
     out: list[str] = []
     add = out.append
 
-    by_pattern: dict[str, list[dict]] = {key: [] for key in PATTERN_ORDER}
-    for entry in catalog:
-        for pattern in entry["patterns"]:
-            by_pattern[pattern].append(entry)
+    by_pattern = group_by_pattern(catalog)
     by_kind: dict[str, list[dict]] = {key: [] for key in KIND_ORDER}
     for entry in catalog:
         by_kind[entry["kind"]].append(entry)
@@ -768,15 +847,17 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         add("")
         add(f"_{blurb}_")
         add("")
-        if key in ALWAYS_COLLAPSE or len(rows) > COLLAPSE_OVER:
-            add("<details>")
-            add(f"<summary><b>{len(rows)}</b> {strings['collapse']}</summary>")
-            add("")
-            out.extend(entry_list(rows, strings))
-            add("</details>")
-            add("")
-        else:
-            out.extend(entry_list(rows, strings))
+        out.extend(entry_list(rows[:INLINE_PER_PATTERN], strings))
+        more = "pattern_more" if len(rows) > INLINE_PER_PATTERN else "pattern_all"
+        add(
+            strings[more].format(
+                shown=min(len(rows), INLINE_PER_PATTERN),
+                n=len(rows),
+                page=f"docs/by-pattern/{page_name(key, lang)}",
+                site=site_link(key, lang),
+            )
+        )
+        add("")
 
     # ---- by kind, as a table with its own bars ----
     add(f"## {strings['kinds_h']}")
@@ -879,6 +960,30 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     return "\n".join(out)
 
 
+def write_pattern_pages(catalog: list[dict]) -> list[pathlib.Path]:
+    """Write one page per live pattern per language, and remove any others.
+
+    docs/by-pattern/ belongs to this script and nothing else, so a page for a
+    pattern that no longer has entries is deleted rather than left behind. A
+    stale page would still be served, still be linked from somewhere, and still
+    look authoritative — the same failure as a hand-written count left at 148.
+    """
+    PAGES_DIR.mkdir(parents=True, exist_ok=True)
+    written = []
+    for key, rows in group_by_pattern(catalog).items():
+        if not rows:
+            continue
+        for strings in (EN, ZH):
+            path = PAGES_DIR / page_name(key, strings["lang_code"])
+            path.write_text(render_page(key, rows, strings))
+            written.append(path)
+    for path in PAGES_DIR.glob("*.md"):
+        if path not in written:
+            path.unlink()
+            print(f"removed {path.relative_to(ROOT)}: its pattern has no entries")
+    return written
+
+
 def main() -> int:
     catalog = json.loads(CATALOG.read_text())
     retired = json.loads(RETIRED.read_text())
@@ -887,12 +992,14 @@ def main() -> int:
     try:
         (ROOT / "README.md").write_text(render(catalog, retired, EN, today))
         (ROOT / "README.zh-CN.md").write_text(render(catalog, retired, ZH, today))
+        pages = write_pattern_pages(catalog)
     except KeyError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
     counts = Counter(pattern for entry in catalog for pattern in entry["patterns"])
     print(f"wrote README.md and README.zh-CN.md from {len(catalog)} entries")
+    print(f"wrote {len(pages)} pattern pages under {PAGES_DIR.relative_to(ROOT)}/")
     if counts:
         print(
             "  top patterns: " + ", ".join(f"{k} {v}" for k, v in counts.most_common(5))
