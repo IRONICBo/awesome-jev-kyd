@@ -53,37 +53,17 @@ PATTERN_LABELS = {
     p["key"]: (p["en"], p["zh"], p["blurb_en"], p["blurb_zh"]) for p in _PATTERNS
 }
 
-KIND_ORDER = [
-    "official-docs",
-    "sdk",
-    "integration",
-    "snippet",
-    "project",
-    "plugin",
-    "tutorial",
-    "case-study",
-    "benchmark",
-    "article",
-    "video",
-    "discussion",
-    "alternative",
-]
-
-FLAG_ORDER = [
-    "not-jev",
-    "shadow-mode-only",
-    "early-access-required",
-    "code-untested",
-    "single-commit",
-    "no-license",
-    "third-party-api-key",
-    "vendor-reported",
-    "unverified-claims",
-    "ai-generated",
-    "marketing",
-    "paywalled",
-    "archived",
-]
+# Kind and flag labels live in taxonomy.json, which the site also reads at
+# runtime. Two embedded copies had already drifted on three flag labels.
+_TAXONOMY = json.loads((ROOT / "taxonomy.json").read_text())
+KIND_ORDER = [k["key"] for k in _TAXONOMY["kinds"]]
+FLAG_ORDER = [f["key"] for f in _TAXONOMY["flags"]]
+KIND_LABELS = {
+    k["key"]: (k["en"], k["zh"], k["blurb_en"], k["blurb_zh"]) for k in _TAXONOMY["kinds"]
+}
+FLAG_LABELS = {
+    f["key"]: (f["en"], f["zh"], f["blurb_en"], f["blurb_zh"]) for f in _TAXONOMY["flags"]
+}
 
 # The handful of rows a newcomer should open, in reading order. Curated by hand
 # because "most starred" is not the same as "read this first" — the limitations
@@ -411,163 +391,6 @@ ZH = {
     "stat_retired": "已退休",
 }
 
-
-KIND_LABELS = {
-    "official-docs": (
-        "Official docs",
-        "官方文档",
-        "Vendor documentation, cookbooks and pattern pages.",
-        "厂商文档、cookbook 与模式页。",
-    ),
-    "sdk": (
-        "SDK",
-        "SDK",
-        "Client libraries, official and community.",
-        "客户端库，官方与社区。",
-    ),
-    "integration": (
-        "Integration",
-        "平台集成",
-        "A gateway, framework or platform route to the model.",
-        "接入模型的网关、框架或平台路径。",
-    ),
-    "snippet": (
-        "Snippet",
-        "代码片段",
-        "Small runnable examples in this repository.",
-        "本仓库内的小型可运行样例。",
-    ),
-    "project": (
-        "Project",
-        "开源项目",
-        "An application or library that calls Jev in anger.",
-        "真正在调用 Jev 的应用或库。",
-    ),
-    "plugin": (
-        "Plugin",
-        "插件",
-        "Editor, agent and MCP integrations you can install.",
-        "可安装的编辑器、智能体、MCP 集成。",
-    ),
-    "tutorial": (
-        "Tutorial",
-        "教程",
-        "Step-by-step material with code.",
-        "带代码的分步教学材料。",
-    ),
-    "case-study": (
-        "Case study",
-        "落地案例",
-        "An account of running it in production.",
-        "在生产环境跑它的实录。",
-    ),
-    "benchmark": (
-        "Benchmark",
-        "基准测试",
-        "Measurement. Check whether it is independent or vendor-reported.",
-        "实测。注意区分独立实测与厂商自报。",
-    ),
-    "article": (
-        "Article",
-        "文章",
-        "Explainers, analysis and launch coverage.",
-        "讲解、分析与发布报道。",
-    ),
-    "video": ("Video", "视频", "Walkthroughs and reviews.", "演示与评测。"),
-    "discussion": (
-        "Discussion",
-        "讨论",
-        "Threads worth reading, including the sceptical ones.",
-        "值得读的讨论，包括质疑的声音。",
-    ),
-    "alternative": (
-        "Jev-like alternative",
-        "Jev 替代实现",
-        "Independent reimplementations. These do NOT call Jev.",
-        "独立复现实现。它们**不**调用 Jev。",
-    ),
-}
-
-FLAG_LABELS = {
-    "not-jev": (
-        "not Jev",
-        "并非 Jev",
-        "Does not call Jev at all. A compatible API does not imply compatible calibration, so thresholds do not transfer.",
-        "完全不调用 Jev。协议兼容不等于校准兼容，所以阈值不能迁移。",
-    ),
-    "shadow-mode-only": (
-        "shadow mode",
-        "仅影子运行",
-        "Wired in but deliberately inert — nothing it returns reaches a user-visible decision.",
-        "接进去了但故意不生效 —— 它返回的东西不会进入任何对用户可见的决策。",
-    ),
-    "early-access-required": (
-        "early access",
-        "需早期访问",
-        "Needs waitlist access to run.",
-        "需要通过等候名单才能运行。",
-    ),
-    "code-untested": (
-        "code untested",
-        "代码未实测",
-        "The code was read, not executed.",
-        "代码是读过的，没有实际运行。",
-    ),
-    "single-commit": (
-        "one commit",
-        "仅一次提交",
-        "One commit, so maintenance is unlikely.",
-        "只有一次提交，基本不会有维护。",
-    ),
-    "no-license": (
-        "no licence",
-        "无许可证",
-        "No LICENSE file, whatever a README badge claims. A blocker for reuse.",
-        "没有 LICENSE 文件，不管 README 徽章怎么写。复用时这是硬障碍。",
-    ),
-    "third-party-api-key": (
-        "3rd-party key",
-        "需第三方密钥",
-        "Needs a key for a service other than TypeSafe.",
-        "需要 TypeSafe 之外某个服务的密钥。",
-    ),
-    "vendor-reported": (
-        "vendor numbers",
-        "厂商自报",
-        "Repeats the vendor's own benchmarks rather than an independent measurement.",
-        "照搬厂商自测数据，不是独立实测。",
-    ),
-    "unverified-claims": (
-        "unverified",
-        "宣称未核实",
-        "Makes measurement claims that could not be checked.",
-        "做出了无法核实的量化宣称。",
-    ),
-    "ai-generated": (
-        "AI-written",
-        "疑似 AI 生成",
-        "Reads as machine-generated content.",
-        "读起来像机器生成的内容。",
-    ),
-    "marketing": (
-        "marketing",
-        "营销内容",
-        "Published to sell something as much as to explain.",
-        "发布目的既是讲解也是推销。",
-    ),
-    "paywalled": (
-        "paywall",
-        "付费墙",
-        "Behind a paywall or a metered reader.",
-        "有付费墙或阅读次数限制。",
-    ),
-    "archived": (
-        "archived",
-        "已归档",
-        "Development has visibly stopped.",
-        "开发明显已经停止。",
-    ),
-}
 
 LANG_LABELS = {
     "python": "Py",

@@ -15,35 +15,31 @@ import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SOURCE = ROOT / "catalog.json"
-COPY = ROOT / "site" / "catalog.json"
-COMPAT_SOURCE = ROOT / "compat.json"
-COMPAT_COPY = ROOT / "site" / "compat.json"
+
+# Every file the site fetches at runtime. The Pages job copies each one in, so
+# each one needs the same guard: a stale or missing copy publishes a site that
+# disagrees with the repository it is built from. One list, so adding a fourth
+# runtime file cannot forget its check — which is how compat.json once went
+# unignored while catalog.json was.
+RUNTIME_FILES = ("catalog.json", "compat.json", "patterns.json", "taxonomy.json")
+
+# The site renders these fields unconditionally; a missing one is a blank cell.
+REQUIRED = ("slug", "title", "summary", "summary_zh", "url", "kind", "patterns")
 
 
 def main() -> int:
-    if not COPY.exists():
-        print(
-            "error: site/catalog.json is missing; the Pages job should copy it in",
-            file=sys.stderr,
-        )
-        return 1
+    for name in RUNTIME_FILES:
+        copy = ROOT / "site" / name
+        if not copy.exists():
+            print(f"error: site/{name} is missing; the Pages job should copy it in", file=sys.stderr)
+            return 1
+        if json.loads((ROOT / name).read_text()) != json.loads(copy.read_text()):
+            print(f"error: site/{name} differs from {name}", file=sys.stderr)
+            return 1
+        print(f"site/{name} matches {name}")
 
-    source = json.loads(SOURCE.read_text())
-    copy = json.loads(COPY.read_text())
-
-    if source != copy:
-        print(
-            f"error: site/catalog.json differs from catalog.json "
-            f"({len(copy)} vs {len(source)} entries)",
-            file=sys.stderr,
-        )
-        return 1
-
-    # The site renders these fields unconditionally; a missing one is a blank cell.
-    required = ("slug", "title", "summary", "summary_zh", "url", "kind", "patterns")
-    for entry in copy:
-        missing = [field for field in required if field not in entry]
+    for entry in json.loads((ROOT / "site" / "catalog.json").read_text()):
+        missing = [field for field in REQUIRED if field not in entry]
         if missing:
             print(
                 f"error: entry {entry.get('slug', '?')!r} is missing {missing} "
@@ -51,19 +47,6 @@ def main() -> int:
                 file=sys.stderr,
             )
             return 1
-
-    # The site's Compatibility view reads compat.json, so a stale copy there
-    # would publish a matrix that disagrees with docs/compatibility.md — the
-    # exact failure the generated-from-one-source design exists to prevent.
-    if not COMPAT_COPY.exists():
-        print("error: site/compat.json is missing; the Pages job should copy it in", file=sys.stderr)
-        return 1
-    if json.loads(COMPAT_SOURCE.read_text()) != json.loads(COMPAT_COPY.read_text()):
-        print("error: site/compat.json differs from compat.json", file=sys.stderr)
-        return 1
-
-    print(f"site/catalog.json matches catalog.json ({len(copy)} entries)")
-    print("site/compat.json matches compat.json")
     return 0
 
 

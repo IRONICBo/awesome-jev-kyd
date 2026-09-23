@@ -36,6 +36,7 @@ MCP server: https://github.com/kydlikebtc/awesome-jev/tree/main/mcp — query th
 Agent skill: https://github.com/kydlikebtc/awesome-jev/blob/main/SKILL.md — the facts generated Jev code most often gets wrong, and the design rules worth following.
 
 Decision taxonomy: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json
+Kind and flag labels (EN/中文): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/taxonomy.json
 Platform matrix: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json
 
 ## What is verified

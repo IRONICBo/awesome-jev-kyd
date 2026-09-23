@@ -296,6 +296,41 @@ def main() -> int:
                 "patterns.json",
                 f"patterns.json labels {key!r} but the schema does not allow it",
             )
+        # The site shows the short blurb, the README the long one. Both must
+        # exist, or the site falls back to a raw slug without complaint.
+        for p in json.loads(PATTERNS_FILE.read_text())["patterns"]:
+            for field in ("en", "zh", "blurb_en", "blurb_zh", "short_en", "short_zh"):
+                if not p.get(field):
+                    err("patterns.json", f"{p['key']!r} has no {field}")
+
+    # taxonomy.json holds kind and flag labels for both the README and the site.
+    # A key the schema allows but taxonomy.json lacks raises in build_readme but
+    # renders as a raw slug on the site — loud in one place, silent in the other.
+    taxonomy_file = ROOT / "taxonomy.json"
+    if taxonomy_file.exists():
+        labels = json.loads(taxonomy_file.read_text())
+        for group, enum in (
+            ("kinds", schema["properties"]["kind"]["enum"]),
+            ("flags", schema["properties"]["flags"]["items"]["enum"]),
+        ):
+            have = [item["key"] for item in labels[group]]
+            for key in sorted(set(enum) - set(have)):
+                err(
+                    "taxonomy.json",
+                    f"schema allows {group[:-1]} {key!r} but it has no label",
+                )
+            for key in sorted(set(have) - set(enum)):
+                err(
+                    "taxonomy.json",
+                    f"labels {group[:-1]} {key!r} but the schema does not allow it",
+                )
+            for item in labels[group]:
+                for field in ("en", "zh", "blurb_en", "blurb_zh"):
+                    if not item.get(field):
+                        err(
+                            "taxonomy.json",
+                            f"{group[:-1]} {item['key']!r} has no {field}",
+                        )
 
     for name, data in (("catalog.json", catalog), ("retired.json", retired)):
         if not isinstance(data, list):

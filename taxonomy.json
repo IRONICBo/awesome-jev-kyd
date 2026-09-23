@@ -1,0 +1,189 @@
+{
+  "_comment": "Kind and flag labels, one copy. Read by scripts/build_readme.py and by the site at runtime; lint.py asserts the keys match schema/entry.schema.json. Decision patterns live in patterns.json.",
+  "kinds": [
+    {
+      "key": "official-docs",
+      "en": "Official docs",
+      "zh": "官方文档",
+      "blurb_en": "Vendor documentation, cookbooks and pattern pages.",
+      "blurb_zh": "厂商文档、cookbook 与模式页。"
+    },
+    {
+      "key": "sdk",
+      "en": "SDK",
+      "zh": "SDK",
+      "blurb_en": "Client libraries, official and community.",
+      "blurb_zh": "客户端库，官方与社区。"
+    },
+    {
+      "key": "integration",
+      "en": "Integration",
+      "zh": "平台集成",
+      "blurb_en": "A gateway, framework or platform route to the model.",
+      "blurb_zh": "接入模型的网关、框架或平台路径。"
+    },
+    {
+      "key": "snippet",
+      "en": "Snippet",
+      "zh": "代码片段",
+      "blurb_en": "Small runnable examples in this repository.",
+      "blurb_zh": "本仓库内的小型可运行样例。"
+    },
+    {
+      "key": "project",
+      "en": "Project",
+      "zh": "开源项目",
+      "blurb_en": "An application or library that calls Jev in anger.",
+      "blurb_zh": "真正在调用 Jev 的应用或库。"
+    },
+    {
+      "key": "plugin",
+      "en": "Plugin",
+      "zh": "插件",
+      "blurb_en": "Editor, agent and MCP integrations you can install.",
+      "blurb_zh": "可安装的编辑器、智能体、MCP 集成。"
+    },
+    {
+      "key": "tutorial",
+      "en": "Tutorial",
+      "zh": "教程",
+      "blurb_en": "Step-by-step material with code.",
+      "blurb_zh": "带代码的分步教学材料。"
+    },
+    {
+      "key": "case-study",
+      "en": "Case study",
+      "zh": "落地案例",
+      "blurb_en": "An account of running it in production.",
+      "blurb_zh": "在生产环境跑它的实录。"
+    },
+    {
+      "key": "benchmark",
+      "en": "Benchmark",
+      "zh": "基准测试",
+      "blurb_en": "Measurement. Check whether it is independent or vendor-reported.",
+      "blurb_zh": "实测。注意区分独立实测与厂商自报。"
+    },
+    {
+      "key": "article",
+      "en": "Article",
+      "zh": "文章",
+      "blurb_en": "Explainers, analysis and launch coverage.",
+      "blurb_zh": "讲解、分析与发布报道。"
+    },
+    {
+      "key": "video",
+      "en": "Video",
+      "zh": "视频",
+      "blurb_en": "Walkthroughs and reviews.",
+      "blurb_zh": "演示与评测。"
+    },
+    {
+      "key": "discussion",
+      "en": "Discussion",
+      "zh": "讨论",
+      "blurb_en": "Threads worth reading, including the sceptical ones.",
+      "blurb_zh": "值得读的讨论，包括质疑的声音。"
+    },
+    {
+      "key": "alternative",
+      "en": "Jev-like alternative",
+      "zh": "Jev 替代实现",
+      "blurb_en": "Independent reimplementations. These do NOT call Jev.",
+      "blurb_zh": "独立复现实现。它们**不**调用 Jev。"
+    }
+  ],
+  "flags": [
+    {
+      "key": "not-jev",
+      "en": "not Jev itself",
+      "zh": "并非 Jev 本身",
+      "blurb_en": "Does not call Jev at all. A compatible API does not imply compatible calibration, so thresholds do not transfer.",
+      "blurb_zh": "完全不调用 Jev。协议兼容不等于校准兼容，所以阈值不能迁移。"
+    },
+    {
+      "key": "shadow-mode-only",
+      "en": "shadow mode",
+      "zh": "仅影子运行",
+      "blurb_en": "Wired in but deliberately inert — nothing it returns reaches a user-visible decision.",
+      "blurb_zh": "接进去了但故意不生效 —— 它返回的东西不会进入任何对用户可见的决策。"
+    },
+    {
+      "key": "early-access-required",
+      "en": "early access",
+      "zh": "需早期访问",
+      "blurb_en": "Needs waitlist access to run.",
+      "blurb_zh": "需要通过等候名单才能运行。"
+    },
+    {
+      "key": "code-untested",
+      "en": "code untested",
+      "zh": "代码未实测",
+      "blurb_en": "The code was read, not executed.",
+      "blurb_zh": "代码是读过的，没有实际运行。"
+    },
+    {
+      "key": "single-commit",
+      "en": "one commit",
+      "zh": "仅一次提交",
+      "blurb_en": "One commit, so maintenance is unlikely.",
+      "blurb_zh": "只有一次提交，基本不会有维护。"
+    },
+    {
+      "key": "no-license",
+      "en": "no licence",
+      "zh": "无许可证",
+      "blurb_en": "No LICENSE file, whatever a README badge claims. A blocker for reuse.",
+      "blurb_zh": "没有 LICENSE 文件，不管 README 徽章怎么写。复用时这是硬障碍。"
+    },
+    {
+      "key": "third-party-api-key",
+      "en": "3rd-party key",
+      "zh": "需第三方密钥",
+      "blurb_en": "Needs a key for a service other than TypeSafe.",
+      "blurb_zh": "需要 TypeSafe 之外某个服务的密钥。"
+    },
+    {
+      "key": "vendor-reported",
+      "en": "vendor numbers",
+      "zh": "厂商自报数据",
+      "blurb_en": "Repeats the vendor's own benchmarks rather than an independent measurement.",
+      "blurb_zh": "照搬厂商自测数据，不是独立实测。"
+    },
+    {
+      "key": "unverified-claims",
+      "en": "unverified claims",
+      "zh": "宣称未核实",
+      "blurb_en": "Makes measurement claims that could not be checked.",
+      "blurb_zh": "做出了无法核实的量化宣称。"
+    },
+    {
+      "key": "ai-generated",
+      "en": "AI-written",
+      "zh": "疑似 AI 生成",
+      "blurb_en": "Reads as machine-generated content.",
+      "blurb_zh": "读起来像机器生成的内容。"
+    },
+    {
+      "key": "marketing",
+      "en": "marketing",
+      "zh": "营销内容",
+      "blurb_en": "Published to sell something as much as to explain.",
+      "blurb_zh": "发布目的既是讲解也是推销。"
+    },
+    {
+      "key": "paywalled",
+      "en": "paywall",
+      "zh": "付费墙",
+      "blurb_en": "Behind a paywall or a metered reader.",
+      "blurb_zh": "有付费墙或阅读次数限制。"
+    },
+    {
+      "key": "archived",
+      "en": "archived",
+      "zh": "已归档",
+      "blurb_en": "Development has visibly stopped.",
+      "blurb_zh": "开发明显已经停止。"
+    }
+  ]
+}

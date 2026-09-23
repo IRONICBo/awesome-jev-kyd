@@ -14,6 +14,8 @@ on:
       - "site/**"
       - "catalog.json"
       - "compat.json"
+      - "patterns.json"
+      - "taxonomy.json"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -39,8 +41,9 @@ jobs:
 
       - name: Assemble the site
         run: |
-          cp catalog.json site/catalog.json
-          cp compat.json site/compat.json
+          # Every file the site fetches at runtime; check_site_data.py holds the
+          # same list and fails the deploy if a copy is missing or differs.
+          cp catalog.json compat.json patterns.json taxonomy.json site/
           # Pages serves the artifact as-is; .nojekyll stops Jekyll touching it.
           touch site/.nojekyll
           ls -la site/
