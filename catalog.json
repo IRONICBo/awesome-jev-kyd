@@ -35259,5 +35259,98 @@
     ],
     "checked": "2026-09-23",
     "link_status": 200
+  },
+  {
+    "slug": "jevsearch",
+    "title": "jevsearch",
+    "summary": "A shadcn/ui ⌘K site-search block: a local keyword pass shows hits at once, then the top 20 go to Jev in one request (a Noul per candidate, a Choice for the best page, a Noul for whether any page answers) and are re-ordered or dropped; keyword order stands if TypeSafe is slow or down.",
+    "summary_zh": "shadcn/ui 的 ⌘K 站内搜索组件：先用本地关键词匹配立即出结果，再把前 20 条一次性发给 Jev（每个候选一个 Noul、一个选出最佳页面的 Choice、一个判断是否有页面能回答的 Noul），据此重排或剔除结果；TypeSafe 变慢或不可用时保留关键词排序。",
+    "url": "https://github.com/kylemclaren/jevsearch",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "noul",
+      "choice"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "kylemclaren",
+      "url": "https://github.com/kylemclaren"
+    },
+    "has_code": true,
+    "stars": 2,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/lib/jev-search-server.ts",
+      "matched": [
+        "api.typesafe.ai/v1/systemone",
+        "type: \"noul\"",
+        "type: \"choice\""
+      ],
+      "read_on": "2026-09-23"
+    },
+    "first_seen": "2026-09-23",
+    "flags": [
+      "unverified-claims"
+    ],
+    "notes": "The README's Hit@1 figures (83% vs 41% for its keyword pass alone, 41 labelled queries over the TypeSafe docs) come from the author's own benchmark in bench/results.json, not an independent run.",
+    "notes_zh": "README 中的 Hit@1 数字（在 TypeSafe 文档上 41 条标注查询，83% 对比纯关键词的 41%）来自作者自己在 bench/results.json 里的评测，并非独立复现。",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
+    "slug": "jevpdf",
+    "title": "JevPDF",
+    "summary": "Searches a PDF by meaning. pdf.js extracts each page's lines in the browser and Jev answers one Noul per line (\"does this line answer the query?\"), at most 16 lines per request with the page text as shared state. Matching lines are highlighted in probability order; only text is sent to Jev.",
+    "summary_zh": "按语义搜索 PDF：pdf.js 在浏览器里逐页提取文本行，Jev 对每一行回答一个 Noul（“这一行是否回答了查询？”），每批最多 16 行、共享整页文本作为 state；概率不低于 0.55 的行被高亮并按概率排序。只发送文本，API key 由服务端代理持有。",
+    "url": "https://github.com/kylemclaren/jevpdf",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "kylemclaren",
+      "url": "https://github.com/kylemclaren"
+    },
+    "has_code": true,
+    "stars": 1,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "src/lib/jev-config.ts",
+      "matched": [
+        "type: \"noul\" as const",
+        "HIT_THRESHOLD"
+      ],
+      "read_on": "2026-09-23"
+    },
+    "first_seen": "2026-09-23",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0"
   }
 ]
