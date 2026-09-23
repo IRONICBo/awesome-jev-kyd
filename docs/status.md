@@ -17,7 +17,7 @@ is the point of dating it.
 | Link answered 2xx on the last sweep (2026-09-23) | 802 |
 | Rows citing a call site CI re-reads weekly | 723 |
 | Patterns covered | 17 of 18 |
-| Chinese summaries hand-written | 186 of 807 |
+| Chinese summaries hand-written | 184 of 807 |
 | Retired links | 0 |
 <!-- shape:end -->
 
