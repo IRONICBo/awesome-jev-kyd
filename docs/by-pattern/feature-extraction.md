@@ -10,16 +10,16 @@ Every catalogued example of this decision — 7 of them, official first, then ro
   <sub>`Official docs` · `Py`</sub>
 
 - **[nimble](https://github.com/bespokelabsai/nimble)** — Local typed decisions, contrastive data curation, and model evaluation.
-  <sub>`Project` · ★1,638 · bespokelabsai · `Py` · ⚠ `no licence`</sub>
+  <sub>`Project` · ★1,664 · bespokelabsai · `Py` · ⚠ `no licence`</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — Builds calibrated decision functions from human feedback.
-  <sub>`Project` · ★276 · sutro-sh · `Py`</sub>
+  <sub>`Project` · ★281 · sutro-sh · `Py`</sub>
 
 - **[Prism](https://github.com/irfndi/prism-liquidity-agent)** — Does not place orders. It judges market conditions such as toxic flow and mean reversion, and hands the assessment to the existing strategy.
-  <sub>`Project` · ★79 · `TS` · `choice` · `score`</sub>
+  <sub>`Project` · ★85 · `TS` · `choice` · `score`</sub>
 
 - **[jev-curate](https://github.com/AkashPriyadarshii/jev-curate)** — Curates training data: JSONL and Parquet rows are judged on quality, relevance and risk before deciding what reaches downstream training.
-  <sub>`Project` · ★31 · `Rs` · `score` · `noul`</sub>
+  <sub>`Project` · ★34 · `Rs` · `score` · `noul`</sub>
 
 - **[tiershift](https://github.com/iamvatsalpatel/tiershift)** — Shift every LLM call to the cheapest model that can handle it. Routing decided by TypeSafe Jev in ~180 ms. No training data. Policy in plain YAML. TypeScript and Python.
   <sub>`Project` · ★3 · iamvatsalpatel · `TS`</sub>

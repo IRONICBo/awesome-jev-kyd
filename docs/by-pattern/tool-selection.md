@@ -16,34 +16,37 @@ Every catalogued example of this decision — 147 of them, official first, then 
   <sub>`Official docs` · `Py`</sub>
 
 - **[claude-code-templates: three Jev plugins](https://github.com/davila7/claude-code-templates)** — Three independently installable Claude Code plugins — guardrails, model router and skill suggestion — each with its own hooks and tests.
-  <sub>`Plugin` · ★31,184 · `Py` · `TS` · `choice` · `score` · `noul`</sub>
+  <sub>`Plugin` · ★31,297 · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[Composio TypeSafe provider](https://github.com/ComposioHQ/composio/tree/next/python/providers/typesafe)** — Compiles a tool catalogue into questions and reconstructs tool calls from the answers, with typed errors for abstention and confirmation-required cases.
-  <sub>`Project` · ★30,289 · `Py` · `choice`</sub>
+  <sub>`Project` · ★30,294 · `Py` · `choice`</sub>
 
 - **[FastMCP jev_search transform](https://github.com/PrefectHQ/fastmcp/blob/main/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py)** — Two-stage MCP tool search: a wide Choice coarse-ranks the whole catalogue, then a shortlist gets full descriptions plus one Noul each to decide whether it does the job at all.
-  <sub>`Project` · ★27,873 · `Py` · `choice` · `noul`</sub>
+  <sub>`Project` · ★27,878 · `Py` · `choice` · `noul`</sub>
 
 - **[Cua driver: jev-use example](https://github.com/trycua/cua/tree/main/libs/cua-driver/examples/jev-use)** — Computer-use action selection in Python and TypeScript: Jev picks the next browser action from an immutable candidate set, with reobserve and abstain as reserved options.
-  <sub>`Project` · ★26,009 · `Py` · `TS` · `choice`</sub>
+  <sub>`Project` · ★26,050 · `Py` · `TS` · `choice`</sub>
 
 - **[jev-ultrafast](https://github.com/browser-use/jev-ultrafast)** — A high-speed browser agent from Browser Use: Jev decides the operation and which element to act on, and a small LLM is called only when text must be typed.
-  <sub>`Project` · ★18,256 · Browser Use · `Py` · `choice` · ⚠ `vendor numbers`</sub>
+  <sub>`Project` · ★18,685 · Browser Use · `Py` · `choice` · ⚠ `vendor numbers`</sub>
 
 - **[json-render](https://github.com/vercel-labs/json-render)** — Vercel Labs' generative UI framework. In its Jev experiment the model does not write JSON token by token — it only picks components, props and layout.
-  <sub>`Project` · ★18,113 · Vercel Labs · `TS` · `choice`</sub>
+  <sub>`Project` · ★18,141 · Vercel Labs · `TS` · `choice`</sub>
 
 - **[DeepChat: agent tool-permission review](https://github.com/ThinkInAIXYZ/deepchat)** — Reviews each tool call on three axes — risk level, whether the user authorised it, and an explicit prompt-injection pressure check.
   <sub>`Project` · ★6,340 · `TS` · `choice` · `noul`</sub>
 
 - **[jev-trader](https://github.com/jarrodwatts/jev-trader)** — High-frequency market making on a test network, deciding buy or sell from spread and trade direction.
-  <sub>`Project` · ★2,082 · `TS` · `choice` · ⚠ `unverified claims`</sub>
+  <sub>`Project` · ★2,128 · `TS` · `choice` · ⚠ `unverified claims`</sub>
 
 - **[agent-desktop](https://github.com/lahfir/agent-desktop)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.
-  <sub>`Project` · ★1,524 · `Rs` · `choice`</sub>
+  <sub>`Project` · ★1,557 · `Rs` · `choice`</sub>
 
 - **[typesafe-computer-use](https://github.com/awlevin/typesafe-computer-use)** — Computer use on macOS: OCR the screen, classify the next action, click. Costs a fraction of a cent per step.
-  <sub>`Project` · ★846 · awlevin · `Py`</sub>
+  <sub>`Project` · ★861 · awlevin · `Py`</sub>
+
+- **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — Nine agent skills plus a CLI covering model routing, memory filtering, turn retention, one-of-many skill selection and next-action choice.
+  <sub>`Plugin` · ★673 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[tiptour-macos](https://github.com/milind-soni/tiptour-macos)** — Open-Source fast local computer use
   <sub>`Project` · ★654 · milind-soni · `Swift`</sub>
@@ -51,83 +54,80 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[agent](https://github.com/AgentiLoop/Agent)** — AgentiLoop Agent! An Autonomous Agentic Agent for Mac, and exclusive Apple only harnesss. Supports automation, scripting, coding, build anything and more. Powered by 21 LLM providers across local and cloud platforms. Dark or Light Mode UI.
   <sub>`Integration` · ★629 · agentiloop · `Swift`</sub>
 
-- **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — Nine agent skills plus a CLI covering model routing, memory filtering, turn retention, one-of-many skill selection and next-action choice.
-  <sub>`Plugin` · ★604 · `Py` · `choice` · `score` · `noul`</sub>
-
 - **[Jev-cu](https://github.com/Sac-Y/Jev-cu)** — A computer-use agent that asks which accessibility-tree element to act on, plus a separate noul for whether the action needs explicit user confirmation.
-  <sub>`Project` · ★582 · `JS` · `choice` · `noul`</sub>
+  <sub>`Project` · ★585 · `JS` · `choice` · `noul`</sub>
 
 - **[omg.dev](https://github.com/BennyKok/omg.dev)** — omg.dev — Remote control for claude, codex, cursor, opencode, pi, grok, jcocde with mobile client
   <sub>`Plugin` · ★535 · bennykok · `TS`</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — A software-factory foreman that uses Jev to decide what an agent pipeline should do next.
-  <sub>`Project` · ★518 · thruwire · `Py`</sub>
+  <sub>`Project` · ★525 · thruwire · `Py`</sub>
 
 - **[jev-browser-use](https://github.com/wy-coliney/jev-browser-use)** — Splits the loop: Jev clicks, a reasoning model thinks and verifies.
-  <sub>`Project` · ★389 · wy-coliney · `JS`</sub>
+  <sub>`Project` · ★415 · wy-coliney · `JS`</sub>
 
 - **[mobile-jev](https://github.com/droidrun/mobile-jev)** — Mobile computer use: Jev picks the next on-screen action on a phone.
-  <sub>`Project` · ★356 · droidrun · `JS`</sub>
+  <sub>`Project` · ★362 · droidrun · `JS`</sub>
 
 - **[typesafe-mario](https://github.com/fhshaik/typesafe-mario)** — Plays Super Mario Bros. from structured emulator RAM rather than screenshots, deciding run, jump and dodge.
-  <sub>`Project` · ★356 · `Py` · `choice` · `score` · `noul` · ⚠ `code untested` `one commit` `no licence`</sub>
+  <sub>`Project` · ★361 · `Py` · `choice` · `score` · `noul` · ⚠ `code untested` `one commit` `no licence`</sub>
 
 - **[wrongstack](https://github.com/WrongStack/WrongStack)** — An AI coding agent that reads your code, edits files, runs commands, and reasons through bugs — across a terminal REPL, a full-screen TUI, and a browser UI, while you keep your hand on every permission.
-  <sub>`Project` · ★332 · wrongstack · `TS`</sub>
+  <sub>`Project` · ★334 · wrongstack · `TS`</sub>
 
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — Voice-driven browser control where target criteria are rebuilt per request from the live element list, always including a none option.
-  <sub>`Project` · ★247 · `JS` · `choice` · `score` · `noul`</sub>
+  <sub>`Project` · ★253 · `JS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-browser](https://github.com/jkudish/jev-browser)** — Browser automation where Jev chooses the next action.
-  <sub>`Project` · ★240 · jkudish · `TS`</sub>
+  <sub>`Project` · ★245 · jkudish · `TS`</sub>
 
 - **[quackd](https://github.com/rokbenko/quackd)** — One CLI for all your robots. Connect them, command them, and let them work together, each with an LLM for a brain, Jev for cheaper steps. Microduck, Open Duck Mini, LeRobot, XLeRobot, AlohaMini, ToddlerBot or any ROS base. Claude, OpenAI, Gemini, Grok, or local via Ollama or vLLM. Simulator, .d
   <sub>`Plugin` · ★229 · rokbenko · `Py`</sub>
 
 - **[embodied-jev](https://github.com/FBddcz/embodied-jev)** — EmbodiedJev: MuJoCo robot decision workbench with MiniCPM5-2B, Jev and compatible model APIs
-  <sub>`Project` · ★191 · fbddcz · `Py`</sub>
+  <sub>`Project` · ★210 · fbddcz · `Py`</sub>
 
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — An AI video editor routing an editing instruction to an operation, a target clip and a track, with a keyword router as fallback.
-  <sub>`Project` · ★190 · `TS` · `choice` · `noul` · ⚠ `no licence`</sub>
+  <sub>`Project` · ★191 · `TS` · `choice` · `noul` · ⚠ `no licence`</sub>
 
 - **[jev-gateway](https://github.com/vinilana/jev-gateway)** — An easy way to use jev with your coding agent for tool calling reasoning
-  <sub>`Project` · ★180 · vinilana · `TS`</sub>
+  <sub>`Project` · ★182 · vinilana · `TS`</sub>
+
+- **[jevpilot](https://github.com/standardagents/jevpilot)** — A driving simulator autopilot asking two choices per tick, which short-circuits single-option questions locally instead of paying to send them.
+  <sub>`Project` · ★179 · `JS` · `choice` · ⚠ `no licence`</sub>
 
 - **[interlinked-cli](https://github.com/QuentinCody/interlinked-cli)** — The harness for your harness. Local hooks, taste enforcement, and developer observability for AI coding agents (Claude Code, Codex, Cursor, Copilot CLI).
   <sub>`Plugin` · ★178 · quentincody · `TS`</sub>
 
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — A router for models, tools and subagents.
-  <sub>`Project` · ★174 · billionsbobby · `TS`</sub>
-
-- **[jevpilot](https://github.com/standardagents/jevpilot)** — A driving simulator autopilot asking two choices per tick, which short-circuits single-option questions locally instead of paying to send them.
-  <sub>`Project` · ★170 · `JS` · `choice` · ⚠ `no licence`</sub>
+  <sub>`Project` · ★178 · billionsbobby · `TS`</sub>
 
 - **[jevharness](https://github.com/TianyuCodings/JevHarness)** — LLM-authored task-specific Jev harnesses with optional full-trajectory reward reflection and GEPA evolution.
-  <sub>`Project` · ★145 · tianyucodings · `Py` · ⚠ `no licence`</sub>
+  <sub>`Project` · ★155 · tianyucodings · `Py` · ⚠ `no licence`</sub>
+
+- **[jev-drone](https://github.com/RomanSlack/jev-drone)** — Camera-only simulated drone where Jev makes tactical judgements at a low rate while stabilisation and safety reflexes stay in ordinary fast code.
+  <sub>`Project` · ★145 · `Py` · `choice` · `score` · `noul` · ⚠ `unverified claims`</sub>
+
+- **[macbrow](https://github.com/timpratim/macbrow)** — Hands free Mac and Browser control powered by Gradium
+  <sub>`Project` · ★141 · timpratim · `Py`</sub>
 
 - **[pi-jev](https://github.com/y0usaf/pi-jev)** — A decision layer for a coding agent: a measured tool-call gate plus a typed ask for calibrated answers.
   <sub>`Plugin` · ★140 · y0usaf · `TS`</sub>
 
-- **[macbrow](https://github.com/timpratim/macbrow)** — Hands free Mac and Browser control powered by Gradium
-  <sub>`Project` · ★139 · timpratim · `Py`</sub>
-
-- **[jev-drone](https://github.com/RomanSlack/jev-drone)** — Camera-only simulated drone where Jev makes tactical judgements at a low rate while stabilisation and safety reflexes stay in ordinary fast code.
-  <sub>`Project` · ★136 · `Py` · `choice` · `score` · `noul` · ⚠ `unverified claims`</sub>
-
 - **[jev-dsh-decision](https://github.com/Devin-AXIS/jev-dsh-decision)** — Jev DSH 决策引擎｜面向 Agent Harness 的结构化决策插件。原生支持 DeepSeek Harness，通过 iPolloWork 支持 OpenCode、Codex Harness。
-  <sub>`Plugin` · ★116 · devin-axis · `JS` · ⚠ `no licence`</sub>
+  <sub>`Plugin` · ★129 · devin-axis · `JS` · ⚠ `no licence`</sub>
+
+- **[systemoneharness](https://github.com/HarnessRouter/SystemOneHarness)** — The system one Harness for system one models
+  <sub>`Project` · ★128 · harnessrouter · `Py`</sub>
 
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — Ranks an agent's skills for the next step using live session context, with Claude Code hooks.
   <sub>`Plugin` · ★114 · dicklesworthstone · `Rs`</sub>
 
-- **[systemoneharness](https://github.com/HarnessRouter/SystemOneHarness)** — The system one Harness for system one models
-  <sub>`Project` · ★102 · harnessrouter · `Py`</sub>
-
 - **[neo4jev](https://github.com/jexp/neo4jev)** — Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.
-  <sub>`Project` · ★100 · `Py` · `choice`</sub>
+  <sub>`Project` · ★107 · `Py` · `choice`</sub>
 
 - **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)** — A fast browser agent: Jev picks each action from what is on the page, an LLM reads and plans, and every claim in an answer cites a quote from the page.
-  <sub>`Project` · ★97 · agent-labs-dev · `Py`</sub>
+  <sub>`Project` · ★98 · agent-labs-dev · `Py`</sub>
 
 - **[jev-chat: a tool-calling chatbot with no LLM](https://github.com/w3cj/jev-chat)** — A chat bot that does tool calling with no language model anywhere: one request asks the request kind, the tool, and every tool's arguments at once.
   <sub>`Project` · ★91 · `TS` · `choice` · `noul`</sub>
@@ -139,25 +139,28 @@ Every catalogued example of this decision — 147 of them, official first, then 
   <sub>`Plugin` · ★63 · yikangy873-gif · `JS`</sub>
 
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — Fine-grained robot control with Jev, physics previews, and configurable LIBERO tasks.
-  <sub>`Project` · ★57 · dimweaker · `Py`</sub>
-
-- **[robojev](https://github.com/lykycy123/RoboJEV)** — Two-stage JEV control of a Franka Panda in MuJoCo
-  <sub>`Project` · ★35 · lykycy123 · `Py`</sub>
+  <sub>`Project` · ★61 · dimweaker · `Py`</sub>
 
 - **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Jev-Mem: System-One Controlled Agentic Memory
-  <sub>`Project` · ★33 · libingzheren · `Py`</sub>
+  <sub>`Project` · ★39 · libingzheren · `Py`</sub>
+
+- **[robojev](https://github.com/lykycy123/RoboJEV)** — Two-stage JEV control of a Franka Panda in MuJoCo
+  <sub>`Project` · ★36 · lykycy123 · `Py`</sub>
 
 - **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — Data extraction for systematic reviews, quoted from the papers. Ask a trial report and its supplements your extraction form or a RoB 2, ROBINS-I, QUADAS-2 or TIDieR template; Jev points at the lines, every answer is a verbatim quote with its page, you check it and export the table. Files stay i
   <sub>`Project` · ★32 · choxos · `JS`</sub>
 
 - **[jev-guard](https://github.com/leepokai/jev-guard)** — Auto mode for every coding agent, built on Jev: risk-scores every tool call with session context (deny / ask / allow), flags prompt injection in results, checks skills and plugins. Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, ACP.
-  <sub>`Plugin` · ★26 · leepokai · `JS`</sub>
+  <sub>`Plugin` · ★27 · leepokai · `JS`</sub>
+
+- **[jevgpt](https://github.com/Bewinxed/jevgpt)** — A chatbot built on a model that cannot generate text (TypeSafe AI's Jev, driven autoregressively)
+  <sub>`Project` · ★26 · bewinxed · `TS`</sub>
 
 - **[smartmoney-cub](https://github.com/myc0576/SmartMoney-Cub)** — Read-only trading journal and review harness: Jev typed judgments, agent integration, and a reproducible finance benchmark. No orders, no advice.
   <sub>`Benchmark` · ★26 · myc0576 · `Py`</sub>
 
-- **[jevgpt](https://github.com/Bewinxed/jevgpt)** — A chatbot built on a model that cannot generate text (TypeSafe AI's Jev, driven autoregressively)
-  <sub>`Project` · ★25 · bewinxed · `TS`</sub>
+- **[OneVOneJev](https://github.com/emrickgarrett/OneVOneJev)** — A browser 1v1 FPS where every decision tick judges movement, view angle, aim, fire and jump.
+  <sub>`Project` · ★23 · `TS` · `choice` · ⚠ `code untested` `no licence`</sub>
 
 - **[pi-jev-auto-mode](https://github.com/jomatsu/pi-jev-auto-mode)** — Jev (TypeSafe System One) backed auto mode for the Pi coding agent: semantically auto-approves bash, write, and edit tool calls and fails closed when a decision cannot be made.
   <sub>`Project` · ★23 · jomatsu · `TS`</sub>
@@ -165,8 +168,11 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[tsai-sc](https://github.com/phyous/tsai-sc)** — Drives a 1990s real-time strategy game through keyboard and mouse, recording the action probabilities.
   <sub>`Project` · ★23 · phyous · `Py`</sub>
 
-- **[OneVOneJev](https://github.com/emrickgarrett/OneVOneJev)** — A browser 1v1 FPS where every decision tick judges movement, view angle, aim, fire and jump.
-  <sub>`Project` · ★22 · `TS` · `choice` · ⚠ `code untested` `no licence`</sub>
+- **[jev-use](https://github.com/shitianfang/jev-use)** — An agent plugin that hands steps needing no text output to Jev instead of the main model.
+  <sub>`Plugin` · ★22 · shitianfang · `JS`</sub>
+
+- **[jev-for-chrome](https://github.com/chy4pro/jev-for-chrome)** — Jev for Chrome: drives the tab you are looking at with TypeSafe Jev, a sub-second decision model. Community port of browser-use/jev-ultrafast, not affiliated with TypeSafe.
+  <sub>`Project` · ★21 · chy4pro · `TS`</sub>
 
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — Screens an AI agent's tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client's built-in tools.
   <sub>`Plugin` · ★20 · agent-chaperone · `TS`</sub>
@@ -177,56 +183,50 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Open-source macOS AI computer use and native GUI automation on Apple silicon. Jev + OmniParser CoreML + Apple Vision OCR. Bring your own OpenRouter, Vercel AI Gateway, or TypesafeAI token.
   <sub>`Project` · ★20 · jcpsimmons · `JS`</sub>
 
-- **[jev-for-chrome](https://github.com/chy4pro/jev-for-chrome)** — Jev for Chrome: drives the tab you are looking at with TypeSafe Jev, a sub-second decision model. Community port of browser-use/jev-ultrafast, not affiliated with TypeSafe.
-  <sub>`Project` · ★19 · chy4pro · `TS`</sub>
-
-- **[jev-use](https://github.com/shitianfang/jev-use)** — An agent plugin that hands steps needing no text output to Jev instead of the main model.
-  <sub>`Plugin` · ★19 · shitianfang · `JS`</sub>
-
 - **[jcr](https://github.com/NiazMorshed2007/jcr)** — A Jev-powered resolver for agent harnesses to find deterministic commands and their context in a nested capability tree.
   <sub>`Project` · ★18 · niazmorshed2007 · `JS`</sub>
 
 - **[jevalyn](https://github.com/Ray-Hughes/jevalyn)** — The decision layer for your Rails app. A Rails-native wrapper around TypeSafe's Jev System One API: typed, calibrated decisions in your control flow.
   <sub>`Project` · ★18 · ray-hughes · `Rb`</sub>
 
+- **[jev-reflex-autonomy-lab](https://github.com/khordoo/jev-reflex-autonomy-lab)** — Multi-drone autonomy lab demonstrating TypeSafe Jev reflex decisions with optional System 2 strategy guidance.
+  <sub>`Project` · ★17 · khordoo · `TS` · ⚠ `no licence`</sub>
+
 - **[live-jev](https://github.com/vinilana/live-jev)** — 2D autonomous car simulation in the browser, driven by TypeSafe's Jev decision model
   <sub>`Project` · ★17 · vinilana · `JS` · ⚠ `no licence`</sub>
 
-- **[jev-reflex-autonomy-lab](https://github.com/khordoo/jev-reflex-autonomy-lab)** — Multi-drone autonomy lab demonstrating TypeSafe Jev reflex decisions with optional System 2 strategy guidance.
-  <sub>`Project` · ★16 · khordoo · `TS` · ⚠ `no licence`</sub>
+- **[evoke](https://github.com/evoke-build/evoke)** — Software, by reflex. A sentence becomes a call of a small program, chosen by Jev, TypeSafe AI's classifier, and run only when it is sure enough. Reflexes are recipes anyone can write, share and improve. A CLI you talk to, a package manager for reflexes from git, and a TypeScript SDK.
+  <sub>`Project` · ★14 · evoke-build · `Rs`</sub>
 
 - **[jev-mail-classifier](https://github.com/parth-kp/jev-mail-classifier)** — Classify your inbox with Jev (TypeSafe's System One model) — tag, move, flag, and notify, all config-driven.
   <sub>`Project` · ★14 · parth-kp · `Py`</sub>
 
 - **[azdaja](https://github.com/kubet/azdaja)** — Minimal harness-agnostic recursive language model layer — one binary, Python + llm()
-  <sub>`Project` · ★12 · kubet · `Py`</sub>
+  <sub>`Project` · ★13 · kubet · `Py`</sub>
 
 - **[discern](https://github.com/doeixd/discern)** — Craft Type-Safe Uncertainty-aware semantic pattern matching, control flow, and smart procedures for Effect DecisionModel and Jev
   <sub>`Project` · ★12 · doeixd · `TS`</sub>
 
-- **[evoke](https://github.com/evoke-build/evoke)** — Software, by reflex. A sentence becomes a call of a small program, chosen by Jev, TypeSafe AI's classifier, and run only when it is sure enough. Reflexes are recipes anyone can write, share and improve. A CLI you talk to, a package manager for reflexes from git, and a TypeScript SDK.
-  <sub>`Project` · ★11 · evoke-build · `Rs`</sub>
+- **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Decision harness for TypeSafe Jev — confidence gates, shadow mode, recipes, and evals. Claude CLI 48.9s → Jev 1.3s on the same row-filter job.
+  <sub>`Project` · ★11 · antoniocoppe · `TS`</sub>
 
 - **[jev-askable-arm](https://github.com/TarunTomar122/jev-askable-arm)** — Zero-shot English goals on a sim Franka. Jev chains hardcoded primitives.
   <sub>`Project` · ★10 · taruntomar122 · `Py`</sub>
 
-- **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Decision harness for TypeSafe Jev — confidence gates, shadow mode, recipes, and evals. Claude CLI 48.9s → Jev 1.3s on the same row-filter job.
-  <sub>`Project` · ★10 · antoniocoppe · `TS`</sub>
+- **[jev-autopilot](https://github.com/arielweinberger/jev-autopilot)** — This demo uses Jev from TypeSafe AI to autonomously fly a drone in a random city from point A to point B, avoiding obstacles along the way. A trip costs $0.01.
+  <sub>`Project` · ★10 · arielweinberger · `TS` · ⚠ `no licence`</sub>
+
+- **[super-jev](https://github.com/Kevthetech143/super-jev)** — A small, extensible decision-to-action harness for TypeSafe Jev
+  <sub>`Project` · ★10 · kevthetech143 · `Py`</sub>
 
 - **[hearth-jev-rental-search](https://github.com/Nancy-Chauhan/hearth-jev-rental-search)** — Autonomous multi-source rental search powered by TypeSafe Jev
   <sub>`Project` · ★9 · nancy-chauhan · `JS`</sub>
 
-- **[jev-autopilot](https://github.com/arielweinberger/jev-autopilot)** — This demo uses Jev from TypeSafe AI to autonomously fly a drone in a random city from point A to point B, avoiding obstacles along the way. A trip costs $0.01.
-  <sub>`Project` · ★9 · arielweinberger · `TS` · ⚠ `no licence`</sub>
-
-- **[super-jev](https://github.com/Kevthetech143/super-jev)** — A small, extensible decision-to-action harness for TypeSafe Jev
-  <sub>`Project` · ★9 · kevthetech143 · `Py`</sub>
+- **[jev-agent-browser](https://github.com/forvela/jev-agent-browser)** — Fast, bounded browser agents powered by Jev and agent-browser — typed actions, research, classification, and safe orchestration.
+  <sub>`Project` · ★9 · forvela · `JS`</sub>
 
 - **[aside-jev](https://github.com/himomohi/aside-jev)** — Aside agents decide with TypeSafe Jev (System One: Choice/Score/Noul). Not a Cua binding — Jev is the model, Aside is the browser runtime.
   <sub>`SDK` · ★8 · himomohi · `Py`</sub>
-
-- **[jev-agent-browser](https://github.com/forvela/jev-agent-browser)** — Fast, bounded browser agents powered by Jev and agent-browser — typed actions, research, classification, and safe orchestration.
-  <sub>`Project` · ★8 · forvela · `JS`</sub>
 
 - **[jev-doom-agent](https://github.com/lukaske/jev-doom-agent)** — A browser-native Doom agent experiment with structured spatial state, composable AI controls, live decision telemetry, and a Chocolate Doom WebAssembly runtime.
   <sub>`Project` · ★8 · lukaske · `TS` · ⚠ `no licence`</sub>
@@ -246,8 +246,14 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — Fast, drop-in multilingual profanity and toxicity screener for Node.js, powered by System 1 models like TypeSafe AI Jev and Laya. Catches leetspeak, character spacing, and romanized profanity across languages including Kannada, Telugu, Tamil, Hindi, and Bengali. ~50-500ms latency.
   <sub>`Project` · ★6 · itisshikhar · `TS`</sub>
 
+- **[jev-lab](https://github.com/jammaru/jev-lab)** — 100 AI NPCs live in a tiny town. Jev chooses the next action; the world writes the story.
+  <sub>`Project` · ★6 · jammaru · `TS`</sub>
+
 - **[jev-tool-router](https://github.com/jackbarunz/jev-tool-router)** — Jev-powered MCP tool routing for Codex
   <sub>`Plugin` · ★6 · jackbarunz · `JS`</sub>
+
+- **[typesafe-jev](https://github.com/gtaras7/typesafe-jev)** — Screen a folder of CVs with the TypeSafe Jev decision model: typed judgments, an editable policy, free re-scoring.
+  <sub>`Project` · ★6 · gtaras7 · `TS`</sub>
 
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — Hybrid coding harness: System 2 writes, System 1 (Jev) runs reflexes.
   <sub>`Project` · ★5 · abdelstark · `TS`</sub>
@@ -255,17 +261,11 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — A pre-compaction advisor for DeepSeek Harness. Runs before the standard `compaction-basic` backend, using TypeSafe JEV to safely prune low-value tool results from model context. Original session events stay in the append-only log; only the model-visible view is replaced with compact markers or
   <sub>`Project` · ★5 · wjw66 · `TS`</sub>
 
-- **[jev-lab](https://github.com/jammaru/jev-lab)** — 100 AI NPCs live in a tiny town. Jev chooses the next action; the world writes the story.
-  <sub>`Project` · ★5 · jammaru · `TS`</sub>
-
 - **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — Production TypeSafe Jev (System One) use-case harnesses with confidence-gated decision logic
   <sub>`Project` · ★5 · kenhuangus · `Py`</sub>
 
 - **[jevonly](https://github.com/buluoray/JevOnly)** — Pure Jev that can "type" and drive towards task completion.
   <sub>`Project` · ★5 · buluoray · `Py`</sub>
-
-- **[typesafe-jev](https://github.com/gtaras7/typesafe-jev)** — Screen a folder of CVs with the TypeSafe Jev decision model: typed judgments, an editable policy, free re-scoring.
-  <sub>`Project` · ★5 · gtaras7 · `TS`</sub>
 
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — AGI JEV Detection — local AI agent monitor: chain-level malicious-agent detection (TypeSafe Jev + Sentinel), escalate-only L1–L5 containment, Neo4j forensics, AngryRobot dashboard. HackSpain 2026.
   <sub>`Project` · ★4 · carlosedm10 · `Py` · ⚠ `no licence`</sub>
@@ -285,6 +285,9 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[jev-robotics-demo](https://github.com/FazalAAli/jev-robotics-demo)** — Jev (TypeSafe System One) vs Claude Opus 5 driving a simulated robot arm in MuJoCo
   <sub>`Project` · ★4 · fazalaali · `Py`</sub>
 
+- **[jev-voice-control](https://github.com/chris-wozniczek/jev-voice-control)** — Control your Mac by voice. Speech → Jev (TypeSafe AI System One model) typed decisions → macOS actions. Menu-bar Swift app.
+  <sub>`Project` · ★4 · chris-wozniczek · `Swift`</sub>
+
 - **[laya-browser-agent](https://github.com/ChenneyZhuang/laya-browser-agent)** — Local, open-source Jev alternative: browser agent decisions with Laya (System One model) on your own machine. No cloud, no API key. Playwright/CDP, MCP-friendly.
   <sub>`Jev-like alternative` · ★4 · chenneyzhuang · `Py` · ⚠ `not Jev itself`</sub>
 
@@ -299,6 +302,9 @@ Every catalogued example of this decision — 147 of them, official first, then 
 
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — Jev-judged context compaction for DeepSeek Harness: semantic tool-result pruning + deterministic receipt compaction
   <sub>`Project` · ★3 · yangyu666 · `JS`</sub>
+
+- **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)** — Jev drives your Ego Lite browser: one typed-choice request per step. Single-file, zero-dependency port of browser-use/jev-ultrafast with multi-model benchmarks and extra guardrails. Unofficial.
+  <sub>`Benchmark` · ★3 · shikaizhong-design · `JS`</sub>
 
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — Verdict-based context compaction for DeepSeek Harness — replaces lossy LLM summaries with fast keep/truncate/drop decisions from jev-latest; everything kept stays verbatim. Port of tamaratran/fast-jev-compaction.
   <sub>`Project` · ★3 · kolawong · `TS`</sub>
@@ -321,17 +327,11 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[jev-ra](https://github.com/brnyxx/jev-ra)** — Browser use for coding agents, 3-5x faster than browser-use. MCP server + CLI; TypeSafe Jev decides every step in ~300 ms.
   <sub>`Plugin` · ★3 · brnyxx · `Py`</sub>
 
-- **[jev-voice-control](https://github.com/chris-wozniczek/jev-voice-control)** — Control your Mac by voice. Speech → Jev (TypeSafe AI System One model) typed decisions → macOS actions. Menu-bar Swift app.
-  <sub>`Project` · ★3 · chris-wozniczek · `Swift`</sub>
-
 - **[jevdroid](https://github.com/antiyro/jevdroid)** — A typed Python framework for controlling Android over ADB with Jev.
   <sub>`Project` · ★3 · antiyro · `Py`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization.
   <sub>`Jev-like alternative` · ★3 · alexj11324 · `Go` · ⚠ `not Jev itself`</sub>
-
-- **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)** — Jev drives your Ego Lite browser: one typed-choice request per step. Single-file, zero-dependency port of browser-use/jev-ultrafast with multi-model benchmarks and extra guardrails. Unofficial.
-  <sub>`Benchmark` · ★2 · shikaizhong-design · `JS`</sub>
 
 - **[jev-browser-pilot](https://github.com/aidil2105/jev-browser-pilot)** — A bounded decision layer for browser and desktop automation: a decision-only model picks one next step; the code owns perception, content, actuation and verification.
   <sub>`Project` · ★2 · aidil2105 · `Py`</sub>

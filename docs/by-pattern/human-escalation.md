@@ -28,19 +28,19 @@ Every catalogued example of this decision — 60 of them, official first, then r
   <sub>`Official docs`</sub>
 
 - **[Airflow LLMBranchOperator with Jev](https://airflow.apache.org/docs/apache-airflow-providers-common-ai/stable/index.html)** — Turns downstream task ids into a choice option set, with a minimum-confidence gate that routes uncertain runs to a human.
-  <sub>`Integration` · ★46,953 · `Py` · `choice`</sub>
+  <sub>`Integration` · ★46,955 · `Py` · `choice`</sub>
 
 - **[Composio TypeSafe provider](https://github.com/ComposioHQ/composio/tree/next/python/providers/typesafe)** — Compiles a tool catalogue into questions and reconstructs tool calls from the answers, with typed errors for abstention and confirmation-required cases.
-  <sub>`Project` · ★30,289 · `Py` · `choice`</sub>
+  <sub>`Project` · ★30,294 · `Py` · `choice`</sub>
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — Seven distinct email decisions, each with its own separately chosen threshold, falling back to the normal LLM on any error.
-  <sub>`Project` · ★12,304 · `TS` · `choice` · `noul`</sub>
+  <sub>`Project` · ★12,316 · `TS` · `choice` · `noul`</sub>
 
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — Pre-screens code review with Jev to surface high-risk changes for a more expensive model or a person, with a local dashboard.
-  <sub>`Project` · ★556 · `TS` · `choice` · `score` · `noul`</sub>
+  <sub>`Project` · ★568 · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — Builds calibrated decision functions from human feedback.
-  <sub>`Project` · ★276 · sutro-sh · `Py`</sub>
+  <sub>`Project` · ★281 · sutro-sh · `Py`</sub>
 
 - **[Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til)** — Independent Korean-language notes reporting that reversing the order of options shifted a probability enough to flip a 0.9 threshold.
   <sub>`Benchmark` · ★190 · `Py` · ⚠ `no licence` `unverified claims`</sub>
@@ -55,7 +55,7 @@ Every catalogued example of this decision — 60 of them, official first, then r
   <sub>`Project` · ★31 · smkrv · `TS`</sub>
 
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — An open training and inference stack for Jev-style decision models. Train models to score dynamic candidate branches from a shared prefix, with support for high-cardinality choice, calibration, and fast batched inference.
-  <sub>`Jev-like alternative` · ★20 · zwlijay · `Py` · ⚠ `not Jev itself`</sub>
+  <sub>`Jev-like alternative` · ★23 · zwlijay · `Py` · ⚠ `not Jev itself`</sub>
 
 - **[jevalyn](https://github.com/Ray-Hughes/jevalyn)** — The decision layer for your Rails app. A Rails-native wrapper around TypeSafe's Jev System One API: typed, calibrated decisions in your control flow.
   <sub>`Project` · ★18 · ray-hughes · `Rb`</sub>
@@ -73,7 +73,7 @@ Every catalogued example of this decision — 60 of them, official first, then r
   <sub>`Project` · ★12 · doeixd · `TS`</sub>
 
 - **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Decision harness for TypeSafe Jev — confidence gates, shadow mode, recipes, and evals. Claude CLI 48.9s → Jev 1.3s on the same row-filter job.
-  <sub>`Project` · ★10 · antoniocoppe · `TS`</sub>
+  <sub>`Project` · ★11 · antoniocoppe · `TS`</sub>
 
 - **[jevcal](https://github.com/abhixhek/jevcal)** — Calibrate, threshold and drift-check a decision model against an LLM teacher instead of guessing a cutoff.
   <sub>`Project` · ★10 · abhixhek · `Py`</sub>
@@ -90,26 +90,26 @@ Every catalogued example of this decision — 60 of them, official first, then r
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve)
   <sub>`Project` · ★7 · scienthoon · `Py`</sub>
 
+- **[poorjev](https://github.com/rupeshpoojary9/poorjev)** — Open-source, local Jev alternative: a System One decision layer with provably calibrated confidence (ECE 0.170→0.071). Typed decisions, runs offline, no API key, no waitlist.
+  <sub>`Jev-like alternative` · ★7 · rupeshpoojary9 · `Py` · ⚠ `not Jev itself`</sub>
+
 - **[daf-jev](https://github.com/docxology/daf-jev)** — daf-jev: composable Python toolkit for TypeSafe's Jev (System One) decision API — question builders, confidence gates, evaluator, calibration, CLI, MCP server, agent skill
   <sub>`Plugin` · ★6 · docxology · `Py`</sub>
+
+- **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through.
+  <sub>`Project` · ★6 · ufec · `Kt`</sub>
 
 - **[jev-ood-calibration](https://github.com/scienthoon/jev-ood-calibration)** — Independent calibration test of TypeSafe's Jev on a task it cannot have seen: 900 rule-generated support tickets (choice / score / boolean) plus 3 public benchmarks via Vercel AI Gateway. Raw responses, ECE with noise floor, temperature refit, per-type sign of miscalibration. Reproducible for ~
   <sub>`Benchmark` · ★6 · scienthoon · `Py`</sub>
 
-- **[poorjev](https://github.com/rupeshpoojary9/poorjev)** — Open-source, local Jev alternative: a System One decision layer with provably calibrated confidence (ECE 0.170→0.071). Typed decisions, runs offline, no API key, no waitlist.
-  <sub>`Jev-like alternative` · ★6 · rupeshpoojary9 · `Py` · ⚠ `not Jev itself`</sub>
-
-- **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through.
-  <sub>`Project` · ★5 · ufec · `Kt`</sub>
+- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark.
+  <sub>`Benchmark` · ★5 · anisselbd · `Py` · ⚠ `no licence`</sub>
 
 - **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — Production TypeSafe Jev (System One) use-case harnesses with confidence-gated decision logic
   <sub>`Project` · ★5 · kenhuangus · `Py`</sub>
 
 - **[typed-decisions](https://github.com/kotoba-lang/typed-decisions)** — Jev-shaped typed-decision model (state + Choice/Score/Noul questions -> calibrated probabilities, one pass) on ModernBERT / DeBERTa / LLaDA-MoE, with measured latency, accuracy, calibration and training cost
   <sub>`Project` · ★5 · kotoba-lang · `Py`</sub>
-
-- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark.
-  <sub>`Benchmark` · ★4 · anisselbd · `Py` · ⚠ `no licence`</sub>
 
 - **[opencode-jev-orchestrator](https://github.com/aaronshaf/opencode-jev-orchestrator)** — Keeps OpenCode on a cheap sticky model for warm cache; Jev escalates hard turns to stronger subagents.
   <sub>`Project` · ★4 · aaronshaf · `TS`</sub>

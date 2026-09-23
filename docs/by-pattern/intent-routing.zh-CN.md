@@ -16,34 +16,34 @@ _判断用户意图，把请求分流到正确的分支。_
   <sub>`官方文档` · `Py` · `choice`</sub>
 
 - **[AutoGPT TypeSafe blocks](https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/blocks/typesafe)** — 七个生产级 block（choice/score/yes-no/ask-many/route/pick-best/filter），带 UTF-8 字节预算、逐字报文留存和十一个测试文件。
-  <sub>`开源项目` · ★187,503 · `Py` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★187,505 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[Airflow LLMBranchOperator with Jev](https://airflow.apache.org/docs/apache-airflow-providers-common-ai/stable/index.html)** — 把下游任务 id 变成 choice 的选项集，并用最小置信度闸门把不确定的运行转给人处理。
-  <sub>`平台集成` · ★46,953 · `Py` · `choice`</sub>
+  <sub>`平台集成` · ★46,955 · `Py` · `choice`</sub>
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — 七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。
-  <sub>`开源项目` · ★12,304 · `TS` · `choice` · `noul`</sub>
+  <sub>`开源项目` · ★12,316 · `TS` · `choice` · `noul`</sub>
 
 - **[Real Python: hello-jev](https://github.com/realpython/materials/tree/master/hello-jev)** — 带对照组的教学示例：同一个问询台任务，一份是只认 Y/N 的纯 Python 写法，旁边是一个能读出意图的 Noul。
   <sub>`教程` · ★5,205 · Real Python · `Py` · `noul`</sub>
 
-- **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — 一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。
-  <sub>`教程` · ★4,570 · `Py` · `choice` · `score` · `noul`</sub>
-
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
-  <sub>`开源项目` · ★4,213 · `Java` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★4,940 · `Java` · `choice` · `score` · `noul`</sub>
+
+- **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — 一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。
+  <sub>`教程` · ★4,571 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — 一个「软件工厂工头」，用 Jev 决定智能体流水线下一步该做什么。
-  <sub>`开源项目` · ★518 · thruwire · `Py`</sub>
+  <sub>`开源项目` · ★525 · thruwire · `Py`</sub>
 
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev 驱动的网页搜索：先选时间窗口和最佳查询改写，再分批对结果逐条用 noul 重排。
-  <sub>`开源项目` · ★417 · `TS` · `choice` · `noul`</sub>
+  <sub>`开源项目` · ★426 · `TS` · `choice` · `noul`</sub>
 
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — 语音驱动的浏览器控制：目标选项每次请求都按当前实时元素列表重建，并且总是包含一个 none 选项。
-  <sub>`开源项目` · ★247 · `JS` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★253 · `JS` · `choice` · `score` · `noul`</sub>
 
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — 一个 AI 视频编辑器：把编辑指令路由到具体操作、目标片段和轨道，并以关键词路由作为兜底。
-  <sub>`开源项目` · ★190 · `TS` · `choice` · `noul` · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · ★191 · `TS` · `choice` · `noul` · ⚠ `无许可证`</sub>
 
 - **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的 AI 任务中枢：把邮件、Teams、Slack 与报表汇成一条时间线。 <sub>(机翻)</sub>
   <sub>`插件` · ★118 · ldbumble · `Py`</sub>
@@ -52,7 +52,7 @@ _判断用户意图，把请求分流到正确的分支。_
   <sub>`开源项目` · ★91 · `TS` · `choice` · `noul`</sub>
 
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — 一个 Home Assistant 集成：把类型化答案变成传感器，并提供可用于自动化的动作。
-  <sub>`平台集成` · ★50 · abovecolin · `Py`</sub>
+  <sub>`平台集成` · ★53 · abovecolin · `Py`</sub>
 
 - **[jev-social](https://github.com/socai-io/jev-social)** — 社交平台调研，带类型化路由和浏览器取证。
   <sub>`开源项目` · ★47 · socai-io · `JS`</sub>
@@ -64,10 +64,10 @@ _判断用户意图，把请求分流到正确的分支。_
   <sub>`开源项目` · ★14 · parth-kp · `Py`</sub>
 
 - **[jevyoumean](https://github.com/syumai/jevyoumean)** — 给任意 CLI 的语义化「你是不是想输入」：用 Jev 匹配子命令。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★12 · syumai · `Go`</sub>
+  <sub>`开源项目` · ★13 · syumai · `Go`</sub>
 
 - **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — 在 2000 封钓鱼邮件上对比 Jev 与一个轻量 LLM：准确率、校准度、延迟、成本。 <sub>(机翻)</sub>
-  <sub>`基准测试` · ★4 · anisselbd · `Py` · ⚠ `无许可证`</sub>
+  <sub>`基准测试` · ★5 · anisselbd · `Py` · ⚠ `无许可证`</sub>
 
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — 技术密度最高的独立讲解：JS / Python / AI SDK 三种代码、三种应答结构、进阶模式，还诚实列出了模型的失效场景。
   <sub>`教程` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>

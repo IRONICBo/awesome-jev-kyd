@@ -7,10 +7,10 @@ _Classify and route incoming documents, invoices and forms._
 Every catalogued example of this decision — 16 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
 
 - **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — Tax document page classifier built on Jev decisions. 100% strict accuracy across 261 IRS forms, ~$0.001 per page.
-  <sub>`Project` · ★399 · kyotofin · `TS`</sub>
+  <sub>`Project` · ★405 · kyotofin · `TS`</sub>
 
 - **[docjev](https://github.com/jerryjliu/docjev)** — A very fast document classifier/splitter using Jev
-  <sub>`Project` · ★292 · jerryjliu · `Py`</sub>
+  <sub>`Project` · ★350 · jerryjliu · `Py`</sub>
 
 - **[formanator](https://github.com/timrogers/formanator)** — Submit Forma <https://joinforma.com> benefit claims from the command line and Model Context Protocol (MCP) clients, with support for AI-powered receipt analysis with an LLM or Jev
   <sub>`Plugin` · ★99 · timrogers · `Rs`</sub>
@@ -19,7 +19,7 @@ Every catalogued example of this decision — 16 of them, official first, then r
   <sub>`Project` · ★26 · misbahsy · `Rs`</sub>
 
 - **[jev-capability-atlas](https://github.com/Zaious/jev-capability-atlas)** — Independent, evidence-based map of when TypeSafe's Jev actually holds up vs. breaks down — real API-call receipts, not a leaderboard. 中文為主的雙語 repo。
-  <sub>`Benchmark` · ★24 · zaious · `Py`</sub>
+  <sub>`Benchmark` · ★25 · zaious · `Py`</sub>
 
 - **[jevmory](https://github.com/romiluz13/jevmory)** — Coding-agent memory where every fact is a verbatim quote graded by TypeSafe Jev's calibrated confidence. Local-first, SQLite receipts, zero dependencies.
   <sub>`Project` · ★7 · romiluz13 · `Py`</sub>
