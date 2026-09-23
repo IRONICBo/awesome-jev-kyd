@@ -30,6 +30,7 @@ source.
 | LangChain integrations | <https://docs.langchain.com/oss/python/integrations/providers/> | 1 |
 | Langfuse integrations | <https://langfuse.com/integrations> | 1 |
 | LiteLLM docs | <https://docs.litellm.ai/docs/pass_through> | 1 |
+| maintainer correction | <https://github.com/socai-io/jev-social> | 1 |
 | Netlify changelog | <https://www.netlify.com/changelog/> | 1 |
 | OpenRouter providers | <https://openrouter.ai/providers> | 1 |
 | Pydantic AI docs | <https://pydantic.dev/docs/ai/models/> | 1 |

@@ -256,7 +256,7 @@ _Which tool or action the agent should call next._
 - **[DeepChat: agent tool-permission review](https://github.com/ThinkInAIXYZ/deepchat)** — Reviews each tool call on three axes — risk level, whether the user authorised it, and an explicit prompt-injection pressure check.
   <sub>`Project` · ★6,340 · `TS` · `choice` · `noul`</sub>
 
-**10 of 147** shown · [all 147 on one page →](docs/by-pattern/tool-selection.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en)
+**10 of 148** shown · [all 148 on one page →](docs/by-pattern/tool-selection.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en)
 
 ### Intent routing
 
@@ -562,7 +562,7 @@ _Score or re-rank candidates from a cheaper retrieval step._
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.
   <sub>`Project` · ★4,940 · `Java` · `choice` · `score` · `noul`</sub>
 
-**10 of 43** shown · [all 43 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
+**10 of 42** shown · [all 42 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
 
 ### Structured extraction
 

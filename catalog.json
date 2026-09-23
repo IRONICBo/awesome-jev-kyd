@@ -7103,16 +7103,19 @@
   {
     "slug": "jev-social",
     "title": "jev-social",
-    "summary": "Social-platform research with typed routing and browser evidence.",
-    "summary_zh": "社交平台调研，带类型化路由和浏览器取证。",
+    "summary": "Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded SocAI CLI action from fresh browser evidence; code validates targets and preserves source links.",
+    "summary_zh": "只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 SocAI CLI 动作；代码校验目标并保留来源链接。",
     "url": "https://github.com/socai-io/jev-social",
     "kind": "project",
     "patterns": [
-      "intent-routing",
-      "search-ranking"
+      "tool-selection",
+      "intent-routing"
+    ],
+    "question_types": [
+      "choice"
     ],
     "platforms": [
-      "typesafe-api"
+      "openrouter"
     ],
     "author": {
       "name": "socai-io",
@@ -7122,21 +7125,31 @@
     "stars": 47,
     "repo_license": "MIT",
     "evidence": {
-      "path": "bin/jev-social.js",
+      "path": "src/actions.js",
       "matched": [
-        "typesafe/jev",
-        "jev-latest"
+        "~typesafe/jev-latest",
+        "type: \"choice\"",
+        "Choose the next concrete browser operation or socai CLI tool"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-23"
     },
     "first_seen": "2026-09-22",
     "sources": [
       {
         "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
         "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "maintainer correction",
+        "url": "https://github.com/socai-io/jev-social"
       }
     ],
     "license": "CC0-1.0",
+    "flags": [
+      "third-party-api-key"
+    ],
+    "notes": "Jev selects only from code-built, read-only actions; SocAI executes them in a logged-in Chrome session. TikTok media download is offered only after explicit user intent. OpenRouter sees the goal and selected evidence snippets. The recorded 64-second report is one dated local run, not a benchmark.",
+    "notes_zh": "Jev 只能从代码生成的只读动作中选择，SocAI 在已登录的 Chrome 会话中执行。只有用户明确要求时才提供 TikTok 媒体下载。OpenRouter 会接收目标与筛选后的证据片段。README 中 64 秒报告只是一次带日期的本地运行，不是基准测试。",
     "languages": [
       "javascript"
     ],

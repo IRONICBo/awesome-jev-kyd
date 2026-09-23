@@ -4,7 +4,7 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 147 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 148 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Function calling](https://docs.typesafe.ai/cookbooks/function_calling)** ⭐ — Maps natural-language trading requests onto ordinary typed functions by turning function names and closed-set arguments into confidence-aware questions.
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -140,6 +140,9 @@ Every catalogued example of this decision — 147 of them, official first, then 
 
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — Fine-grained robot control with Jev, physics previews, and configurable LIBERO tasks.
   <sub>`Project` · ★61 · dimweaker · `Py`</sub>
+
+- **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded SocAI CLI action from fresh browser evidence; code validates targets and preserves source links.
+  <sub>`Project` · ★47 · socai-io · `JS` · `choice` · ⚠ `3rd-party key`</sub>
 
 - **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Jev-Mem: System-One Controlled Agentic Memory
   <sub>`Project` · ★39 · libingzheren · `Py`</sub>
