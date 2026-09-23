@@ -60,6 +60,24 @@ def api_get(path: str) -> dict | list | None:
         return None
 
 
+def graphql(query: str) -> dict | None:
+    """POST a read-only GraphQL query. Some repository facts — whether a custom
+    social preview is uploaded, for one — are not exposed over REST."""
+    if not token():
+        return None
+    req = urllib.request.Request(
+        f"{API}/graphql",
+        data=json.dumps({"query": query}).encode(),
+        headers={"Authorization": f"Bearer {token()}", "User-Agent": "awesome-jev"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
+            return json.loads(response.read()).get("data")
+    except Exception:  # noqa: BLE001 - informational callers degrade to "unknown"
+        return None
+
+
 def raw_get(repo: str, branch: str, path: str, *, retries: int = 1) -> str | None:
     """Fetch a file, retrying once before giving up.
 

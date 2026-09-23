@@ -27,7 +27,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import _stats  # noqa: E402
-from _github import SELF, api_get, token  # noqa: E402
+from _github import SELF, api_get, graphql, token  # noqa: E402
 
 
 def main() -> int:
@@ -42,6 +42,8 @@ def main() -> int:
     if not isinstance(data, dict):
         print(f"skipped: could not read the {SELF} description.")
         return 0
+
+    report_social_preview()
 
     description = (data.get("description") or "").strip()
     if description == expected:
@@ -58,6 +60,28 @@ def main() -> int:
     print("Fix it with:")
     print(f'  gh repo edit --description "{expected}"')
     return 1
+
+
+def report_social_preview() -> None:
+    """Informational only. The social preview is the one image nothing can
+    regenerate — GitHub has no upload API — so it is the durable card with no
+    changing figure on it. All CI can do is say whether it has been uploaded."""
+    owner, name = SELF.split("/")
+    data = graphql(
+        f'{{ repository(owner: "{owner}", name: "{name}") {{ usesCustomOpenGraphImage }} }}'
+    )
+    uploaded = ((data or {}).get("repository") or {}).get("usesCustomOpenGraphImage")
+    if uploaded is None:
+        print("social preview: could not be read")
+    elif uploaded:
+        print("social preview: custom card uploaded (durable; carries no changing figure)")
+    else:
+        print(
+            "notice: no custom social preview is uploaded, so GitHub shows its generated "
+            "card, which quotes the description checked below. To use the designed card, "
+            "download https://kydlikebtc.github.io/awesome-jev/img/card.png and upload it "
+            "at Settings → General → Social preview."
+        )
 
 
 if __name__ == "__main__":

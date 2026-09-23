@@ -656,9 +656,14 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         f"[{strings['l_vetting']}](docs/vetting.md)"
     )
     add("")
-    shot = "site-chinese.png" if lang == "zh" else "site-desktop.png"
+    # Rendered from the live site on every Pages deploy (render_images.py) and
+    # never committed, so it cannot show a number the catalogue has moved past.
+    # GitHub proxies README images through a cache; the query string changes
+    # whenever the data does, so a new render is actually fetched.
+    shot = "site-zh.png" if lang == "zh" else "site-en.png"
+    version = f"{stats['entries']}-{stats['last_sweep']}"
     add(
-        f'<a href="{SITE}"><img src="docs/screenshots/{shot}" '
+        f'<a href="{SITE}"><img src="{SITE}img/{shot}?v={version}" '
         f'alt="{strings["shot_alt"]}" width="760"></a>'
     )
     add("")

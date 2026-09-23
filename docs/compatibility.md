@@ -21,7 +21,7 @@ debugging.
 > Everything here was true on 2026-09-22; **open the linked doc before you
 > ship.**
 
-[![The compatibility matrix on the site, with cells that differ from the native surface in red and matching cells in green](screenshots/site-compat.png)](https://kydlikebtc.github.io/awesome-jev/?view=compat)
+[![The compatibility matrix on the site, with cells that differ from the native surface in red and matching cells in green](https://kydlikebtc.github.io/awesome-jev/img/site-compat.png)](https://kydlikebtc.github.io/awesome-jev/?view=compat)
 
 <sub>The same data [on the site](https://kydlikebtc.github.io/awesome-jev/?view=compat), where a cell is red when it
 differs from the native surface and green when it matches — which is the fastest way to see where a port will break.</sub>

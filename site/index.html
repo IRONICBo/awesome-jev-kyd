@@ -1728,6 +1728,11 @@
           render();
           setView(VIEW, { push: false });
           syncUrl();
+          // scripts/render_images.py screenshots this page at deploy and will
+          // not publish a render that never reached this line.
+          return document.fonts.ready.then(() => {
+            document.documentElement.dataset.ready = "1";
+          });
         })
         .catch((err) => {
           i18n();

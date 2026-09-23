@@ -16,6 +16,8 @@ on:
       - "compat.json"
       - "patterns.json"
       - "taxonomy.json"
+      - "scripts/_stats.py"
+      - "scripts/render_images.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -50,6 +52,16 @@ jobs:
 
       - name: Sanity-check the copied catalog
         run: python3 scripts/check_site_data.py
+
+      # The og:image, the durable social card and the README screenshots are
+      # rendered here from the data just assembled, and served from Pages. They
+      # used to be committed PNGs, and every one of them froze at the first
+      # build. If any page fails to finish rendering its data, this step fails
+      # and the previous deploy — whose images match its own data — stays live.
+      - name: Render preview images from the live data
+        run: |
+          google-chrome --version
+          python3 scripts/render_images.py
 
       - uses: actions/configure-pages@v5
 
