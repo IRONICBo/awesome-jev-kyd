@@ -28,19 +28,19 @@ _用校准置信度决定哪些情况必须由人来看。_
   <sub>`官方文档`</sub>
 
 - **[Airflow LLMBranchOperator with Jev](https://airflow.apache.org/docs/apache-airflow-providers-common-ai/stable/index.html)** — 把下游任务 id 变成 choice 的选项集，并用最小置信度闸门把不确定的运行转给人处理。
-  <sub>`平台集成` · ★46,953 · `Py` · `choice`</sub>
+  <sub>`平台集成` · ★46,955 · `Py` · `choice`</sub>
 
 - **[Composio TypeSafe provider](https://github.com/ComposioHQ/composio/tree/next/python/providers/typesafe)** — 把工具目录编译成问题，再从答案还原出 tool call，并为「弃权」和「需确认」两种情况定义了专门的错误类型。
-  <sub>`开源项目` · ★30,289 · `Py` · `choice`</sub>
+  <sub>`开源项目` · ★30,294 · `Py` · `choice`</sub>
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — 七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。
-  <sub>`开源项目` · ★12,304 · `TS` · `choice` · `noul`</sub>
+  <sub>`开源项目` · ★12,316 · `TS` · `choice` · `noul`</sub>
 
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — 代码审查前先过一遍 Jev，把高风险改动挑出来，再交给更贵的大模型或人。带本地看板。
-  <sub>`开源项目` · ★556 · `TS` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★568 · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — 从人类反馈出发，构建经过校准的决策函数。
-  <sub>`开源项目` · ★276 · sutro-sh · `Py`</sub>
+  <sub>`开源项目` · ★281 · sutro-sh · `Py`</sub>
 
 - **[Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til)** — 独立的韩语实测笔记，报告仅仅把选项顺序倒过来，就能让概率移动到足以翻转 0.9 阈值的程度。
   <sub>`基准测试` · ★190 · `Py` · ⚠ `无许可证` `宣称未核实`</sub>
@@ -55,7 +55,7 @@ _用校准置信度决定哪些情况必须由人来看。_
   <sub>`开源项目` · ★31 · smkrv · `TS`</sub>
 
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — 面向 Jev 式决策模型的开源训练与推理栈。 <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · ★20 · zwlijay · `Py` · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · ★23 · zwlijay · `Py` · ⚠ `并非 Jev 本身`</sub>
 
 - **[jevalyn](https://github.com/Ray-Hughes/jevalyn)** — 给 Rails 应用的决策层：对 Jev System One API 的 Rails 原生封装。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★18 · ray-hughes · `Rb`</sub>
@@ -73,7 +73,7 @@ _用校准置信度决定哪些情况必须由人来看。_
   <sub>`开源项目` · ★12 · doeixd · `TS`</sub>
 
 - **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Jev 决策 harness：置信闸门、影子模式、配方与评测。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10 · antoniocoppe · `TS`</sub>
+  <sub>`开源项目` · ★11 · antoniocoppe · `TS`</sub>
 
 - **[jevcal](https://github.com/abhixhek/jevcal)** — 对着一个 LLM 教师模型做校准、定阈值和漂移检查 —— 而不是靠猜。
   <sub>`开源项目` · ★10 · abhixhek · `Py`</sub>
@@ -90,26 +90,26 @@ _用校准置信度决定哪些情况必须由人来看。_
 - **[luce](https://github.com/scienthoon/luce)** — Luce：一份校准决策模型的配方 —— 输入一句任务描述，产出一个小模型。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★7 · scienthoon · `Py`</sub>
 
+- **[poorjev](https://github.com/rupeshpoojary9/poorjev)** — 开源的本地 Jev 替代品：一个有可证校准置信度的 System One 决策层。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★7 · rupeshpoojary9 · `Py` · ⚠ `并非 Jev 本身`</sub>
+
 - **[daf-jev](https://github.com/docxology/daf-jev)** — 可组合的 Python 工具包：问题构造器、置信闸门等。 <sub>(机翻)</sub>
   <sub>`插件` · ★6 · docxology · `Py`</sub>
+
+- **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — Android 上的通知与短信过滤：不是匹配关键词，而是由模型判断。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★6 · ufec · `Kt`</sub>
 
 - **[jev-ood-calibration](https://github.com/scienthoon/jev-ood-calibration)** — 在一个它不可能见过的任务上做独立校准测试：900 条规则生成的支持工单。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★6 · scienthoon · `Py`</sub>
 
-- **[poorjev](https://github.com/rupeshpoojary9/poorjev)** — 开源的本地 Jev 替代品：一个有可证校准置信度的 System One 决策层。 <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · ★6 · rupeshpoojary9 · `Py` · ⚠ `并非 Jev 本身`</sub>
-
-- **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — Android 上的通知与短信过滤：不是匹配关键词，而是由模型判断。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★5 · ufec · `Kt`</sub>
+- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — 在 2000 封钓鱼邮件上对比 Jev 与一个轻量 LLM：准确率、校准度、延迟、成本。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★5 · anisselbd · `Py` · ⚠ `无许可证`</sub>
 
 - **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — 生产级的 Jev 用例 harness，带置信度门控的决策逻辑。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★5 · kenhuangus · `Py`</sub>
 
 - **[typed-decisions](https://github.com/kotoba-lang/typed-decisions)** — Jev 形状的类型化决策模型：状态加问题进，校准概率出。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★5 · kotoba-lang · `Py`</sub>
-
-- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — 在 2000 封钓鱼邮件上对比 Jev 与一个轻量 LLM：准确率、校准度、延迟、成本。 <sub>(机翻)</sub>
-  <sub>`基准测试` · ★4 · anisselbd · `Py` · ⚠ `无许可证`</sub>
 
 - **[opencode-jev-orchestrator](https://github.com/aaronshaf/opencode-jev-orchestrator)** — 让 OpenCode 粘在便宜模型上以保持缓存热度，由 Jev 把困难的轮次升级给更强的模型。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · aaronshaf · `TS`</sub>

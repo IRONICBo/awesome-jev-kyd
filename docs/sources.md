@@ -13,10 +13,10 @@ source.
 <!-- sources:start -->
 | Source | URL | Rows |
 | --- | --- | --- |
-| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 656 |
+| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 654 |
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
-| maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 21 |
+| maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 20 |
 | web search | various | 12 |
 | Hacker News | various | 5 |
 | jevai.org community site | <https://www.jevai.org/> | 5 |
@@ -24,8 +24,10 @@ source.
 | YouTube search | <https://www.youtube.com/results?search_query=typesafe+jev> | 3 |
 | AI SDK providers | <https://ai-sdk.dev/providers> | 1 |
 | AI/ML API docs | <https://docs.aimlapi.com/> | 1 |
+| author submission | <https://github.com/kydlikebtc/awesome-jev/pull/7> | 1 |
 | Cloudflare Workers AI models | <https://developers.cloudflare.com/ai/models/> | 1 |
 | community submission (issue #2) | <https://github.com/kydlikebtc/awesome-jev/issues/2> | 1 |
+| community submission (issue #4) | <https://github.com/kydlikebtc/awesome-jev/issues/4> | 1 |
 | LangChain blog | <https://www.langchain.com/blog> | 1 |
 | LangChain integrations | <https://docs.langchain.com/oss/python/integrations/providers/> | 1 |
 | Langfuse integrations | <https://langfuse.com/integrations> | 1 |
@@ -73,7 +75,7 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 470 |
+| MIT | 469 |
 | None declared | 141 |
 | Apache-2.0 | 79 |
 | NOASSERTION (non-standard terms) | 32 |

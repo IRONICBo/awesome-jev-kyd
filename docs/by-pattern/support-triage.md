@@ -10,10 +10,10 @@ Every catalogued example of this decision — 7 of them, official first, then ro
   <sub>`Official docs` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
 
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.
-  <sub>`Tutorial` · ★4,570 · `Py` · `choice` · `score` · `noul`</sub>
+  <sub>`Tutorial` · ★4,571 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[spring-ai-typesafe](https://spring.io/blog/2026/09/21/spring-ai-typesafe-structured-judgment)** — A community Spring AI starter bringing typed decisions to Java, with a builder API over the three question types.
-  <sub>`Integration` · ★29 · `Java` · `choice` · `score` · `noul`</sub>
+  <sub>`Integration` · ★33 · `Java` · `choice` · `score` · `noul`</sub>
 
 - **[Example: three primitives in one request](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/01-three-primitives/main.py)** — A minimal first call asking a choice, a score and a noul together, annotated with the asymmetries that catch people out.
   <sub>`Snippet` · `Py` · `choice` · `score` · `noul` · ⚠ `code untested`</sub>

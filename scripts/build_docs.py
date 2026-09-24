@@ -186,8 +186,9 @@ def meta_block(s: dict) -> str:
     site and a link to the repo can no longer describe different catalogues."""
     text = html.escape(_stats.pitch(s), quote=True)
     alt = html.escape(
-        "awesome-jev: public examples of TypeSafe AI's Jev, indexed by the decision "
-        "each one makes.",
+        "A decision readout: should_you_star_this? answered 0.97. awesome-jev — "
+        f"{s['entries']} verified examples of TypeSafe AI's Jev, indexed by the "
+        "decision each one makes.",
         quote=True,
     )
     tags = [

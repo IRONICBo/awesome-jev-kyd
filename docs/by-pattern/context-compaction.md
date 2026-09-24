@@ -7,28 +7,28 @@ _Decide which tool calls and results still matter so stale context can be droppe
 Every catalogued example of this decision — 20 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
 
 - **[Hermes Agent: Jev compaction evaluation](https://github.com/NousResearch/hermes-agent)** — Ported the Jev compaction approach, measured it against their shipping summariser, and published the conclusion not to adopt it.
-  <sub>`Benchmark` · ★248,148 · `Py` · `noul`</sub>
+  <sub>`Benchmark` · ★248,249 · `Py` · `noul`</sub>
 
 - **[jcode: memory recall without embeddings](https://github.com/1jehuang/jcode)** — Replaces the whole retrieval stack for memory recall — no embeddings, no BM25, no reranker — with one batched Noul per candidate memory.
-  <sub>`Project` · ★20,038 · `Rs` · `noul`</sub>
+  <sub>`Project` · ★20,044 · `Rs` · `noul`</sub>
 
 - **[fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction)** — A Claude Code plugin that replaces the compaction summary with per-item decisions: stale tool calls are dropped or truncated, everything kept stays verbatim.
-  <sub>`Plugin` · ★6,350 · tamaratran · `TS` · `noul`</sub>
+  <sub>`Plugin` · ★6,462 · tamaratran · `TS` · `noul`</sub>
 
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — Nine agent skills plus a CLI covering model routing, memory filtering, turn retention, one-of-many skill selection and next-action choice.
-  <sub>`Plugin` · ★604 · `Py` · `choice` · `score` · `noul`</sub>
+  <sub>`Plugin` · ★673 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[compact-adviser](https://github.com/kunchenguid/compact-adviser)** — "Work appears completed or recorded. Run /compact to save tokens."
-  <sub>`Project` · ★180 · kunchenguid · `TS`</sub>
+  <sub>`Project` · ★183 · kunchenguid · `TS`</sub>
 
 - **[jev-pruner](https://github.com/tamaratran/jev-pruner)** — Trims long shell output before the model sees it, asking one Noul per chunk.
   <sub>`Plugin` · ★140 · tamaratran · `TS` · `noul`</sub>
 
 - **[Winnow](https://github.com/GhalebDweikat/winnow)** — Context garbage collection for Claude Code: when Read, Bash or Grep dump a wall of output, each chunk is judged for relevance to the current task.
-  <sub>`Plugin` · ★69 · `Py` · `noul`</sub>
+  <sub>`Plugin` · ★72 · `Py` · `noul`</sub>
 
 - **[yoshi](https://github.com/compozy/yoshi)** — Context-pruning proxy for Claude Code and Codex: Jev judges which history is still needed, measured not claimed. POC here now, heading soon into https://github.com/compozy/compozy
-  <sub>`Plugin` · ★24 · compozy · `TS`</sub>
+  <sub>`Plugin` · ★25 · compozy · `TS`</sub>
 
 - **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — Verbatim Jev-scored context reduction for omp, over TypeSafe or OpenRouter
   <sub>`Project` · ★8 · jerryfane · `TS`</sub>
