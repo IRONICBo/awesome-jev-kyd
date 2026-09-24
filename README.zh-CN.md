@@ -8,11 +8,11 @@
 
 **全网 Jev（TypeSafe AI 的 System One 决策模型）使用例子索引 —— 按它做的**决策**归类，而不是按提到它的博客归类。**
 
-[![lint](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml) [![links](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml) [![entries](https://img.shields.io/badge/条目-807-f5a524?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![verified](https://img.shields.io/badge/链接已核实-802-3fb950?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![rechecked](https://img.shields.io/badge/声明可复检-722-58a6ff?style=flat-square)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) [![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) [![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)
+[![lint](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml) [![links](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml) [![entries](https://img.shields.io/badge/条目-808-f5a524?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![verified](https://img.shields.io/badge/链接已核实-803-3fb950?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![rechecked](https://img.shields.io/badge/声明可复检-723-58a6ff?style=flat-square)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) [![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) [![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)
 
 [可搜索站点](https://kydlikebtc.github.io/awesome-jev/) &nbsp;·&nbsp; [English](README.md) &nbsp;·&nbsp; [决策模式](docs/patterns.md) &nbsp;·&nbsp; [兼容性](docs/compatibility.md) &nbsp;·&nbsp; [核查指南](docs/vetting.md)
 
-<a href="https://kydlikebtc.github.io/awesome-jev/"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=807-2026-09-24" alt="awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=808-2026-09-24" alt="awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。</sub>
 
@@ -490,7 +490,7 @@ _选择由哪个下游模型或档位处理请求。_
 - **[jev-use](https://github.com/shitianfang/jev-use)** — 一个智能体插件：把不需要文本输出的步骤交给 Jev，而不是主模型。
   <sub>`插件` · ★22 · shitianfang · `JS`</sub>
 
-已显示 **10 / 25** 条 · [在单独页面查看全部 25 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
+已显示 **10 / 26** 条 · [在单独页面查看全部 26 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
 
 ### 并行扇出
 
@@ -808,7 +808,7 @@ _介绍模型或整个领域，而非单一模式。_
 | **SDK** | `46` █▋ | 客户端库，官方与社区。 |
 | **平台集成** | `32` █▏ | 接入模型的网关、框架或平台路径。 |
 | **代码片段** | ` 4` ▏ | 本仓库内的小型可运行样例。 |
-| **开源项目** | `468` ████████████████ | 真正在调用 Jev 的应用或库。 |
+| **开源项目** | `469` ████████████████ | 真正在调用 Jev 的应用或库。 |
 | **插件** | `133` ████▌ | 可安装的编辑器、智能体、MCP 集成。 |
 | **教程** | ` 5` ▏ | 带代码的分步教学材料。 |
 | **基准测试** | `45` █▌ | 实测。注意区分独立实测与厂商自报。 |
@@ -840,7 +840,7 @@ _介绍模型或整个领域，而非单一模式。_
 ## 哪些经过核实，哪些没有
 
 - ✅ **已核实** —— 该链接在 `checked` 日期返回成功状态；有人打开它、按页面实际内容写了摘要；含代码的行都读过调用处、确认了实际使用的原语；star 数与许可证来自 GitHub API。
-- 🔁 **每周复检** —— 有 722 行记录了其原语声明是在哪个文件里读到的。定时任务会从该仓库的默认分支重新读取，一旦声明不再成立就开 issue，因此上游把集成删掉了也不会留下一条假声明。刻意不锁 commit —— 锁了就会永远在校验一个历史快照。
+- 🔁 **每周复检** —— 有 723 行记录了其原语声明是在哪个文件里读到的。定时任务会从该仓库的默认分支重新读取，一旦声明不再成立就开 issue，因此上游把集成删掉了也不会留下一条假声明。刻意不锁 commit —— 锁了就会永远在校验一个历史快照。
 - ❌ **未核实** —— 代码能否跑通、任何性能宣称是否成立、项目是否仍在维护、以及这些做法是否适合你的系统。本仓库没有执行过、压测过或做过安全审计。
 
 ### 这些标记是什么意思
@@ -876,7 +876,7 @@ _介绍模型或整个领域，而非单一模式。_
 
 | 文件 | 是什么 |
 | --- | --- |
-| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 807 条目 |
+| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 808 条目 |
 | [`retired.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json) | 2 已退休 |
 | [`compat.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json) | The platform matrix behind `docs/compatibility.md` |
 | [`patterns.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json) | The decision taxonomy both generators and the MCP server read |

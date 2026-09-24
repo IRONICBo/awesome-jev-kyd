@@ -4,7 +4,7 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 25 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 26 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — A two-stage mini-then-verify-then-reasoning cascade that reaches most of a big reasoning model's quality at a fraction of the cost.
   <sub>`Official docs` · `Py`</sub>
@@ -59,6 +59,9 @@ Every catalogued example of this decision — 25 of them, official first, then r
 
 - **[janus](https://github.com/FirasSX914/Janus)** — Measure when to use Jev and other models on your data, then route accordingly.
   <sub>`Project` · ★2 · firassx914 · `Py`</sub>
+
+- **[Codex Jev Router](https://github.com/suenot/codex-jev-router)** — Uses Jev Choice and Noul judgments on short task summaries to select a Codex subagent model and reasoning effort with a Sol fallback.
+  <sub>`Project` · ★1 · suenot · `JS` · `choice` · `noul` · ⚠ `AI-written`</sub>
 
 - **[hermes-jev-router](https://github.com/ussyverse/hermes-jev-router)** — Experimental Hermes plugin: Jev-assisted model routing plans with budget and capability constraints. API access pending.
   <sub>`Plugin` · ★1 · ussyverse · `Py`</sub>

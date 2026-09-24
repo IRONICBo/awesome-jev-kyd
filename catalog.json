@@ -35396,5 +35396,58 @@
       }
     ],
     "license": "CC0-1.0"
+  },
+  {
+    "slug": "codex-jev-router-suenot",
+    "title": "Codex Jev Router",
+    "summary": "Uses Jev Choice and Noul judgments on short task summaries to select a Codex subagent model and reasoning effort with a Sol fallback.",
+    "summary_zh": "使用 Jev 的 Choice 和 Noul 判断简短任务摘要，为 Codex 子代理选择模型与推理档位；不确定时回退到 Sol。",
+    "zh_machine": true,
+    "url": "https://github.com/suenot/codex-jev-router",
+    "kind": "project",
+    "patterns": [
+      "model-routing"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "has_code": true,
+    "stars": 1,
+    "repo_license": "MIT",
+    "first_seen": "2026-09-23",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/10"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-24",
+    "link_status": 200,
+    "evidence": {
+      "path": "src/router.mjs",
+      "matched": [
+        "type: 'choice'",
+        "type: 'noul'",
+        "evaluateDecision"
+      ],
+      "read_on": "2026-09-24"
+    },
+    "notes": "Instruction-driven Codex subagent routing; no tool-boundary enforcement or measured savings are claimed. Hosted Jev needs a key and receives the sanitized task summary. Its author disclosed that it was built with Codex assistance and that a Codex agent prepared this submission; the flag records that disclosure, not a defect.",
+    "author": {
+      "name": "suenot",
+      "url": "https://github.com/suenot"
+    },
+    "flags": [
+      "ai-generated"
+    ],
+    "notes_zh": "作者主动披露：项目在 Codex 协助下开发，本次投稿由 Codex 代理准备；该标记记录的是这份披露，不是缺陷。"
   }
 ]

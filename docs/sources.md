@@ -20,8 +20,8 @@ source.
 | web search | various | 12 |
 | Hacker News | various | 5 |
 | jevai.org community site | <https://www.jevai.org/> | 5 |
+| author submission | various | 4 |
 | this repository | <https://github.com/kydlikebtc/awesome-jev> | 4 |
-| author submission | various | 3 |
 | YouTube search | <https://www.youtube.com/results?search_query=typesafe+jev> | 3 |
 | AI SDK providers | <https://ai-sdk.dev/providers> | 1 |
 | AI/ML API docs | <https://docs.aimlapi.com/> | 1 |
@@ -76,7 +76,7 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 471 |
+| MIT | 472 |
 | None declared | 141 |
 | Apache-2.0 | 79 |
 | NOASSERTION (non-standard terms) | 32 |
