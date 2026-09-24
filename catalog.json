@@ -3304,10 +3304,10 @@
   },
   {
     "slug": "no-mistakes-review-context",
-    "title": "no-mistakes: review context selection",
-    "summary": "One Score per candidate file to pick review context, with a measured outcome: materially more billed input for essentially no wall-clock gain.",
-    "summary_zh": "对每个候选文件打一个 Score 来挑选审查上下文；实测结果是：计费输入明显增加，而实际耗时几乎没改善。",
-    "url": "https://github.com/kunchenguid/no-mistakes",
+    "title": "no-mistakes: Jev review pre-brief, measured and retired",
+    "summary": "One Score per candidate file to pre-brief code review — measured twice, then removed: more billed input for essentially no wall-clock gain, and offline replay showed the candidate list could not reach where review findings land.",
+    "summary_zh": "为代码审查预选上下文：每个候选文件问一个 Score —— 测了两次后被移除：计费输入明显增加、耗时几乎没有收益；离线回放还表明，候选列表根本够不到审查发现实际所在的位置。",
+    "url": "https://github.com/kunchenguid/no-mistakes/pull/1165",
     "kind": "benchmark",
     "patterns": [
       "search-ranking"
@@ -3324,8 +3324,8 @@
     "has_code": true,
     "stars": 8611,
     "repo_license": "MIT",
-    "notes": "Their own recommendation was to keep the feature opt-in, off by default, and ship no savings claim. That is what an honest measurement looks like.",
-    "notes_zh": "他们自己的建议是：这个功能保持可选、默认关闭、不要宣传省钱。诚实的实测就该长这样。",
+    "notes": "Removed in PR #1165 (2026-09-22). Their offline measurement found the candidate generator excluded changed files by construction while nearly all review findings sit in changed files, and that per-file excerpts made the list less precise at higher token cost. The code is gone from the default branch, so this row cites the change that removed it.",
+    "notes_zh": "已在 PR #1165（2026-09-22）中移除。他们的离线测量发现：候选生成器从构造上就排除了被改动的文件，而几乎所有审查发现都落在被改动的文件上；按文件附带摘录反而让列表更不精确、token 成本更高。代码已不在默认分支上，所以这一行引用的是移除它的那次改动。",
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -3334,18 +3334,10 @@
       }
     ],
     "license": "CC0-1.0",
-    "checked": "2026-09-23",
-    "link_status": 200,
-    "evidence": {
-      "path": "internal/jev/jev.go",
-      "matched": [
-        "api.typesafe.ai",
-        "jev-latest",
-        "noul",
-        "Noul"
-      ],
-      "read_on": "2026-09-22"
-    }
+    "repo": "https://github.com/kunchenguid/no-mistakes",
+    "evidence_none": "removed-upstream",
+    "checked": "2026-09-24",
+    "link_status": 200
   },
   {
     "slug": "ahastudio-til-jev-probing",
@@ -3769,7 +3761,8 @@
       "tool-selection"
     ],
     "question_types": [
-      "choice"
+      "choice",
+      "noul"
     ],
     "languages": [
       "rust"
@@ -3793,14 +3786,13 @@
     "checked": "2026-09-23",
     "link_status": 200,
     "evidence": {
-      "path": "scripts/jev/act.mjs",
+      "path": "scripts/jev/policy.mjs",
       "matched": [
         "api.typesafe.ai",
-        "jev-latest",
-        "noul",
-        "choice"
+        "typesafe/jev",
+        "jev-latest"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     }
   },
   {
@@ -6035,13 +6027,11 @@
     "stars": 245,
     "repo_license": "MIT",
     "evidence": {
-      "path": "src/provider.ts",
+      "path": "src/index.ts",
       "matched": [
-        "@typesafe-ai/sdk",
-        "typesafe-ai/jev",
         "jev-latest"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -8006,13 +7996,12 @@
     "stars": 7,
     "repo_license": "MIT",
     "evidence": {
-      "path": ".agents/skills/augustus/scripts/uniqueness_gate.py",
+      "path": ".agents/skills/augustus/SKILL.md",
       "matched": [
-        "typesafe-ai/jev",
-        "jev-latest",
-        "jev-1.13"
+        "TypeSafe Jev",
+        "Jev Score"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -8322,10 +8311,10 @@
       "path": "src/engine.rs",
       "matched": [
         "api.typesafe.ai",
-        "jev-1.13",
+        "jev-latest",
         "/v1/systemone"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -8499,11 +8488,11 @@
     "stars": 206,
     "repo_license": "Apache-2.0",
     "evidence": {
-      "path": "src/llm2jev/sglang_server.py",
+      "path": "src/llm2jev/server/sglang_server.py",
       "matched": [
         "/v1/systemone"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -9170,11 +9159,11 @@
     "evidence": {
       "path": "src/client.ts",
       "matched": [
-        "api.typesafe.ai",
         "@typesafe-ai/sdk",
-        "typesafe/jev"
+        "typesafe/jev",
+        "jev-latest"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -10958,13 +10947,12 @@
     "stars": 229,
     "repo_license": "Apache-2.0",
     "evidence": {
-      "path": "quackd/agent/jev.py",
+      "path": "quackd/agent/decision/systemone.py",
       "matched": [
         "typesafe_sdk",
-        "jev-latest",
-        "jev-1.13"
+        "/v1/systemone"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -13586,11 +13574,12 @@
     "stars": 3,
     "repo_license": "MIT",
     "evidence": {
-      "path": "src/server/config.ts",
+      "path": "src/server/providers.ts",
       "matched": [
-        "typesafe-ai/jev"
+        "api.typesafe.ai",
+        "/v1/systemone"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -13892,13 +13881,12 @@
     "stars": 4,
     "repo_license": "MIT",
     "evidence": {
-      "path": "src/jev.mjs",
+      "path": "src/providers/typesafe.mjs",
       "matched": [
         "api.typesafe.ai",
-        "typesafe-ai/jev",
         "jev-latest"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -15369,13 +15357,12 @@
     "stars": 14,
     "repo_license": "Apache-2.0",
     "evidence": {
-      "path": "crates/evoke-adapters/src/jev.rs",
+      "path": "crates/evoke-adapters/src/systemone.rs",
       "matched": [
         "api.typesafe.ai",
-        "jev-1.13",
         "/v1/systemone"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -15459,11 +15446,11 @@
     "evidence": {
       "path": "jev_ids/detectors/jev.py",
       "matched": [
-        "typesafe-ai/jev",
-        "jev-1.13",
-        "/v1/systemone"
+        "typesafe_sdk",
+        "jev-latest",
+        "jev-1.13"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -19064,13 +19051,13 @@
     "stars": 4,
     "repo_license": "MIT",
     "evidence": {
-      "path": "src/tink_route/client.py",
+      "path": "src/tink_route/core/constants.py",
       "matched": [
         "api.typesafe.ai",
         "jev-1.13",
         "/v1/systemone"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -19418,13 +19405,13 @@
     "stars": 193,
     "repo_license": "MIT",
     "evidence": {
-      "path": "server/analysis.ts",
+      "path": "server/provider-config.ts",
       "matched": [
-        "@typesafe-ai/sdk",
-        "systemOne",
-        "TypeSafeClient"
+        "api.typesafe.ai",
+        "typesafe-ai/jev",
+        "typesafe/jev"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -20429,11 +20416,12 @@
     "stars": 814,
     "repo_license": "NOASSERTION",
     "evidence": {
-      "path": "packages/coding-agent/src/core/structured-output/jev-client.ts",
+      "path": "packages/ai/src/decision-models.generated.ts",
       "matched": [
-        "@typesafe-ai/sdk"
+        "typesafe-ai/jev",
+        "jev-latest"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -21066,7 +21054,7 @@
       "tool-selection"
     ],
     "platforms": [
-      "typesafe-api"
+      "vercel-ai-gateway"
     ],
     "author": {
       "name": "charlyhno-eng",
@@ -21078,9 +21066,11 @@
     "evidence": {
       "path": "src/core/hooks/jev-client.ts",
       "matched": [
-        "typesafe-ai/jev"
+        "createVercelJevModel",
+        "type: \"choice\"",
+        "type: \"boolean\""
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-24"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -21094,7 +21084,14 @@
       "typescript"
     ],
     "checked": "2026-09-23",
-    "link_status": 200
+    "link_status": 200,
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "notes": "Calls Jev through the Vercel AI Gateway with the AI SDK's evaluate(), so the yes/no question is spelled `boolean` there — Vercel's name for `noul`. It moved from a direct call in September 2026; the evidence follows it.",
+    "notes_zh": "通过 Vercel AI Gateway 用 AI SDK 的 evaluate() 调用 Jev，所以是非题在那里写作 `boolean` —— 即 Vercel 对 `noul` 的叫法。2026 年 9 月从直连调用迁移过去，证据随之更新。"
   },
   {
     "slug": "jev-chat",
@@ -25295,48 +25292,6 @@
     "link_status": 200
   },
   {
-    "slug": "jev-atlas",
-    "title": "jev-atlas",
-    "summary": "Map where Jev and System One models actually belong in your project, test the strongest ideas, then implement them. A skill for Claude Code and Codex.",
-    "summary_zh": "标出 Jev 和 System One 模型在你项目里真正该待的位置，并测试最强的那些想法。",
-    "zh_machine": true,
-    "url": "https://github.com/v60samurai/jev-atlas",
-    "kind": "plugin",
-    "patterns": [
-      "overview"
-    ],
-    "platforms": [
-      "typesafe-api"
-    ],
-    "author": {
-      "name": "v60samurai",
-      "url": "https://github.com/v60samurai"
-    },
-    "has_code": true,
-    "stars": 0,
-    "repo_license": "MIT",
-    "evidence": {
-      "path": "skills/jev-atlas/atlas/schema.py",
-      "matched": [
-        "jev-1.13"
-      ],
-      "read_on": "2026-09-22"
-    },
-    "first_seen": "2026-09-22",
-    "sources": [
-      {
-        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
-        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
-      }
-    ],
-    "license": "CC0-1.0",
-    "languages": [
-      "python"
-    ],
-    "checked": "2026-09-23",
-    "link_status": 200
-  },
-  {
     "slug": "third-hand",
     "title": "third-hand",
     "summary": "computer-use assistant w/ decision models",
@@ -26794,48 +26749,6 @@
     "license": "CC0-1.0",
     "languages": [
       "typescript"
-    ],
-    "checked": "2026-09-23",
-    "link_status": 200
-  },
-  {
-    "slug": "jev-mac-voice",
-    "title": "jev-mac-voice",
-    "summary": "English full-duplex voice control for macOS with OpenAI Realtime, native Accessibility, and Jev.",
-    "summary_zh": "面向 macOS 的英文全双工语音控制。",
-    "zh_machine": true,
-    "url": "https://github.com/brudarko/jev-mac-voice",
-    "kind": "project",
-    "patterns": [
-      "tool-selection"
-    ],
-    "platforms": [
-      "typesafe-api"
-    ],
-    "author": {
-      "name": "brudarko",
-      "url": "https://github.com/brudarko"
-    },
-    "has_code": true,
-    "stars": 20,
-    "repo_license": "MIT",
-    "evidence": {
-      "path": "src/jev.js",
-      "matched": [
-        "/v1/systemone"
-      ],
-      "read_on": "2026-09-22"
-    },
-    "first_seen": "2026-09-22",
-    "sources": [
-      {
-        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
-        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
-      }
-    ],
-    "license": "CC0-1.0",
-    "languages": [
-      "javascript"
     ],
     "checked": "2026-09-23",
     "link_status": 200
@@ -35258,6 +35171,61 @@
       "python"
     ],
     "checked": "2026-09-23",
+    "link_status": 200
+  },
+  {
+    "slug": "stuntdouble",
+    "title": "stuntdouble",
+    "summary": "A drop-in /v1/systemone proxy: the app keeps calling Jev while local decision models answer the same requests in the shadow, then it reports whether they would have decided the same — per question, per confidence band, at the app's own decide() — plus Brier, ECE, latency and cost.",
+    "summary_zh": "一个即插即用的 /v1/systemone 代理：应用照常调用 Jev，本地决策模型在影子里回答同样的请求，再报告它们是否会做出同样的决策 —— 按问题、按置信区间、按应用自己的 decide() 分别统计，并给出 Brier、ECE、延迟与成本。回答“能不能换成本地模型”这个问题。",
+    "url": "https://github.com/ReallyArtificial/stuntdouble",
+    "kind": "project",
+    "patterns": [
+      "model-routing"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "javascript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "Really Artificial",
+      "handle": "josharsh",
+      "url": "https://github.com/josharsh"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 1,
+    "repo_license": "MIT",
+    "published": "2026-09-22",
+    "first_seen": "2026-09-24",
+    "flags": [
+      "ai-generated"
+    ],
+    "notes": "Submitted by its own author, who disclosed the AI assistance; the flag records that disclosure. Jev's reply to the app is never altered or delayed by the doubles — a test enforces it. It forwards whichever primitives the app asks. The committed launch report compares two local models with each other: no key was available, so Jev itself has not been run through it yet.",
+    "notes_zh": "由作者本人投稿，并主动披露了 AI 协助；这个标记记录的是这份披露。影子模型永远不会改变或拖慢 Jev 回给应用的结果 —— 有测试保证。应用问什么原语它就转发什么。仓库里的首发报告比较的是两个本地模型：当时没有 key，所以 Jev 本身还没真正跑过这套流程。",
+    "sources": [
+      {
+        "catalog": "community submission (issue #4)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/issues/4"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "src/backends.mjs",
+      "matched": [
+        "/v1/systemone",
+        "TypeSafe wire shape"
+      ],
+      "read_on": "2026-09-24"
+    },
+    "checked": "2026-09-24",
     "link_status": 200
   }
 ]

@@ -11,14 +11,14 @@ is the point of dating it.
 <!-- shape:start -->
 |  |  |
 | --- | --- |
-| Entries | 805 |
-| Carrying code | 781 |
+| Entries | 804 |
+| Carrying code | 780 |
 | Official (TypeSafe AI's own) | 36 |
-| Link answered 2xx on the last sweep (2026-09-23) | 802 |
-| Rows citing a call site CI re-reads weekly | 721 |
+| Link answered 2xx on the last sweep (2026-09-24) | 801 |
+| Rows citing a call site CI re-reads weekly | 719 |
 | Patterns covered | 17 of 18 |
-| Chinese summaries hand-written | 184 of 805 |
-| Retired links | 0 |
+| Chinese summaries hand-written | 185 of 804 |
+| Retired links | 2 |
 <!-- shape:end -->
 
 ### Coverage gaps
@@ -34,12 +34,12 @@ Empty kinds:
 
 Thin — under 2.5% of the catalogue:
 
-- `retry-control` (4 of 805) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
-- `feature-extraction` (7 of 805)
-- `support-triage` (7 of 805)
-- `data-extraction` (12 of 805)
-- `document-triage` (16 of 805)
-- `context-compaction` (20 of 805)
+- `retry-control` (4 of 804) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
+- `feature-extraction` (7 of 804)
+- `support-triage` (7 of 804)
+- `data-extraction` (12 of 804)
+- `document-triage` (16 of 804)
+- `context-compaction` (20 of 804)
 <!-- gaps:end -->
 
 Two holes are in the research rather than the ecosystem: **Reddit** produced

@@ -4,7 +4,7 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 147 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 146 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Function calling](https://docs.typesafe.ai/cookbooks/function_calling)** ⭐ — 把自然语言的交易请求映射到普通的类型化函数：函数名和有限取值的参数各自变成一个带置信度的问题。
   <sub>`官方文档` · `Py` · `choice`</sub>
@@ -40,7 +40,7 @@ _智能体下一步该调用哪个工具或动作。_
   <sub>`开源项目` · ★2,128 · `TS` · `choice` · ⚠ `宣称未核实`</sub>
 
 - **[agent-desktop](https://github.com/lahfir/agent-desktop)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。
-  <sub>`开源项目` · ★1,557 · `Rs` · `choice`</sub>
+  <sub>`开源项目` · ★1,557 · `Rs` · `choice` · `noul`</sub>
 
 - **[typesafe-computer-use](https://github.com/awlevin/typesafe-computer-use)** — macOS 上的 computer use：OCR 屏幕、分类下一步动作、点击。每步成本不到一分钱的零头。
   <sub>`开源项目` · ★861 · awlevin · `Py`</sub>
@@ -176,9 +176,6 @@ _智能体下一步该调用哪个工具或动作。_
 
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — 在智能体工具调用执行前、以及工具结果被读取前做筛查。 <sub>(机翻)</sub>
   <sub>`插件` · ★20 · agent-chaperone · `TS`</sub>
-
-- **[jev-mac-voice](https://github.com/brudarko/jev-mac-voice)** — 面向 macOS 的英文全双工语音控制。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★20 · brudarko · `JS`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 开源的 macOS computer use 与原生 GUI 自动化，运行在 Apple 芯片上。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★20 · jcpsimmons · `JS`</sub>
@@ -319,7 +316,7 @@ _智能体下一步该调用哪个工具或动作。_
   <sub>`开源项目` · ★3 · collapseindex · `JS`</sub>
 
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — 带 JEV 模型路由、上下文优化与看板自动化的 Codex 覆盖层。 <sub>(机翻)</sub>
-  <sub>`插件` · ★3 · charlyhno-eng · `TS`</sub>
+  <sub>`插件` · ★3 · charlyhno-eng · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-for-engineers](https://github.com/Foadsf/jev-for-engineers)** — 八个最小可运行示例：把 Jev 用在机械与电气工程场景。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★3 · foadsf · `Py`</sub>

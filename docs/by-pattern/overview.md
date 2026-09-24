@@ -4,7 +4,7 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 301 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 300 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 - **[Official agent skill for Claude Code](https://docs.typesafe.ai/agent-skill)** ⭐ — Installs a TypeSafe skill into Claude Code so an agent can write correct Jev calls without you pasting the API shape each time.
   <sub>`Official docs` · ★1,963 · `sh`</sub>
@@ -770,9 +770,6 @@ Every catalogued example of this decision — 301 of them, official first, then 
 
 - **[jev-anotacao-sentencas](https://github.com/lab-dados/jev-anotacao-sentencas)** — Jev (TypeSafe) vs. Gemini 3.8 Flash vs. GPT-5.6 Luna na anotação estruturada de sentenças do TJSP: qualidade, tempo e custo
   <sub>`Project` · ★0 · lab-dados · `Py` · ⚠ `no licence`</sub>
-
-- **[jev-atlas](https://github.com/v60samurai/jev-atlas)** — Map where Jev and System One models actually belong in your project, test the strongest ideas, then implement them. A skill for Claude Code and Codex.
-  <sub>`Plugin` · ★0 · v60samurai · `Py`</sub>
 
 - **[jev-bun1](https://github.com/heiwa4126/jev-bun1)** — TypeSafe の Jev を TypeScript SDK で使ってみる最初の 1 歩
   <sub>`SDK` · ★0 · heiwa4126 · `TS` · ⚠ `no licence`</sub>
