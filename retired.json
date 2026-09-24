@@ -1,1 +1,76 @@
-[]
+[
+  {
+    "slug": "jev-atlas",
+    "title": "jev-atlas",
+    "summary": "Map where Jev and System One models actually belong in your project, test the strongest ideas, then implement them. A skill for Claude Code and Codex.",
+    "summary_zh": "标出 Jev 和 System One 模型在你项目里真正该待的位置，并测试最强的那些想法。",
+    "zh_machine": true,
+    "url": "https://github.com/v60samurai/jev-atlas",
+    "kind": "plugin",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "v60samurai",
+      "url": "https://github.com/v60samurai"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "MIT",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-09-24",
+    "link_status": 404,
+    "notes": "Retired 2026-09-24: the repository returns 404 on both the API and the web while its owner's account still exists — deleted or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-09-24 退役：仓库在 API 和网页上都返回 404，而作者账号仍然存在 —— 已删除或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "jev-mac-voice",
+    "title": "jev-mac-voice",
+    "summary": "English full-duplex voice control for macOS with OpenAI Realtime, native Accessibility, and Jev.",
+    "summary_zh": "面向 macOS 的英文全双工语音控制。",
+    "zh_machine": true,
+    "url": "https://github.com/brudarko/jev-mac-voice",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "brudarko",
+      "url": "https://github.com/brudarko"
+    },
+    "has_code": true,
+    "stars": 20,
+    "repo_license": "MIT",
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-09-24",
+    "link_status": 404,
+    "notes": "Retired 2026-09-24: the repository returns 404 on both the API and the web while its owner's account still exists — deleted or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-09-24 退役：仓库在 API 和网页上都返回 404，而作者账号仍然存在 —— 已删除或转为私有。保留于此，以便这条引用仍可检索。"
+  }
+]

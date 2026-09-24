@@ -4,7 +4,7 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 24 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 25 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — A two-stage mini-then-verify-then-reasoning cascade that reaches most of a big reasoning model's quality at a fraction of the cost.
   <sub>`Official docs` · `Py`</sub>
@@ -46,7 +46,7 @@ Every catalogued example of this decision — 24 of them, official first, then r
   <sub>`Plugin` · ★6 · minilv · `TS`</sub>
 
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — Smart Codex overlay with JEV model routing, context optimization & Kanban automation. Reduce tokens, keep control
-  <sub>`Plugin` · ★3 · charlyhno-eng · `TS`</sub>
+  <sub>`Plugin` · ★3 · charlyhno-eng · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-gate](https://github.com/MongLong0214/jev-gate)** — Not every coding task needs your best model. Experimental Jev-powered model routing for Claude Code — V3 prototype runs today, V4 routes at the task boundary.
   <sub>`Plugin` · ★3 · monglong0214 · `TS` · ⚠ `no licence`</sub>
@@ -68,6 +68,9 @@ Every catalogued example of this decision — 24 of them, official first, then r
 
 - **[jev-synthetic-survey](https://github.com/jjd-lab/jev-synthetic-survey)** — Jev vs GPT-4.1 as synthetic survey respondents on Twin-2K-500. How you ask mattered more than which model you used.
   <sub>`Project` · ★1 · jjd-lab · `Py`</sub>
+
+- **[stuntdouble](https://github.com/ReallyArtificial/stuntdouble)** — A drop-in /v1/systemone proxy: the app keeps calling Jev while local decision models answer the same requests in the shadow, then it reports whether they would have decided the same — per question, per confidence band, at the app's own decide() — plus Brier, ECE, latency and cost.
+  <sub>`Project` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `AI-written`</sub>
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain's explainer and integration walkthrough: the three question types, plus model routing and gating risky tool calls before they run.
   <sub>`Article` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `vendor numbers`</sub>

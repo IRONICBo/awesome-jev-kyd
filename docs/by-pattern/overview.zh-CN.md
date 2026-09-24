@@ -4,7 +4,7 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 301 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 300 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Official agent skill for Claude Code](https://docs.typesafe.ai/agent-skill)** ⭐ — 把 TypeSafe 官方技能装进 Claude Code，让智能体自己写出正确的 Jev 调用，不必每次手动贴 API 结构。
   <sub>`官方文档` · ★1,963 · `sh`</sub>
@@ -770,9 +770,6 @@ _介绍模型或整个领域，而非单一模式。_
 
 - **[jev-anotacao-sentencas](https://github.com/lab-dados/jev-anotacao-sentencas)** — Jev 与两个大模型在结构化句子标注上的对比（葡萄牙语）。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · lab-dados · `Py` · ⚠ `无许可证`</sub>
-
-- **[jev-atlas](https://github.com/v60samurai/jev-atlas)** — 标出 Jev 和 System One 模型在你项目里真正该待的位置，并测试最强的那些想法。 <sub>(机翻)</sub>
-  <sub>`插件` · ★0 · v60samurai · `Py`</sub>
 
 - **[jev-bun1](https://github.com/heiwa4126/jev-bun1)** — 用 TypeScript SDK 上手 Jev 的第一步（日语）。 <sub>(机翻)</sub>
   <sub>`SDK` · ★0 · heiwa4126 · `TS` · ⚠ `无许可证`</sub>

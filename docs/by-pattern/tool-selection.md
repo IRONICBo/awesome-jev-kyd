@@ -40,7 +40,7 @@ Every catalogued example of this decision — 147 of them, official first, then 
   <sub>`Project` · ★2,128 · `TS` · `choice` · ⚠ `unverified claims`</sub>
 
 - **[agent-desktop](https://github.com/lahfir/agent-desktop)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.
-  <sub>`Project` · ★1,557 · `Rs` · `choice`</sub>
+  <sub>`Project` · ★1,557 · `Rs` · `choice` · `noul`</sub>
 
 - **[typesafe-computer-use](https://github.com/awlevin/typesafe-computer-use)** — Computer use on macOS: OCR the screen, classify the next action, click. Costs a fraction of a cent per step.
   <sub>`Project` · ★861 · awlevin · `Py`</sub>
@@ -141,6 +141,9 @@ Every catalogued example of this decision — 147 of them, official first, then 
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — Fine-grained robot control with Jev, physics previews, and configurable LIBERO tasks.
   <sub>`Project` · ★61 · dimweaker · `Py`</sub>
 
+- **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded SocAI CLI action from fresh browser evidence; code validates targets and preserves source links.
+  <sub>`Project` · ★47 · socai-io · `JS` · `choice` · ⚠ `3rd-party key`</sub>
+
 - **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Jev-Mem: System-One Controlled Agentic Memory
   <sub>`Project` · ★39 · libingzheren · `Py`</sub>
 
@@ -176,9 +179,6 @@ Every catalogued example of this decision — 147 of them, official first, then 
 
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — Screens an AI agent's tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client's built-in tools.
   <sub>`Plugin` · ★20 · agent-chaperone · `TS`</sub>
-
-- **[jev-mac-voice](https://github.com/brudarko/jev-mac-voice)** — English full-duplex voice control for macOS with OpenAI Realtime, native Accessibility, and Jev.
-  <sub>`Project` · ★20 · brudarko · `JS`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Open-source macOS AI computer use and native GUI automation on Apple silicon. Jev + OmniParser CoreML + Apple Vision OCR. Bring your own OpenRouter, Vercel AI Gateway, or TypesafeAI token.
   <sub>`Project` · ★20 · jcpsimmons · `JS`</sub>
@@ -319,7 +319,7 @@ Every catalogued example of this decision — 147 of them, official first, then 
   <sub>`Project` · ★3 · collapseindex · `JS`</sub>
 
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — Smart Codex overlay with JEV model routing, context optimization & Kanban automation. Reduce tokens, keep control
-  <sub>`Plugin` · ★3 · charlyhno-eng · `TS`</sub>
+  <sub>`Plugin` · ★3 · charlyhno-eng · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-for-engineers](https://github.com/Foadsf/jev-for-engineers)** — Eight minimal working examples of TypeSafe's Jev (a System One model) applied to mechanical and electrical engineering: CAD/CAE/CAM routing, FEM result triage, DFM screening, BOM alignment, hallucination-proof extraction. Zero dependencies.
   <sub>`Project` · ★3 · foadsf · `Py`</sub>

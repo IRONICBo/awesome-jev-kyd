@@ -30,7 +30,7 @@ Every catalogued example of this decision — 45 of them, official first, then r
 - **[LanceDB TypeSafeReranker](https://github.com/lancedb/lancedb/blob/main/python/python/lancedb/rerankers/typesafe.py)** — A vector-database reranker that asks one Noul per result and uses the yes-probability as an absolute relevance score, comparable across queries.
   <sub>`Project` · ★11,506 · `Py` · `noul`</sub>
 
-- **[no-mistakes: review context selection](https://github.com/kunchenguid/no-mistakes)** — One Score per candidate file to pick review context, with a measured outcome: materially more billed input for essentially no wall-clock gain.
+- **[no-mistakes: Jev review pre-brief, measured and retired](https://github.com/kunchenguid/no-mistakes/pull/1165)** — One Score per candidate file to pre-brief code review — measured twice, then removed: more billed input for essentially no wall-clock gain, and offline replay showed the candidate list could not reach where review findings land.
   <sub>`Benchmark` · ★8,611 · `Go` · `score`</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.
@@ -72,9 +72,6 @@ Every catalogued example of this decision — 45 of them, official first, then r
 - **[Blink](https://github.com/ellipsis-dev/blink)** — Uses Jev as a codebase navigator: at each directory level it decides which files are most relevant to the question, then descends.
   <sub>`Project` · ★66 · `TS` · `choice` · ⚠ `no licence`</sub>
 
-- **[jev-social](https://github.com/socai-io/jev-social)** — Social-platform research with typed routing and browser evidence.
-  <sub>`Project` · ★47 · socai-io · `JS`</sub>
-
 - **[jev-recall](https://github.com/samdotmak/jev-recall)** — Retrieve by relevance, not resemblance: filter an AI assistant's memories with TypeSafe's Jev
   <sub>`Project` · ★33 · samdotmak · `TS`</sub>
 
@@ -86,6 +83,9 @@ Every catalogued example of this decision — 45 of them, official first, then r
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-jev)** — Typed System One decisions, ranking, verification, and an opt-in Hermes tool gate using TypeSafe Jev.
   <sub>`Project` · ★17 · keeltrace · `Py`</sub>
+
+- **[jgrep (npm: jevgrep)](https://github.com/kyu1204/jgrep)** — grep for what code does: one Noul per code chunk, diff hunk or CSV row, printed as file:line hits with probabilities. --diff gates a PR in CI on a rule written in English (exit 0 match / 1 clean / 2 error); --tests lists the test files a diff can affect.
+  <sub>`Project` · ★16 · kyu1204 · `TS` · `noul` · `choice` · `score` · ⚠ `unverified claims`</sub>
 
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — Reproducible benchmark for measuring Jev reranking quality, latency, and cost in RAG
   <sub>`Benchmark` · ★14 · erendikmenn · `Py`</sub>
@@ -132,7 +132,7 @@ Every catalogued example of this decision — 45 of them, official first, then r
 - **[jevgrep](https://github.com/allebee/jevgrep)** — grep by meaning: pipe in any text, ask a yes/no question in plain English, get only the matching lines. Works behind tail -f, about $0.004 per 1,000 lines, powered by TypeSafe's Jev.
   <sub>`Project` · ★1 · allebee · `Py`</sub>
 
-- **[JevPDF](https://github.com/kylemclaren/jevpdf)** — Searches a PDF by meaning. pdf.js extracts each page's lines in the browser and Jev answers one Noul per line ("does this line answer the query?"), at most 16 lines per request with the page text as shared state. Matching lines are highlighted in probability order; only text is sent to Jev.
+- **[JevPDF](https://github.com/kylemclaren/jevpdf)** — Searches a PDF by meaning. pdf.js extracts each page's lines in the browser and Jev answers one Noul per line ("does this line answer the query?"), at most 16 lines per request with the page text as shared state. Lines at p ≥ 0.55 are highlighted in probability order; only text is sent to Jev.
   <sub>`Project` · ★1 · kylemclaren · `TS` · `noul`</sub>
 
 - **[jev-bfs](https://github.com/komikat/jev-bfs)** — Wikipedia link races with direct Jev ranking and a live terminal display.

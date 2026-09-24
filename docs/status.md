@@ -14,11 +14,11 @@ is the point of dating it.
 | Entries | 807 |
 | Carrying code | 783 |
 | Official (TypeSafe AI's own) | 36 |
-| Link answered 2xx on the last sweep (2026-09-23) | 802 |
-| Rows citing a call site CI re-reads weekly | 723 |
+| Link answered 2xx on the last sweep (2026-09-24) | 802 |
+| Rows citing a call site CI re-reads weekly | 722 |
 | Patterns covered | 17 of 18 |
-| Chinese summaries hand-written | 184 of 807 |
-| Retired links | 0 |
+| Chinese summaries hand-written | 185 of 807 |
+| Retired links | 2 |
 <!-- shape:end -->
 
 ### Coverage gaps

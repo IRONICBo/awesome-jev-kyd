@@ -64,8 +64,9 @@ def main() -> int:
 
 def report_social_preview() -> None:
     """Informational only. The social preview is the one image nothing can
-    regenerate — GitHub has no upload API — so it is the durable card with no
-    changing figure on it. All CI can do is say whether it has been uploaded."""
+    regenerate — GitHub has no upload API — so it is the durable card, whose
+    only figure is a floor that growth can only understate. All CI can do is
+    say whether it has been uploaded."""
     owner, name = SELF.split("/")
     data = graphql(
         f'{{ repository(owner: "{owner}", name: "{name}") {{ usesCustomOpenGraphImage }} }}'
@@ -74,7 +75,7 @@ def report_social_preview() -> None:
     if uploaded is None:
         print("social preview: could not be read")
     elif uploaded:
-        print("social preview: custom card uploaded (durable; carries no changing figure)")
+        print("social preview: custom card uploaded (durable; its count is a floor)")
     else:
         print(
             "notice: no custom social preview is uploaded, so GitHub shows its generated "

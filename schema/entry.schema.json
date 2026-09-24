@@ -108,7 +108,11 @@
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "enum": ["choice", "score", "noul"]
+        "enum": [
+          "choice",
+          "score",
+          "noul"
+        ]
       }
     },
     "languages": {
@@ -152,7 +156,9 @@
     "author": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name"],
+      "required": [
+        "name"
+      ],
       "properties": {
         "name": {
           "description": "Display name as shown at the source.",
@@ -189,21 +195,40 @@
       "description": "Published package, when the example is installable.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["registry", "name"],
+      "required": [
+        "registry",
+        "name"
+      ],
       "properties": {
         "registry": {
           "type": "string",
-          "enum": ["npm", "pypi", "crates", "go", "maven", "nuget"]
+          "enum": [
+            "npm",
+            "pypi",
+            "crates",
+            "go",
+            "maven",
+            "nuget"
+          ]
         },
-        "name": { "type": "string", "minLength": 1 },
-        "url": { "type": "string", "format": "uri" }
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
       }
     },
     "evidence": {
       "description": "Where the primitive claim in question_types was actually read, so a machine can re-check it. scripts/verify_claims.py fetches path from the repo's default branch and asserts every string in matched still appears. Deliberately not pinned to a commit: the point is to notice when a claim stops being true upstream.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["path", "matched"],
+      "required": [
+        "path",
+        "matched"
+      ],
       "properties": {
         "path": {
           "description": "Repository-relative path of the file the call site is in.",
@@ -216,7 +241,10 @@
           "minItems": 1,
           "maxItems": 6,
           "uniqueItems": true,
-          "items": { "type": "string", "minLength": 2 }
+          "items": {
+            "type": "string",
+            "minLength": 2
+          }
         },
         "read_on": {
           "description": "Date the call site was last read by a person.",
@@ -226,14 +254,15 @@
       }
     },
     "evidence_none": {
-      "description": "Why this row carries no machine-checkable evidence — a documentation page, a video, a paywalled article. Required instead of evidence when question_types is set and the source is not a readable repository file.",
+      "description": "Why this row carries no machine-checkable evidence — a documentation page, a video, a paywalled article. Required instead of evidence when question_types is set and the source is not a readable repository file. `removed-upstream` means the project removed its Jev integration on purpose; the row stays because why it was removed is the useful part, and notes cite the change.",
       "type": "string",
       "enum": [
         "not-a-repository",
         "paywalled",
         "video",
         "docs-page",
-        "not-yet-backfilled"
+        "not-yet-backfilled",
+        "removed-upstream"
       ]
     },
     "official": {
@@ -306,7 +335,10 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["catalog", "url"],
+        "required": [
+          "catalog",
+          "url"
+        ],
         "properties": {
           "catalog": {
             "description": "Human name of the upstream index, site or search that surfaced this entry.",
@@ -323,7 +355,10 @@
     "license": {
       "description": "Licence of this row's metadata, not of the linked work. CC-BY-4.0 when descriptive text was inherited from a CC BY 4.0 source (attribution is the sources[] array itself), otherwise CC0-1.0.",
       "type": "string",
-      "enum": ["CC0-1.0", "CC-BY-4.0"],
+      "enum": [
+        "CC0-1.0",
+        "CC-BY-4.0"
+      ],
       "default": "CC0-1.0"
     }
   }
