@@ -7,10 +7,10 @@ _对进来的文档、发票、表单做分类和路由。_
 这个决策的全部已收录例子 —— 共 16 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#文档分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — 基于 Jev 决策的税务文档分页分类器，在 261 种 IRS 表单上达到严格全对，每页约 $0.001。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★405 · kyotofin · `TS`</sub>
+  <sub>`开源项目` · ★419 · kyotofin · `TS`</sub>
 
 - **[docjev](https://github.com/jerryjliu/docjev)** — 非常快的文档分类与切分器。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★350 · jerryjliu · `Py`</sub>
+  <sub>`开源项目` · ★414 · jerryjliu · `Py`</sub>
 
 - **[formanator](https://github.com/timrogers/formanator)** — 从命令行和 MCP 客户端提交福利报销单。 <sub>(机翻)</sub>
   <sub>`插件` · ★99 · timrogers · `Rs`</sub>
@@ -19,10 +19,10 @@ _对进来的文档、发票、表单做分类和路由。_
   <sub>`开源项目` · ★26 · misbahsy · `Rs`</sub>
 
 - **[jev-capability-atlas](https://github.com/Zaious/jev-capability-atlas)** — 独立的、基于证据的能力地图：Jev 在哪些场景站得住、在哪些场景崩掉 —— 附真实 API 调用凭据。 <sub>(机翻)</sub>
-  <sub>`基准测试` · ★25 · zaious · `Py`</sub>
+  <sub>`基准测试` · ★26 · zaious · `Py`</sub>
 
 - **[jevmory](https://github.com/romiluz13/jevmory)** — 编程智能体的记忆：每条事实都是一句逐字引文，由 Jev 的校准置信度评级。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★7 · romiluz13 · `Py`</sub>
+  <sub>`开源项目` · ★9 · romiluz13 · `Py`</sub>
 
 - **[jev-document-classification](https://github.com/Charlyhno-eng/jev-document-classification)** — 对文本文档做快速且低成本的分类。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · charlyhno-eng · `TS`</sub>

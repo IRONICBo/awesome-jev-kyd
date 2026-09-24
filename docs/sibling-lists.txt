@@ -40,3 +40,26 @@ https://github.com/wh000wh000/awesome-jev-live
 https://github.com/wuyoscar/jev-skill
 https://github.com/yibie/awesome-jev
 https://github.com/yzfly/awesome-jev-zh
+
+# Added 2026-09-24 from the weekly discovery run's GitHub search: each has
+# at least ten repository links and is about Jev. Harvest input only — nothing
+# cited here enters the catalogue without its code being read.
+https://github.com/Amal-David/awesome-jev
+https://github.com/visitworld123/Awesome-Robot-Use-Agent
+https://github.com/tanxarx/awesome-jev
+https://github.com/Ai-trainee/awesome-jev
+https://github.com/daftAI2026/awesome-jev
+https://github.com/Yifan-Lan/awesome-jev-robustness
+https://github.com/Li-Evan/awesome-jev
+https://github.com/Eurekaleo/awesome-jev-survey
+https://github.com/robokrunch/awesome-jev
+https://github.com/majiayu000/awesome-jev
+https://github.com/jqueryscript/awesome-jev
+https://github.com/Omrigotlieb/awesome-jev
+https://github.com/charetterat/awesome-jev-essentials
+https://github.com/RadRebelSam/awesome-jev
+https://github.com/JohnDotOwl/awesome-jev
+https://github.com/Gerry9000/awesome-jev
+https://github.com/onlyoasis/awesome-jev-cases
+https://github.com/yangzhou-chaofan/awesome-jev-prompt
+https://github.com/JingHao-Leon/awesome-jev-apps

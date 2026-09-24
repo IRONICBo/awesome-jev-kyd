@@ -11,13 +11,13 @@ is the point of dating it.
 <!-- shape:start -->
 |  |  |
 | --- | --- |
-| Entries | 808 |
-| Carrying code | 784 |
+| Entries | 884 |
+| Carrying code | 860 |
 | Official (TypeSafe AI's own) | 36 |
-| Link answered 2xx on the last sweep (2026-09-24) | 803 |
-| Rows citing a call site CI re-reads weekly | 723 |
+| Link answered 2xx on the last sweep (2026-09-24) | 881 |
+| Rows citing a call site CI re-reads weekly | 799 |
 | Patterns covered | 17 of 18 |
-| Chinese summaries hand-written | 185 of 808 |
+| Chinese summaries hand-written | 187 of 884 |
 | Retired links | 2 |
 <!-- shape:end -->
 
@@ -34,12 +34,12 @@ Empty kinds:
 
 Thin — under 2.5% of the catalogue:
 
-- `retry-control` (4 of 808) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
-- `feature-extraction` (7 of 808)
-- `support-triage` (7 of 808)
-- `data-extraction` (12 of 808)
-- `document-triage` (16 of 808)
-- `context-compaction` (20 of 808)
+- `retry-control` (4 of 884) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
+- `feature-extraction` (7 of 884)
+- `support-triage` (7 of 884)
+- `data-extraction` (12 of 884)
+- `document-triage` (16 of 884)
+- `context-compaction` (22 of 884)
 <!-- gaps:end -->
 
 Two holes are in the research rather than the ecosystem: **Reddit** produced

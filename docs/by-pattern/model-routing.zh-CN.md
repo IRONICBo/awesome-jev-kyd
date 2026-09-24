@@ -4,7 +4,7 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 26 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 30 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — 「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。
   <sub>`官方文档` · `Py`</sub>
@@ -13,37 +13,46 @@ _选择由哪个下游模型或档位处理请求。_
   <sub>`官方文档` · `Py` · `choice`</sub>
 
 - **[claude-code-templates: three Jev plugins](https://github.com/davila7/claude-code-templates)** — 三个可独立安装的 Claude Code 插件 —— 护栏、模型路由、技能推荐 —— 各自带 hook 和测试。
-  <sub>`插件` · ★31,297 · `Py` · `TS` · `choice` · `score` · `noul`</sub>
+  <sub>`插件` · ★31,582 · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[@langchain/typesafe](https://github.com/langchain-ai/langchainjs)** — LangChain 集成的 JavaScript 对应版本，分类器与 middleware 形状一致。
-  <sub>`平台集成` · ★18,222 · `TS` · `choice` · `score` · `noul`</sub>
+  <sub>`平台集成` · ★18,223 · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — 九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。
-  <sub>`插件` · ★673 · `Py` · `choice` · `score` · `noul`</sub>
+  <sub>`插件` · ★718 · `Py` · `choice` · `score` · `noul`</sub>
 
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — 代码审查前先过一遍 Jev，把高风险改动挑出来，再交给更贵的大模型或人。带本地看板。
-  <sub>`开源项目` · ★568 · `TS` · `choice` · `score` · `noul`</sub>
+  <sub>`开源项目` · ★582 · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-codex-router](https://github.com/0xNatoshi/jev-codex-router)** — 先让 Jev 判断这一轮编程任务有多难，再决定模型档位、推理深度和速度模式。
-  <sub>`插件` · ★242 · `JS` · `choice` · `score`</sub>
+  <sub>`插件` · ★260 · `JS` · `choice` · `score`</sub>
 
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — 面向模型、工具和子智能体的路由器。
-  <sub>`开源项目` · ★178 · billionsbobby · `TS`</sub>
+  <sub>`开源项目` · ★189 · billionsbobby · `TS`</sub>
 
 - **[jev-eval-agent](https://github.com/vinilana/jev-eval-agent)** — 一个把评测工作通过类型化决策来路由的智能体。
   <sub>`开源项目` · ★105 · vinilana · `TS` · ⚠ `无许可证`</sub>
 
 - **[jev-use](https://github.com/shitianfang/jev-use)** — 一个智能体插件：把不需要文本输出的步骤交给 Jev，而不是主模型。
-  <sub>`插件` · ★22 · shitianfang · `JS`</sub>
+  <sub>`插件` · ★25 · shitianfang · `JS`</sub>
+
+- **[stuntd](https://github.com/bladedevoff/stuntd)** — 本地代理：学习应用里带类型的 LLM 决策，并用一个 Laya 头来回答。兼容 Jev 与 OpenAI 接口。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★19 · bladedevoff · `Py`</sub>
+
+- **[pi-jev-router](https://github.com/philippdubach/pi-jev-router)** — 为 pi 打造的极简帕累托最优 OpenRouter 模型路由器，基于 Jev。 <sub>(机翻)</sub>
+  <sub>`插件` · ★14 · philippdubach · `TS`</sub>
 
 - **[pi-jev-router](https://github.com/mejiasd3v/pi-jev-router)** — 通过 Vercel AI Gateway 为 Pi 做自动模型路由。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★13 · mejiasd3v · `JS`</sub>
 
 - **[jev-router](https://github.com/prismhq/jev-router)** — 开源 LLM 路由器，在 LiteLLM 之上用 Jev 选模型。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10 · prismhq · `Py`</sub>
+  <sub>`开源项目` · ★12 · prismhq · `Py`</sub>
+
+- **[jev-router](https://github.com/rajdhakad9826/jev-router)** — LLM 路由器：用 TypeSafe Jev 做快速分类，而不是再调一次 LLM，为每个查询挑出能胜任的最便宜模型。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★8 · rajdhakad9826 · `TS`</sub>
 
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(机翻)</sub>
-  <sub>`插件` · ★6 · minilv · `TS`</sub>
+  <sub>`插件` · ★7 · minilv · `TS`</sub>
 
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — 带 JEV 模型路由、上下文优化与看板自动化的 Codex 覆盖层。 <sub>(机翻)</sub>
   <sub>`插件` · ★3 · charlyhno-eng · `TS` · `choice` · `score` · `noul`</sub>
@@ -59,6 +68,9 @@ _选择由哪个下游模型或档位处理请求。_
 
 - **[janus](https://github.com/FirasSX914/Janus)** — 先在你自己的数据上衡量何时该用 Jev、何时该用别的模型，再据此路由。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★2 · firassx914 · `Py`</sub>
+
+- **[jevonian](https://github.com/xinyao27/jevonian)** — 位于编码智能体与各模型提供方之间的本地端点：把每一轮路由到性价比最高且能胜任的模型，管理配额与缓存，并把每次路由决策记入本地账本。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★2 · xinyao27 · `TS`</sub>
 
 - **[Codex Jev Router](https://github.com/suenot/codex-jev-router)** — 使用 Jev 的 Choice 和 Noul 判断简短任务摘要，为 Codex 子代理选择模型与推理档位；不确定时回退到 Sol。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · suenot · `JS` · `choice` · `noul` · ⚠ `疑似 AI 生成`</sub>
