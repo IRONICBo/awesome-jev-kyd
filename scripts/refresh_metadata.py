@@ -65,6 +65,11 @@ def fetch(entry: dict) -> dict | None:
         "stars": data["stargazers_count"],
         "repo_license": spdx,
         "archived": bool(data.get("archived")),
+        # GitHub follows a renamed or transferred repository with a redirect,
+        # so the old URL keeps answering 200 and no link check ever notices.
+        # The canonical name is the fact; the catalogue should hold it.
+        "full_name": data.get("full_name") or repo,
+        "html_url": data.get("html_url"),
     }
 
 
@@ -81,6 +86,9 @@ def diff_for(entry: dict, fresh: dict) -> list[tuple[str, object, object]]:
         changes.append(
             ("repo_license", entry.get("repo_license"), fresh["repo_license"])
         )
+
+    if fresh.get("full_name") and fresh["full_name"].lower() != fresh["repo"].lower():
+        changes.append(("renamed", fresh["repo"], fresh["full_name"]))
 
     flags = set(entry.get("flags", []))
     # Both flags are two-way: a project that gets archived gains the flag, and
@@ -110,6 +118,14 @@ def apply(entry: dict, fresh: dict, changes: list[tuple[str, object, object]]) -
             entry["stars"] = b
         elif field == "repo_license":
             entry["repo_license"] = b
+        elif field == "renamed":
+            # Rewrite whichever of url / repo points at the old name, keeping
+            # any path inside the repository (a /blob/ link stays a /blob/ link).
+            for key in ("url", "repo"):
+                value = entry.get(key, "")
+                prefix = f"https://github.com/{a}"
+                if value.lower().startswith(prefix.lower()):
+                    entry[key] = f"https://github.com/{b}" + value[len(prefix) :]
         elif field == "flags":
             flags = entry.setdefault("flags", [])
             if b == "add" and a not in flags:

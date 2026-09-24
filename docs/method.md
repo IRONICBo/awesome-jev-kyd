@@ -151,6 +151,29 @@ them in the machinery that keeps the catalogue honest rather than in the data:
 
 `recommendation` is still empty.
 
+### The first weekly cycle, 2026-09-24
+
+The scheduled jobs ran for the first time, and each surfaced something only
+running could:
+
+* The call-site re-read failed 18 of 721 claims a day after they were read.
+  Fifteen call sites had moved in refactors; two repositories had been deleted
+  and were retired with a reason; and one project had removed its Jev
+  integration on purpose, with a published measurement of why. That row stayed
+  as a negative result under a new `evidence_none` value, `removed-upstream`.
+* Discovery proposed 80 candidates. Four were catalogued projects under an old
+  or new name, which led to the weekly refresh following renames. Sixteen
+  looked test-only; every one had a real call site the scanner missed —
+  because it had no C or C++ at all, and read only files named after Jev.
+  Both are fixed, and the language list is now checked against the schema.
+* Of the 76 added, nine are reimplementations of the interface rather than
+  Jev, including one with more stars than anything else found this week. The
+  keyword classifier filed all nine as ordinary projects; each was corrected by
+  hand.
+* Four pull requests from outside contributors were merged after their claims
+  were re-read against the code, and nineteen more sibling directories were
+  added to the harvest.
+
 ## Why a status code is not a verdict
 
 Every row's `link_status` says the URL answered. That is all it says. It does not

@@ -19,10 +19,10 @@ Every catalogued example of this decision — 12 of them, official first, then r
   <sub>`Official docs` · `Py`</sub>
 
 - **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — Data extraction for systematic reviews, quoted from the papers. Ask a trial report and its supplements your extraction form or a RoB 2, ROBINS-I, QUADAS-2 or TIDieR template; Jev points at the lines, every answer is a verbatim quote with its page, you check it and export the table. Files stay i
-  <sub>`Project` · ★32 · choxos · `JS`</sub>
+  <sub>`Project` · ★33 · choxos · `JS`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Open-source macOS AI computer use and native GUI automation on Apple silicon. Jev + OmniParser CoreML + Apple Vision OCR. Bring your own OpenRouter, Vercel AI Gateway, or TypesafeAI token.
-  <sub>`Project` · ★20 · jcpsimmons · `JS`</sub>
+  <sub>`Project` · ★21 · jcpsimmons · `JS`</sub>
 
 - **[jeveryword](https://github.com/jkrup/jeveryword)** — Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev.
   <sub>`Project` · ★4 · jkrup · `JS`</sub>
@@ -30,11 +30,11 @@ Every catalogued example of this decision — 12 of them, official first, then r
 - **[jev-mcp-dispatcher](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher)** — Natural-language MCP tool dispatcher powered entirely by TypeSafe's Jev — no general-purpose LLM. Discovers a simple MCP server's tool signatures at runtime and uses Jev's typed primitives (Choice/Noul) to pick the right tool and extract its arguments straight out of the sentence.
   <sub>`Plugin` · ★3 · abhishekashokvkumar · `Py` · ⚠ `no licence`</sub>
 
+- **[jevsume](https://github.com/unownone/jevsume)** — ATS-friendly resume review powered by Jev (TypeSafe System One). The frontend extracts resume text the way a parser would, then a Cloudflare Worker runs typed JEV questions and composes a JevScore.
+  <sub>`Project` · ★3 · unownone · `TS` · ⚠ `no licence`</sub>
+
 - **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — Parsing the PDF and extracting the relevant information
   <sub>`Project` · ★2 · abhishekmamdapure · `Py` · ⚠ `no licence`</sub>
-
-- **[jevsume](https://github.com/unownone/jevsume)** — ATS-friendly resume review powered by Jev (TypeSafe System One). The frontend extracts resume text the way a parser would, then a Cloudflare Worker runs typed JEV questions and composes a JevScore.
-  <sub>`Project` · ★2 · unownone · `TS` · ⚠ `no licence`</sub>
 
 - **[typesafe-ai-jev-example](https://github.com/ItBayMax/typesafe-ai-jev-example)** — Hands-on demos for TypeSafe's Jev (System One) model: six runnable examples and four field notes. Runs offline with no API key; samples/ holds real measured output from jev-1.13.0.
   <sub>`Project` · ★2 · itbaymax · `Py`</sub>

@@ -34,7 +34,7 @@ import re
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
-from _github import api_get, default_branch, raw_get, repo_of
+from _github import CODE_EXT, api_get, default_branch, raw_get, repo_of
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
@@ -63,11 +63,6 @@ STRONG = [
 ]
 # Only meaningful alongside a strong signal.
 WEAK = ["noul", "Noul", "choice", "Choice", "score", "Score"]
-
-CODE_EXT = (
-    ".py", ".ts", ".tsx", ".js", ".mjs", ".jsx",
-    ".go", ".rs", ".rb", ".java", ".kt", ".sql",
-)
 
 WORKERS = 6
 

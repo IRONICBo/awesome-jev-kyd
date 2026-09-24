@@ -19,10 +19,10 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
   <sub>`官方文档` · `Py`</sub>
 
 - **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — 系统综述的数据抽取：让 Jev 从论文及其补充材料里按抽取表取值，并附原文引用。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★32 · choxos · `JS`</sub>
+  <sub>`开源项目` · ★33 · choxos · `JS`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 开源的 macOS computer use 与原生 GUI 自动化，运行在 Apple 芯片上。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★20 · jcpsimmons · `JS`</sub>
+  <sub>`开源项目` · ★21 · jcpsimmons · `JS`</sub>
 
 - **[jeveryword](https://github.com/jkrup/jeveryword)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · jkrup · `JS`</sub>
@@ -30,11 +30,11 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
 - **[jev-mcp-dispatcher](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher)** — 完全由 Jev 驱动的自然语言 MCP 工具分发器，不用通用 LLM。 <sub>(机翻)</sub>
   <sub>`插件` · ★3 · abhishekashokvkumar · `Py` · ⚠ `无许可证`</sub>
 
+- **[jevsume](https://github.com/unownone/jevsume)** — 由 Jev 驱动的 ATS 友好简历评审。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★3 · unownone · `TS` · ⚠ `无许可证`</sub>
+
 - **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — 解析 PDF 并抽取相关信息。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★2 · abhishekmamdapure · `Py` · ⚠ `无许可证`</sub>
-
-- **[jevsume](https://github.com/unownone/jevsume)** — 由 Jev 驱动的 ATS 友好简历评审。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★2 · unownone · `TS` · ⚠ `无许可证`</sub>
 
 - **[typesafe-ai-jev-example](https://github.com/ItBayMax/typesafe-ai-jev-example)** — Jev 的动手演示：六个可运行示例与四则实战笔记。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★2 · itbaymax · `Py`</sub>

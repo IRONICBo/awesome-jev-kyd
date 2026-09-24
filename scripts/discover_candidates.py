@@ -38,7 +38,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-from _github import SELF, api_get, default_branch, raw_get, repo_of  # noqa: E402
+from _github import CODE_EXT, SELF, api_get, default_branch, raw_get, repo_of  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
@@ -94,23 +94,6 @@ STRONG = [
     "TypeSafeClient",
     "AsyncTypeSafeClient",
 ]
-CODE_EXT = (
-    ".py",
-    ".ts",
-    ".tsx",
-    ".js",
-    ".mjs",
-    ".jsx",
-    ".go",
-    ".rs",
-    ".rb",
-    ".java",
-    ".kt",
-    ".sql",
-    ".ex",
-    ".swift",
-    ".cs",
-)
 
 
 # ---------------------------------------------------------------------------
@@ -290,16 +273,28 @@ def inspect(slug: str) -> dict:
         re.I,
     )
     best: tuple[int, str, list[str]] | None = None
-    for path in (hinted or paths)[:30]:
-        body = raw_get(slug, branch, path)
-        if not body:
-            continue
-        found = [s for s in STRONG if s in body]
-        if not found:
-            continue
-        score = len(found) - (5 if testy.search(path) else 0)
-        if best is None or score > best[0]:
-            best = (score, path, found[:3])
+
+    def scan(candidates: list[str]) -> None:
+        nonlocal best
+        for path in candidates:
+            body = raw_get(slug, branch, path)
+            if not body:
+                continue
+            found = [s for s in STRONG if s in body]
+            if not found:
+                continue
+            score = len(found) - (5 if testy.search(path) else 0)
+            if best is None or score > best[0]:
+                best = (score, path, found[:3])
+
+    scan((hinted or paths)[:30])
+    # Files named after Jev are the likeliest call sites, but not the only ones:
+    # belay.mjs, src/model.ts and a DuckDB extension's jev_client.cpp were all
+    # missed this way, and each looked test-only because its test file had the
+    # hinted name. If nothing but a test matched, read the rest of the source.
+    if best is None or testy.search(best[1]):
+        rest = [p for p in paths if p not in hinted and not testy.search(p)]
+        scan(rest[:60])
     if best:
         kind, patterns = classify(
             out["description"], slug.split("/")[1], out["language"]
@@ -515,7 +510,13 @@ def main() -> int:
     # GitHub redirects a renamed repository, so two cited names can resolve to
     # one canonical html_url. Without this the same project is proposed twice
     # under different slugs, and only the catalog linter catches it.
-    seen_urls: set[str] = set()
+    # A candidate is cited under whatever name the citing list used; inspect()
+    # reports GitHub's canonical URL. Compare that against the catalogue too,
+    # or a renamed or transferred project comes back as "new" — four of the
+    # first eighty did (hermes-jev renamed to hermes-nerve, among them).
+    seen_urls: set[str] = {
+        u.rstrip("/").lower() for e in catalog for u in (e.get("url"), e.get("repo")) if u
+    }
     deduped = []
     for r in results:
         key = (r.get("url") or r["slug"]).rstrip("/").lower()

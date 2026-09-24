@@ -303,6 +303,18 @@ def main() -> int:
                 if not p.get(field):
                     err("patterns.json", f"{p['key']!r} has no {field}")
 
+    # The scanners find code by extension. A language the schema accepts but
+    # _github.LANG_EXT does not map is one discovery can never see: C and C++
+    # were missing, so three database extensions looked test-only.
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from _github import LANG_EXT
+
+    langs = set(schema["properties"]["languages"]["items"]["enum"])
+    for lang in sorted(langs - set(LANG_EXT)):
+        err("scripts/_github.py", f"schema language {lang!r} has no file extensions in LANG_EXT")
+    for lang in sorted(set(LANG_EXT) - langs):
+        err("scripts/_github.py", f"LANG_EXT maps {lang!r}, which the schema does not allow")
+
     # taxonomy.json holds kind and flag labels for both the README and the site.
     # A key the schema allows but taxonomy.json lacks raises in build_readme but
     # renders as a raw slug on the site — loud in one place, silent in the other.

@@ -26,6 +26,33 @@ TIMEOUT = 25
 # literals would be three chances to drift after a rename.
 SELF = "kydlikebtc/awesome-jev"
 
+# File extensions per language, keyed by the `languages` enum in
+# schema/entry.schema.json; lint.py checks the two keep the same keys. Both
+# discover_candidates.py and verify_claims.py scan by these. They used to keep
+# separate lists with no C or C++ at all, so a SQLite, DuckDB or MySQL extension
+# calling Jev from C could never be discovered, only guessed at from its tests.
+LANG_EXT: dict[str, tuple[str, ...]] = {
+    "python": (".py",),
+    "typescript": (".ts", ".tsx", ".mts", ".cts"),
+    "javascript": (".js", ".mjs", ".cjs", ".jsx"),
+    "go": (".go",),
+    "rust": (".rs",),
+    "shell": (".sh", ".bash"),
+    "java": (".java",),
+    "ruby": (".rb",),
+    "php": (".php",),
+    "csharp": (".cs",),
+    "elixir": (".ex", ".exs"),
+    "lua": (".lua",),
+    "swift": (".swift",),
+    "kotlin": (".kt", ".kts"),
+    "haskell": (".hs",),
+    "c": (".c", ".h"),
+    "cpp": (".cc", ".cpp", ".cxx", ".hpp", ".hh"),
+}
+# SQL is not a catalogue language, but a query calling Jev is still a call site.
+CODE_EXT: tuple[str, ...] = tuple(e for exts in LANG_EXT.values() for e in exts) + (".sql",)
+
 _branches: dict[str, str] = {}
 
 
