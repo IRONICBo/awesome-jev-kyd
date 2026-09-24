@@ -10,8 +10,8 @@ half-megabyte PNG every week.
 
   img/og.png           card.html?mode=live — the site's og:image, live figures
   img/card.png         card.html — the durable card for GitHub's social preview,
-                       which has to be uploaded by hand and so carries no figure
-                       that changes
+                       which has to be uploaded by hand; its only figure is a
+                       floor ("800+") that growth can only understate
   img/site-en.png      the site, English — the README hero image
   img/site-zh.png      the site, Chinese — the Chinese README hero image
   img/site-compat.png  the compatibility view — docs/compatibility.md
@@ -48,8 +48,8 @@ BUDGET_MS = 15000
 
 # (output name, page, viewport, a string the rendered DOM must contain)
 TARGETS = (
-    ("og.png", "card.html?mode=live", (1280, 640), "link-verified"),
-    ("card.png", "card.html", (1280, 640), "One request, three answers"),
+    ("og.png", "card.html?mode=live", (1280, 640), "should_you_star_this?"),
+    ("card.png", "card.html", (1280, 640), "should_you_star_this?"),
     ("site-en.png", "index.html?lang=en", (1200, 900), "Tool selection"),
     ("site-zh.png", "index.html?lang=zh", (1200, 900), "工具选择"),
     ("site-compat.png", "index.html?lang=en&view=compat", (1200, 900), "typesafe/jev"),

@@ -81,6 +81,8 @@ STRONG = [
     "api.typesafe.ai",
     "typesafe_sdk",
     "@typesafe-ai/sdk",
+    # The Vercel AI SDK provider: evaluate() calls, where noul is spelled boolean.
+    "@ai-sdk/typesafe-ai",
     "typesafe-ai/jev",
     "typesafe/jev",
     "jev-latest",

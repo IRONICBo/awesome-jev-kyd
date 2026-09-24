@@ -4,7 +4,7 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 82 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 83 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐ — Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -89,6 +89,9 @@ Every catalogued example of this decision — 82 of them, official first, then r
 
 - **[jev-mcp](https://github.com/blakestone-x/jev-mcp)** — An MCP server exposing classify, score, check, match and screen to any agent.
   <sub>`Plugin` · ★21 · blakestone-x · `Py`</sub>
+
+- **[jgrep (npm: jevgrep)](https://github.com/kyu1204/jgrep)** — grep for what code does: one Noul per code chunk, diff hunk or CSV row, printed as file:line hits with probabilities. --diff gates a PR in CI on a rule written in English (exit 0 match / 1 clean / 2 error); --tests lists the test files a diff can affect.
+  <sub>`Project` · ★16 · kyu1204 · `TS` · `noul` · `choice` · `score` · ⚠ `unverified claims`</sub>
 
 - **[x-scanner](https://github.com/oso95/x-scanner)** — Chrome extension that labels every post you scroll past on X with typed Jev judgments and a live cost counter
   <sub>`Plugin` · ★16 · oso95 · `TS`</sub>
