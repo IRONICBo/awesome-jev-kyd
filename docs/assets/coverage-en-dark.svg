@@ -5,8 +5,8 @@
 <line x1="12" y1="50" x2="626" y2="50" stroke="#30363d" stroke-width="1"/>
 <text x="12" y="74" class="l">Tool selection</text>
 <rect x="168" y="65" width="380" height="11" rx="1" fill="#21262d"/>
-<path d="M168 65h183a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-183z" fill="#f5a524"/>
-<text x="560" y="75" class="n">146</text>
+<path d="M168 65h184a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-184z" fill="#f5a524"/>
+<text x="560" y="75" class="n">147</text>
 <text x="12" y="99" class="l">Intent routing</text>
 <rect x="168" y="90" width="380" height="11" rx="1" fill="#21262d"/>
 <path d="M168 90h35a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-35z" fill="#8a5d14"/>
@@ -41,8 +41,8 @@
 <text x="560" y="275" class="n">28</text>
 <text x="12" y="299" class="l">Search &amp; ranking</text>
 <rect x="168" y="290" width="380" height="11" rx="1" fill="#21262d"/>
-<path d="M168 290h54a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-54z" fill="#8a5d14"/>
-<text x="560" y="300" class="n">44</text>
+<path d="M168 290h52a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-52z" fill="#8a5d14"/>
+<text x="560" y="300" class="n">43</text>
 <text x="12" y="324" class="l">Structured extraction</text>
 <rect x="168" y="315" width="380" height="11" rx="1" fill="#21262d"/>
 <path d="M168 315h13a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-13z" fill="#8a5d14"/>

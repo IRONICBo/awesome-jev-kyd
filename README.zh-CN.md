@@ -256,7 +256,7 @@ _智能体下一步该调用哪个工具或动作。_
 - **[DeepChat: agent tool-permission review](https://github.com/ThinkInAIXYZ/deepchat)** — 从三个维度审查每次工具调用：风险等级、用户是否授权、以及一个显式的提示注入压力检查。
   <sub>`开源项目` · ★6,340 · `TS` · `choice` · `noul`</sub>
 
-已显示 **10 / 146** 条 · [在单独页面查看全部 146 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
+已显示 **10 / 147** 条 · [在单独页面查看全部 147 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
 
 ### 意图路由
 
@@ -562,7 +562,7 @@ _对来自廉价检索步骤的候选做打分或重排。_
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
   <sub>`开源项目` · ★4,940 · `Java` · `choice` · `score` · `noul`</sub>
 
-已显示 **10 / 44** 条 · [在单独页面查看全部 44 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
+已显示 **10 / 43** 条 · [在单独页面查看全部 43 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
 
 ### 结构化抽取
 

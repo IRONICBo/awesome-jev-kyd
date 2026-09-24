@@ -24,6 +24,7 @@ source.
 | YouTube search | <https://www.youtube.com/results?search_query=typesafe+jev> | 3 |
 | AI SDK providers | <https://ai-sdk.dev/providers> | 1 |
 | AI/ML API docs | <https://docs.aimlapi.com/> | 1 |
+| author correction | <https://github.com/kydlikebtc/awesome-jev/pull/8> | 1 |
 | author submission | <https://github.com/kydlikebtc/awesome-jev/pull/7> | 1 |
 | Cloudflare Workers AI models | <https://developers.cloudflare.com/ai/models/> | 1 |
 | community submission (issue #2) | <https://github.com/kydlikebtc/awesome-jev/issues/2> | 1 |
