@@ -4,7 +4,7 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 148 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 147 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Function calling](https://docs.typesafe.ai/cookbooks/function_calling)** ⭐ — Maps natural-language trading requests onto ordinary typed functions by turning function names and closed-set arguments into confidence-aware questions.
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -40,7 +40,7 @@ Every catalogued example of this decision — 148 of them, official first, then 
   <sub>`Project` · ★2,128 · `TS` · `choice` · ⚠ `unverified claims`</sub>
 
 - **[agent-desktop](https://github.com/lahfir/agent-desktop)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.
-  <sub>`Project` · ★1,557 · `Rs` · `choice`</sub>
+  <sub>`Project` · ★1,557 · `Rs` · `choice` · `noul`</sub>
 
 - **[typesafe-computer-use](https://github.com/awlevin/typesafe-computer-use)** — Computer use on macOS: OCR the screen, classify the next action, click. Costs a fraction of a cent per step.
   <sub>`Project` · ★861 · awlevin · `Py`</sub>
@@ -179,9 +179,6 @@ Every catalogued example of this decision — 148 of them, official first, then 
 
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — Screens an AI agent's tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client's built-in tools.
   <sub>`Plugin` · ★20 · agent-chaperone · `TS`</sub>
-
-- **[jev-mac-voice](https://github.com/brudarko/jev-mac-voice)** — English full-duplex voice control for macOS with OpenAI Realtime, native Accessibility, and Jev.
-  <sub>`Project` · ★20 · brudarko · `JS`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Open-source macOS AI computer use and native GUI automation on Apple silicon. Jev + OmniParser CoreML + Apple Vision OCR. Bring your own OpenRouter, Vercel AI Gateway, or TypesafeAI token.
   <sub>`Project` · ★20 · jcpsimmons · `JS`</sub>
@@ -322,7 +319,7 @@ Every catalogued example of this decision — 148 of them, official first, then 
   <sub>`Project` · ★3 · collapseindex · `JS`</sub>
 
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — Smart Codex overlay with JEV model routing, context optimization & Kanban automation. Reduce tokens, keep control
-  <sub>`Plugin` · ★3 · charlyhno-eng · `TS`</sub>
+  <sub>`Plugin` · ★3 · charlyhno-eng · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[jev-for-engineers](https://github.com/Foadsf/jev-for-engineers)** — Eight minimal working examples of TypeSafe's Jev (a System One model) applied to mechanical and electrical engineering: CAD/CAE/CAM routing, FEM result triage, DFM screening, BOM alignment, hallucination-proof extraction. Zero dependencies.
   <sub>`Project` · ★3 · foadsf · `Py`</sub>

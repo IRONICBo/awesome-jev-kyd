@@ -2,40 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>awesome-jev card — 1280×640</title>
+    <title>awesome-jev share card — 1280×640</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=Noto+Sans+SC:wght@400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <!--
-      One template, two cards. scripts/render_images.py renders both on every
-      Pages deploy; neither is committed.
+      The share card: one question, answered the way Jev answers — a typed
+      probability instead of a paragraph. It replaced a dashboard of fourteen
+      small elements that read as grey texture at feed size.
 
-        card.html            durable. No number that changes as the catalogue or
-                             the vendor does, because it is uploaded by hand at
-                             Settings → General → Social preview (GitHub has no
-                             API for that), and a hand-uploaded image is never
-                             regenerated. The old card froze at the first build's count.
-        card.html?mode=live  the site's og:image. Every figure is read at deploy
-                             time from stats.json (written by _stats.py, the same
-                             definitions as the README badges), patterns.json and
-                             compat.json, so it is exactly as current as the site.
+      scripts/render_images.py renders both modes on every Pages deploy:
+
+        card.html            durable — for GitHub's social preview, which is
+                             uploaded by hand and never regenerated. Its count
+                             is a floor ("800+") that can only ever understate.
+        card.html?mode=live  the site's og:image, with the exact count.
+
+      Design rule: it must still read at 400px wide. Anything smaller than the
+      footer's first line is decoration, not information.
     -->
     <style>
       :root {
         --ink: #0b0d10;
-        --ink-2: #12151a;
+        --track: #171b21;
         --rule: #242b34;
-        --rule-2: #333c48;
-        --fg: #e8eaed;
+        --fg: #eceef1;
         --fg-2: #9aa4b1;
         --fg-3: #6b7684;
         --amber: #f5a524;
         --amber-dim: #8a5d14;
         --signal: #4ec97a;
-        --alert: #e8564b;
-        --cool: #5fb3d9;
-        --mono: "IBM Plex Mono", "Noto Sans SC", ui-monospace, monospace; /* CJK fallback: "EN + 中文" */
+        --mono: "IBM Plex Mono", "Noto Sans SC", ui-monospace, monospace;
         --sans: "IBM Plex Sans", "Noto Sans SC", sans-serif;
       }
       * {
@@ -43,545 +41,209 @@
         margin: 0;
       }
       body {
-        background: #000;
+        background: #050607;
         display: grid;
         place-items: center;
         min-height: 100vh;
       }
       .card {
+        position: relative;
         width: 1280px;
         height: 640px;
-        background: var(--ink);
+        overflow: hidden;
         color: var(--fg);
         font-family: var(--sans);
-        position: relative;
-        overflow: hidden;
-        display: grid;
-        grid-template-columns: 1fr 372px;
+        background-color: var(--ink);
+        /* Graph paper, as on the site: the catalogue as plotting stock. */
         background-image:
           linear-gradient(
             to right,
-            rgba(255, 255, 255, 0.024) 1px,
+            rgba(255, 255, 255, 0.028) 1px,
             transparent 1px
           ),
           linear-gradient(
             to bottom,
-            rgba(255, 255, 255, 0.024) 1px,
+            rgba(255, 255, 255, 0.028) 1px,
             transparent 1px
           );
         background-size: 64px 64px;
+        background-position: -1px -1px;
       }
+      /* The instrument lamp: warmth where the answer is. */
       .card::after {
         content: "";
         position: absolute;
         inset: 0;
         pointer-events: none;
         background: radial-gradient(
-          90% 80% at 4% -14%,
-          rgba(245, 165, 36, 0.11),
-          transparent 56%
+          60% 55% at 50% 50%,
+          rgba(245, 165, 36, 0.12),
+          transparent 70%
         );
       }
+      /* Grain, so the flat fill never reads as plastic. */
       .card::before {
         content: "";
         position: absolute;
         inset: 0;
+        z-index: 3;
         pointer-events: none;
-        opacity: 0.5;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+        opacity: 0.55;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
       }
-      .left {
-        padding: 56px 0 48px 64px;
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-      }
-      .eyebrow {
+
+      /* ── the question ── */
+      .q {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 112px;
+        text-align: center;
         font-family: var(--mono);
-        font-size: 14px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--fg-3);
+        font-weight: 500;
+        font-size: 58px;
+        letter-spacing: -0.03em;
+        z-index: 2;
+      }
+      /* Which primitive asked it. A noul answers with a bare probability. */
+      .tag {
+        display: inline-block;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--signal);
+        border: 1.5px solid rgba(78, 201, 122, 0.45);
+        border-radius: 5px;
+        padding: 2px 11px 3px;
+        line-height: 1.2;
+        vertical-align: 14px;
+        margin-right: 20px;
+      }
+
+      /* ── the answer ── */
+      .meter {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 244px;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 34px;
+        z-index: 2;
       }
-      .eyebrow .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--signal);
-        box-shadow: 0 0 0 4px rgba(78, 201, 122, 0.16);
+      .track {
+        flex: 1;
+        height: 30px;
+        background: var(--track);
+        border-radius: 15px;
+        position: relative;
+        box-shadow: inset 0 0 0 1px var(--rule);
       }
-      h1 {
+      .fill {
+        position: absolute;
+        inset: 0 3% 0 0;
+        border-radius: 15px;
+        background: linear-gradient(90deg, var(--amber-dim), var(--amber));
+        box-shadow: 0 0 40px rgba(245, 165, 36, 0.35);
+      }
+      .p {
         font-family: var(--mono);
         font-weight: 600;
-        font-size: 104px;
-        line-height: 0.9;
-        letter-spacing: -0.06em;
-        margin: 22px 0 0;
-      }
-      h1 .br {
-        color: var(--fg-3);
-      }
-      .lede {
-        font-size: 21px;
-        line-height: 1.5;
-        color: var(--fg-2);
-        margin: 26px 0 0;
-        max-width: 40ch;
-      }
-      .lede b {
-        color: var(--fg);
-        font-weight: 500;
-      }
-      /* What the model actually returns. Fills the middle and teaches the
-         three primitives in a preview that often gets seen without the repo. */
-      .prims {
-        margin: 36px 0 0;
-        display: flex;
-        gap: 1px;
-        background: var(--rule);
-        border: 1px solid var(--rule);
-        width: fit-content;
-      }
-      .pr {
-        background: var(--ink-2);
-        padding: 11px 18px 12px;
-        min-width: 138px;
-      }
-      .pr .g {
-        font-family: var(--mono);
-        font-size: 15px;
-        color: var(--signal);
-        letter-spacing: 0.08em;
-      }
-      .pr .n {
-        font-family: var(--mono);
-        font-size: 14px;
-        font-weight: 500;
-        margin-top: 6px;
-      }
-      .pr .d {
-        font-size: 11.5px;
-        color: var(--fg-3);
-        margin-top: 3px;
-        line-height: 1.35;
-      }
-      .readout {
-        display: flex;
-        gap: 1px;
-        background: var(--rule);
-        border: 1px solid var(--rule);
-        margin: auto 0 0;
-        width: fit-content;
-      }
-      .rd {
-        background: var(--ink-2);
-        padding: 13px 22px 12px;
-      }
-      .rd .v {
-        font-family: var(--mono);
-        font-size: 34px;
-        font-weight: 500;
-        letter-spacing: -0.03em;
+        font-size: 128px;
         line-height: 1;
-      }
-      .rd .k {
-        font-family: var(--mono);
-        font-size: 11px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--fg-3);
-        margin-top: 8px;
-      }
-      .rd.hot .v {
+        letter-spacing: -0.06em;
         color: var(--amber);
-      }
-      .rd.ok .v {
-        color: var(--signal);
-      }
-      .url {
-        font-family: var(--mono);
-        font-size: 15px;
-        color: var(--fg-3);
-        margin: 22px 0 0;
-      }
-      .url b {
-        color: var(--amber);
-        font-weight: 400;
+        text-shadow: 0 0 60px rgba(245, 165, 36, 0.3);
       }
 
-      /* Right rail: the coverage histogram, the site's signature element. */
-      .right {
-        border-left: 1px solid var(--rule);
-        padding: 56px 64px 48px 40px;
-        position: relative;
-        z-index: 2;
+      /* ── who is asking ── */
+      .foot {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        bottom: 60px;
         display: flex;
-        flex-direction: column;
-      }
-      .rh {
-        font-family: var(--mono);
-        font-size: 11px;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--fg-3);
-        padding-bottom: 11px;
-        border-bottom: 1px solid var(--rule);
-      }
-      .bars {
-        margin-top: 14px;
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-      }
-      .b .top {
-        display: flex;
+        align-items: flex-end;
         justify-content: space-between;
-        align-items: baseline;
-        font-size: 12.5px;
-        color: var(--fg-2);
+        gap: 40px;
+        padding-top: 30px;
+        border-top: 1.5px solid var(--rule);
+        z-index: 2;
+      }
+      .wm {
         font-family: var(--mono);
+        font-weight: 600;
+        font-size: 54px;
+        line-height: 1;
+        letter-spacing: -0.045em;
       }
-      .b .top .n {
-        color: var(--fg-3);
-        font-size: 11px;
-      }
-      .b .track {
-        height: 5px;
-        background: #171b21;
-        margin-top: 5px;
-        position: relative;
-      }
-      .b .fill {
-        position: absolute;
-        inset: 0 auto 0 0;
-        background: var(--rule-2);
-        border-radius: 0 3px 3px 0;
-      }
-      .b.hi .fill {
-        background: var(--amber);
-      }
-      .b.hi .top {
-        color: var(--amber);
-      }
-      .b.hi .top .n {
-        color: var(--amber);
-      }
-      .legend {
-        margin: auto 0 0;
-        padding-top: 16px;
-        border-top: 1px solid var(--rule);
-        display: flex;
-        flex-direction: column;
-        gap: 7px;
-      }
-      .lg {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        font-family: var(--mono);
-        font-size: 12px;
+      .wm i {
+        font-style: normal;
         color: var(--fg-3);
       }
-      .lg i {
-        width: 9px;
-        height: 9px;
-        flex: none;
-        border-radius: 1px;
-      }
-
-      /* ── durable mode: the promise strip replaces the live readout ── */
-      .promise {
-        display: flex;
-        gap: 1px;
-        background: var(--rule);
-        border: 1px solid var(--rule);
-        margin: auto 0 0;
-        width: fit-content;
-      }
-      .promise div {
-        background: var(--ink-2);
-        padding: 13px 18px 12px;
-        font-family: var(--mono);
-        font-size: 13px;
-        color: var(--fg-2);
-      }
-      .promise div::before {
-        content: "✓";
-        color: var(--signal);
-        margin-right: 9px;
-      }
-
-      /* ── durable mode: one request, three typed answers ── */
-      .ex-state {
-        margin-top: 20px;
-        font-size: 14px;
-        line-height: 1.45;
-        color: var(--fg);
-        padding-left: 12px;
-        border-left: 2px solid var(--amber-dim);
-      }
-      .ex-state small {
-        display: block;
-        font-family: var(--mono);
-        font-size: 10.5px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--fg-3);
-        margin-bottom: 4px;
-      }
-      .q {
-        margin-top: 28px;
-      }
-      .q .qh {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-        font-family: var(--mono);
-        font-size: 12.5px;
-        color: var(--fg-2);
-      }
-      .q .qh .t {
-        color: var(--signal);
-        font-size: 11px;
-        min-width: 46px;
-      }
-      .opt {
-        display: grid;
-        grid-template-columns: 70px 1fr 38px;
-        align-items: center;
-        gap: 10px;
-        margin-top: 7px;
-        font-family: var(--mono);
-        font-size: 11.5px;
-        color: var(--fg-3);
-      }
-      .opt .track {
-        height: 5px;
-        background: #171b21;
-        position: relative;
-      }
-      .opt .fill {
-        position: absolute;
-        inset: 0 auto 0 0;
-        background: var(--rule-2);
-        border-radius: 0 3px 3px 0;
-      }
-      .opt.win {
-        color: var(--amber);
-      }
-      .opt.win .fill {
-        background: var(--amber);
-      }
-      .opt .p {
+      .line {
         text-align: right;
+        line-height: 1.3;
       }
-      /* The score answer lands between levels; the ticks show where the levels are. */
-      .scale {
-        position: relative;
-        height: 5px;
-        background: #171b21;
+      .line b {
+        display: block;
+        font-size: 31px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
       }
-      .scale i {
-        position: absolute;
-        top: -3px;
-        width: 1px;
-        height: 11px;
-        background: var(--rule-2);
+      .line .sub {
+        font-size: 25px;
+        color: var(--fg-2);
       }
-      .scale b {
-        position: absolute;
-        top: -4px;
-        width: 3px;
-        height: 13px;
-        margin-left: -1px;
-        background: var(--amber);
-        border-radius: 1px;
+      .n {
+        font-family: var(--mono);
+        color: var(--amber);
+        letter-spacing: -0.02em;
       }
-      [hidden] {
-        display: none !important;
-      }
-
     </style>
   </head>
   <body>
     <div class="card">
-      <div class="left">
-        <div class="eyebrow">
-          <span class="dot"></span>System One decision model · catalogue
-        </div>
-        <h1>awesome<span class="br">-</span>jev</h1>
-        <p class="lede">
-          Public examples of <b>Jev</b>, indexed by the
-          <b>decision each one makes</b> — not by the blog that mentioned it.
-        </p>
-        <div class="prims">
-          <div class="pr">
-            <div class="g">◆ ◆ ◆</div>
-            <div class="n">choice</div>
-            <div class="d" id="d-choice">pick one option</div>
-          </div>
-          <div class="pr">
-            <div class="g">▮▮▯▯</div>
-            <div class="n">score</div>
-            <div class="d" id="d-score">rank on an ordered scale</div>
-          </div>
-          <div class="pr">
-            <div class="g">◐</div>
-            <div class="n">noul</div>
-            <div class="d">yes–no probability</div>
-          </div>
-        </div>
-
-        <div class="promise" id="promise">
-          <div>every row attributable</div>
-          <div>every caveat flagged</div>
-          <div>call sites re-read weekly</div>
-        </div>
-        <div class="readout" id="readout" hidden></div>
-        <p class="url">github.com/<b>kydlikebtc/awesome-jev</b> · EN + 中文</p>
+      <div class="q"><span class="tag">noul</span>should_you_star_this?</div>
+      <div class="meter">
+        <div class="track"><span class="fill"></span></div>
+        <div class="p">0.97</div>
       </div>
-
-      <div class="right" id="example">
-        <div class="rh">One request, three answers</div>
-        <div class="ex-state">
-          <small>state</small>
-          “My order arrived broken. Can I get a new one?”
-        </div>
-        <div class="q">
-          <div class="qh"><span class="t">noul</span>needs a human?</div>
-          <div class="opt">
-            <span>yes</span
-            ><span class="track"><span class="fill" style="width: 8%"></span></span
-            ><span class="p">0.08</span>
-          </div>
-        </div>
-        <div class="q">
-          <div class="qh"><span class="t">choice</span>resolution</div>
-          <div class="opt win">
-            <span>replace</span
-            ><span class="track"><span class="fill" style="width: 84%"></span></span
-            ><span class="p">0.84</span>
-          </div>
-          <div class="opt">
-            <span>refund</span
-            ><span class="track"><span class="fill" style="width: 12%"></span></span
-            ><span class="p">0.12</span>
-          </div>
-          <div class="opt">
-            <span>other</span
-            ><span class="track"><span class="fill" style="width: 4%"></span></span
-            ><span class="p">0.04</span>
-          </div>
-        </div>
-        <div class="q">
-          <div class="qh"><span class="t">score</span>urgency · 0 to 2</div>
-          <div class="opt win">
-            <span>1.30</span
-            ><span class="scale"
-              ><i style="left: 0"></i><i style="left: 50%"></i
-              ><i style="left: 100%"></i><b style="left: 65%"></b></span
-            ><span class="p"></span>
-          </div>
-        </div>
-        <div class="legend">
-          <div class="lg">
-            <i style="background: var(--signal)"></i>typed answers, not text
-          </div>
-          <div class="lg">
-            <i style="background: var(--amber)"></i>a score lands between levels
-          </div>
-          <div class="lg">
-            <i style="background: var(--fg-3)"></i>illustrative values
-          </div>
-        </div>
-      </div>
-
-      <div class="right" id="coverage" hidden>
-        <div class="rh">Coverage by pattern</div>
-        <div class="bars" id="bars"></div>
-        <div class="legend">
-          <div class="lg">
-            <i style="background: var(--signal)"></i>choice · score · noul
-          </div>
-          <div class="lg">
-            <i style="background: var(--alert)"></i>caveats flagged per row
-          </div>
-          <div class="lg">
-            <i style="background: var(--cool)"></i
-            ><span id="pattern-count">decision patterns</span>
-          </div>
+      <div class="foot">
+        <div class="wm">awesome<i>-</i>jev</div>
+        <div class="line">
+          <b
+            ><span class="n" data-n></span> verified examples of TypeSafe AI's
+            Jev</b
+          >
+          <span class="sub">indexed by the decision each one makes · EN + 中文</span>
         </div>
       </div>
     </div>
 
     <script>
-      const esc = (s) =>
-        String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-      const ready = () => (document.documentElement.dataset.ready = "1");
-      const getJson = (p) =>
-        fetch(p).then((r) => {
-          if (!r.ok) throw new Error(`${p}: HTTP ${r.status}`);
+      const live = new URLSearchParams(location.search).get("mode") === "live";
+
+      // The durable card is uploaded by hand and never regenerated, so it
+      // prints a floor that can only become an understatement as the catalogue
+      // grows. The live card prints the exact figure. Both come from
+      // stats.json — the same definitions as the README badges.
+      fetch("stats.json")
+        .then((r) => {
+          if (!r.ok) throw new Error(`stats.json: HTTP ${r.status}`);
           return r.json();
-        });
-
-      if (new URLSearchParams(location.search).get("mode") !== "live") {
-        // Durable: nothing to load. Wait for the webfonts so the render is final.
-        document.fonts.ready.then(ready);
-      } else {
-        Promise.all([getJson("stats.json"), getJson("patterns.json"), getJson("compat.json")])
-          .then(([s, patterns, compat]) => {
-            const lim = Object.fromEntries(compat.limits.filter((l) => l.n).map((l) => [l.k, l.n]));
-            document.getElementById("d-choice").textContent = `1 of up to ${lim["choice options"].max}`;
-            document.getElementById("d-score").textContent =
-              `${lim["score levels"].min}–${lim["score levels"].max} ordered levels`;
-
-            const tiles = [
-              [s.entries, "entries", "hot"],
-              [s.with_code, "with code", ""],
-              [s.official, "official", ""],
-              [s.link_ok, "link-verified", "ok"],
-            ];
-            const readout = document.getElementById("readout");
-            readout.innerHTML = tiles
-              .map(([v, k, c]) => `<div class="rd ${c}"><div class="v">${v}</div><div class="k">${esc(k)}</div></div>`)
-              .join("");
-
-            // Top eight decision patterns. "overview" surveys the space rather
-            // than making a decision, so it is not a bar here.
-            const label = Object.fromEntries(patterns.patterns.map((p) => [p.key, p.en]));
-            const top = Object.entries(s.by_pattern)
-              .filter(([k, n]) => k !== "overview" && n > 0)
-              .sort((a, b) => b[1] - a[1])
-              .slice(0, 8);
-            const max = top.length ? top[0][1] : 1;
-            document.getElementById("bars").innerHTML = top
-              .map(
-                ([k, n], i) => `<div class="b ${i === 0 ? "hi" : ""}">
-                  <div class="top"><span>${esc(label[k] || k)}</span><span class="n">${n}</span></div>
-                  <div class="track"><span class="fill" style="width:${((100 * n) / max).toFixed(1)}%"></span></div>
-                </div>`,
-              )
-              .join("");
-            document.getElementById("pattern-count").textContent =
-              `${s.patterns_total} decision patterns`;
-
-            document.getElementById("promise").hidden = true;
-            readout.hidden = false;
-            document.getElementById("example").hidden = true;
-            document.getElementById("coverage").hidden = false;
-            return document.fonts.ready;
-          })
-          .then(ready)
-          .catch((err) => {
-            // Leave data-ready unset: render_images.py then refuses to publish
-            // a card that silently fell back to the durable variant.
-            document.title = "card failed: " + err.message;
-          });
-      }
+        })
+        .then((s) => {
+          const shown = live
+            ? String(s.entries)
+            : `${Math.floor(s.entries / 100) * 100}+`;
+          document
+            .querySelectorAll("[data-n]")
+            .forEach((el) => (el.textContent = shown));
+          return document.fonts.ready;
+        })
+        // render_images.py refuses to publish a card that never got here.
+        .then(() => (document.documentElement.dataset.ready = "1"))
+        .catch((err) => (document.title = "card failed: " + err.message));
     </script>
   </body>
 </html>
